@@ -16,7 +16,14 @@ public class ex3 {
 
 		total = capital * Math.pow((1 + 0.01 * interestRate),years);
 
-		System.out.println("The total after " + years + " years is "
-				+ Math.round(total*100.0)/100.0 + " pounds.");
+		System.out.println("The total after " + years + " years is £"
+				+ Math.round(total*100.0)/100.0 + ".\n");
+
+		years = 500;
+		total = capital * Math.pow((1 + 0.01 * interestRate),years);
+
+		System.out.println("The total after " + years + " years is £"
+				+ Math.round(total*100.0)/100.0 + ".");
+
 	}
 }

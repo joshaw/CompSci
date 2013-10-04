@@ -9,26 +9,19 @@ import java.util.Scanner;
 public class ex2 {
 	public static void main(String[] args) {
 
-		double       ton = 2240; 	//1
-		double hunWeight = 112; 	//2
-		double   quarter = 28; 		//3
-		double     stone = 14; 		//4
-		double     ounce = 1/16; 	//5
-		double    drachm = 1/256; 	//6
-		double     grain = 1/7000; 	//7
+		double       ton = 2240; 		//1
+		double hunWeight = 112;			//2
+		double   quarter = 28;			//3
+		double     stone = 14;			//4
+		double     ounce = 1.0/16;		//5
+		double    drachm = 1.0/256;		//6
+		double     grain = 1.0/7000;	//7
+		double     pound = 1.0/0.45359237;
 
 		double kg = 0.45359237;
 
 		double input = 5;
 		int choice = 1;
-
-		Scanner choiceIn = new Scanner(System.in);
-		System.out.print("Convert what? ");
-		choice = choiceIn.nextInt();
-
-		Scanner inputIn = new Scanner(System.in);
-		System.out.print("How many? ");
-		input = inputIn.nextInt();
 
 		if(choice == 1){
 			System.out.print(input + " ton(s) in kg is ");
@@ -53,5 +46,8 @@ public class ex2 {
 			System.out.println(input*grain*kg);
 		}
 
+		System.out.print("\nIf a person weighs 11 stones and 6 pounds, then "
+				+ "their weight in kg is ");
+		System.out.println( Math.round((11 *stone + 6*pound) * kg*100)/100.0 );
 	}
 }
