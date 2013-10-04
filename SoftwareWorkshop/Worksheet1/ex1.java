@@ -7,9 +7,9 @@
 
 public class ex1 {
 	public static void main(String[] args) {
-		double area, radius;
+		double area, r;
 
-		radius = 5;
-		System.out.println("The area is " + Math.PI*radius*radius);
+		r = 5;
+		System.out.println("The area is " + Math.PI*r*r);
 	}
 }
