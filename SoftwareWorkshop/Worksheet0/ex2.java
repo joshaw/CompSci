@@ -1,6 +1,7 @@
 /* Date        : 2013-10-04
  * Name        : Josh Wainwright
  * UID         : 1079596
+ * Worksheet   : 0
  * Title       : Exercise 2
  * Description : Convert various imperial units into kilograms with variables
  *             : used to select the unit and the number*/

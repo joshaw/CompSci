@@ -1,6 +1,7 @@
 /* Date        : 2013-10-04
  * Name        : Josh Wainwright
  * UID         : 1079596
+ * Worksheet   : 0
  * Title       : Exercise 3
  * Description : Calculate a total given the starting point taking into
  *             : account compound interest*/
