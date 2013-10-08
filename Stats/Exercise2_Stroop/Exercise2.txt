@@ -1,0 +1,59 @@
+# create a file for your R code with the name "myfile.r" and enter the following code.
+
+mydata <- read.csv ("EMS2b-StroopData3.csv", header=T)
+head (mydata)
+RT.means <- tapply( mydata$ReactionTime, list( mydata$UserID, mydata$Condition ), mean )
+head (RT.means)
+RT.means <- as.data.frame( RT.means )
+head (RT.means)
+
+# run your code from the command line by typing "R CMD BATCH myfile.r"
+
+# open the file "myfile.r.Rout". Read and explain the output.
+
+Reconstruct the graphs used in the lecture overheads using the provided data set and the following R functions. Use the manual pages and the web to find out what they do.
+
+hist()
+
+density()
+
+plot()
+
+lines()
+
+t.test( incongruent, congruent, paired=TRUE, alternative="greater" )
+
+legend()
+
+plot( density() )
+
+pdf( height=11, width=8.5, file="means.pdf" )
+
+par( omi=c( 1,1,1,1 ) )
+
+par( mfrow=c(2,2) )
+
+for( i in 1:N ) { }
+
+# Exercise: The Central Limit Theorem. Look up the various functions used below and comment the code.
+
+# How does the code illustrate the Central Limit Theorem?
+
+n <- 10000
+
+x <- runif( n, min=350, max=1200 )
+
+hist( x )
+
+N <- 120
+
+M <- rep(NA,N)
+
+for( i in 1:N ) {
+X <- sample( x, 100 )
+M[i] <- mean(X)
+}
+
+M
+
+hist( M )
