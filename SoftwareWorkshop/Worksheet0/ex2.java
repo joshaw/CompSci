@@ -10,13 +10,13 @@ import java.util.Scanner;
 public class ex2 {
 	public static void main(String[] args) {
 
-		double       ton = 2240; 		//1
-		double hunWeight = 112;			//2
-		double   quarter = 28;			//3
-		double     stone = 14;			//4
-		double     ounce = 1.0/16;		//5
-		double    drachm = 1.0/256;		//6
-		double     grain = 1.0/7000;	//7
+		double       ton = 2240;     // 1
+		double hunWeight = 112;      // 2
+		double   quarter = 28;       // 3
+		double     stone = 14;       // 4
+		double     ounce = 1.0/16;   // 5
+		double    drachm = 1.0/256;  // 6
+		double     grain = 1.0/7000; // 7
 		double     pound = 1.0/0.45359237;
 
 		double kg = 0.45359237;

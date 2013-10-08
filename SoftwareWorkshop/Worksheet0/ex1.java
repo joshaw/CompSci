@@ -8,6 +8,10 @@
 
 public class ex1 {
 	public static void main(String[] args) {
+
+		/* Type double is used since multiplication with pi will mean that the
+		 * area will not be an integer, double radius allows for non-integer
+		 * values to be used.*/
 		double area, r;
 
 		r = 5;
