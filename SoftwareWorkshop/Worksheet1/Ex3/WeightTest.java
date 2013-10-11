@@ -1,7 +1,6 @@
-/**  This class is to test the ComputerAccout class and its methods.
- *   We create an object of class ComputerAccout, print this to the screen and
- *   change the password associated with the account.
- */
+/**  This class is to test the Weight class and its methods.
+ *   We create an object of class Weight and retreive the value in pounds and
+ *   converted to kilograms */
 public class WeightTest {
 
 	public static void main(String[] args){
