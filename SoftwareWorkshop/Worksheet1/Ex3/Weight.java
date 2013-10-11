@@ -1,0 +1,26 @@
+/** Defines the class ComputerAccout for holding info about a computer account
+ *
+ * @author Josh Wainwright
+ * @version 2013-10-11
+ */
+public class Weight {
+	double pounds;
+	double conversion = 0.45359237;
+
+	/** A simple class to hold a weight and return it in different units.
+	 *
+	 * @param pounds is the number of pounds held in this Weight
+	 */
+	public Weight(double p){
+		pounds = p;
+	}
+
+	public double getPounds(){
+		return pounds;
+	}
+
+	public double getKilograms(){
+		return pounds * conversion;
+	}
+
+}
