@@ -27,7 +27,8 @@ public class Weight {
 	}
 
 	/**
-	 * @return the number of pounds in {@link #Weight} converted to kilograms.
+	 * @return the number of pounds in {@link #Weight} converted to kilograms
+	 * using the conversion factor defined in the the class.
 	 */
 	public double getKilograms(){
 		return pounds * conversion;

@@ -8,7 +8,7 @@
  * Exercise  : 4
  * @version 2013-10-11
  */
-public class Fraction{
+public class Fraction {
 
 	private int numerator = 1;
 	private int denominator = 1;
@@ -24,6 +24,8 @@ public class Fraction{
 		this.denominator = denominator;
 	}
 
+	/** Empty constructor for Fraction, gives fraction equal to 1/1.
+	 */
 	public Fraction(){}
 
 	/**
@@ -57,6 +59,9 @@ public class Fraction{
 	 */
 	public Fraction getProduct(Fraction f){
 
+		// n1 * n2
+		// -------
+		// d1 * d2
 		int newNumerator = this.numerator * f.getNumerator();
 		int newDenominator = this.denominator * f.getDenominator();
 
@@ -72,11 +77,17 @@ public class Fraction{
 	 */
 	public Fraction getSum(Fraction f){
 
+		// Assign temporary variables for the pasrts of the fractions for
+		// readability, for both the fraction that is acted on, "this", and the
+		// fraction that is passed as an argument, "f".
 		int n1 = this.numerator;
 		int n2 = f.getNumerator();
 		int d1 = this.denominator;
 		int d2 = f.getDenominator();
 
+		// (n1*d2 + n2*d1)
+		// ---------------
+		//    (d1 * d2)
 		int newNumerator = n1 * d2 + n2 * d1;
 		int newDenominator = d1 * d2;
 
