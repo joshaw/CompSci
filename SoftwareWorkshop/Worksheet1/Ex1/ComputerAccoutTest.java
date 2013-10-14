@@ -11,6 +11,11 @@ public class ComputerAccoutTest {
 		ComputerAccout testAccount = new ComputerAccout("Joe Bloggs", "j.bloggs", "password");
 
 		System.out.println(testAccount);
+		System.out.println();
+
+		testAccount.printRealName();
+		testAccount.printUserName();
+		testAccount.printPassword();
 
 		System.out.println("\nChange password to \"SomethingNew\"");
 

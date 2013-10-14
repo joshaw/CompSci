@@ -24,21 +24,21 @@ public class ComputerAccout {
 	 * @return the real name of the account holder
 	 */
 	public void printRealName(){
-		System.out.println("Name: " + realName);
+		System.out.println("realName: " + realName);
 	}
 
 	/**
 	 * @return the user name of the account holder
 	 */
 	public void printUserName(){
-		System.out.println("Name: " + userName);
+		System.out.println("userName: " + userName);
 	}
 
 	/**
 	 * @return the password associated with the accound
 	 */
 	public void printPassword(){
-		System.out.println("Password: " + password);
+		System.out.println("password: " + password);
 	}
 
 	/** toString defines how to print a computer account

@@ -12,6 +12,11 @@ public class WeightTest {
 		System.out.println("Pounds   : " + testWeight.getPounds());
 		System.out.println("Kilograms: " + testWeight.getKilograms());
 
+		Weight testWeight2 = new Weight(49);
+
+		System.out.println("Pounds   : " + testWeight2.getPounds());
+		System.out.println("Kilograms: " + testWeight2.getKilograms());
+
 	}
 
 }
