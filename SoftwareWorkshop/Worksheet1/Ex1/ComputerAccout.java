@@ -4,7 +4,7 @@
  * @version 2013-10-11
  */
 public class ComputerAccout {
-	String realName, userName, password;
+	private String realName, userName, password;
 
 	/** A simple class to hold info about a computer account
 	 *

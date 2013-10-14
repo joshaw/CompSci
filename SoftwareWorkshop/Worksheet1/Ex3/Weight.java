@@ -4,6 +4,7 @@
  * @version 2013-10-11
  */
 public class Weight {
+
 	double pounds;
 	double conversion = 0.45359237;
 
@@ -15,10 +16,16 @@ public class Weight {
 		pounds = p;
 	}
 
+	/**
+	 * @return the number of pounds in {@link #Weight}
+	 */
 	public double getPounds(){
 		return pounds;
 	}
 
+	/**
+	 * @return the number of pounds in {@link #Weight} converted to kilograms.
+	 */
 	public double getKilograms(){
 		return pounds * conversion;
 	}
