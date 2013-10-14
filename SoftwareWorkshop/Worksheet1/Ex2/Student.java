@@ -10,7 +10,6 @@ public class Student {
 	String name, studentID, course;
 
 	/** A simple class to hold info about a student at university
-	 *
 	 * @param name is the name of a student
 	 * @param studentID is the university ID of a student
 	 * @param course is the degree programme the student is taking
@@ -21,8 +20,19 @@ public class Student {
 		this.course = course;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getStudentID() {
+		return studentID;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
 	/** toString defines how to print a computer account
-	 *
 	 * @return the print type of a student
 	 */
 	@Override
