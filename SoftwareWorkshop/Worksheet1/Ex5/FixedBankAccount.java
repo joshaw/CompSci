@@ -1,5 +1,5 @@
-/** Defines the class FixedBankAccount to hold an initial capital for d days
- * and return the final contents of the account after n days.
+/** Defines the class FixedBankAccount to hold an initial capital for "days"
+ * days and return the final contents of the account after n days.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -10,7 +10,7 @@
 public class FixedBankAccount {
 
 	private double initialCapital;
-	private int d;
+	private int days;
 
 	private double interestRate = 0.01;
 
@@ -18,11 +18,11 @@ public class FixedBankAccount {
 	 * days.
 	 *
 	 * @param initialCapital is the starting contents of the account
-	 * @param d is the number of days it will be held
+	 * @param days is the number of days it will be held
 	 */
 	public FixedBankAccount(double initialCapital, int d){
 		this.initialCapital = initialCapital;
-		this.d = d;
+		this.days = d;
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class FixedBankAccount {
 	 * @return the number of days of {@link #FixedBankAccount}
 	 */
 	public int getDays(){
-		return d;
+		return days;
 	}
 
 	/** toString defines how to print a computer account
@@ -45,19 +45,18 @@ public class FixedBankAccount {
 	 */
 	@Override
 	public String toString(){
-		return "£" + initialCapital + ", " + d;
+		return "£" + initialCapital + " (" + days + " days)";
 	}
 
 	/** Returns the total capital in the account after the number of full years
-	 * represented by {@link #d} days.
+	 * represented by {@link #days} days.
 	 *
-	 * Partial years are not counted since the interest is added at the end of
-	 * each year.
-	 *
-	 * @return the final capital after d days
+	 * @return the final capital after "days" days
 	 */
 	public double getTotalCapital(){
-		int years = d/365;
+		// Partial years are not counted since the interest is added at the end
+		// of each year so integer division rounds to nearest integer.
+		int years = days/365;
 
 		// interestRate to the power years gives the total interest for that
 		// many years. Multiply this by initialCapital gives total after years
