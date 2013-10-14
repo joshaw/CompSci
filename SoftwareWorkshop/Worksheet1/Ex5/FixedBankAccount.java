@@ -1,6 +1,10 @@
 /** Defines the class FixedBankAccount to hold an initial capital for d days
  * and return the final contents of the account after n days.
+ *
  * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 1
+ * Exercise  : 5
  * @version 2013-10-11
  */
 public class FixedBankAccount {
@@ -55,8 +59,13 @@ public class FixedBankAccount {
 	public double getTotalCapital(){
 		int years = d/365;
 
+		// interestRate to the power years gives the total interest for that
+		// many years. Multiply this by initialCapital gives total after years
 		double finalCapital = (initialCapital * Math.pow(1 + interestRate, years));
 
+		// Returns number of pounds, so round to 2 decimal places. Increase by
+		// 2 powers of 10 and divide so Math.round includes 2 powers of 10
+		// below deimal point.
 		return Math.round(finalCapital * 100.0) / 100.0;
 	}
 

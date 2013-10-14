@@ -1,13 +1,15 @@
 /** Defines the class ComputerAccout for holding info about a computer account
  *
  * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 1
+ * Exercise  : 1
  * @version 2013-10-11
  */
 public class ComputerAccout {
 	private String realName, userName, password;
 
 	/** A simple class to hold info about a computer account
-	 *
 	 * @param realName is the real name of the account holder
 	 * @param userName is the username of the account holder
 	 * @param password is the password associated with the account
@@ -40,7 +42,6 @@ public class ComputerAccout {
 	}
 
 	/** toString defines how to print a computer account
-	 *
 	 * @return the print type of an account
 	 */
 	@Override
@@ -50,7 +51,6 @@ public class ComputerAccout {
 
 	/** changePassword allows the stored password associated with an account to
 	 * be changed.
-	 *
 	 * @param newPassword is the new password that will be associated with the
 	 * account
 	 */

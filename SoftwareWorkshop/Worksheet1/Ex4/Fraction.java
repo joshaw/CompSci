@@ -3,6 +3,9 @@
  * Fractions.
  *
  * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 1
+ * Exercise  : 4
  * @version 2013-10-11
  */
 public class Fraction{

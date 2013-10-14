@@ -1,6 +1,9 @@
 /** Defines the class Student for holding info about a student at university
  *
  * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 1
+ * Exercise  : 2
  * @version 2013-10-11
  */
 public class Student {

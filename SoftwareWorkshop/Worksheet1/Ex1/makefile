@@ -6,7 +6,7 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	*.java \
+        *.java \
 
 default: classes
 

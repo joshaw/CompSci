@@ -1,6 +1,9 @@
 /** Defines the class ComputerAccout for holding info about a computer account
  *
  * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 1
+ * Exercise  : 3
  * @version 2013-10-11
  */
 public class Weight {
