@@ -14,6 +14,12 @@ public class FixedBankAccountTest {
 
 		System.out.println("£" + testAccount.getTotalCapital());
 
+		FixedBankAccount testAccount2 = new FixedBankAccount(15.00, 1000);
+
+		System.out.println(testAccount2);
+
+		System.out.println("£" + testAccount2.getTotalCapital());
+
 	}
 
 }
