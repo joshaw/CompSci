@@ -9,7 +9,7 @@
  */
 public class FixedBankAccount {
 
-	private double initialCapital;
+	private int initialCapitalPence;
 	private int days;
 
 	private double interestRate = 0.01;
@@ -21,7 +21,7 @@ public class FixedBankAccount {
 	 * @param days is the number of days it will be held
 	 */
 	public FixedBankAccount(double initialCapital, int d){
-		this.initialCapital = initialCapital;
+		this.initialCapitalPence = (int) initialCapital*100;
 		this.days = d;
 	}
 
@@ -29,7 +29,7 @@ public class FixedBankAccount {
 	 * @return the initialCapital of {@link #FixedBankAccount}
 	 */
 	public double getInitialCapital(){
-		return initialCapital;
+		return initialCapitalPence/100.0;
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class FixedBankAccount {
 	 */
 	@Override
 	public String toString(){
-		return "£" + initialCapital + " (" + days + " days)";
+		return "£" + initialCapitalPence/100.0 + " (" + days + " days)";
 	}
 
 	/** Returns the total capital in the account after the number of full years
@@ -60,12 +60,13 @@ public class FixedBankAccount {
 
 		// interestRate to the power years gives the total interest for that
 		// many years. Multiply this by initialCapital gives total after years
-		double finalCapital = (initialCapital * Math.pow(1 + interestRate, years));
+		double finalCapital = (initialCapitalPence * Math.pow(1 + interestRate, years));
 
 		// Returns number of pounds, so round to 2 decimal places. Increase by
 		// 2 powers of 10 and divide so Math.round includes 2 powers of 10
 		// below deimal point.
-		return Math.round(finalCapital * 100.0) / 100.0;
+		// return Math.round(finalCapital * 100.0) / 100.0;
+		return finalCapital/100.0;
 	}
 
 }
