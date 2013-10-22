@@ -1,0 +1,46 @@
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> N <- 90
+> z  <- rnorm(N, mean=0, sd=15)
+> examscore <- z + 62 + rnorm (N, mean=0, sd=7)
+> friends <- -z + 200 + rnorm(N, mean=0, sd=10)
+> 
+> plot(examscore, friends)
+> 
+> # Mean - examscore
+> 
+> stdev <- function(data){
++ 	stdev <- sum((data - mean(data))^2) / (length(data) -1)
++ 	return(stdev)
++ }
+> 
+> results <- stdev(examscore)
+> 
+> results
+[1] 313.0656
+> 
+> var(examscore)
+[1] 313.0656
+> 
+> proc.time()
+   user  system elapsed 
+  0.376   0.033   0.406 
