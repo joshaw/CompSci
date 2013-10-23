@@ -12,16 +12,21 @@ public class FixedBankAccount {
 	private int initialCapitalPence;
 	private int days;
 
-	private double interestRate = 0.01;
+	final double interestRate = 0.01;
 
 	/** A simple class to hold an initial capital for a specified number of
 	 * days.
 	 *
-	 * @param initialCapital is the starting contents of the account
+	 * @param initialCapital is the starting contents of the account in pounds.
+	 * This is then converted to pence for manipulation
 	 * @param days is the number of days it will be held
 	 */
 	public FixedBankAccount(double initialCapital, int d){
-		this.initialCapitalPence = (int) initialCapital*100;
+
+		//Convert the given pounds to pence and convert to integer
+		double tempInitialCapital = initialCapital * 100;
+		this.initialCapitalPence = (int) tempInitialCapital;
+
 		this.days = d;
 	}
 
@@ -61,12 +66,10 @@ public class FixedBankAccount {
 		// interestRate to the power years gives the total interest for that
 		// many years. Multiply this by initialCapital gives total after years
 		double finalCapital = (initialCapitalPence * Math.pow(1 + interestRate, years));
+		finalCapital = (int) finalCapital;
 
-		// Returns number of pounds, so round to 2 decimal places. Increase by
-		// 2 powers of 10 and divide so Math.round includes 2 powers of 10
-		// below deimal point.
-		// return Math.round(finalCapital * 100.0) / 100.0;
-		return finalCapital/100.0;
+		// Returns number of pounds, so converts from pence to pounds.
+		return finalCapital/100;
 	}
 
 }

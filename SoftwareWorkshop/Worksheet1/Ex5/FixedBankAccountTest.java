@@ -10,15 +10,26 @@ public class FixedBankAccountTest {
 		//Create an account with £1000 for 1000 days.
 		FixedBankAccount testAccount = new FixedBankAccount(1000.00, 1000);
 
-		System.out.println(testAccount);
+		System.out.println("Inital Account: " + testAccount);
 
-		System.out.println("£" + testAccount.getTotalCapital());
+		System.out.println("Total Capital: £" + testAccount.getTotalCapital());
+		System.out.println();
 
+		//Create an account with £15 for 1000 days.
 		FixedBankAccount testAccount2 = new FixedBankAccount(15.00, 1000);
 
-		System.out.println(testAccount2);
+		System.out.println("Inital Account: " + testAccount2);
 
-		System.out.println("£" + testAccount2.getTotalCapital());
+		System.out.println("Total Capital: £" + testAccount2.getTotalCapital());
+		System.out.println();
+
+		//Create an account with £150 for 900 days.
+		FixedBankAccount testAccount3 = new FixedBankAccount(150.00, 900);
+
+		System.out.println("Inital Account: " + testAccount3);
+
+		System.out.println("Total Capital: £" + testAccount3.getTotalCapital());
+		System.out.println();
 
 	}
 
