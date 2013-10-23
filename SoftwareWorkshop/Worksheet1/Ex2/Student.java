@@ -7,7 +7,8 @@
  * @version 2013-10-11
  */
 public class Student {
-	String name, studentID, course;
+
+	private String name, studentID, course;
 
 	/** A simple class to hold info about a student at university
 	 * @param name is the name of a student

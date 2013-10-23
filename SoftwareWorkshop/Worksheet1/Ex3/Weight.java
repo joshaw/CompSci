@@ -8,8 +8,8 @@
  */
 public class Weight {
 
-	double pounds;
-	double conversion = 0.45359237;
+	private double pounds;
+	final static double conversion = 0.45359237;
 
 	/** A simple class to hold a weight and return it in different units.
 	 *
