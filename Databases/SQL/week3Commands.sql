@@ -1,6 +1,48 @@
-/*
+--3.1.1
+SELECT COUNT(*) AS "No. Records in LECTURING"
+FROM lecturing
+;
+SELECT COUNT(*) AS "No. Records in COURSES"
+FROM courses
+;
+SELECT COUNT(*) AS "No. Records in STAFF"
+FROM staff
+;
+
+--3.1.2
+SELECT sid, firstname, lastname
+FROM staff
+WHERE office > 199
+;
+
+--3.1.3
+SELECT office, phone, lastname
+FROM staff
+WHERE firstname = 'Mark'
+;
+
+--3.1.4
+SELECT firstname, lastname, phone
+FROM staff
+WHERE office > 100
+ORDER BY firstname DESC
+;
+
+--3.1.5
+SELECT sid
+FROM staff
+WHERE title <> 'Prof'
+ORDER BY sid
+;
+
+--3.2.1
+SELECT cid
+FROM courses
+WHERE level > 1 AND level < 4 AND semester = 1
+;
+
 --3.2.2
-SELECT firstname,lastname,office,phone
+SELECT firstname, lastname, office, phone
 FROM staff
 WHERE phone IS NULL AND office IS NOT NULL
 ;
@@ -13,7 +55,6 @@ ORDER BY cid
 ;
 
 --3.2.4a
-
 SELECT firstname,lastname,office
 FROM staff
 WHERE office IN (
@@ -26,17 +67,15 @@ WHERE office IN (
 ORDER BY office
 ;
 
---??????????????????????????
 --3.2.4b
-SELECT office,firstname
+SELECT office
 FROM staff
 WHERE office IS NOT NULL
 EXCEPT ALL
-SELECT office,lastname
+SELECT DISTINCT office
 FROM staff
 ORDER BY office
 ;
---??????????????????????????
 
 --3.2.5
 SELECT cid,AVG(numbers) AS "Average Numbers" ,MAX(year) AS "Last Year Given"
@@ -63,4 +102,3 @@ WHERE mark >= 40
 GROUP BY bc
 HAVING MIN(mark) > 5 + (SELECT AVG(mark) FROM allmarks04)
 ;
-*/
