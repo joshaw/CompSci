@@ -1,0 +1,39 @@
+/** Defines the class ComputerAccout for holding info about a computer account
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 1
+ * Exercise  : 1
+ * @version 2013-10-11
+ */
+public class Equals {
+
+	private final char[] capitals = {'A','B','C','D','E','F','G','H','I','J',
+		'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+	private final char[] lowers = {'a','b','c','d','e','f','g','h','i','j',
+		'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+
+	private char toLower(char letter){
+		for (int i = 0; i < 26; i++) {
+			if (letter == capitals[i]) {
+				letter = lowers[i];
+				return letter;
+			}
+		}
+		return letter;
+	}
+
+	public boolean Equals(String first, String second){
+
+		if (first.length() != second.length()) {
+			return false;
+		}
+
+		for (int i = 0; i < first.length(); i++) {
+			if (toLower(first.charAt(i)) != toLower(second.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
