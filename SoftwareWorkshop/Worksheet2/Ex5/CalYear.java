@@ -1,6 +1,5 @@
 public class CalYear {
 	public static void main(String[] args) {
-		int first = 1;
 		int year = 2013;
 
 		String[][] monthData = new String[12][8];
@@ -41,6 +40,8 @@ public class CalYear {
 			System.out.println("Leap Year!");
 		}
 
+		int first;
+		int last = 1;
 		for (int month = 0; month < 12; month++) {
 
 			// Initialise the monthData array to empty strings
@@ -54,11 +55,12 @@ public class CalYear {
 				monthData[month][1] += String.format("%3s", day);
 			}
 
-			first = 7 - 7%monthMax[month];
+			// first = 7 - 7%monthMax[month];
 			// "week" refers to the rows in each month. Since there is also a
 			// row for the month name and the days, start at 2
 			int week = 2;
 
+			first = last;
 			for (int i=1; i<=7*6; i++) {
 
 				int j = i - first;
@@ -66,6 +68,9 @@ public class CalYear {
 					monthData[month][week] += "   ";
 				}else if(j <= monthMax[month]){
 					monthData[month][week] += String.format("%3s", j);
+					if (j == monthMax[month]) {
+						last = i%7;
+					}
 				} else {
 					monthData[month][week] += "   ";
 				}
