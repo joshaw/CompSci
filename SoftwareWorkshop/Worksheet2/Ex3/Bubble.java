@@ -8,36 +8,39 @@
  * @version 2013-11-07
  */
 public class Bubble {
-	public static void main(String[] args) {
+
+	private int[] array;
+	private boolean verbose = false;
+	private int count = 0;
+
+	public Bubble(int [] array){
+		this.array = array;
+	}
+
+	/** Method to sort an integer array using the Bubble sort algorithm
+	 *
+	 * @param verbose if true, prints out each step of the sort for inspection.
+	 * @return a sorted integer array, ascending from smallest to largest.
+	 */
+	public int[] sort(boolean verbose){
 		boolean sorted = false;
 		boolean flip;
 
-		int n = 100;
-		int maximum = 10000;
-		short count = 0;
-		int[] array = new int[n];
+		// The size of the array that we are working with.
+		int n = array.length;
 
-		// Fill the array with random integers between 0 and maximum
-		for (int i = 0; i < n; i++) {
-			double number = Math.random() * maximum;
-			array[i] = (int) number;
-		}
-
-		// Make a copy of the array "array" as "original" so that the original is
-		// availible after sorting.
-		int[] original = new int[n];
-		System.arraycopy( array, 0, original, 0, array.length );
-
-		int rounds = array.length;
 		do{
-			printArray(array);
+			// Print the steps involved in sorting if asked
+			if (verbose) {
+				System.out.println(this.toString());
+			}
 
 			flip = false;
+
 			// For each element, up to the second to last, check if it and its
 			// neighbour (the next element in the array) are in the correct
 			// order, ie if it is smaller than its neighbour, then don't do
-			// anything, else, using a temporary variable, swap it and its
-			// neighbour.
+			// anything, else, using a temporary variable, swap them
 			for (int i = 0; i < n-1; i++) {
 				if (array[i] > array[i+1]) {
 					int temp = array[i];
@@ -59,22 +62,40 @@ public class Bubble {
 			count++;
 			if(count > 100) break;
 
+		// Do this while there are still flips being made.
 		}while(!sorted);
 
-		System.out.println("\nPerformed " + count + " rounds.");
-		System.out.print("Original: ");
-		printArray(original);
-		System.out.print("  Sorted: ");
-		printArray(array);
-
+		return array;
 	}
 
-	public static void printArray(int[] a){
-			System.out.print("[");
-			for (int i = 0; i < a.length-1; i++) {
-				System.out.print(a[i] + ",");
-			}
-			System.out.print(a[a.length-1]);
-			System.out.println("]");
+	/** Method to sort an integer array using the Bubble sort algorithm.
+	 * Default use is with verbose off.
+	 *
+	 * @return a sorted integer array, ascending from smallest to largest.
+	 */
+	public int[] sort(){
+		return sort(verbose);
 	}
+
+	/**
+	 * @return the number of rounds required to sort the array. 0 if the array
+	 * has not yet been sorted.
+	 */
+	public int getSortCount(){
+		return count;
+	}
+
+	/** toString defines how to print a Bubble array.
+	 * @return the print type of a Bubble array
+	 */
+	@Override
+	public String toString(){
+		String output = "[";
+		for (int i = 0; i < array.length-1; i++) {
+			output += array[i] + ",";
+		}
+		output += array[array.length-1] + "]";
+		return output;
+	}
+
 }

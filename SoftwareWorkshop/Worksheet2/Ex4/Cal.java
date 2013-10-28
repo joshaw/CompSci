@@ -1,5 +1,6 @@
 public class Cal {
-	public static void main(String[] args) {
+	public String Cal() {
+		String calendar;
 		short max = 31;
 		short first = 0;
 
