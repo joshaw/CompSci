@@ -13,8 +13,9 @@ public class Divisible {
 	public static void main(String[] args) {
 
 		int maximum = 300;
-		int j = 0;
+		int columns = 0;
 
+		// Accept argument to program as maximum if it exists.
 		if (args.length == 1) {
 			int temp = Integer.parseInt(args[0]);
 			if (temp > 2) {
@@ -22,16 +23,20 @@ public class Divisible {
 			}
 		}
 
+		// Calculate the nessessary width of each column based on the number of
+		// digits needed for maximum, the largest value to be printed.
 		int width = (int) Math.log10(maximum) + 2;
 
 		for (int i = 0; i < maximum; i++) {
 			if (((i%2==0) || (i%3==0) || (i%5==0)) && ((i%7!=0) || (i%11!=0))) {
 				System.out.printf("%"+width+"s", i);
-				j++;
+				columns++;
 			}
-			if (j==20) {
+			// Print a newline when 20 columns have been printed, unless the
+			// last number is the last in the row.
+			if ( ( columns==20 ) && ( i<maximum-1 ) ) {
 				System.out.println();
-				j = 0;
+				columns = 0;
 			}
 		}
 		System.out.println();
