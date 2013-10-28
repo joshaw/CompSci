@@ -15,7 +15,7 @@ public class Divisible {
 		int maximum = 300;
 		int columns = 0;
 
-		// Accept argument to program as maximum if it exists.
+		// Accept argument to program as "maximum" if it exists.
 		if (args.length == 1) {
 			int temp = Integer.parseInt(args[0]);
 			if (temp > 2) {
@@ -27,6 +27,8 @@ public class Divisible {
 		// digits needed for maximum, the largest value to be printed.
 		int width = (int) Math.log10(maximum) + 2;
 
+		//Main loop. For each integer from 0 to maximum, check if conditions
+		//apply. If true, then print number with appropriate spacing.
 		for (int i = 0; i < maximum; i++) {
 			if (((i%2==0) || (i%3==0) || (i%5==0)) && ((i%7!=0) || (i%11!=0))) {
 				System.out.printf("%"+width+"s", i);
@@ -39,6 +41,7 @@ public class Divisible {
 				columns = 0;
 			}
 		}
+		// Finish last entry with newline.
 		System.out.println();
 	}
 
