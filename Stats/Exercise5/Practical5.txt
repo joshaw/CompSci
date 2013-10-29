@@ -1,0 +1,74 @@
+# Load in your data. See previous practicals if stuck
+
+
+# Run a data check to find any missing values. Hint:  is.na (dataframe) . This creates a matrix of boolean values that shows you whether there is missing data (TRUE) or not (FALSE)
+
+
+# Remove the id that does not use facebook, and the ids that have missing data in the variables that we are using in the study. Hint: newdataframe<- olddataframe[!olddataframe$id == "id_to_be_removed" ]
+
+
+# Get the mean and Standard Deviation of the Age variable as well as number of females and males in the sample. Hint- to get counts of values in a vector use table()
+
+
+# ------Questionnaire score calculation-------
+# We need to reverse score two of the items in the bonding social capital measure (bonding_3 and bonding_9). This means we need to make a score of 5 into a score of 1, a score of 4 into a score of 2 etc.. This can be done using a simple subtraction.
+
+
+data$bonding_3 <-
+
+
+data$bonding_9 <-
+
+
+
+# Now we need to do some standardisation to the first and second variable facebook_int_1 and facebook_int_2
+
+# For the first item (facebook_int_1): It is in a scale from 0-8 (see paper and lecture slides). We therefore need to make it fit into a scale of 1-5, like the rest of the items. A way to do this is 1) to add 1 to the scores to remove the 0 and then 2) replace the scores in the first scale with scores equivalent in a 1-5 score. We need to make 1=1 (as they are the minimum for both scales), 2= 1.5, 3=2, 4=2.5, 5=3, 6=3.5, 7=4, 8=4.5, 9=5 (as they are the maximum for both scales). Complete the code with the values. the first two steps are completed as an example.
+
+data$facebook_int1 <- data$facebook_int1+1
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==2, 1.5)
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+data$facebook_int1<- replace (data$facebook_int1, data$facebook_int1==, )
+
+# Now we need to do the same for the facebook_int_2 variable i.e. add on 1 to the entire values of the variable and change the values so that 1=1 (as they are both the minimum), 2=1.8, 3=2.6, 4=3.4, 5=4.2, 6=5 (as they are the maximum of both scales).
+
+
+# It is now time to make the questionnaire scores for the bonding, bridging social capital and the facebook intensity scales. We need to get a mean of the scores on the items in each of the scales. Hint: to do this use rowMeans (dataframe[, rowstart:rowfinish,columnstart:columnfinish]). Remember to allocate these variables to vectors as you will be using these vectors later
+
+#------Descriptive Statistics-------
+# We now want to run some descriptive statistics on our data. These are things like mean, standard deviation, number of people per condition and the variance in the scale scores.
+
+# We can create a "mysummary" function to give us these. Complete and reorder the function with the commands that will give you 1- standard deviation, 2- variance, 3- mean, 4- median and 5- length. Some have been completed for you.
+
+
+mysummary <- function(x)
+{
+    v1 <- (x)
+    v2 <- median(x)
+    v3 <- (x)
+    v4 <- sd(x)
+    v5 <- length(x)
+    return(list( mean=  , median=v2, var=  , sd=v4, N=v5))
+}
+
+# We then want to graph our data in a histogram to see the spread of our data. This also gives us an idea of whether it is normally distributed or not. We can use the pdf function below to set up a pdf with all of our graphs. Create a histogram and boxplot for bonding, bridging and facebook intensity scales. Hint: hist(), boxplot ()
+
+
+pdf( height=11, width=8.5, file="graphs.pdf" )
+par( omi=c( 1,1,1,1 ) )
+
+
+# Although we can get an idea through our histograms of whether our data are normally distributed we need to be sure of this before conducting our parametric statistical tests. Here we are going to use the shapiro wilkes test. As it tests whether we can reject the null hypothesis that there is no statistically significant difference between a normal distribution and the distribution of the data, we want a non-significant result (p>.05)
+
+# Run a shapiro wilkes test on each of the variables being included in the correlation analysis using the command shapiro.test ()
+
+
+
+# Create a scatterplot for each of your planned correlations. Hint plot()
+
+# Run the correlation between the variables. Hint: cor.test ()
