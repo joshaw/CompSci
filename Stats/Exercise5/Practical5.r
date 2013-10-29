@@ -1,15 +1,10 @@
 facebook_data <- read.csv("facebook_data_final.csv", header=T)
 
-FB <- facebook_data[!facebook_data$id == "10"]
-columns_to_keep <- c("id", "Gender", "Age", "Nationality",
-"facebook_int_1", "facebook_int_1")
-
-FB[columns_to_keep]
-
-mean_age <- mean(FB$Age)
-sd_age <- sd(FB$Age)
+FB <- facebook_data[facebook_data$Are_you_a_member_of_Facebook == "Y", ]
+FB[is.na(FB)] <- 0
 
 table_genders <- table(FB$Gender)
+#table_genders
 
 FB$bonding_3 <- 5 - FB$bonding_3
 FB$bonding_9 <- 5 - FB$bonding_9
@@ -31,7 +26,25 @@ FB$facebook_int2 <- replace (FB$facebook_int1, FB$facebook_int1==4, 3.4)
 FB$facebook_int2 <- replace (FB$facebook_int1, FB$facebook_int1==5, 5.2)
 FB$facebook_int2 <- replace (FB$facebook_int1, FB$facebook_int1==6, 5)
 
-x[] <- FB[, FB$facebook_int_1:FB$facebook_int_8, 0:44]
-rowmeans_facebook[] <- rowMeans (x)
+mean_intensity <- rowMeans (FB[, 4:11])
+mean_bonding <- rowMeans (FB[, 12:21])
+mean_bridging <- rowMeans (FB[, 22:31])
+mean_intensity
 
-rowmeans_facebook
+statistics <- function(x)
+{
+    Mean <- mean(x)
+    Median <- median(x)
+    Varience <- var(x)
+    SD <- sd(x)
+    Length <- length(x)
+    return(list(mean=Mean, median=Median, var=Varience, sd=SD, N=Length))
+}
+
+pdf( height=11, width=8.5, file="graphs.pdf" )
+par( omi=c( 1,1,1,1 ) )
+
+hist(mean_intensity)
+hist(mean_bonding)
+hist(mean_bridging)
+boxplot(mean_intensity, mean_bonding, mean_bridging)

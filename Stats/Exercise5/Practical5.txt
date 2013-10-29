@@ -4,10 +4,10 @@
 # Run a data check to find any missing values. Hint:  is.na (dataframe) . This creates a matrix of boolean values that shows you whether there is missing data (TRUE) or not (FALSE)
 
 
-# Remove the id that does not use facebook, and the ids that have missing data in the variables that we are using in the study. Hint: newdataframe<- olddataframe[!olddataframe$id == "id_to_be_removed" ]
+# Remove the id that does not use facebook, and the ids that have missing data in the variables that we are using in the study. Hint: newdataframe<- olddataframe[!olddataframe$id == "id_to_be_removed", ]
 
 
-# Get the mean and Standard Deviation of the Age variable as well as number of females and males in the sample. Hint- to get counts of values in a vector use table()
+# Get the number of females and males in the sample. Hint- to get counts of values in a vector use table()
 
 
 # ------Questionnaire score calculation-------
