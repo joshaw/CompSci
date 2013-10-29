@@ -1,6 +1,10 @@
 facebook_data <- read.csv("facebook_data_final.csv", header=T)
 
 FB <- facebook_data[!facebook_data$id == "10"]
+columns_to_keep <- c("id", "Gender", "Age", "Nationality",
+"facebook_int_1", "facebook_int_1")
+
+FB[columns_to_keep]
 
 mean_age <- mean(FB$Age)
 sd_age <- sd(FB$Age)

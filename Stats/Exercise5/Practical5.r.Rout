@@ -1,2 +1,3 @@
-Error in FB$facebook_int_1:FB$facebook_int_8 : argument of length 0
+Error in `[.data.frame`(FB, columns_to_keep) : undefined columns selected
+Calls: [ -> [.data.frame
 Execution halted
