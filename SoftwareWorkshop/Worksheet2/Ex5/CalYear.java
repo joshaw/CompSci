@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 2
+ * Exercise  : 5
+ * File name : CalYear.java
+ * @version 2013-10-31
+ */
 public class CalYear {
 	public static void main(String[] args) {
 		int year = 2013;

@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 2
+ * Exercise  : 1
+ * File name : EqualsTest.java
+ * @version 2013-11-07
+ */
 public class EqualsTest {
 	/** Test function for the Equals method
 	 */

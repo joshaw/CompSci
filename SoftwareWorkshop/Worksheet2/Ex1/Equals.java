@@ -2,12 +2,13 @@
  * and false if they differ, irrespective of case.
  *
  * The method is called equals and is called as
- * 			Equals.equals("str1", "str2");
+ *           Equals.equals("str1", "str2");
  *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 2
  * Exercise  : 1
+ * File name : Equals.java
  * @version 2013-11-07
  */
 public class Equals {
