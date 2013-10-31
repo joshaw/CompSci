@@ -20,10 +20,11 @@ public class DivisibleTest {
 				if (temp > 2) {
 					maximum = temp;
 				}
+			}else{
+				System.out.println("Using default value for maximum - " + maximum);
 			}
 		}catch(NumberFormatException e){
 			System.out.println("Not a valid input. Using default value 300");
-			System.out.println();
 		}
 
 		Divisible d = new Divisible(maximum);
