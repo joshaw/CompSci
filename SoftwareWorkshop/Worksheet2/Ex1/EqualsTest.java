@@ -1,4 +1,4 @@
-/**
+/** Test class for the Equals class.
  *
  * @author Josh Wainwright
  * UID       : 1079596

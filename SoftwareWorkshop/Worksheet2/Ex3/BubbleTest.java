@@ -9,6 +9,8 @@
  */
 public class BubbleTest {
 	public static void main(String[] args) {
+
+		// ####################################################################
 		int n = 10;
 
 		int[] array = new int[n];
@@ -20,20 +22,26 @@ public class BubbleTest {
 			array[i] = (int) number;
 		}
 
+		// Create new Bubble instance with the random array that has been made
 		Bubble a = new Bubble(array);
 
+		// Get the original array from the object
 		System.out.print("Original: ");
 		System.out.println(a.toString());
 
+		// Sort the array with verbose output
 		a.sort(true);
 
+		// Get the final sorted array from the object
 		System.out.print("  Sorted: ");
 		System.out.println(a.toString());
 
+		// Get the number of rounds needed to sort the array
 		System.out.println("Sorted in " + a.getSortCount() + " rounds.");
 
 		System.out.println("\n\n");
 
+		// ####################################################################
 		// Test the sort algorithm with an almost entirely sorted array. Since
 		// the smallest value is at the end of the array, the maximum number of
 		// rounds is required to sort it, demonstrating the relative
@@ -52,6 +60,7 @@ public class BubbleTest {
 
 		System.out.println("Sorted in " + b.getSortCount() + " rounds.");
 
+		// ####################################################################
 		// Test another array of larger integers.
 		int[] array3 = {345,456,234,789};
 
