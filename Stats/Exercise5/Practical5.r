@@ -29,7 +29,6 @@ FB$facebook_int2 <- replace (FB$facebook_int1, FB$facebook_int1==6, 5)
 mean_intensity <- rowMeans (FB[, 4:11])
 mean_bonding <- rowMeans (FB[, 12:21])
 mean_bridging <- rowMeans (FB[, 22:31])
-mean_intensity
 
 statistics <- function(x)
 {
@@ -48,3 +47,11 @@ hist(mean_intensity)
 hist(mean_bonding)
 hist(mean_bridging)
 boxplot(mean_intensity, mean_bonding, mean_bridging)
+
+shapiro.test(mean_intensity)
+shapiro.test(mean_bonding)
+shapiro.test(mean_bridging)
+
+plot(mean_intensity, type="b")
+plot(mean_bonding, type="b")
+plot(mean_bridging, type="b")
