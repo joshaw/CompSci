@@ -13,6 +13,7 @@ public class Cal {
 	private int first = 0;
 	private int max = 31;
 
+	private final String[] days = {" Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"};
 
 	/** Constructor for the {@link #Cal} class
 	 *
@@ -51,8 +52,6 @@ public class Cal {
 			System.out.println("Error, first day of the month is too large");
 			System.exit(1);
 		}
-
-		String[] days = {" Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"};
 
 		for (String day:days) {
 			calendar += day + " ";
