@@ -1,4 +1,8 @@
-/**
+/** A class to create a calendar of the specified year, or this if no year is
+ * given, and write it to a string for printing. The year is used to determine
+ * whether or not it is a leap year, and an additional arguement is used to
+ * specify the day of the week the 1st January is on. Subsequent mont starts
+ * are determined automatically from the last day of the previous month.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -55,13 +59,40 @@ public class CalYear {
 	 * year.
 	 */
 	public CalYear(){
-		year = (int) Math.floor(System.currentTimeMillis()/1000/3600/24/365.25 +1970);
+		year = (int) Math.floor(
+				System.currentTimeMillis()/1000/3600/24/365.25 +1970);
 		calYear();
 	}
 
 	/** Class CalYear main method. Creates a multiline string which holds a
 	 * calendar for the year specified in {@link year}. Each month starts on
 	 * the day after the last day of the preceding month.
+	 *
+	 * The whole year is represented as a string. As an intermediate step, the
+	 * year is contained within the monthData array. 12 elements make up the
+	 * year.
+	 *
+	 * Within each month element are 8 elements. The first holds the month
+	 * name, the second the days of the week and the remaining 6 the days of
+	 * the month.
+	 *
+	 * |          Month            |
+	 * |    Days of the week       |
+	 * +---+---+---+---+---+---+---+
+	 * |" "|" "| 1 | 2 | 3 | 4 | 5 |   Each row is an elemnt in the monthArray
+	 * +---+---+---+---+---+---+---+
+	 * | 6 | 7 | 8 | 9 |10 |11 |12 |
+	 * +---+---+---+---+---+---+---+
+	 * |13 |14 |15 |16 |17 |18 |19 |
+	 * +---+---+---+---+---+---+---+
+	 * |20 |21 |22 |23 |24 |25 |26 |
+	 * +---+---+---+---+---+---+---+
+	 * |27 |28 |29 |30 |31 |" "|" "|  Empty grid places are padded with spaces
+	 * +---+---+---+---+---+---+---+
+	 * |" "|" "|" "|" "|" "|" "|" "|  The last row is used for all months
+	 * +---+---+---+---+---+---+---+  though it only contains numbers when the
+	 *                                month starts late enough for the last
+	 *                                week to reach this row.
 	 */
 	public void calYear() {
 
@@ -87,64 +118,108 @@ public class CalYear {
 		 * year is a leap year.*/
 		checkLeapYear();
 
-		for (int currentMonth = 0; currentMonth < 12; currentMonth++) {
+		for (int cMonth = 0; cMonth < 12; cMonth++) {
 
 			/* Initialise the monthData array to empty strings rather than
 			 * null*/
-			for (int i = 0; i < monthData[currentMonth].length; i++) {
-				monthData[currentMonth][i] = "";
+			for (int i = 0; i < monthData[cMonth].length; i++) {
+				monthData[cMonth][i] = "";
 			}
 
 			/* Set the first element of each sub-array to the name of the month
 			 * that subarray represents*/
-			monthData[currentMonth][0] = months[currentMonth];
+			monthData[cMonth][0] = months[cMonth];
 
 			for (String day:days) {
-				monthData[currentMonth][1] += String.format("%3s", day);
+				monthData[cMonth][1] += String.format("%3s", day);
 			}
 
 			/* "week" refers to the rows in each month. Since there is also a
 			 * row for the month name and the days, start at 2*/
 			int week = 2;
 
+			/* Set the first day of the current month equal to the last day of
+			 * the previous month to ensure continuity. The offset of 1 to move
+			 * the day forward is accounted for in "last". */
 			first = last;
-			for (int i=1; i<=7*6; i++) {
 
-				int j = i - first;
-				if (j < 1) {
-					monthData[currentMonth][week] += "   ";
-				}else if(j <= monthMax[currentMonth]){
-					monthData[currentMonth][week] += String.format("%3s", j);
-					if (j == monthMax[currentMonth]) {
-						last = i%7;
+			/* A month can span at most 6 separate weeks, so allow for a
+			 * maximum of 6 week rows per month (7days * 6weeks)
+			 *
+			 * "cPosition" is the current position in the 7x6 grid of possible
+			 * days * "cDay" is the number of the day of the month currently
+			 * used.
+			 */
+			for (int cPosition=1; cPosition<=7*6; cPosition++) {
+
+				// Take account of the offset of the start of the week
+				int cDay = cPosition - first;
+				if (cDay < 1) {
+
+					// Pad the spaces before the month starts with spaces
+					monthData[cMonth][week] += "   ";
+
+				}else if(cDay <= monthMax[cMonth]){
+
+					// Add the day to the current month array as a string
+					monthData[cMonth][week] += String.format("%3s", cDay);
+
+					/* At the end of the month, make a note of the position of
+					 * the last day for the start of the next month */
+					if (cDay == monthMax[cMonth]) {
+						last = cPosition%7;
 					}
+
 				} else {
-					monthData[currentMonth][week] += "   ";
+
+					/* At the end of the month, pad the empty days to the end
+					 * of the month grid.*/
+					monthData[cMonth][week] += "   ";
+
 				}
-				if (i%7==0) {
+
+				/* Every 7 days, we start a new week element in the month
+				 * array. */
+				if (cPosition%7==0) {
 					week++;
 				}
 			}
 		}
 
+		/* Correct the year for negatives and change the adbc string
+		 * accordingly.*/
 		checkADBC();
 
+		// Write the monthArray data into a string containing the whole year.
 		yearString = String.format("%35s%3s%n%n",year, adbc);
 		for (int i = 0; i < 12; i+=3) {
 			for (int j = 0; j < monthData[i].length; j++) {
+
+				/* In groups of three months, write each element of the
+				 * relevant monthArray to the the string inserting a newline
+				 * after three have been written so they appear side by side.*/
 				yearString += (monthData[i][j] + " " +
 						monthData[i+1][j] + " " +
 						monthData[i+2][j] + "\n");
 			}
-			yearString += "\n";
-		}
 
+			// Add a newline to separate months except on the last set of 3.
+			if (i < 9) {
+				yearString += "\n";
+			}
+		}
 	}
 
+	/** Method to check the provided year for being a leap year or not. If it
+	 * is then the maximum number of days in Feb are different, so it is
+	 * changed.
+	 */
 	private void checkLeapYear(){
 
 		/* Check for leap year (divisible by 4, unless divisible by 100, unless
-		 * divisible by 400) and change Feb days accordingly.*/
+		 * divisible by 400) and change Feb days accordingly.
+		 *http://www.rmg.co.uk/explore/astronomy-and-time/time-facts/leap-years
+		 */
 		boolean leapyear = false;
 		if (year%400 == 0) {
 			leapyear = true;
@@ -159,15 +234,26 @@ public class CalYear {
 		}
 	}
 
+	/** Method to check the given year as being either AD or BC based on
+	 * positive or negative year and set the string accordingly */
 	private void checkADBC(){
-		if (year >= 0) {
+		if (year > 0) {
 			adbc = "AD";
 		}else{
 			adbc = "BC";
-			year = -1 - year;
+			year = 1 - year; /* There is no defined year "0" so the year
+			                  * before 1 is -1, or 1 BC */
+			/*       AD|BC
+			 * 3  2  1 | 1  2  3   --- Julian
+			 * 3  2  1 | 0 -1 -2   --- Astronomical
+			 */
 		}
 	}
 
+	/** Defines the print method for the class CalYear
+	 *
+	 * @return the string holding the calendar, yearString.
+	 */
 	@Override
 	public String toString(){
 		return yearString;
