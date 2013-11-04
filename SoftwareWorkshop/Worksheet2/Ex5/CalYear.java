@@ -22,13 +22,13 @@ public class CalYear {
 		"        March        " ,
 		"        April        " ,
 		"         May         " ,
-		"        June         " ,
-		"        July         " ,
-		"       August        " ,
+		"         June        " ,
+		"         July        " ,
+		"        August       " ,
 		"      September      " ,
 		"       October       " ,
-		"      November       " ,
-		"      December       " };
+		"       November      " ,
+		"       December      " };
 	private final byte[] monthMax = {31,28,31,30,31,30,31,31,30,31,30,31};
 
 	private int year;
@@ -218,9 +218,9 @@ public class CalYear {
 			}
 
 			// Add a newline to separate months except on the last set.
-			if (i < (12-12/width)) {
-				yearString += "\n";
-			}
+			// if (i < (12-12/width)) {
+			// 	yearString += "\n";
+			// }
 
 			// Skip on to the next set of "width" months.
 			i+= width;
