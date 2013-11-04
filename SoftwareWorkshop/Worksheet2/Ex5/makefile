@@ -1,1 +1,1 @@
-/home/josh/Documents/CompSci/SoftwareWorkshop/makefile
+../../makefile
