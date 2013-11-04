@@ -11,24 +11,21 @@ public class CalTest {
 	public static void main(String[] args) {
 
 		// Create a calendar which starts on the third day of the month
-		Cal c = new Cal(2);
-		System.out.println(c.getCalendar());
+		System.out.println(Cal.Calendar(3, 28));
+		System.out.println("Max: " + Cal.getMax() + "\n");
 
 		// Create a calendar which starts on the sixth day of the month and has
-		// a total of 30 days.
-		Cal c2 = new Cal(5, 30);
-		System.out.println(c2.getCalendar());
-
-		System.out.println("Max: " + c2.getMax());
+		// a total of 31 days.
+		System.out.println(Cal.Calendar(6, 31) + "\n");
 
 		// Create the default calendar (with 31 days and starting on the
 		// "zeroth" day of the month)
-		Cal c3 = new Cal();
-		System.out.println(c3);
+		System.out.println(Cal.Calendar());
+		System.out.println("Max: " + Cal.getMax() + "\n");
 
 		// Attempt to create a new calendar which starts on the seventh day of
 		// the month. Will fail since this is more than a week.
-		Cal c4 = new Cal(8);
+		System.out.println(Cal.Calendar(8,31));
 
 	}
 }
