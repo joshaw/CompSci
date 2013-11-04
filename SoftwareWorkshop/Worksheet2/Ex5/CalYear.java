@@ -34,6 +34,7 @@ public class CalYear {
 	private int year;
 	private int last = 1;
 	private String adbc = "AD";
+	private int width = 3;
 
 	/* Main string to hold the calendar */
 	private String yearString = "";
@@ -45,14 +46,18 @@ public class CalYear {
 	 * @param first the first day of January, 0 for Mon through 6 for Sun.
 	 * Each proceding month starts after the last day of the preceding month.
 	 */
-	public CalYear(int year, int first) {
+	public CalYear(int year, int first, int width) {
 		this.year = year;
 		this.last = first;
+		this.width = width;
 		calYear();
 	}
 
+	public CalYear(int year, int first) {
+		this(year, first, 3);
+	}
 	public CalYear(int year){
-		this(year, 1);
+		this(year, 1, 3);
 	}
 
 	/** The empty constuctor uses the current time to calculate the current
@@ -190,23 +195,35 @@ public class CalYear {
 		 * accordingly.*/
 		checkADBC();
 
-		// Write the monthArray data into a string containing the whole year.
-		yearString = String.format("%35s%3s%n%n",year, adbc);
-		for (int i = 0; i < 12; i+=3) {
+		/* Write the year and ad/bc data into the string using the defined
+		 * width to align center.*/
+		yearString = String.format("%" + 11*width + "s%3s%n%n",year, adbc);
+
+		/* Write the monthArray data to the string yearString in groups of
+		 * "width" so that several months appear side by side.*/
+
+		// Don't go above the max number of months.
+		int i=0;
+		while (i < 12){
+
+			// For each set of months, print name, day names, and weeks.
 			for (int j = 0; j < monthData[i].length; j++) {
 
-				/* In groups of three months, write each element of the
-				 * relevant monthArray to the the string inserting a newline
-				 * after three have been written so they appear side by side.*/
-				yearString += (monthData[i][j] + " " +
-						monthData[i+1][j] + " " +
-						monthData[i+2][j] + "\n");
-			}
-
-			// Add a newline to separate months except on the last set of 3.
-			if (i < 9) {
+				/* Write "width" entries next to each other separated by a
+				 * space. Don't let i+w get larger than the number of months.*/
+				for (int w=0; w<width && i+w<12; w++) {
+					yearString += monthData[i+w][j] + " ";
+				}
 				yearString += "\n";
 			}
+
+			// Add a newline to separate months except on the last set.
+			if (i < (12-12/width)) {
+				yearString += "\n";
+			}
+
+			// Skip on to the next set of "width" months.
+			i+= width;
 		}
 	}
 
