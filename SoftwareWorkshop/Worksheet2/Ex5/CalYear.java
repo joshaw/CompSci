@@ -197,7 +197,7 @@ public class CalYear {
 
 		/* Write the year and ad/bc data into the string using the defined
 		 * width to align center.*/
-		yearString = String.format("%" + 11*width + "s%3s%n%n",year, adbc);
+		yearString = String.format("%" + 12*width + "s%3s%n%n",year, adbc);
 
 		/* Write the monthArray data to the string yearString in groups of
 		 * "width" so that several months appear side by side.*/
@@ -212,7 +212,7 @@ public class CalYear {
 				/* Write "width" entries next to each other separated by a
 				 * space. Don't let i+w get larger than the number of months.*/
 				for (int w=0; w<width && i+w<12; w++) {
-					yearString += monthData[i+w][j] + " ";
+					yearString += monthData[i+w][j] + "  ";
 				}
 				yearString += "\n";
 			}

@@ -51,7 +51,13 @@ FROM (SELECT lecturingTemp.cid
 ;
 */
 --5.2A
-SELECT DISTINCT bc
-FROM allmarks03
-WHERE mark IS NOT NULL
+SELECT name, office, bc
+FROM (SELECT DISTINCT sid, name
+	FROM (SELECT DISTINCT cid, name
+		FROM (SELECT DISTINCT bc
+			FROM allmarks03
+			WHERE mark IS NOT NULL) AS allmarks03_bc, courses
+		WHERE allmarks03_bc.bc = courses.bc) AS courses_cid, lecturing
+	WHERE courses_cid.cid = lecturing.cid) AS lecturing_sid, staff
+WHERE lecturing_sid.sid = staff.sid
 ;
