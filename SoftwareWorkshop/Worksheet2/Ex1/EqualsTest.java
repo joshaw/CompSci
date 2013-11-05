@@ -1,5 +1,10 @@
 /** Test class for the Equals class.
  *
+ * If the program is run without the JUnit runtime files included, ie without
+ * testing with JUnit, then the program will take two arguements and return
+ * true if they are the same and false if they differ, irrespective of the
+ * case.
+ *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 2

@@ -65,7 +65,7 @@ public class BubbleTest {
 
 		// ####################################################################
 		// Test another array of larger integers and negative integers.
-		int[] array3 = {3456,4567,2345,-7890};
+		int[] array3 = {3456,4567,0,2345,-7890};
 
 		System.out.println("\n\n");
 
@@ -82,6 +82,10 @@ public class BubbleTest {
 		System.out.println("Sorted in " + c.getSortCount() + " rounds.");
 	}
 
+	/** JUnit tests for the Bubble sort class
+	 *
+	 * Tests a small array of integers
+	 */
 	@Test
 	public void BubbleTest1(){
 		int[] original = {2,4,6,8,0,2};
@@ -90,6 +94,8 @@ public class BubbleTest {
 		assertArrayEquals(sorted, b.sort());
 	}
 
+	 /* Tests an array that is almost completely sorted, except for the last
+	  * digit, demonstrating the inefficiency of the sorting algorithm.*/
 	@Test
 	public void BubbleTest2(){
 		int[] original = {2,3,4,5,6,7,8,9,10,11,12,13,14,15,1};
@@ -98,10 +104,12 @@ public class BubbleTest {
 		assertArrayEquals(sorted, b.sort());
 	}
 
+	/* Tests an array of large integers with a zero value and negative number
+	 * included as part of the array.*/
 	@Test
 	public void BubbleTest3(){
-		int[] original = {3456,4567,2345,-7890};
-		int[] sorted = {-7890,2345,3456,4567};
+		int[] original = {3456,4567,0,2345,-7890};
+		int[] sorted = {-7890,0,2345,3456,4567};
 		Bubble b = new Bubble(original);
 		assertArrayEquals(sorted, b.sort());
 	}

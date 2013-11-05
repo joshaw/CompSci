@@ -1,8 +1,10 @@
 /** A class to create a calendar of the specified year, or this if no year is
- * given, and write it to a string for printing. The year is used to determine
- * whether or not it is a leap year, and an additional arguement is used to
- * specify the day of the week the 1st January is on. Subsequent mont starts
- * are determined automatically from the last day of the previous month.
+ * given, and write it to a string for printing.
+ *
+ * The year is used to determine whether or not it is a leap year, and an
+ * additional arguement is used to specify the day of the week the 1st January
+ * is on. Subsequent mont starts are determined automatically from the last day
+ * of the previous month.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -45,6 +47,7 @@ public class CalYear {
 	 * days in Februray.
 	 * @param first the first day of January, 0 for Mon through 6 for Sun.
 	 * Each proceding month starts after the last day of the preceding month.
+	 * @param width the number of months to display side by side. Defaults to 3
 	 */
 	public CalYear(int year, int first, int width) {
 		this.year = year;
@@ -53,16 +56,29 @@ public class CalYear {
 		calYear();
 	}
 
+	/** Constructer for the CalYear class
+	 *
+	 * @param year the year for which to make a calendar, affects the number of
+	 * days in Februray.
+	 * @param first the first day of January, 0 for Mon through 6 for Sun.
+	 * Each proceding month starts after the last day of the preceding month.
+	 */
 	public CalYear(int year, int first) {
 		this(year, first, 3);
 	}
+
+	/** Constructer for the CalYear class
+	 *
+	 * @param year the year for which to make a calendar, affects the number of
+	 * days in Februray.
+	 */
 	public CalYear(int year){
 		this(year, 1, 3);
 	}
 
 	/** The empty constuctor uses the current time to calculate the current
-	 * year.
-	 */
+	 * year and uses the default values for the first day of the year and the
+	 * width of the calendar. */
 	public CalYear(){
 		year = (int) Math.floor(
 				System.currentTimeMillis()/1000/3600/24/365.25 +1970);
@@ -170,7 +186,7 @@ public class CalYear {
 					monthData[cMonth][week] += String.format("%3s", cDay);
 
 					/* At the end of the month, make a note of the position of
-					 * the last day for the start of the next month */
+					 * the last day for the start of the next month. */
 					if (cDay == monthMax[cMonth]) {
 						last = cPosition%7;
 					}

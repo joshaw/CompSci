@@ -38,10 +38,10 @@ public class Bubble {
 
 			flip = false;
 
-			// For each element, up to the second to last, check if it and its
-			// neighbour (the next element in the array) are in the correct
-			// order, ie if it is smaller than its neighbour, then don't do
-			// anything, else, using a temporary variable, swap them
+			/* For each element, up to the second to last, check if it and its
+			 * neighbour (the next element in the array) are in the correct
+			 * order, ie if it is smaller than its neighbour, then don't do
+			 * anything, else, using a temporary variable, swap them. */
 			for (int i = 0; i < n-1; i++) {
 				if (array[i] > array[i+1]) {
 					int temp = array[i];
@@ -50,14 +50,14 @@ public class Bubble {
 					flip = true;
 				}
 			}
-			// If a round through the array is made and no flips were made,
-			// then the array is sorted, so stop checking.
+			/* If a round through the array is made and no flips were made,
+			 * then the array is sorted, so stop checking.*/
 			if (!flip) break;
 
-			// Originally, n is the size of the array. For each round through
-			// the array, the biggest number will always be placed at the end,
-			// so there is no need to check it. So stop one element earlier on
-			// each round. Reduces number of check needed.
+			/* Originally, n is the size of the array. For each round through
+			 * the array, the biggest number will always be placed at the end,
+			 * so there is no need to check it. So stop one element earlier on
+			 * each round. Reduces number of check needed.*/
 			n--;
 
 			count++;

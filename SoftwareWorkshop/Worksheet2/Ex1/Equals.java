@@ -44,7 +44,7 @@ public class Equals {
 	 * to be created to be used.
 	 *
 	 * @param str1 first of two strings to compare
-	 * @param str2 second of two strings to compare
+	 * @param str2 second of two strings to compare(data$anxiety, data$posts)
 	 * @return true if the strings are the same, false if they differ.
 	 */
 	public static boolean equals(String str1, String str2){
@@ -65,4 +65,19 @@ public class Equals {
 		}
 		return true;
 	}
+
+	/* Could also be acheived using the java builtin method for String
+	 * "equalsIgnoreCase".
+	 *
+	 * public class Equals(){
+	 * 		public static boolean equals(String str1, String str2){
+	 * 			if (str1.equalsIgnoreCase(st2){
+	 * 				return true;
+	 * 			}else{
+	 * 				return false;
+	 * 			}
+	 * 		}
+	 * }
+	 */
+
 }

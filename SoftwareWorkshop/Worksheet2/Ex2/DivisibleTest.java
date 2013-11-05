@@ -21,26 +21,21 @@ public class DivisibleTest {
 					maximum = temp;
 				}
 			}else{
-				System.out.println("Using default value for maximum - " + maximum);
+				System.out.println("Using default value for maximum: " + maximum);
 			}
 		}catch(NumberFormatException e){
 			System.out.println("Not a valid input. Using default value 300");
 		}
 
-		Divisible d = new Divisible(maximum);
-
-		d.findDivisible();
-
-		System.out.println();
-
-		System.out.println(d.getNumbers());
-		System.out.println("\nThere are " + d.getCount() + " numbers that satisfy");
+		/* Find the numbers that math the criteria from 0 to "maximum" as
+		 * provided by the arguements to the program. */
+		Divisible.findDivisible(maximum);
+		System.out.println("\nThere are " + Divisible.getCount() + " numbers that satisfy");
 
 		System.out.println();
 
-		Divisible d2 = new Divisible(135);
-		d2.findDivisible();
-		System.out.println(d2.getNumbers());
-		System.out.println("\nThere are " + d2.getCount() + " numbers that satisfy");
+		/* Find the applicable numbers from 0 to 135.*/
+		Divisible.findDivisible(135);
+		System.out.println("\nThere are " + Divisible.getCount() + " numbers that satisfy");
 	}
 }

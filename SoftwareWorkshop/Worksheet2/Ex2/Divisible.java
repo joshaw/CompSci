@@ -11,33 +11,34 @@
  */
 public class Divisible {
 
-	private int maximum = 300;
-	private String numbers = "";
-	private int count = 0;
+	private static int maximum = 300;
+	private static String numbers = "";
+	private static int count = 0;
 
 	/** Constructor for the Divisible class
 	 *
 	 * @param maximum starting from 0 to "maximum", find the integers that
 	 * satisfy the conditions.
 	 */
-	public Divisible(int maximum){
-		this.maximum = maximum;
-	}
+	// public Divisible(int maximum){
+	// 	this.maximum = maximum;
+	// }
 
 	/** Method to find all the integers, without duplicates, from 0 to
 	 * "maximum" that satisfy the conditions specified. Stores the resulting
-	 * formatted string in the variable called "numbers".
-	 */
-	public void findDivisible(){
+	 * formatted string in the variable called "numbers" for retreival and
+	 * prints the string to the screen. */
+	public static void findDivisible(int maximum){
 
+		numbers = "";
 		int columns = 0;
 
-		// Calculate the nessessary width of each column based on the number of
-		// digits needed for maximum, the largest value to be printed.
+		/* Calculate the nessessary width of each column based on the number of
+		 * digits needed for maximum, the largest value to be printed.*/
 		int width = (int) Math.log10(maximum) + 2;
 
-		// Main loop. For each integer from 0 to maximum, check if conditions
-		// apply. If true, then print number with appropriate spacing.
+		/* Main loop. For each integer from 0 to maximum, check if conditions
+		 * apply. If true, then print number with appropriate spacing. */
 		for (int i = 0; i < maximum; i++) {
 
 			// (2 OR 3 OR 5) AND (NOT 7 AND NOT 11)
@@ -46,13 +47,14 @@ public class Divisible {
 				columns++;
 				count++;
 			}
-			// Print a newline when 20 columns have been printed, unless the
-			// last number is the last in the row.
+			/* Print a newline when 20 columns have been printed, unless the
+			 * last number is the last in the row.*/
 			if ( ( columns==20 ) && ( i<maximum-1 ) ) {
 				numbers += "\n";
 				columns = 0;
 			}
 		}
+		System.out.println(numbers);
 	}
 
 	/** Method for returning the string that contains the results of the
@@ -62,7 +64,7 @@ public class Divisible {
 	 * has been called, then this contains the integers that were found,
 	 * otherwise is the null string.
 	 */
-	public String getNumbers() {
+	public static String getNumbers() {
 		return numbers;
 	}
 
@@ -71,7 +73,7 @@ public class Divisible {
 	 *
 	 * @return the number of integers found
 	 */
-	public int getCount() {
+	public static int getCount() {
 		return count;
 	}
 
@@ -79,14 +81,14 @@ public class Divisible {
 	 *
 	 * @return the string containing the search results
 	 */
-	@Override
-	public String toString() {
-		if (count == 0) {
-			return "Either there were no numbers found, or the " +
-				"\"findDivisible\" method has not been run.";
-		} else {
-			return numbers;
-		}
-	}
+	// @Override
+	// public static String toString() {
+	// 	if (count == 0) {
+	// 		return "Either there were no numbers found, or the " +
+	// 			"\"findDivisible\" method has not been run.";
+	// 	} else {
+	// 		return numbers;
+	// 	}
+	// }
 
 }
