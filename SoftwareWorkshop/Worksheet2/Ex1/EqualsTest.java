@@ -7,35 +7,56 @@
  * File name : EqualsTest.java
  * @version 2013-11-07
  */
-import static org.junit.Assert.*;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class EqualsTest {
-	/** Test function for the Equals method
+
+	/** Test function for the Equals method. Two arguements are given on the
+	 * commandline and they are checked to be either equal or different,
+	 * irrespective of the case.
 	 */
-	// public static void main(String[] args){
+	public static void main(String[] args){
 
-	// 	// Use two arguements to the program.
-	// 	if (args.length == 2) {
-	// 		if(Equals.equals(args[0], args[1])){
-	// 			System.out.println("Strings are Equal");
-	// 		}else{
-	// 			System.out.println("Strings are Different");
-	// 		}
-	// 	}
+		// Use two arguements to the program.
+		if (args.length == 2) {
+			if(Equals.equals(args[0], args[1])){
+				System.out.println("Strings are Equal");
+			}else{
+				System.out.println("Strings are Different");
+			}
+		}
+	}
 
-	// 	System.out.println(Equals.equals("test","tesT"));     // true
-	// 	System.out.println(Equals.equals("test","TEST"));     // true
-	// 	System.out.println(Equals.equals("test","TesT"));     // true
-	// 	System.out.println(Equals.equals("test","tESt"));     // true
-	// 	System.out.println(Equals.equals("test","tes"));      // false
-	// 	System.out.println(Equals.equals("test","testS"));    // false
-	// 	System.out.println(Equals.equals("test",""));         // false
-	// }
+	private String test = "test";
 
 	@Test
-	public void TestEquals(){
-		assertTrue("The strings should be equal", Equals.equals("test", "tesT"));
+	public void TestEquals1(){
+		assertTrue("The strings should be equal", Equals.equals(test, "tesT"));
+	}
+	@Test
+	public void TestEquals2(){
+		assertTrue("The strings should be equal", Equals.equals(test,"TEST"));     // true
+	}
+	@Test
+	public void TestEquals3(){
+		assertTrue("The strings should be equal", Equals.equals(test ,"TesT"));     // true
+	}
+	@Test
+	public void TestEquals4(){
+		assertTrue("The strings should be equal", Equals.equals(test,"tESt"));     // true
+	}
+	@Test
+	public void TestEquals5(){
+		assertFalse("The strings should be different", Equals.equals(test,"tes"));      // false
+	}
+	@Test
+	public void TestEquals6(){
+		assertFalse("The strings should be different", Equals.equals(test,"testS"));    // false
+	}
+	@Test
+	public void TestEquals7(){
+		assertFalse("The strings should be different", Equals.equals(test,""));         // false
 	}
 
 }

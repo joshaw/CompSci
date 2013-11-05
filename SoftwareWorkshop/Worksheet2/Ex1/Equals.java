@@ -13,10 +13,10 @@
  */
 public class Equals {
 
-	private static final char[] capitals = {'A','B','C','D','E','F','G','H','I','J',
-		'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-	private static final char[] lowers = {'a','b','c','d','e','f','g','h','i','j',
-		'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	private static final char[] capitals = {'A','B','C','D','E','F','G','H','I',
+		'J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+	private static final char[] lowers = {'a','b','c','d','e','f','g','h','i',
+		'j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
 	/** Function that converts the given character to lower case if it is upper
 	 * case, otherwise just returns without chaning it.

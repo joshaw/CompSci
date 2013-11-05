@@ -7,6 +7,9 @@
  * File name : BubbleTest.java
  * @version 2013-11-07
  */
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class BubbleTest {
 	public static void main(String[] args) {
 
@@ -61,8 +64,8 @@ public class BubbleTest {
 		System.out.println("Sorted in " + b.getSortCount() + " rounds.");
 
 		// ####################################################################
-		// Test another array of larger integers.
-		int[] array3 = {345,456,234,789};
+		// Test another array of larger integers and negative integers.
+		int[] array3 = {3456,4567,2345,-7890};
 
 		System.out.println("\n\n");
 
@@ -78,4 +81,29 @@ public class BubbleTest {
 
 		System.out.println("Sorted in " + c.getSortCount() + " rounds.");
 	}
+
+	@Test
+	public void BubbleTest1(){
+		int[] original = {2,4,6,8,0,2};
+		int[] sorted = {0,2,2,4,6,8};
+		Bubble b = new Bubble(original);
+		assertArrayEquals(sorted, b.sort());
+	}
+
+	@Test
+	public void BubbleTest2(){
+		int[] original = {2,3,4,5,6,7,8,9,10,11,12,13,14,15,1};
+		int[] sorted = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+		Bubble b = new Bubble(original);
+		assertArrayEquals(sorted, b.sort());
+	}
+
+	@Test
+	public void BubbleTest3(){
+		int[] original = {3456,4567,2345,-7890};
+		int[] sorted = {-7890,2345,3456,4567};
+		Bubble b = new Bubble(original);
+		assertArrayEquals(sorted, b.sort());
+	}
+
 }
