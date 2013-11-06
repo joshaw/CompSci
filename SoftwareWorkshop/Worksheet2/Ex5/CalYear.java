@@ -6,6 +6,11 @@
  * is on. Subsequent mont starts are determined automatically from the last day
  * of the previous month.
  *
+ * An object of type CalYear must be created and the methods applied to that
+ * object. The class could be implemented as static so that the methods can be
+ * applied to the class by removing the constructors and making the methods
+ * static.
+ *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 2
