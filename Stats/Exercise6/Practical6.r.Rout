@@ -1,0 +1,34 @@
+
+	Pearson's product-moment correlation
+
+data:  data$posts and data$anxiety
+t = -6.4227, df = 88, p-value = 6.62e-09
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.6911661 -0.4052582
+sample estimates:
+       cor 
+-0.5649368 
+
+
+Call:
+lm(formula = data$posts ~ data$anxiety)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-41.672  -8.742   0.159  10.908  33.383 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  127.41358    4.56530  27.909  < 2e-16 ***
+data$anxiety  -0.39529    0.06155  -6.423 6.62e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.17 on 88 degrees of freedom
+Multiple R-squared:  0.3192,	Adjusted R-squared:  0.3114 
+F-statistic: 41.25 on 1 and 88 DF,  p-value: 6.62e-09
+
+> proc.time()
+   user  system elapsed 
+  0.408   0.042   0.446 
