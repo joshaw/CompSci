@@ -23,7 +23,7 @@ public class Cal {
 	 * for the initial day being in the range 0->6 (Mon to Sun) and ends on the
 	 * "maximum" day.
 	 */
-	public static void generateCal() {
+	private static void generateCal() {
 
 		// Reset the calendar string to empty.
 		calendar = "";
@@ -71,19 +71,19 @@ public class Cal {
 	 *
 	 * @return a multiline string containing a calendar of the month.
 	 */
-	public static String CalMonth(int f, int m) {
+	public static String calMonth(int f, int m) {
 		first = f;
 		max = m;
 		generateCal();
 		return calendar;
 	}
-	public static String CalMonth(int f) {
+	public static String calMonth(int f) {
 		first = f;
 		max = currentMonthMax;
 		generateCal();
 		return calendar;
 	}
-	public static String CalMonth(){
+	public static String calMonth(){
 		first = 0;
 		max = currentMonthMax;
 		generateCal();
