@@ -15,19 +15,10 @@ public class Divisible {
 	private static String numbers = "";
 	private static int count = 0;
 
-	/** Constructor for the Divisible class
-	 *
-	 * @param maximum starting from 0 to "maximum", find the integers that
-	 * satisfy the conditions.
-	 */
-	// public Divisible(int maximum){
-	// 	this.maximum = maximum;
-	// }
-
-	/** Method to find all the integers, without duplicates, from 0 to
-	 * "maximum" that satisfy the conditions specified. Stores the resulting
-	 * formatted string in the variable called "numbers" for retreival and
-	 * prints the string to the screen. */
+	/** Method to find all the integers, without duplicates, from 0 upto but
+	 * not including "maximum" that satisfy the conditions specified. Stores
+	 * the resulting formatted string in the variable called "numbers" for
+	 * retreival and prints the string to the screen. */
 	public static void findDivisible(int maximum){
 
 		numbers = "";
@@ -38,7 +29,9 @@ public class Divisible {
 		int width = (int) Math.log10(maximum) + 2;
 
 		/* Main loop. For each integer from 0 to maximum, check if conditions
-		 * apply. If true, then print number with appropriate spacing. */
+		 * apply. If true, then print number with appropriate spacing. Stops
+		 * when i is less than maximum, so that the numbers upto, but not
+		 * including maximum are checked. */
 		for (int i = 0; i < maximum; i++) {
 
 			// (2 OR 3 OR 5) AND (NOT 7 AND NOT 11)
@@ -47,6 +40,7 @@ public class Divisible {
 				columns++;
 				count++;
 			}
+
 			/* Print a newline when 20 columns have been printed, unless the
 			 * last number is the last in the row.*/
 			if ( ( columns==20 ) && ( i<maximum-1 ) ) {
@@ -76,19 +70,5 @@ public class Divisible {
 	public static int getCount() {
 		return count;
 	}
-
-	/** Defines how to print a Divisible class object
-	 *
-	 * @return the string containing the search results
-	 */
-	// @Override
-	// public static String toString() {
-	// 	if (count == 0) {
-	// 		return "Either there were no numbers found, or the " +
-	// 			"\"findDivisible\" method has not been run.";
-	// 	} else {
-	// 		return numbers;
-	// 	}
-	// }
 
 }
