@@ -1,4 +1,7 @@
 
+ F  M 
+10 35 
+
 	Shapiro-Wilk normality test
 
 data:  mean_intensity
@@ -16,6 +19,30 @@ W = 0.9744, p-value = 0.4139
 data:  mean_bridging
 W = 0.9583, p-value = 0.1057
 
+
+	Pearson's product-moment correlation
+
+data:  mean_intensity and mean_bonding
+t = 2.7534, df = 43, p-value = 0.008606
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1056162 0.6112218
+sample estimates:
+      cor 
+0.3871478 
+
+
+	Pearson's product-moment correlation
+
+data:  mean_intensity and mean_bridging
+t = 2.3124, df = 43, p-value = 0.02561
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.04325894 0.57041917
+sample estimates:
+      cor 
+0.3325699 
+
 > proc.time()
    user  system elapsed 
-  0.246   0.009   0.255 
+  0.478   0.024   0.525 

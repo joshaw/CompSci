@@ -4,7 +4,7 @@ FB <- facebook_data[facebook_data$Are_you_a_member_of_Facebook == "Y", ]
 FB[is.na(FB)] <- 0
 
 table_genders <- table(FB$Gender)
-#table_genders
+table_genders
 
 FB$bonding_3 <- 5 - FB$bonding_3
 FB$bonding_9 <- 5 - FB$bonding_9
@@ -52,6 +52,10 @@ shapiro.test(mean_intensity)
 shapiro.test(mean_bonding)
 shapiro.test(mean_bridging)
 
-plot(mean_intensity, type="b")
-plot(mean_bonding, type="b")
-plot(mean_bridging, type="b")
+cor.test(mean_intensity, mean_bonding)
+cor.test(mean_intensity, mean_bridging)
+
+plot(mean_intensity, mean_bonding)
+abline(lm(mean_intensity~ mean_bonding), col="red")
+plot(mean_intensity, mean_bridging)
+abline(lm(mean_intensity~ mean_bridging), col="red")
