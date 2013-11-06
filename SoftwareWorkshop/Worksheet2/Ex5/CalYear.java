@@ -231,7 +231,8 @@ public class CalYear {
 			for (int j = 0; j < monthData[i].length; j++) {
 
 				/* Write "width" entries next to each other separated by a
-				 * space. Don't let i+w get larger than the number of months.*/
+				 * space. Don't let i+w get larger than the number of months.
+				 * _Individual Months Correct, Arranged Underneath_ */
 				for (int w=0; w<width && i+w<12; w++) {
 					yearString += monthData[i+w][j] + "  ";
 				}
@@ -266,6 +267,9 @@ public class CalYear {
 		}else if (year%4 == 0) {
 			leapyear = true;
 		}
+
+		/* If this is a leap year, then change the maximal number of days in
+		 * February. */
 		if (leapyear) {
 			monthMax[1] = 29;
 			System.out.println("Leap Year!");

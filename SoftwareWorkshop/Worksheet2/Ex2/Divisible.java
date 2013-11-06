@@ -31,11 +31,15 @@ public class Divisible {
 		/* Main loop. For each integer from 0 to maximum, check if conditions
 		 * apply. If true, then print number with appropriate spacing. Stops
 		 * when i is less than maximum, so that the numbers upto, but not
-		 * including maximum are checked. */
+		 * including maximum are checked.
+		 * _Loop_ */
 		for (int i = 0; i < maximum; i++) {
 
-			// (2 OR 3 OR 5) AND (NOT 7 AND NOT 11)
+			/* _Conditional Expression_
+			 * (2 OR 3 OR 5) AND (NOT 7 AND NOT 11) */
 			if (((i%2==0) || (i%3==0) || (i%5==0)) && ((i%7!=0) && (i%11!=0))) {
+
+				// _Print Formatting_
 				numbers += String.format("%"+width+"s", i);
 				columns++;
 				count++;

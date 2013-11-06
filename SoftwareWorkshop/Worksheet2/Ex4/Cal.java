@@ -41,7 +41,8 @@ public class Cal {
 		calendar += "\n";
 
 		/* Loop through all the days in the month ending with an offset to take
-		 * account of the empty days at the start of the month. */
+		 * account of the empty days at the start of the month.
+		 * _Loop(s)_ */
 		for (int i=1; i<=max+first; i++) {
 			int j = i - first;
 
@@ -52,10 +53,12 @@ public class Cal {
 			}else{
 
 				/* Formatting appropriately, add the next day to the end of the
-				 * string. */
+				 * string.
+				 * _Correct Spacing (Numbers Below 10)_ */
 				calendar = calendar + String.format("%3s", j);
 
-				// Start a newline whenever there is an end to the week.
+				/* Start a newline whenever there is an end to the week.
+				 * _Conditionals For Newline_ */
 				if (i%7==0) {
 					calendar += "\n";
 				}
@@ -75,18 +78,21 @@ public class Cal {
 		first = f;
 		max = m;
 		generateCal();
+		// _Return Formatted String_
 		return calendar;
 	}
 	public static String calMonth(int f) {
 		first = f;
 		max = currentMonthMax;
 		generateCal();
+		// _Return Formatted String_
 		return calendar;
 	}
 	public static String calMonth(){
 		first = 0;
 		max = currentMonthMax;
 		generateCal();
+		// _Return Formatted String_
 		return calendar;
 	}
 

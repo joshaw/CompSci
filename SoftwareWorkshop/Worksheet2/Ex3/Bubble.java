@@ -30,6 +30,7 @@ public class Bubble {
 		// The size of the array that we are working with.
 		int n = array.length;
 
+		// _Nested Loops_
 		do{
 			// Print the steps involved in sorting if asked
 			if (verbose) {
@@ -43,10 +44,15 @@ public class Bubble {
 			 * order, ie if it is smaller than its neighbour, then don't do
 			 * anything, else, using a temporary variable, swap them. */
 			for (int i = 0; i < n-1; i++) {
+
+				// _Conditional Expression_
 				if (array[i] > array[i+1]) {
+
+					// _Value Swap_
 					int temp = array[i];
 					array[i] = array[i+1];
 					array[i+1] = temp;
+
 					flip = true;
 				}
 			}
@@ -66,6 +72,7 @@ public class Bubble {
 		// Do this while there are still flips being made.
 		}while(!sorted);
 
+		// _Return_
 		return array;
 	}
 
