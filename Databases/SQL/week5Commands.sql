@@ -49,15 +49,28 @@ FROM (SELECT lecturingTemp.cid
 	GROUP BY lecturingTemp.cid
 	ORDER BY lecturingTemp.cid DESC) AS tab
 ;
-*/
+
 --5.2A
-SELECT name, office, bc
-FROM (SELECT DISTINCT sid, name
-	FROM (SELECT DISTINCT cid, name
-		FROM (SELECT DISTINCT bc
-			FROM allmarks03
-			WHERE mark IS NOT NULL) AS allmarks03_bc, courses
-		WHERE allmarks03_bc.bc = courses.bc) AS courses_cid, lecturing
-	WHERE courses_cid.cid = lecturing.cid) AS lecturing_sid, staff
-WHERE lecturing_sid.sid = staff.sid
+SELECT temp.name, temp.bc, MAX(temp.office) AS "Max Office"
+FROM (SELECT DISTINCT courses.cid, courses.name, courses.bc,
+		allmarks03.mark, staff.office
+	FROM courses, allmarks03, staff, lecturing
+	WHERE courses.cid = lecturing.cid AND
+		allmarks03.bc = courses.bc AND
+		lecturing.sid = staff.sid) AS temp
+GROUP BY temp.name, temp.bc
+ORDER BY temp.bc
+;
+*/
+--5.2B
+SELECT temp.name, temp.bc, MAX(temp.office) AS "Max Office"
+FROM (SELECT DISTINCT courses.cid, courses.name, courses.bc,
+		allmarks03.mark, allmarks04.mark, staff.office
+	FROM courses, allmarks03, allmarks04, staff, lecturing
+	WHERE (allmarks03.bc = courses.bc OR
+		allmarks04.bc = courses.bc) AND
+		courses.cid = lecturing.cid AND
+		lecturing.sid = staff.sid) AS temp
+GROUP BY temp.name, temp.bc
+ORDER BY temp.bc
 ;
