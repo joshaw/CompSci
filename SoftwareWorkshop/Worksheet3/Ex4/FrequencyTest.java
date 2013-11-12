@@ -1,5 +1,6 @@
 public class FrequencyTest {
 	public static void main(String[] args) {
-		Frequency.countLetters("testfile3");
+		Frequency.countLetters("AliceInWonderland.txt");
+		Frequency.countLetters("DonQuixote.txt");
 	}
 }
