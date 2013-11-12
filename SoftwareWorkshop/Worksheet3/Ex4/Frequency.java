@@ -35,32 +35,31 @@ public class Frequency {
 
 			br.close();
 
-		} catch(IOException e){
-			System.out.println("Could not read from file. Exiting");
-			System.exit(0);
-		}
-
-		int[] sortedCountArray;
-		char[] sortedLOWERS;
-		if (sort) {
-			BubbleLinkedArrays c = new BubbleLinkedArrays(countArray, Transcribe.LOWERS);
-			sortedCountArray = c.sort(false);
-			sortedLOWERS = c.getArray2();
-		} else {
-			sortedCountArray = countArray;
-			sortedLOWERS = Transcribe.LOWERS;
-		}
-
-		for (int i = 0; i < 26; i++) {
-			frequencyArray[i] = countArray[i] / (totalCount * 1.0);
-
-			sortedFrequencyArray[i] = sortedCountArray[i] / (totalCount * 1.0);
-			System.out.printf("%s -> %.4f  ", sortedLOWERS[i], sortedFrequencyArray[i]);
-
-			for (int j = 0; j < (int)(frequencyArray[i]*1000); j++) {
-				System.out.print("-");
+			int[] sortedCountArray;
+			char[] sortedLOWERS;
+			if (sort) {
+				BubbleLinkedArrays c = new BubbleLinkedArrays(countArray, Transcribe.LOWERS);
+				sortedCountArray = c.sort(false);
+				sortedLOWERS = c.getArray2();
+			} else {
+				sortedCountArray = countArray;
+				sortedLOWERS = Transcribe.LOWERS;
 			}
-			System.out.println();
+
+			for (int i = 0; i < 26; i++) {
+				frequencyArray[i] = countArray[i] / (totalCount * 1.0);
+
+				sortedFrequencyArray[i] = sortedCountArray[i] / (totalCount * 1.0);
+				System.out.printf("%s -> %.4f  ", sortedLOWERS[i], sortedFrequencyArray[i]);
+
+				for (int j = 0; j < (int)(frequencyArray[i]*1000); j++) {
+					System.out.print("-");
+				}
+				System.out.println();
+			}
+
+		} catch(IOException e){
+			System.err.println("Could not read from file. Exiting");
 		}
 
 		return frequencyArray;
