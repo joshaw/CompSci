@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Frequency {
 
-	public static double[] countLetters(String filename) {
+	public static double[] countLetters(String filename, boolean sort) {
 
 		int[] countArray = new int[26];
 		double[] frequencyArray = new double[26];
@@ -17,7 +17,7 @@ public class Frequency {
 
 		try {
 
-			BufferedReader br = new BufferedReader(new FileReader(filename));
+			BufferedReader br = new BufferedReader(new FileReader(frequencyFile));
 			String line;
 
 			while ((line = br.readLine()) != null) {
@@ -40,9 +40,16 @@ public class Frequency {
 			System.exit(0);
 		}
 
-		BubbleLinkedArrays c = new BubbleLinkedArrays(countArray, Transcribe.LOWERS);
-		int[] sortedCountArray = c.sort(false);
-		char[] sortedLOWERS = c.getArray2();
+		int[] sortedCountArray;
+		char[] sortedLOWERS;
+		if (sort) {
+			BubbleLinkedArrays c = new BubbleLinkedArrays(countArray, Transcribe.LOWERS);
+			sortedCountArray = c.sort(false);
+			sortedLOWERS = c.getArray2();
+		} else {
+			sortedCountArray = countArray;
+			sortedLOWERS = Transcribe.LOWERS;
+		}
 
 		for (int i = 0; i < 26; i++) {
 			frequencyArray[i] = countArray[i] / (totalCount * 1.0);
@@ -59,4 +66,9 @@ public class Frequency {
 		return frequencyArray;
 
 	}
+
+	public static double[] countLetters(String filename) {
+		return countLetters(filename, false);
+	}
+
 }

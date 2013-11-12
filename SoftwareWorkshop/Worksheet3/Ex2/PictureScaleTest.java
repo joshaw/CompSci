@@ -3,7 +3,7 @@ import org.junit.Test;
 
 public class PictureScaleTest {
 	public static void main(String[] args) {
-		PictureScale compsci = new PictureScale("ComputerScience", 5, true);
+		PictureScale compsci = new PictureScale("ComputerScience1", 2, true);
 
 		System.out.println(compsci.getFilename());
 		System.out.println(compsci.getfileType());

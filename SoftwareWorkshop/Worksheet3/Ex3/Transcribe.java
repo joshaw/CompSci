@@ -13,6 +13,8 @@ public class Transcribe {
 		'j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 	public static final String appendedString = "_lower";
 
+	private static final String NL = System.getProperty("line.separator");
+
 	public static void transcribe(String filename) {
 
 		try {
@@ -34,7 +36,7 @@ public class Transcribe {
 					for (int i = 0; i < line.length(); i++) {
 						newString += toLower(line.charAt(i));
 					}
-					bw.write(newString + "\n");
+					bw.write(newString + NL);
 				}
 
 				br.close();
@@ -65,9 +67,11 @@ public class Transcribe {
 			if (letter == CAPITALS[i]) {
 				letter = LOWERS[i];
 				return letter;
+			} else if (letter == LOWERS[i] || letter == ' ' || letter == '\n' || letter == '\r'){
+				return letter;
 			}
 		}
-		return letter;
+		return '\0';
 	}
 
 	public static String getAppendedString() {

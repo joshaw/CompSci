@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 
 public class PictureScale {
 
+	private final String NL = System.getProperty("line.separator");
 	private String filename;
 	private int averageSize = 2;
 	private String fileType;
@@ -120,22 +121,18 @@ public class PictureScale {
 			/* Read the first 4 values in the file into the relevant variables
 			 * and catch errors if they are of the wrong format suggesting
 			 * incorrect file format or file corruption. */
-			try {
-				x = s.nextInt();
-				xNew = x/averageSize;
-				y = s.nextInt();
-				yNew = y/averageSize;
+			x = s.nextInt();
+			xNew = x/averageSize;
+			y = s.nextInt();
+			yNew = y/averageSize;
 
-				if ((x%averageSize != 0) || (y%averageSize != 0)) {
-					System.out.println("Image dimensions are not even. Exiting.");
-					System.exit(0);
-				}
-
-				grey = s.nextInt();
-			} catch (InputMismatchException e) {
-				System.out.println("File format is wrong. Please ensure file is not corrupt.");
-				System.exit(0);
+			/* If the file dimensions do not allow a clean scale using the
+			 * scale factor, throw an error. */
+			if ((x%averageSize != 0) || (y%averageSize != 0)) {
+				throw new InputMismatchException("Image dimensions are not a multiple of scale factor.");
 			}
+			grey = s.nextInt();
+
 
 			/* Initialize the arrays with the image size read from the file and
 			 * the scale factor from the class object. */
@@ -154,10 +151,12 @@ public class PictureScale {
 			}
 			System.out.println();
 			s.close();
+		} catch (InputMismatchException e) {
+			System.err.print("File not modified: ");
+			System.err.println(e.getMessage());
 
 		} catch (IOException e) {
-			System.out.println("File " + filename + " not found.");
-			System.exit(0);
+			System.err.println("File " + filename + " not found.");
 		}
 	}
 
@@ -170,9 +169,9 @@ public class PictureScale {
 			BufferedWriter out =
 				new BufferedWriter(new FileWriter(filename + "-out.pnm"));
 
-			out.write(fileType + "\n");
-			out.write(xNew + " " + yNew +"\n");
-			out.write(grey + "\n");
+			out.write(fileType + NL);
+			out.write(xNew + " " + yNew +NL);
+			out.write(grey + NL);
 
 			String imageString = "";
 			int pixelCount = 0;
@@ -187,7 +186,7 @@ public class PictureScale {
 					out.write(temp + " ");
 					pixelCount++;
 					if (pixelCount%xNew == 0) {
-						out.write("\n");
+						out.write(NL);
 					}
 				}
 			}

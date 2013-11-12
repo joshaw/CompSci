@@ -44,12 +44,12 @@ public class BubbleLinkedArrays extends Bubble{
 
 			/* For each element, up to the second to last, check if it and its
 			 * neighbour (the next element in the array) are in the correct
-			 * order, ie if it is smaller than its neighbour, then don't do
+			 * order, ie if it is larger than its neighbour, then don't do
 			 * anything, else, using a temporary variable, swap them. */
 			for (int i = 0; i < n-1; i++) {
 
 				// _Conditional Expression_
-				if (array[i] > array[i+1]) {
+				if (array[i] < array[i+1]) {
 
 					// _Value Swap_
 					int temp = array[i];
