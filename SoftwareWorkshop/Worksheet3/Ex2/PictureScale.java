@@ -39,6 +39,15 @@ public class PictureScale {
 		readFile(verbose);
 	}
 
+	/** Alternative constructor. Accepts a filename and size for the scale
+	 * kernel, and sets the verbosity to false.
+	 *
+	 * @param filename the name of the file to be scaled
+	 * @param averageSize the size of the image kernel used to scale the image.
+	 * The value of averageSize is the width of this kernel, so a value of 2
+	 * will result in an image 4 times smaller, since each new pixel is
+	 * calculated from the 2*2=4 pixels in that location in the original.
+	 */
 	public PictureScale(String filename, int averageSize){
 		this(filename, averageSize, false);
 	}
@@ -117,6 +126,11 @@ public class PictureScale {
 
 			Scanner s = new Scanner(new File(filename + "-in.pnm"));
 			fileType = s.next();
+			if (!filetype.equals("P2")){
+				throw new InputMismatchException("Image format is not as " +
+						"expected. Only greyscale images are supported but image " +
+						"format was found to be " + filetype);
+			}
 
 			/* Read the first 4 values in the file into the relevant variables
 			 * and catch errors if they are of the wrong format suggesting
@@ -129,10 +143,10 @@ public class PictureScale {
 			/* If the file dimensions do not allow a clean scale using the
 			 * scale factor, throw an error. */
 			if ((x%averageSize != 0) || (y%averageSize != 0)) {
-				throw new InputMismatchException("Image dimensions are not a multiple of scale factor.");
+				throw new InputMismatchException("Image dimensions are not a " +
+						"multiple of scale factor.");
 			}
 			grey = s.nextInt();
-
 
 			/* Initialize the arrays with the image size read from the file and
 			 * the scale factor from the class object. */
@@ -147,6 +161,12 @@ public class PictureScale {
 
 				for (int i=0; i<x; i++){
 					image[i][j] = s.nextShort();
+					if (image[i][j] > grey){
+						throw new InputMismatchException("Image pixels appear " +
+								"to be corrupt. Maximum grey colour should " +
+								"be " + grey + ", but found pixel with value " +
+								image[i][j] + ".");
+					}
 				}
 			}
 			System.out.println();
@@ -156,6 +176,7 @@ public class PictureScale {
 			System.err.println(e.getMessage());
 
 		} catch (IOException e) {
+			System.err.print("File not modified: ");
 			System.err.println("File " + filename + " not found.");
 		}
 	}
