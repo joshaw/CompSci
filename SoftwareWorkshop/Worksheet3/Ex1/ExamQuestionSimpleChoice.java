@@ -1,5 +1,14 @@
 import java.util.ArrayList;
 
+/** Defines an exam question with a single answer which is one of a list.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 3
+ * Exercise  : 1
+ * File name : ExamQuestionSimpleChoice.java
+ * @version 2013-11-13
+ */
 public class ExamQuestionSimpleChoice extends ExamQuestion {
 
 	private int correctInt;
@@ -18,12 +27,15 @@ public class ExamQuestionSimpleChoice extends ExamQuestion {
 		this.possibleAnswers = possibleAnswers;
 	}
 
-	/** Method which returns the number of marks awarded for the given question
-	 * based on the answer that was sumbitted. If the correct answer is given,
-	 * then the maximal marks are given, else the marks are 0.
+	/** Allows submission of an attempted answer for the question. If the
+	 * answer matches the correct answer, then it is "correct" and the marks
+	 * are returned.
 	 *
-	 * @param submittedAnswer Answer to be checked.
-	 **/
+	 * @param submittedAnswer answer submitted for the question which is
+	 * checked against the correct answer.
+	 * @return the return of the returnMarks method which calculates how many
+	 * marks should be awarded.
+	 */
 	public int answer(int submittedAnswer) {
 		if (submittedAnswer == correctInt) {
 			correct = true;
@@ -33,6 +45,10 @@ public class ExamQuestionSimpleChoice extends ExamQuestion {
 		return returnMarks();
 	}
 
+	/** Method which returns the number of marks awarded for the given question
+	 * based on the answer that was sumbitted. If the correct answer is given,
+	 * then the maximal marks are given, else the marks are 0.
+	 **/
 	public int returnMarks() {
 		if (correct) {
 			return super.getMaximalMark();
