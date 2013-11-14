@@ -1,0 +1,7 @@
+This Is Some Test Text That Will Be Converted to LOWER CASE.
+NumberS: 123456789
+PUNCTUATION: !"£$%^&*()_{}~@:[]
+
+UPPERCASE UPPERCASE UPPERCASE
+
+lowercase lowercase lowercase
