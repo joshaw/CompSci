@@ -1,3 +1,16 @@
+/** Class for reading a greyscale image and reducing the size by some scale
+ * factor "averageSize". On the creation of a new object of type PictureScale,
+ * the specified file is read into memory, but no action is performed on it. A
+ * call to the scalePicture(verbose) method must be called whereupon the image
+ * is scaled and the results written to a file.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 3
+ * Exercise  : 2
+ * File name : PictureScale.java
+ * @version 2013-11-14
+ */
 import java.io.*;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -66,6 +79,7 @@ public class PictureScale {
 	public int getAverageSize() {
 		return averageSize;
 	}
+
 	/** Returns the filetype of the image connected with the PictureScale
 	 * class object. Where filetype should be one of
 	 *     - "P1" which represents a black and white image
@@ -76,6 +90,7 @@ public class PictureScale {
 	public String getfileType() {
 		return fileType;
 	}
+
 	/** Returns the x dimension of the image connected with the PictureScale
 	 * class object.
 	 * @return the x dimension of the object image.
@@ -83,6 +98,7 @@ public class PictureScale {
 	public int getX() {
 		return x;
 	}
+
 	/** Returns the y dimension of the image connected with the PictureScale
 	 * class object.
 	 * @return the y dimension of the object image.
@@ -98,9 +114,11 @@ public class PictureScale {
 	 */
 	public String getImage() {
 		String imageString = "";
+
 		for (int i = 0; i < x; i++) {
 			System.out.print(".");
 			String imageStringPart = "";
+
 			for (int j = 0; j < y; j++) {
 
 				// For every pixel in a row, write to a string.
@@ -120,12 +138,17 @@ public class PictureScale {
 	 * in that file into the array.
 	 */
 	private void readFile(boolean verbose){
+
 		/* Read the relevant file catching errors that indicate that the file
 		 * does not exist or is not writable. */
 		try {
 
 			Scanner s = new Scanner(new File(filename + "-in.pnm"));
 			fileType = s.next();
+
+			/* The filetype is determined by the first "word" in the file. If
+			 * it does not indicate that the file is greyscale, throw an error.
+			 */
 			if (!filetype.equals("P2")){
 				throw new InputMismatchException("Image format is not as " +
 						"expected. Only greyscale images are supported but image " +
@@ -171,18 +194,26 @@ public class PictureScale {
 			}
 			System.out.println();
 			s.close();
+
+		/* Catch errors that might have been thrown in the file read process.
+		 * The error message that is printed is specific to the error so gives
+		 * more information about what went wrong. */
 		} catch (InputMismatchException e) {
 			System.err.print("File not modified: ");
 			System.err.println(e.getMessage());
 
-		} catch (IOException e) {
-			System.err.print("File not modified: ");
-			System.err.println("File " + filename + " not found.");
+		// } catch (IOException e) {
+		// 	System.err.print("File not modified: ");
+		// 	System.err.println("File " + filename + " not found.");
 		}
 	}
 
 	/** Write the contents of the variables x, y and grey and the image in the
 	 * array to the output file.
+	 *
+	 * @param verbose writes more information, including an indication that the
+	 * program is still running - useful for large files that take longer to
+	 * read.
 	 */
 	private void writeFile(boolean verbose) {
 
@@ -190,13 +221,16 @@ public class PictureScale {
 			BufferedWriter out =
 				new BufferedWriter(new FileWriter(filename + "-out.pnm"));
 
-			out.write(fileType + NL);
+			/* Write the filetype and the new dimension of the new image to the
+			 * file. */
+			out.write(filetype + NL);
 			out.write(xNew + " " + yNew +NL);
 			out.write(grey + NL);
 
-			String imageString = "";
 			int pixelCount = 0;
 
+			/* Loop over every pixel in the array writing it to the file with a
+			 * progress indicator if asked. */
 			for (int j = 0; j < yNew; j++) {
 
 				verbose('.');
@@ -206,22 +240,28 @@ public class PictureScale {
 					String temp = String.format("%3s", newImage[i][j]);
 					out.write(temp + " ");
 					pixelCount++;
+
+					/* To improve readability, add a newline after a given
+					 * number of pixels have been written. */
 					if (pixelCount%xNew == 0) {
 						out.write(NL);
 					}
 				}
 			}
+			verbose('\n');
 			out.close();
 
+		/* If the file is not writable, or does not exist, then this error will
+		 * be thrown. */
 		} catch (IOException e){
-			System.out.println("Could not write file.");
+			System.err.println("Could not write file.");
 		}
 	}
 
 	/** Using the image in the array, create a new image, scaled down, using
 	 * the average of each group of pixels required to perform the scale. The
 	 * dimensions of the new image will be x/averageSize by y/averageSize where
-	 * the original image was x by y.
+	 * the original image was x by y and averageSize is the scale factor.
 	 */
 	public void scalePicture(boolean verbose){
 
@@ -229,11 +269,18 @@ public class PictureScale {
 		int iNew = 0;
 		int jNew = 0;
 
+		/* Loop over every pixel in the original image, increasing by the
+		 * scale factor with each loop so that the pixels that are visited are
+		 * not revisited. Also count through the pixels of the new image. With
+		 * every step of the old image (of size averageSize), a single new
+		 * pixel is added to the scaled image. */
 		for (int j = 0; j <= y-averageSize; j+=averageSize, jNew++) {
 			for (int i = 0; i <= x-averageSize; i+=averageSize, iNew++) {
 
 				temp = 0;
 
+				/* For for every "averageSize" (2) pixels, calculate a sum from
+				 * the next "averageSize" (2) pixels. */
 				for (int xPixel = 0; xPixel < averageSize; xPixel++) {
 					for (int yPixel = 0; yPixel < averageSize; yPixel++) {
 
@@ -241,6 +288,8 @@ public class PictureScale {
 					}
 				}
 
+				/* The value of the new pixel is then the sum divided by the
+				 * number of pixels (4) which is then set in the new image. */
 				double averagedPixel = temp / Math.pow(averageSize,2);
 				newImage[iNew][jNew] = (short) averagedPixel;
 			}
@@ -248,6 +297,8 @@ public class PictureScale {
 			iNew = 0;
 		}
 
+		/* Cause the new file to be written with the contents of the new image
+		 * array. */
 		writeFile(verbose);
 	}
 

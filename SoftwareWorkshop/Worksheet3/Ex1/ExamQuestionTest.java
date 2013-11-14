@@ -1,3 +1,14 @@
+/** Test class for the ExamQuestion superclass and the ExamQuestionNumeric and
+ * ExamQuestionSimpleChoice subclasses.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 3
+ * Exercise  : 1
+ * File name : ExamQuestionTest.java
+ * @version 2013-11-14
+ */
+
 import java.util.ArrayList;
 
 import org.junit.*;
