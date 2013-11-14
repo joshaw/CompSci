@@ -20,7 +20,7 @@ public class PictureScale {
 	private final String NL = System.getProperty("line.separator");
 	private String filename;
 	private int averageSize = 2;
-	private String fileType;
+	private String filetype;
 	private boolean verbose;
 
 	/* Un-initialised arrays to hold the image read from the file and the new
@@ -31,7 +31,6 @@ public class PictureScale {
 
 	private int x, y, grey;
 	private int xNew, yNew;
-
 
 	/** Constructor for the PictureScale class. Will read the provided file
 	 * into memory, but will not perform any actions on it. The
@@ -45,7 +44,8 @@ public class PictureScale {
 	 * @param verbose whether or not to print extra information about the
 	 * process as the program runs.
 	 */
-	public PictureScale(String filename, int averageSize, boolean verbose) {
+	public PictureScale(String filename,
+			int averageSize, boolean verbose) throws IOException {
 		this.filename = filename;
 		this.averageSize = averageSize;
 		this.verbose = verbose;
@@ -61,7 +61,7 @@ public class PictureScale {
 	 * will result in an image 4 times smaller, since each new pixel is
 	 * calculated from the 2*2=4 pixels in that location in the original.
 	 */
-	public PictureScale(String filename, int averageSize){
+	public PictureScale(String filename, int averageSize) throws IOException {
 		this(filename, averageSize, false);
 	}
 
@@ -72,10 +72,11 @@ public class PictureScale {
 	public String getFilename() {
 		return filename;
 	}
+
 	/** Returns the kernel size specified for the scale opperation on the image
 	 * in this object.
 	 * @return the kernel size of the object image.
-	 */
+	 */;
 	public int getAverageSize() {
 		return averageSize;
 	}
@@ -87,8 +88,8 @@ public class PictureScale {
 	 *     - "P3" which represents a colour image.
 	 * @return the filetype of the object image.
 	 */
-	public String getfileType() {
-		return fileType;
+	public String getFiletype() {
+		return filetype;
 	}
 
 	/** Returns the x dimension of the image connected with the PictureScale
@@ -116,7 +117,8 @@ public class PictureScale {
 		String imageString = "";
 
 		for (int i = 0; i < x; i++) {
-			System.out.print(".");
+
+			verbose('.');
 			String imageStringPart = "";
 
 			for (int j = 0; j < y; j++) {
@@ -137,22 +139,22 @@ public class PictureScale {
 	/** Read the provided file into the variables x, y and grey and the image
 	 * in that file into the array.
 	 */
-	private void readFile(boolean verbose){
+	private void readFile(boolean verbose) throws IOException {
 
 		/* Read the relevant file catching errors that indicate that the file
 		 * does not exist or is not writable. */
 		try {
 
 			Scanner s = new Scanner(new File(filename + "-in.pnm"));
-			fileType = s.next();
+			filetype = s.next();
 
 			/* The filetype is determined by the first "word" in the file. If
 			 * it does not indicate that the file is greyscale, throw an error.
 			 */
 			if (!filetype.equals("P2")){
 				throw new InputMismatchException("Image format is not as " +
-						"expected. Only greyscale images are supported but image " +
-						"format was found to be " + filetype);
+						"expected. Only greyscale images are supported but " +
+						"image format was found to be " + filetype);
 			}
 
 			/* Read the first 4 values in the file into the relevant variables
@@ -192,7 +194,7 @@ public class PictureScale {
 					}
 				}
 			}
-			System.out.println();
+			verbose('\n');
 			s.close();
 
 		/* Catch errors that might have been thrown in the file read process.
@@ -202,9 +204,9 @@ public class PictureScale {
 			System.err.print("File not modified: ");
 			System.err.println(e.getMessage());
 
-		// } catch (IOException e) {
-		// 	System.err.print("File not modified: ");
-		// 	System.err.println("File " + filename + " not found.");
+	/*	} catch (IOException e) {
+			System.err.print("File not modified: ");
+			System.err.println("File " + filename + " not found.");*/
 		}
 	}
 

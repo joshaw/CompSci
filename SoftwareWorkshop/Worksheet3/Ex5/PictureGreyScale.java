@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 3
+ * Exercise  : 5
+ * File name : PictureGreyScale.java
+ * @version 2013-11-14
+ */
 import java.io.*;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -6,7 +15,7 @@ public class PictureGreyScale {
 
 	private final String NL = System.getProperty("line.separator");
 	private String filename;
-	private String fileType;
+	private String filetype;
 	private String method;
 	private boolean verbose;
 
@@ -30,18 +39,25 @@ public class PictureGreyScale {
 	 * @param verbose whether or not to print extra information about the
 	 * process as the program runs.
 	 */
-	public PictureGreyScale(String filename, String method, boolean verbose) {
+	public PictureGreyScale(String filename,
+			String method, boolean verbose) throws IOException {
 		this.filename = filename;
 		this.method = method;
+
+		if ( !(method.equals("brightness") ||
+					method.equals("luminosity") ||
+					method.equals("average") )) {
+			throw new IOException("Convert method not recognised.");
+		}
 		this.verbose = verbose;
 		readFile(verbose);
 	}
 
-	public PictureGreyScale(String filename, String method) {
+	public PictureGreyScale(String filename, String method) throws IOException{
 		this(filename, method, false);
 	}
 
-	public PictureGreyScale(String filename){
+	public PictureGreyScale(String filename) throws IOException {
 		this(filename, "luminosity", false);
 	}
 
@@ -59,8 +75,8 @@ public class PictureGreyScale {
 	 *     - "P3" which represents a colour image.
 	 * @return the filetype of the object image.
 	 */
-	public String getfileType() {
-		return fileType;
+	public String getFiletype() {
+		return filetype;
 	}
 	/** Returns the x dimension of the image connected with the PictureScale
 	 * class object.
@@ -77,23 +93,34 @@ public class PictureGreyScale {
 		return y;
 	}
 
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
+
 	/** Return the image string to the user, if it is needed before being
 	 * written to the file.
 	 *
 	 * @return string containing the whole image.
 	 */
-	public String getImage() {
-		String imageString = "";
-		for (int i = 0; i < x; i++) {
-			System.out.print(".");
+	public String getNewImage() {
+		String imageString = filetype + NL;
+
+		imageString += x + " " + y + NL;
+		imageString += grey + NL;
+
+		for (int j = 0; j < y; j++) {
+
+			verbose('.');
 			String imageStringPart = "";
-			for (int j = 0; j < y; j++) {
-				for (int h = 0; h < 3; h++) {
 
-					// For every pixel in a row, write to a string.
-					imageStringPart += image[i][j][h] + " ";
-				}
+			for (int i = 0; i < x; i++) {
 
+				// For every pixel in a row, write to a string.
+				imageStringPart += String.format("%3s ", newImage[i][j]);
 			}
 
 			/* Concatenate the separate row strings into a single large string.
@@ -104,17 +131,25 @@ public class PictureGreyScale {
 		return imageString;
 	}
 
-
 	/** Read the provided file into the variables x, y and grey and the image
 	 * in that file into the array.
 	 */
-	private void readFile(boolean verbose){
+	private void readFile(boolean verbose) throws IOException {
 		/* Read the relevant file catching errors that indicate that the file
 		 * does not exist or is not writable. */
 		try {
 
 			Scanner s = new Scanner(new File(filename + "-colour.pnm"));
-			fileType = s.next();
+			filetype = s.next();
+
+			/* The filetype is determined by the first "word" in the file. If
+			 * it does not indicate that the file is colour, throw an error.
+			 */
+			if (!filetype.equals("P3")){
+				throw new InputMismatchException("Image format is not as " +
+						"expected. Only colour images are supported but " +
+						"image format was found to be " + filetype);
+			}
 
 			/* Read the first 4 values in the file into the relevant variables
 			 * and catch errors if they are of the wrong format suggesting
@@ -141,31 +176,37 @@ public class PictureGreyScale {
 					}
 				}
 			}
-			System.out.println();
+			verbose('\n');
 			s.close();
+
 		} catch (InputMismatchException e) {
 			System.err.print("File not modified: ");
 			System.err.println(e.getMessage());
 
-		} catch (IOException e) {
-			System.err.println("File " + filename + " not found.");
+	/*	} catch (IOException e) {
+			System.err.println("File " + filename + " not found.");*/
 		}
 	}
 
 	/** Write the contents of the variables x, y and grey and the image in the
 	 * array to the output file.
+	 *
+	 * @param verbose writes more information, including an indication that the
+	 * program is still running - useful for large files that take longer to
+	 * read.
 	 */
 	private void writeFile(boolean verbose) {
 
 		try {
 			BufferedWriter out =
-				new BufferedWriter(new FileWriter(filename + "-out.pnm"));
+				new BufferedWriter(new FileWriter(
+						filename + "-colour-" + method + ".pnm"));
 
-			if (fileType.equals("P3")) {
-				fileType = "P2";
+			if (filetype.equals("P3")) {
+				filetype = "P2";
 			}
 
-			out.write(fileType + NL);
+			out.write(filetype + NL);
 			out.write(x + " " + y +NL);
 			out.write(grey + NL);
 
@@ -186,10 +227,13 @@ public class PictureGreyScale {
 					}
 				}
 			}
+			verbose('\n');
 			out.close();
 
+		/* If the file is not writable, or does not exist, then this error will
+		 * be thrown. */
 		} catch (IOException e){
-			System.out.println("Could not write file.");
+			System.err.println("Could not write file.");
 		}
 	}
 
@@ -244,7 +288,7 @@ public class PictureGreyScale {
 		writeFile(verbose);
 	}
 
-	public void scalePicture(){
+	public void greyScalePicture(){
 		greyScalePicture(false);
 	}
 

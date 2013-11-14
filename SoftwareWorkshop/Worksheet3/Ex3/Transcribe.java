@@ -28,7 +28,6 @@ public class Transcribe {
 
 	private static final String NL = System.getProperty("line.separator");
 
-	public static void transcribe(String filename) {
 
 	/** Converts a file to lowercase, removing any characters that are not
 	 * lowercase letters, spaces or newline characters.
@@ -39,6 +38,7 @@ public class Transcribe {
 	 * then it shall be overwritten.
 	 * @return a boolean succeed/fail value.
 	 */
+	public static boolean transcribe(String filename, boolean overwrite) {
 
 		try {
 
@@ -46,14 +46,21 @@ public class Transcribe {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			String line;
 
-			try {
+			/* The new file shall have the same name as the old with a suffix
+			 * appended so as to not overwrite the original. If this file does
+			 * not exist, it is created so it can be written to. */
+			File file = new File(filename + appendedString);
+			if (!file.exists()) {
+				file.createNewFile();
+				overwrite = true;
+			}
 
-				File file = new File(filename + appendedString);
-				if (!file.exists()) {
-					file.createNewFile();
-				}
-
-				BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+			/* If "overwrite" is true, then the file is written since either it
+			 * has just been created, or an existing file of the same name
+			 * should be ignored. */
+			if (overwrite) {
+				BufferedWriter bw = new BufferedWriter(
+						new FileWriter(file.getAbsoluteFile()));
 				while ((line = br.readLine()) != null) {
 
 					String newString = "";
@@ -71,9 +78,7 @@ public class Transcribe {
 				br.close();
 				bw.close();
 
-			} catch(IOException e){
-				System.out.println("Could not write to file. Exiting");
-				System.exit(0);
+				return true;
 			}
 
 			/* An error is thrown if the overwrite flag was not set and the
@@ -81,8 +86,8 @@ public class Transcribe {
 			throw new IOException("File exists, not overwriting.");
 
 		} catch(IOException e){
-			System.out.println("Could not read from file. Exiting");
-			System.exit(0);
+			System.err.println(e.getMessage());
+			return false;
 		}
 	}
 
@@ -102,12 +107,16 @@ public class Transcribe {
 		 * letter is a match. If it is, then reutrn the corresponding lowercase
 		 * letter. If the letter is not a CAPITAL and is a space or newline
 		 * char, then no change is made. */
-		for (int i = 0; i < 26; i++) {
-			if (letter == CAPITALS[i]) {
-				letter = LOWERS[i];
-				return letter;
-			} else if (letter == LOWERS[i] || letter == ' ' || letter == '\n' || letter == '\r'){
-				return letter;
+		if (letter == ' ' || letter == '\n') {
+			return letter;
+		} else {
+			for (int i = 0; i < 26; i++) {
+				if (letter == LOWERS[i]){
+					return letter;
+				} else if (letter == CAPITALS[i]) {
+					letter = LOWERS[i];
+					return letter;
+				}
 			}
 		}
 

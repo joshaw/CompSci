@@ -2,8 +2,23 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/* Import the "frequency" package which contains the bubble sort superclass and
+ * subclass and the transcribe class for sorting the final array, and
+ * converting the file to lower case respectively. */
+import frequency.*;
+
 public class Frequency {
 
+	/** Method to perform frequency alalysis on the file "filename"
+	 *
+	 * @param filename the name of the file to count letters in
+	 * @param sort boolean value which specifies whether the output information
+	 * should be sorted by frequency or not. The subclass BubbleLinkedArrays of
+	 * the superclass Bubble is used to sort the array of frequencies and the
+	 * array of letters.
+	 * @return an array containing the relative frequencies of the lowercase
+	 * letters in the file "filename".
+	 */
 	public static double[] countLetters(String filename, boolean sort) {
 
 		int[] countArray = new int[26];
@@ -52,7 +67,7 @@ public class Frequency {
 				sortedFrequencyArray[i] = sortedCountArray[i] / (totalCount * 1.0);
 				System.out.printf("%s -> %.4f  ", sortedLOWERS[i], sortedFrequencyArray[i]);
 
-				for (int j = 0; j < (int)(frequencyArray[i]*1000); j++) {
+				for (int j = 0; j < (int)(frequencyArray[i]*500); j++) {
 					System.out.print("-");
 				}
 				System.out.println();
@@ -66,6 +81,12 @@ public class Frequency {
 
 	}
 
+	/** Method to perform frequency alalysis on the file "filename" with a
+	 * default sorting setting of false.
+	 * @param filename the name of the file to count letters in
+	 * @return an array containing the relative frequencies of the lowercase
+	 * letters in the file "filename".
+	 */
 	public static double[] countLetters(String filename) {
 		return countLetters(filename, false);
 	}
