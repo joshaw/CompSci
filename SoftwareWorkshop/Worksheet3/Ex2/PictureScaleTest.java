@@ -1,35 +1,57 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class PictureScaleTest {
 	public static void main(String[] args) {
-		PictureScale compsci = new PictureScale("ComputerScience1", 2, true);
 
-		System.out.println(compsci.getFilename());
-		System.out.println(compsci.getfileType());
-		System.out.println(compsci.getX());
-		System.out.println(compsci.getY());
+		try {
+			System.out.println("Reading File...");
+			PictureScale compsci = new PictureScale("../ComputerScience", 5, true);
 
-		compsci.scalePicture(true);
+			System.out.println("Filename    : " + compsci.getFilename());
+			System.out.println("Filetype    : " + compsci.getFiletype());
+			System.out.println("X dimension : " + compsci.getX());
+			System.out.println("Y dimension : " + compsci.getY());
+			System.out.println("Scale factor: " + compsci.getAverageSize());
+
+			System.out.println();
+			System.out.println("Converting and Writing File...");
+			compsci.scalePicture(true);
+
+		} catch (IOException e){
+			System.err.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void PictureScaleTest1() {
 
-		PictureScale t1 = new PictureScale("test", 2, false);
-		t1.scalePicture(false);
+		try{
+			PictureScale t1 = new PictureScale("../test", 2, false);
+			t1.scalePicture(false);
 
-		String testImageString = t1.getImage();
-		assertEquals(testImageString, t1.getImage());
+			String testImageString = t1.getImage();
+			assertEquals(testImageString, t1.getImage());
+
+		} catch (IOException e){
+			System.err.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void PictureScaleTest2() {
 
-		PictureScale t2 = new PictureScale("test", 2, false);
-		t2.scalePicture(false);
+		try{
+			PictureScale t2 = new PictureScale("../test", 2, false);
+			t2.scalePicture(false);
 
-		String testImageString = t2.getImage();
-		assertEquals(testImageString, t2.getImage());
+			String testImageString = t2.getImage();
+			assertEquals(testImageString, t2.getImage());
+
+		} catch (IOException e){
+			System.err.println(e.getMessage());
+		}
 	}
 }
