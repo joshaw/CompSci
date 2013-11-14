@@ -8,6 +8,9 @@
  * File name : Bubble.java
  * @version 2013-11-07
  */
+
+package frequency;
+
 public class Bubble {
 
 	private int[] array;

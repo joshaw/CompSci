@@ -8,7 +8,9 @@
  * File name : Bubble.java
  * @version 2013-11-07
  */
-public class BubbleLinkedArrays extends Bubble{
+package frequency;
+
+public class BubbleLinkedArrays extends Bubble {
 
 	private int[] array;
 	private char[] array2;
