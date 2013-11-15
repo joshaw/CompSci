@@ -32,12 +32,23 @@ public class PictureGreyScale {
 	 * {@link scalePicture} method must be called on the object.
 	 *
 	 * @param filename the name of the file to be scaled
-	 * @param averageSize the size of the image kernel used to scale the image.
-	 * The value of averageSize is the width of this kernel, so a value of 2
-	 * will result in an image 4 times smaller, since each new pixel is
-	 * calculated from the 2*2=4 pixels in that location in the original.
+	 * @param method one of "luminosity", "average" or "brightness"; specifies
+	 * the method that is used to convert the colour image to greyscale.
+	 *
+	 * - "luminosity" is the often the most pleasing. It averages the values of
+	 *    the red, green and blue components of the pixel, but applies a
+	 *    weighting to the colours to account for human perception. The formula
+	 *    for luminosity is 0.21*R + 0.71*G + 0.07*B.
+	 * - "average" is simply the average of the three colour components with no
+	 *    additional weighting; (R + G + B)/3.
+	 * - "brightness" uses the average of the most prominent colour and the least
+	 *    prominent colour, ie the average of the brightest and darkest colours
+	 *    is used; (max(R,G,B) + min(R,G,B))/2.
+	 *
 	 * @param verbose whether or not to print extra information about the
 	 * process as the program runs.
+	 * @throws IOException if the method to convert colour to greyscale is not
+	 * recognised, then an error is thrown.
 	 */
 	public PictureGreyScale(String filename,
 			String method, boolean verbose) throws IOException {
@@ -53,10 +64,26 @@ public class PictureGreyScale {
 		readFile(verbose);
 	}
 
+	/** Alternative constructor, uses a default value of false for the
+	 * verbosity.
+	 *
+	 * @param filename the name of the file to be scaled
+	 * @param method one of "luminosity", "average" or "brightness"; specifies
+	 * the method that is used to convert the colour image to greyscale.
+	 * @throws IOException if the method to convert colour to greyscale is not
+	 * recognised, then an error is thrown.
+	 */
 	public PictureGreyScale(String filename, String method) throws IOException{
 		this(filename, method, false);
 	}
 
+	/** Alternative constructor, default method is "luminosity" and default
+	 * verbosity is false.
+	 *
+	 * @param filename the name of the file to be scaled
+	 * @throws IOException if the method to convert colour to greyscale is not
+	 * recognised, then an error is thrown.
+	 */
 	public PictureGreyScale(String filename) throws IOException {
 		this(filename, "luminosity", false);
 	}
@@ -68,6 +95,7 @@ public class PictureGreyScale {
 	public String getFilename() {
 		return filename;
 	}
+
 	/** Returns the filetype of the image connected with the PictureScale
 	 * class object. Where filetype should be one of
 	 *     - "P1" which represents a black and white image
@@ -78,6 +106,7 @@ public class PictureGreyScale {
 	public String getFiletype() {
 		return filetype;
 	}
+
 	/** Returns the x dimension of the image connected with the PictureScale
 	 * class object.
 	 * @return the x dimension of the object image.
@@ -85,6 +114,7 @@ public class PictureGreyScale {
 	public int getX() {
 		return x;
 	}
+
 	/** Returns the y dimension of the image connected with the PictureScale
 	 * class object.
 	 * @return the y dimension of the object image.
@@ -93,18 +123,26 @@ public class PictureGreyScale {
 		return y;
 	}
 
+	/** Return the method used for converting the colour image to greyscale.
+	 *
+	 * @return greyscale conversion method.
+	 */
 	public String getMethod() {
 		return method;
 	}
 
+	/** Sets or changes the method used for converting a colour image to
+	 * greyscale.
+	 *
+	 * @param method greyscale conversion method.
+	 */
 	public void setMethod(String method) {
 		this.method = method;
 	}
 
-	/** Return the image string to the user, if it is needed before being
-	 * written to the file.
-	 *
-	 * @return string containing the whole image.
+	/** Return the image string, if it is needed before being written to the
+	 * file.
+	 * @return a string containing the whole image.
 	 */
 	public String getNewImage() {
 		String imageString = filetype + NL;
@@ -133,6 +171,12 @@ public class PictureGreyScale {
 
 	/** Read the provided file into the variables x, y and grey and the image
 	 * in that file into the array.
+	 * @param verbose if true, a progress indicator is printed to the screen as
+	 * the image is read to indicate the process continues.
+	 * @throws IOException Error thrown if the file does not exist or is not
+	 * writable.
+	 * @throws InputMismatchException Error thrown if the image to be read is
+	 * not a colour image, ie the filetype header does not equal "P3".
 	 */
 	private void readFile(boolean verbose) throws IOException {
 		/* Read the relevant file catching errors that indicate that the file
@@ -182,18 +226,14 @@ public class PictureGreyScale {
 		} catch (InputMismatchException e) {
 			System.err.print("File not modified: ");
 			System.err.println(e.getMessage());
-
-	/*	} catch (IOException e) {
-			System.err.println("File " + filename + " not found.");*/
 		}
 	}
 
 	/** Write the contents of the variables x, y and grey and the image in the
 	 * array to the output file.
 	 *
-	 * @param verbose writes more information, including an indication that the
-	 * program is still running - useful for large files that take longer to
-	 * read.
+	 * @param verbose if true, a progress indicator is printed to the screen as
+	 * the image is writtern to file to indicate the process continues.
 	 */
 	private void writeFile(boolean verbose) {
 
@@ -241,6 +281,8 @@ public class PictureGreyScale {
 	 * the average of each group of pixels required to perform the scale. The
 	 * dimensions of the new image will be x/averageSize by y/averageSize where
 	 * the original image was x by y.
+	 * @param verbose if true, a progress indicator is printed to the screen as
+	 * the image is writtern to file to indicate the process continues.
 	 */
 	public void greyScalePicture(boolean verbose){
 
@@ -248,30 +290,49 @@ public class PictureGreyScale {
 		int iNew = 0;
 		int jNew = 0;
 
+		/* For every pixel in the image, taking three values at a time. Three
+		 * values represent 1 pixel - (R,G,B). */
 		for (int j = 0; j < y; j++) {
 			for (int i = 0; i < x; i++) {
-
 				double averagedPixel = 0;
+
+				//
+				// Convert pixel to greyscale using Brightness method.
+				//
 				if (method.equals("brightness")) {
 
 					int R = image[i][j][0];
 					int G = image[i][j][1];
 					int B = image[i][j][2];
 
+					/* Take the average of the brightest and darkest pixels as
+					 * the grey pixel using Math.max and Math.min. */
 					averagedPixel = (Math.max(R, Math.max(G, B)) +
 						Math.min(R, Math.min(G, B))) / 2;
 
+				//
+				// Convert pixel to greyscale using Average method.
+				//
 				} else if (method.equals("average")) {
 
-					temp = 0;
-					for (int h = 0; h < 3; h++) {
-						temp += image[i][j][h];
-					}
+					/* Simply average the values of the three colour
+					 * components. */
+					// temp = 0;
+					// for (int h = 0; h < 3; h++) {
+					// 	temp += image[i][j][h];
+					// }
 
-					averagedPixel = temp / 3;
+					// averagedPixel = temp / 3;
+					averagedPixel = (image[i][j][0] +
+							image[i][j][1] + image[i][j][2]) / 3;
 
+				//
+				// Convert pixel to greyscale using Luminosity method.
+				//
 				} else { //LUMINOSITY
 
+					/* Take the average of the colour components with a
+					 * weighting to account for human perception. */
 					int R = image[i][j][0];
 					int G = image[i][j][1];
 					int B = image[i][j][2];
@@ -279,19 +340,30 @@ public class PictureGreyScale {
 					averagedPixel = 0.21*R + 0.71*G + 0.07*B;
 				}
 
+				/* Using whichever method was chosen, set the value of the
+				 * pixel in the greyscale image as the grey version of the old
+				 * pixel from the colour image. */
 				newImage[i][j] = (short) averagedPixel;
 			}
 
 			iNew = 0;
 		}
 
+		// Write the newImage to file.
 		writeFile(verbose);
 	}
 
+	/** Alternative method using a default verbosity of false.
+	 *
+	 */
 	public void greyScalePicture(){
 		greyScalePicture(false);
 	}
 
+	/** Prints a single character to the screen if a verbose flag is set to
+	 * true; to indicate that a process is still running.
+	 * @param l a character to be printed.
+	 */
 	private void verbose(char l) {
 		if (verbose) {
 			System.out.print(l);
