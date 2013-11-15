@@ -1,4 +1,7 @@
-/**
+/** Class for converting a colour PNM format image to greyscale using one of
+ * three methods; brightness, Luminosity or average. An image is read into
+ * memory and then the converting operation can be performed before it is
+ * written to a new file.
  *
  * @author Josh Wainwright
  * UID       : 1079596
