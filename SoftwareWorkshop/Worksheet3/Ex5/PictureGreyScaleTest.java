@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 3
+ * Exercise  : 5
+ * File name : PictureGreyScaleTest.java
+ * @version 2013-11-15
+ */
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -22,7 +31,7 @@ public class PictureGreyScaleTest {
 
 				System.out.println();
 				System.out.println("Converting and Writing File...");
-				compsci.greyScalePicture(true);
+				compsci.greyScalePicture();
 			}
 		} catch (IOException e){
 			System.err.println(e.getMessage());
@@ -35,7 +44,7 @@ public class PictureGreyScaleTest {
 
 		try{
 			PictureGreyScale t1 = new PictureGreyScale("../test", "brightness", false);
-			t1.greyScalePicture(false);
+			t1.greyScalePicture();
 
 			String testImageString = "P2" + "\n" +
 			                         "3 2" + "\n" +
@@ -54,7 +63,7 @@ public class PictureGreyScaleTest {
 
 		try{
 			PictureGreyScale t2 = new PictureGreyScale("../test", "luminosity", false);
-			t2.greyScalePicture(false);
+			t2.greyScalePicture();
 
 			String testImageString = "P2" + "\n" +
 			                         "3 2" + "\n" +

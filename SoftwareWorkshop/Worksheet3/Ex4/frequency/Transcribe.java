@@ -96,6 +96,13 @@ public class Transcribe {
 		}
 	}
 
+	/** An alternative empty method for transcribing a file from mixed upper
+	 * and lower case to just lower case, removing any other characters at the
+	 * same time.
+	 *
+	 * @param filename name of the file to be transcribed
+	 * @return boolean succeed/fail value.
+	 */
 	public static boolean transcribe(String filename){
 		return transcribe(filename, true);
 	}

@@ -1,3 +1,14 @@
+/** Counts the number of letters in a file and the occurances of each letter to
+ * give a relative frequency of each letter. First the file is converted to
+ * lowercase and all non-letters are removed.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 3
+ * Exercise  : 4
+ * File name : Frequency.java
+ * @version 2013-11-15
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,7 +64,10 @@ public class Frequency {
 			int[] sortedCountArray;
 			char[] sortedLOWERS;
 			if (sort) {
-				BubbleLinkedArrays c = new BubbleLinkedArrays(countArray, Transcribe.LOWERS);
+
+				BubbleLinkedArrays c =
+					new BubbleLinkedArrays(countArray, Transcribe.LOWERS);
+
 				sortedCountArray = c.sort(false);
 				sortedLOWERS = c.getArray2();
 			} else {
@@ -64,8 +78,11 @@ public class Frequency {
 			for (int i = 0; i < 26; i++) {
 				frequencyArray[i] = countArray[i] / (totalCount * 1.0);
 
-				sortedFrequencyArray[i] = sortedCountArray[i] / (totalCount * 1.0);
-				System.out.printf("%s -> %.4f  ", sortedLOWERS[i], sortedFrequencyArray[i]);
+				sortedFrequencyArray[i] =
+					sortedCountArray[i] / (totalCount * 1.0);
+
+				System.out.printf("%s -> %.4f  ",
+						sortedLOWERS[i], sortedFrequencyArray[i]);
 
 				for (int j = 0; j < (int)(frequencyArray[i]*500); j++) {
 					System.out.print("-");

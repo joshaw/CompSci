@@ -14,10 +14,13 @@ public class TranscribeTest {
 
 		String[] filename = {"../testfile.txt",
 		                     "../DonQuixote.txt",
-		                     "../AliceInWonderland.txt"};
+		                     "../AliceInWonderland.txt",
+		                     "../FileDoesNotExist.txt"};
 
+		/* For each of the named files, transcribe the contents to lower case
+		 * and write the results to a new file. */
 		for(String file: filename){
-			System.out.print("Processing file " + file + "...");
+			System.out.print("Processing file " + file + "... ");
 
 			if ( Transcribe.transcribe(file, true) ){
 				System.out.println("Done");

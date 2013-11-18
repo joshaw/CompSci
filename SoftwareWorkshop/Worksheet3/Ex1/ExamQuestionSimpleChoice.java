@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /** Defines an exam question with a single answer which is one of a list.
  *
  * @author Josh Wainwright
@@ -9,6 +7,8 @@ import java.util.ArrayList;
  * File name : ExamQuestionSimpleChoice.java
  * @version 2013-11-13
  */
+import java.util.ArrayList;
+
 public class ExamQuestionSimpleChoice extends ExamQuestion {
 
 	private int correctInt;

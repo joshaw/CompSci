@@ -145,7 +145,7 @@ public class PictureScale {
 		 * does not exist or is not writable. */
 		try {
 
-			Scanner s = new Scanner(new File(filename + "-in.pnm"));
+			Scanner s = new Scanner(new File(filename));
 			filetype = s.next();
 
 			/* The filetype is determined by the first "word" in the file. If
@@ -236,7 +236,7 @@ public class PictureScale {
 			for (int j = 0; j < yNew; j++) {
 
 				verbose('.');
-;
+
 				for (int i = 0; i < xNew; i++) {
 
 					String temp = String.format("%3s", newImage[i][j]);
@@ -304,10 +304,15 @@ public class PictureScale {
 		writeFile(verbose);
 	}
 
+	/** Alternative method using a default verbosity of false.  */
 	public void scalePicture(){
 		scalePicture(false);
 	}
 
+	/** Prints a single character to the screen if a verbose flag is set to
+	 * true; to indicate that a process is still running.
+	 * @param l a character to be printed.
+	 */
 	private void verbose(char l) {
 		if (verbose) {
 			System.out.print(l);

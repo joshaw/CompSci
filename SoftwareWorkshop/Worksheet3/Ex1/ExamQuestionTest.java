@@ -18,7 +18,8 @@ public class ExamQuestionTest {
 
 	public static void main(String[] args) {
 
-		ExamQuestionNumeric q1 = new ExamQuestionNumeric("2+3 = ?", 3, 5);
+		ExamQuestionNumeric q1 =
+	new ExamQuestionNumeric("2+3 = ?", 3, 5);
 
 		System.out.println(q1.answer(5));
 		System.out.println(q1.answer(6));
@@ -29,7 +30,8 @@ public class ExamQuestionTest {
 		a.add("10");
 		a.add("20");
 
-		ExamQuestionSimpleChoice q2 = new ExamQuestionSimpleChoice("2+3 = ?", 10, a, 2);
+		ExamQuestionSimpleChoice q2 =
+			new ExamQuestionSimpleChoice("2+3 = ?", 10, a, 2);
 
 		System.out.println(q2.answer(2));
 		System.out.println(q2.answer(3));
@@ -38,10 +40,14 @@ public class ExamQuestionTest {
 	private ExamQuestionNumeric q1;
 	private ExamQuestionSimpleChoice q2;
 
+	/* Create an object of type ExamQuestionNumeric, with question, max score
+	 * and answer. */
 	@Before
 	public void makeQuestion1() {
 		q1 = new ExamQuestionNumeric("2+3 = ?", 3, 5);
 	}
+
+	/* Test the return value for ExamQuestionNumeric */
 	@Test
 	public void testQuestion1a() {
 		assertEquals(3, q1.answer(5));
@@ -51,7 +57,8 @@ public class ExamQuestionTest {
 		assertEquals(0, q1.answer(6));
 	}
 
-
+	/* Create an object of type ExamQuestionSimpleChoice, with question, max
+	 * score, a list of possible answers and an answer selection. */
 	@Before
 	public void makeQuestion2(){
 		ArrayList<String> a = new ArrayList<String>();
@@ -61,6 +68,8 @@ public class ExamQuestionTest {
 		a.add("20");
 		q2 = new ExamQuestionSimpleChoice("2+3 = ?", 10, a, 2);
 	}
+
+	/* Test the return value for ExamQuestionSimpleChoice */
 	@Test
 	public void testQuestion2a() {
 		assertEquals(10, q2.answer(2));

@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public class Transcribe {
 
+	private static final String NL = System.getProperty("line.separator");
+
 	/* Arrays for each of the sets of characters to be recognised. LOWERS is
 	 * defined as public so that it can be reused outside the class. */
 	private static final char[] CAPITALS = {'A','B','C','D','E','F','G','H','I',
@@ -25,9 +27,6 @@ public class Transcribe {
 	public static final char[] LOWERS = {'a','b','c','d','e','f','g','h','i',
 		'j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 	public static final String appendedString = "_lower";
-
-	private static final String NL = System.getProperty("line.separator");
-
 
 	/** Converts a file to lowercase, removing any characters that are not
 	 * lowercase letters, spaces or newline characters.
@@ -91,6 +90,13 @@ public class Transcribe {
 		}
 	}
 
+	/** An alternative empty method for transcribing a file from mixed upper
+	 * and lower case to just lower case, removing any other characters at the
+	 * same time.
+	 *
+	 * @param filename name of the file to be transcribed
+	 * @return boolean succeed/fail value.
+	 */
 	public static boolean transcribe(String filename){
 		return transcribe(filename, true);
 	}
