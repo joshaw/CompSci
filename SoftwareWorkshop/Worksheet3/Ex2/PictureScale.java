@@ -220,8 +220,10 @@ public class PictureScale {
 	private void writeFile(boolean verbose) {
 
 		try {
-			BufferedWriter out =
-				new BufferedWriter(new FileWriter(filename + "-out.pnm"));
+			String ext = filename.split("\\.(?=[^\\.]+$)")[1];
+			String name = filename.split("\\.(?=[^\\.]+$)")[0];
+			BufferedWriter out  = new BufferedWriter(
+					new FileWriter(name + "-out." + ext));
 
 			/* Write the filetype and the new dimension of the new image to the
 			 * file. */

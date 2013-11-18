@@ -53,8 +53,9 @@ public class PictureGreyScale {
 	 * @throws IOException if the method to convert colour to greyscale is not
 	 * recognised, then an error is thrown.
 	 */
-	public PictureGreyScale(String filename,
-			String method, boolean verbose) throws IOException {
+	public PictureGreyScale( String filename, String method, boolean verbose)
+		throws IOException {
+
 		this.filename = filename;
 		this.method = method;
 
@@ -155,7 +156,7 @@ public class PictureGreyScale {
 
 		for (int j = 0; j < y; j++) {
 
-			verbose('.');
+			verbose(j, y);
 			String imageStringPart = "";
 
 			for (int i = 0; i < x; i++) {
@@ -215,7 +216,7 @@ public class PictureGreyScale {
 			 * to the user that the operation continues. */
 			for (int j=0; j<y; j++) {
 
-				verbose('#');
+				verbose(j,y);
 
 				for (int i=0; i<x; i++){
 					for (int h = 0; h < 3; h++) {
@@ -223,7 +224,6 @@ public class PictureGreyScale {
 					}
 				}
 			}
-			verbose('\n');
 			s.close();
 
 		} catch (InputMismatchException e) {
@@ -258,7 +258,7 @@ public class PictureGreyScale {
 
 			for (int j = 0; j < y; j++) {
 
-				verbose('.');
+				verbose(j,y);
 
 				for (int i = 0; i < x; i++) {
 
@@ -270,7 +270,6 @@ public class PictureGreyScale {
 					}
 				}
 			}
-			verbose('\n');
 			out.close();
 
 		/* If the file is not writable, or does not exist, then this error will
@@ -287,7 +286,7 @@ public class PictureGreyScale {
 	 * @param verbose if true, a progress indicator is printed to the screen as
 	 * the image is writtern to file to indicate the process continues.
 	 */
-	public void greyScalePicture(boolean verbose){
+	public void greyScalePicture(){
 
 		double temp = 0;
 		int iNew = 0;
@@ -356,20 +355,20 @@ public class PictureGreyScale {
 		writeFile(verbose);
 	}
 
-	/** Alternative method using a default verbosity of false.
-	 *
+	/** Prints a percentage complete to the screen if the verbose flag is true.
+	 * @param current the current position in the loop
+	 * @param last the last element in the loop
 	 */
-	public void greyScalePicture(){
-		greyScalePicture(false);
-	}
-
-	/** Prints a single character to the screen if a verbose flag is set to
-	 * true; to indicate that a process is still running.
-	 * @param l a character to be printed.
-	 */
-	private void verbose(char l) {
+	private void verbose(int current, int last) {
 		if (verbose) {
-			System.out.print(l);
+			int percent = (int) (current/(last * 1.0) * 100 +1);
+			if (percent%10 == 0) {
+				System.out.print("\r    \r");
+				System.out.print( "  " + percent + "%");
+			}
+			if (current == last -1 ) {
+				System.out.println();
+			}
 		}
 	}
 }
