@@ -37,13 +37,16 @@ public class Frequency {
 		double[] sortedFrequencyArray = new double[26];
 		int totalCount = 0;
 
-		String frequencyFile = filename + Transcribe.getAppendedString();
+		String ext = filename.split("\\.(?=[^\\.]+$)")[1];
+		String name = filename.split("\\.(?=[^\\.]+$)")[0];
+		String frequencyFile = name + Transcribe.getAppendedString() +"."+ ext;
 
 		Transcribe.transcribe(filename);
 
 		try {
 
-			BufferedReader br = new BufferedReader(new FileReader(frequencyFile));
+			BufferedReader br =
+				new BufferedReader(new FileReader(frequencyFile));
 			String line;
 
 			while ((line = br.readLine()) != null) {

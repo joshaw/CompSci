@@ -53,8 +53,13 @@ public class Transcribe {
 
 			/* The new file shall have the same name as the old with a suffix
 			 * appended so as to not overwrite the original. If this file does
-			 * not exist, it is created so it can be written to. */
-			File file = new File(filename + appendedString);
+			 * not exist, it is created so it can be written to. The file
+			 * extension is maintained by splitting at the "." which is
+			 * followed by a no other "."'s and then the end of the string. */
+			String ext = filename.split("\\.(?=[^\\.]+$)")[1];
+			String name = filename.split("\\.(?=[^\\.]+$)")[0];
+			File file = new File(name + appendedString + "." + ext);
+
 			if (!file.exists()) {
 				file.createNewFile();
 				overwrite = true;
