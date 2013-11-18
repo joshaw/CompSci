@@ -21,8 +21,7 @@ public class ExamQuestionSimpleChoice extends ExamQuestion {
 			ArrayList<String> possibleAnswers,
 			int correctInt) {
 
-		super.setQuestion(question);
-		super.setMaximalMark(maximalMark);
+		super(question, maximalMark);
 		this.correctInt = correctInt;
 		this.possibleAnswers = possibleAnswers;
 	}

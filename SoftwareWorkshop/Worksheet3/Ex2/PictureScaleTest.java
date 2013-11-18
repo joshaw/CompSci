@@ -19,7 +19,7 @@ public class PictureScaleTest {
 		try {
 			System.out.println("Reading File...");
 			PictureScale compsci =
-				new PictureScale("../ComputerScience-in.pnm", 5, true);
+				new PictureScale("../ComputerScience-grey.pnm", 5, true);
 
 			System.out.println("Filename    : " + compsci.getFilename());
 			System.out.println("Filetype    : " + compsci.getFiletype());
@@ -40,7 +40,7 @@ public class PictureScaleTest {
 	public void PictureScaleTest1() {
 
 		try{
-			PictureScale t1 = new PictureScale("../test-in.pnm", 2, false);
+			PictureScale t1 = new PictureScale("../test-grey.pnm", 2, false);
 			t1.scalePicture(false);
 
 			String testImageString = t1.getImage();
@@ -55,7 +55,7 @@ public class PictureScaleTest {
 	public void PictureScaleTest2() {
 
 		try{
-			PictureScale t2 = new PictureScale("../test-in.pnm", 2, false);
+			PictureScale t2 = new PictureScale("../test-grey.pnm", 2, false);
 			t2.scalePicture(false);
 
 			String testImageString = t2.getImage();

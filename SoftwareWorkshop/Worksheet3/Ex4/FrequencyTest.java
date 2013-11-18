@@ -1,11 +1,12 @@
-/** 
+/** Test class for the Frequency class which counts the number of letters in a
+ * file and the relative frequencies of each and produces a graph to show.
  *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 3
  * Exercise  : 4
  * File name : FrequencyTest.java
- * @version 2013-11-14
+ * @version 2013-11-18
  */
 public class FrequencyTest {
 	public static void main(String[] args) {

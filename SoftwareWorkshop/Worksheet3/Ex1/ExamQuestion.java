@@ -6,12 +6,17 @@
  * Worksheet : 3
  * Exercise  : 1
  * File name : ExamQuestion.java
- * @version 2013-11-13
+ * @version 2013-11-18
  */
-public class ExamQuestion {
+public abstract class ExamQuestion {
 
 	private String question;
 	private int maximalMark;
+
+	public ExamQuestion(String question, int maximalMark) {
+		this.question = question;
+		this.maximalMark = maximalMark;
+	}
 
 	public void setQuestion(String question) {
 		this.question = question;

@@ -5,7 +5,7 @@
  * Worksheet : 3
  * Exercise  : 1
  * File name : ExamQuestionNumeric.java
- * @version 2013-11-13
+ * @version 2013-11-18
  */
 public class ExamQuestionNumeric extends ExamQuestion {
 
@@ -21,8 +21,7 @@ public class ExamQuestionNumeric extends ExamQuestion {
 	 * @param correctInt the correct answer to the {@link question}
 	 */
 	public ExamQuestionNumeric(String question, int maximalMark, int correctInt) {
-		super.setQuestion(question);
-		super.setMaximalMark(maximalMark);
+		super(question, maximalMark);
 		this.correctInt = correctInt;
 	}
 
