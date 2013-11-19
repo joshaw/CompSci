@@ -9,7 +9,7 @@
  * Worksheet : 3
  * Exercise  : 2
  * File name : PictureScale.java
- * @version 2013-11-14
+ * @version 2013-11-19
  */
 import java.io.*;
 import java.util.Scanner;
@@ -17,7 +17,6 @@ import java.util.InputMismatchException;
 
 public class PictureScale {
 
-	private final String NL = System.getProperty("line.separator");
 	private String filename;
 	private int averageSize = 2;
 	private String filetype;

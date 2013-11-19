@@ -1,11 +1,12 @@
-/**
+/** Test file for the PictureGreyScale class for converting a colour PNM image
+ * to greyscale.
  *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 3
  * Exercise  : 5
  * File name : PictureGreyScaleTest.java
- * @version 2013-11-15
+ * @version 2013-11-19
  */
 import static org.junit.Assert.*;
 import org.junit.Test;

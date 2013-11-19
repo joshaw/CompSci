@@ -8,7 +8,7 @@
  * Worksheet : 3
  * Exercise  : 5
  * File name : PictureGreyScale.java
- * @version 2013-11-14
+ * @version 2013-11-19
  */
 import java.io.*;
 import java.util.Scanner;

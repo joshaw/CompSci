@@ -6,7 +6,7 @@
  * Worksheet : 3
  * Exercise  : 1
  * File name : ExamQuestion.java
- * @version 2013-11-18
+ * @version 2013-11-19
  */
 public abstract class ExamQuestion {
 

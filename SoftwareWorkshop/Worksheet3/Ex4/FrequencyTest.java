@@ -6,7 +6,7 @@
  * Worksheet : 3
  * Exercise  : 4
  * File name : FrequencyTest.java
- * @version 2013-11-18
+ * @version 2013-11-19
  */
 public class FrequencyTest {
 	public static void main(String[] args) {

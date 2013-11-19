@@ -6,7 +6,7 @@
  * Worksheet : 3
  * Exercise  : 2
  * File name : PictureScaleTest.java
- * @version 2013-11-15
+ * @version 2013-11-19
  */
 import static org.junit.Assert.*;
 import org.junit.Test;
