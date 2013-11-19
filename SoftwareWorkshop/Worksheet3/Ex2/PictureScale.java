@@ -112,18 +112,42 @@ public class PictureScale {
 	 *
 	 * @return string containing the whole image.
 	 */
-	public String getImage() {
-		String imageString = "";
+	// public String getImage() {
+	// 	String imageString = "";
 
-		for (int i = 0; i < x; i++) {
+	// 	for (int i = 0; i < x; i++) {
+
+	// 		verbose('.');
+	// 		String imageStringPart = "";
+
+	// 		for (int j = 0; j < y; j++) {
+
+	// 			// For every pixel in a row, write to a string.
+	// 			imageStringPart += image[i][j] + " ";
+	// 		}
+
+	// 		/* Concatenate the separate row strings into a single large string.
+	// 		 * This offers considerable speed improvements over writing every
+	// 		 * pixel to the final string individually. */
+	// 		imageString += imageStringPart;
+	// 	}
+	// 	return imageString;
+	// }
+	public String getNewImage() {
+		String imageString = filetype + "\n";
+
+		imageString += xNew + " " + yNew + "\n";
+		imageString += grey + "\n";
+
+		for (int j = 0; j < yNew; j++) {
 
 			verbose('.');
 			String imageStringPart = "";
 
-			for (int j = 0; j < y; j++) {
+			for (int i = 0; i < xNew; i++) {
 
 				// For every pixel in a row, write to a string.
-				imageStringPart += image[i][j] + " ";
+				imageStringPart += String.format("%3s", newImage[i][j]);
 			}
 
 			/* Concatenate the separate row strings into a single large string.
