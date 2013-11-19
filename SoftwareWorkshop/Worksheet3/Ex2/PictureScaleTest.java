@@ -40,11 +40,19 @@ public class PictureScaleTest {
 	public void PictureScaleTest1() {
 
 		try{
+			/* Create the object using the filename of an example image, and
+			 * apply the scalePicture method to it. */
 			PictureScale t1 = new PictureScale("../test-grey.pnm", 2, false);
 			t1.scalePicture(false);
 
-			String testImageString = t1.getImage();
-			assertEquals(testImageString, t1.getImage());
+			/* Compare the resulting image string with the correct value
+			 * provided. */
+			String testImageString = "P2" + "\n" +
+			                         "2 2" + "\n" +
+			                         "25" + "\n" +
+			                         "  9 16" + "\n" +
+			                         "  0 12" + "\n";
+			assertEquals(testImageString, t1.getNewImage());
 
 		} catch (IOException e){
 			System.err.println(e.getMessage());
@@ -55,11 +63,16 @@ public class PictureScaleTest {
 	public void PictureScaleTest2() {
 
 		try{
-			PictureScale t2 = new PictureScale("../test-grey.pnm", 2, false);
+			PictureScale t2 = new PictureScale("../test2-grey.pnm", 3, false);
 			t2.scalePicture(false);
 
-			String testImageString = t2.getImage();
-			assertEquals(testImageString, t2.getImage());
+			String testImageString = "P2" + "\n" +
+			                         "3 3" + "\n" +
+			                         "25" + "\n" +
+			                         "  7 21  9" + "\n" +
+			                         "  3  3  4" + "\n" +
+			                         " 15 15 15" + "\n";
+			assertEquals(testImageString, t2.getNewImage());
 
 		} catch (IOException e){
 			System.err.println(e.getMessage());
