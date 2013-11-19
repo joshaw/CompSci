@@ -1,9 +1,6 @@
-facebook_data <- read.csv("facebook_data_final.csv", header=T)
+facebook_data <- read.csv("facebook_data_assessment.csv", header=T)
 
-table_genders <- table(FB$Gender)
-table_genders
-
-FB <- facebook_data[!facebook_data$Are_you_a_member_of_Facebook == "N", ]
+FB <- facebook_data[facebook_data$Are_you_a_member_of_Facebook == "Y", ]
 FB[is.na(FB)] <- 0
 
 table_genders <- table(FB$Gender)
@@ -43,10 +40,6 @@ statistics <- function(x)
     return(list(mean=Mean, median=Median, var=Varience, sd=SD, N=Length))
 }
 
-statistics(mean_intensity)
-statistics(mean_bonding)
-statistics(mean_bridging)
-
 pdf( height=11, width=8.5, file="graphs.pdf" )
 par( omi=c( 1,1,1,1 ) )
 
@@ -59,8 +52,8 @@ shapiro.test(mean_intensity)
 shapiro.test(mean_bonding)
 shapiro.test(mean_bridging)
 
+#cor.test(mean_intensity, mean_bonding)
 cor.test(mean_intensity, mean_bridging)
-cor.test(mean_intensity, mean_bonding)
 
 plot(mean_intensity, mean_bonding)
 abline(lm(mean_intensity~ mean_bonding), col="red")
