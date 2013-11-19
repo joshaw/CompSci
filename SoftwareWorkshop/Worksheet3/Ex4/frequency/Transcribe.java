@@ -24,8 +24,6 @@ import java.io.IOException;
 
 public class Transcribe {
 
-	private static final String NL = System.getProperty("line.separator");
-
 	/* Arrays for each of the sets of characters to be recognised. LOWERS is
 	 * defined as public so that it can be reused outside the class. */
 	private static final char[] CAPITALS = {'A','B','C','D','E','F','G','H','I',
@@ -81,7 +79,7 @@ public class Transcribe {
 					for (int i = 0; i < line.length(); i++) {
 						newString += toLower(line.charAt(i));
 					}
-					bw.write(newString + NL);
+					bw.write(newString + "\n");
 				}
 
 				// Close the read and write files.

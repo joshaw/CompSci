@@ -16,7 +16,6 @@ import java.util.InputMismatchException;
 
 public class PictureGreyScale {
 
-	private final String NL = System.getProperty("line.separator");
 	private String filename;
 	private String filetype;
 	private String method;
@@ -149,10 +148,10 @@ public class PictureGreyScale {
 	 * @return a string containing the whole image.
 	 */
 	public String getNewImage() {
-		String imageString = filetype + NL;
+		String imageString = filetype + "\n";
 
-		imageString += x + " " + y + NL;
-		imageString += grey + NL;
+		imageString += x + " " + y + "\n";
+		imageString += grey + "\n";
 
 		for (int j = 0; j < y; j++) {
 
@@ -168,7 +167,7 @@ public class PictureGreyScale {
 			/* Concatenate the separate row strings into a single large string.
 			 * This offers considerable speed improvements over writing every
 			 * pixel to the final string individually. */
-			imageString += imageStringPart + NL;
+			imageString += imageStringPart + "\n";
 		}
 		return imageString;
 	}
@@ -249,9 +248,9 @@ public class PictureGreyScale {
 				filetype = "P2";
 			}
 
-			out.write(filetype + NL);
-			out.write(x + " " + y +NL);
-			out.write(grey + NL);
+			out.write(filetype + "\n");
+			out.write(x + " " + y +"\n");
+			out.write(grey + "\n");
 
 			String imageString = "";
 			int pixelCount = 0;
@@ -266,7 +265,7 @@ public class PictureGreyScale {
 					out.write(temp + " ");
 					pixelCount++;
 					if (pixelCount%x == 0) {
-						out.write(NL);
+						out.write("\n");
 					}
 				}
 			}

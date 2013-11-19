@@ -129,11 +129,10 @@ public class PictureScale {
 			/* Concatenate the separate row strings into a single large string.
 			 * This offers considerable speed improvements over writing every
 			 * pixel to the final string individually. */
-			imageString += imageStringPart;
+			imageString += imageStringPart + "\n";
 		}
 		return imageString;
 	}
-
 
 	/** Read the provided file into the variables x, y and grey and the image
 	 * in that file into the array.
@@ -226,9 +225,9 @@ public class PictureScale {
 
 			/* Write the filetype and the new dimension of the new image to the
 			 * file. */
-			out.write(filetype + NL);
-			out.write(xNew + " " + yNew +NL);
-			out.write(grey + NL);
+			out.write(filetype + "\n");
+			out.write(xNew + " " + yNew +"\n");
+			out.write(grey + "\n");
 
 			int pixelCount = 0;
 
@@ -247,7 +246,7 @@ public class PictureScale {
 					/* To improve readability, add a newline after a given
 					 * number of pixels have been written. */
 					if (pixelCount%xNew == 0) {
-						out.write(NL);
+						out.write("\n");
 					}
 				}
 			}
