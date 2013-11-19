@@ -12,29 +12,34 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 public class PictureGreyScaleTest {
 	public static void main(String[] args) {
+
 		try {
 			System.out.println("Reading File...");
 			PictureGreyScale compsci = new
-				PictureGreyScale("../ComputerScience", "brightness", true);
+				PictureGreyScale("../ComputerScience");
 
 			String[] methods = {"brightness", "luminosity", "average"};
 			for (String method: methods) {
-				compsci.setMethod(method);
+				// compsci.setMethod(method);
 
 				System.out.println("Filename       : " + compsci.getFilename());
 				System.out.println("Filetype       : " + compsci.getFiletype());
 				System.out.println("X dimension    : " + compsci.getX());
 				System.out.println("Y dimension    : " + compsci.getY());
-				System.out.println("Convert method : " + compsci.getMethod());
+				// System.out.println("Convert method : " + compsci.getMethod());
 
 				System.out.println();
 				System.out.println("Converting and Writing File...");
-				compsci.greyScalePicture();
+				compsci.greyScalePicture(method, true);
 			}
+
 		} catch (IOException e){
+			System.err.println(e.getMessage());
+		} catch (InputMismatchException e){
 			System.err.println(e.getMessage());
 		}
 

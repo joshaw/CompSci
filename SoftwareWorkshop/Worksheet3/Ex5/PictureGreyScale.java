@@ -18,8 +18,8 @@ public class PictureGreyScale {
 
 	private String filename;
 	private String filetype;
-	private String method;
-	private boolean verbose;
+	// private String method;
+	private boolean verbose = true;
 
 	/* Un-initialised arrays to hold the image read from the file and the new
 	 * image calculated. The arrays will be initialised with their size when
@@ -34,61 +34,12 @@ public class PictureGreyScale {
 	 * {@link scalePicture} method must be called on the object.
 	 *
 	 * @param filename the name of the file to be scaled
-	 * @param method one of "luminosity", "average" or "brightness"; specifies
-	 * the method that is used to convert the colour image to greyscale.
-	 *
-	 * - "luminosity" is the often the most pleasing. It averages the values of
-	 *    the red, green and blue components of the pixel, but applies a
-	 *    weighting to the colours to account for human perception. The formula
-	 *    for luminosity is 0.21*R + 0.71*G + 0.07*B.
-	 * - "average" is simply the average of the three colour components with no
-	 *    additional weighting; (R + G + B)/3.
-	 * - "brightness" uses the average of the most prominent colour and the least
-	 *    prominent colour, ie the average of the brightest and darkest colours
-	 *    is used; (max(R,G,B) + min(R,G,B))/2.
-	 *
-	 * @param verbose whether or not to print extra information about the
-	 * process as the program runs.
-	 * @throws IOException if the method to convert colour to greyscale is not
-	 * recognised, then an error is thrown.
-	 */
-	public PictureGreyScale( String filename, String method, boolean verbose)
-		throws IOException {
-
-		this.filename = filename;
-		this.method = method;
-
-		if ( !(method.equals("brightness") ||
-					method.equals("luminosity") ||
-					method.equals("average") )) {
-			throw new IOException("Convert method not recognised.");
-		}
-		this.verbose = verbose;
-		readFile(verbose);
-	}
-
-	/** Alternative constructor, uses a default value of false for the
-	 * verbosity.
-	 *
-	 * @param filename the name of the file to be scaled
-	 * @param method one of "luminosity", "average" or "brightness"; specifies
-	 * the method that is used to convert the colour image to greyscale.
-	 * @throws IOException if the method to convert colour to greyscale is not
-	 * recognised, then an error is thrown.
-	 */
-	public PictureGreyScale(String filename, String method) throws IOException{
-		this(filename, method, false);
-	}
-
-	/** Alternative constructor, default method is "luminosity" and default
-	 * verbosity is false.
-	 *
-	 * @param filename the name of the file to be scaled
 	 * @throws IOException if the method to convert colour to greyscale is not
 	 * recognised, then an error is thrown.
 	 */
 	public PictureGreyScale(String filename) throws IOException {
-		this(filename, "luminosity", false);
+		this.filename = filename;
+		readFile(verbose);
 	}
 
 	/** Returns the filename of the image connected with the PictureScale
@@ -124,23 +75,6 @@ public class PictureGreyScale {
 	 */
 	public int getY() {
 		return y;
-	}
-
-	/** Return the method used for converting the colour image to greyscale.
-	 *
-	 * @return greyscale conversion method.
-	 */
-	public String getMethod() {
-		return method;
-	}
-
-	/** Sets or changes the method used for converting a colour image to
-	 * greyscale.
-	 *
-	 * @param method greyscale conversion method.
-	 */
-	public void setMethod(String method) {
-		this.method = method;
 	}
 
 	/** Return the image string, if it is needed before being written to the
@@ -237,7 +171,7 @@ public class PictureGreyScale {
 	 * @param verbose if true, a progress indicator is printed to the screen as
 	 * the image is writtern to file to indicate the process continues.
 	 */
-	private void writeFile(boolean verbose) {
+	private void writeFile(String method, boolean verbose) {
 
 		try {
 			BufferedWriter out =
@@ -282,10 +216,33 @@ public class PictureGreyScale {
 	 * the average of each group of pixels required to perform the scale. The
 	 * dimensions of the new image will be x/averageSize by y/averageSize where
 	 * the original image was x by y.
+	 *
+	 * @param method one of "luminosity", "average" or "brightness"; specifies
+	 * the method that is used to convert the colour image to greyscale.
+	 *
+	 * - "luminosity" is the often the most pleasing. It averages the values of
+	 *    the red, green and blue components of the pixel, but applies a
+	 *    weighting to the colours to account for human perception. The formula
+	 *    for luminosity is 0.21*R + 0.71*G + 0.07*B.
+	 * - "average" is simply the average of the three colour components with no
+	 *    additional weighting; (R + G + B)/3.
+	 * - "brightness" uses the average of the most prominent colour and the least
+	 *    prominent colour, ie the average of the brightest and darkest colours
+	 *    is used; (max(R,G,B) + min(R,G,B))/2.
+	 *
 	 * @param verbose if true, a progress indicator is printed to the screen as
 	 * the image is writtern to file to indicate the process continues.
 	 */
-	public void greyScalePicture(){
+	public void greyScalePicture(String method, boolean verbose)
+		throws InputMismatchException {
+
+		if ( !(method.equals("brightness") ||
+					method.equals("luminosity") ||
+					method.equals("average") )) {
+			throw new InputMismatchException("Convert method not recognised.");
+		}
+
+		this.verbose = verbose;
 
 		double temp = 0;
 		int iNew = 0;
@@ -351,7 +308,7 @@ public class PictureGreyScale {
 		}
 
 		// Write the newImage to file.
-		writeFile(verbose);
+		writeFile(method, verbose);
 	}
 
 	/** Prints a percentage complete to the screen if the verbose flag is true.
