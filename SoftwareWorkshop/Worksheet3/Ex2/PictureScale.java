@@ -18,7 +18,6 @@ import java.util.InputMismatchException;
 public class PictureScale {
 
 	private String filename;
-	private int averageSize = 2;
 	private String filetype;
 	private boolean verbose;
 
@@ -34,34 +33,10 @@ public class PictureScale {
 	/** Constructor for the PictureScale class. Will read the provided file
 	 * into memory, but will not perform any actions on it. The
 	 * {@link scalePicture} method must be called on the object.
-	 *
 	 * @param filename the name of the file to be scaled
-	 * @param averageSize the size of the image kernel used to scale the image.
-	 * The value of averageSize is the width of this kernel, so a value of 2
-	 * will result in an image 4 times smaller, since each new pixel is
-	 * calculated from the 2*2=4 pixels in that location in the original.
-	 * @param verbose whether or not to print extra information about the
-	 * process as the program runs.
 	 */
-	public PictureScale(String filename,
-			int averageSize, boolean verbose) throws IOException {
+	public PictureScale(String filename) throws IOException {
 		this.filename = filename;
-		this.averageSize = averageSize;
-		this.verbose = verbose;
-		readFile(verbose);
-	}
-
-	/** Alternative constructor. Accepts a filename and size for the scale
-	 * kernel, and sets the verbosity to false.
-	 *
-	 * @param filename the name of the file to be scaled
-	 * @param averageSize the size of the image kernel used to scale the image.
-	 * The value of averageSize is the width of this kernel, so a value of 2
-	 * will result in an image 4 times smaller, since each new pixel is
-	 * calculated from the 2*2=4 pixels in that location in the original.
-	 */
-	public PictureScale(String filename, int averageSize) throws IOException {
-		this(filename, averageSize, false);
 	}
 
 	/** Returns the filename of the image connected with the PictureScale
@@ -70,14 +45,6 @@ public class PictureScale {
 	 */
 	public String getFilename() {
 		return filename;
-	}
-
-	/** Returns the kernel size specified for the scale opperation on the image
-	 * in this object.
-	 * @return the kernel size of the object image.
-	 */;
-	public int getAverageSize() {
-		return averageSize;
 	}
 
 	/** Returns the filetype of the image connected with the PictureScale
@@ -112,27 +79,6 @@ public class PictureScale {
 	 *
 	 * @return string containing the whole image.
 	 */
-	// public String getImage() {
-	// 	String imageString = "";
-
-	// 	for (int i = 0; i < x; i++) {
-
-	// 		verbose('.');
-	// 		String imageStringPart = "";
-
-	// 		for (int j = 0; j < y; j++) {
-
-	// 			// For every pixel in a row, write to a string.
-	// 			imageStringPart += image[i][j] + " ";
-	// 		}
-
-	// 		/* Concatenate the separate row strings into a single large string.
-	// 		 * This offers considerable speed improvements over writing every
-	// 		 * pixel to the final string individually. */
-	// 		imageString += imageStringPart;
-	// 	}
-	// 	return imageString;
-	// }
 	public String getNewImage() {
 		String imageString = filetype + "\n";
 
@@ -141,7 +87,7 @@ public class PictureScale {
 
 		for (int j = 0; j < yNew; j++) {
 
-			verbose('.');
+			verbose(j, yNew);
 			String imageStringPart = "";
 
 			for (int i = 0; i < xNew; i++) {
@@ -161,7 +107,7 @@ public class PictureScale {
 	/** Read the provided file into the variables x, y and grey and the image
 	 * in that file into the array.
 	 */
-	private void readFile(boolean verbose) throws IOException {
+	private void readFile(int averageSize) throws IOException {
 
 		/* Read the relevant file catching errors that indicate that the file
 		 * does not exist or is not writable. */
@@ -204,19 +150,18 @@ public class PictureScale {
 			 * to the user that the operation continues. */
 			for (int j=0; j<y; j++) {
 
-				verbose('#');
+				verbose(j, y);
 
 				for (int i=0; i<x; i++){
 					image[i][j] = s.nextShort();
 					if (image[i][j] > grey){
 						throw new InputMismatchException("Image pixels appear " +
-								"to be corrupt. Maximum grey colour should " +
-								"be " + grey + ", but found pixel with value " +
-								image[i][j] + ".");
+						        "to be corrupt. Maximum grey colour should " +
+						        "be " + grey + ", but found pixel with value " +
+						        image[i][j] + ".");
 					}
 				}
 			}
-			verbose('\n');
 			s.close();
 
 		/* Catch errors that might have been thrown in the file read process.
@@ -225,10 +170,6 @@ public class PictureScale {
 		} catch (InputMismatchException e) {
 			System.err.print("File not modified: ");
 			System.err.println(e.getMessage());
-
-	/*	} catch (IOException e) {
-			System.err.print("File not modified: ");
-			System.err.println("File " + filename + " not found.");*/
 		}
 	}
 
@@ -239,7 +180,7 @@ public class PictureScale {
 	 * program is still running - useful for large files that take longer to
 	 * read.
 	 */
-	private void writeFile(boolean verbose) {
+	private void writeFile() {
 
 		try {
 			String ext = filename.split("\\.(?=[^\\.]+$)")[1];
@@ -259,7 +200,7 @@ public class PictureScale {
 			 * progress indicator if asked. */
 			for (int j = 0; j < yNew; j++) {
 
-				verbose('.');
+				verbose(j, yNew);
 
 				for (int i = 0; i < xNew; i++) {
 
@@ -274,7 +215,6 @@ public class PictureScale {
 					}
 				}
 			}
-			verbose('\n');
 			out.close();
 
 		/* If the file is not writable, or does not exist, then this error will
@@ -288,8 +228,17 @@ public class PictureScale {
 	 * the average of each group of pixels required to perform the scale. The
 	 * dimensions of the new image will be x/averageSize by y/averageSize where
 	 * the original image was x by y and averageSize is the scale factor.
+	 *
+	 * @param averageSize the size of the image kernel used to scale the image.
+	 * The value of averageSize is the width of this kernel, so a value of 2
+	 * will result in an image 4 times smaller, since each new pixel is
+	 * calculated from the 2*2=4 pixels in that location in the original.
+	 * @param verbose whether or not to print extra information about the
+	 * process as the program runs.
 	 */
-	public void scalePicture(boolean verbose){
+	public void scalePicture(int averageSize, boolean verbose) throws IOException {
+		this.verbose = verbose;
+		readFile(averageSize);
 
 		double temp = 0;
 		int iNew = 0;
@@ -325,21 +274,28 @@ public class PictureScale {
 
 		/* Cause the new file to be written with the contents of the new image
 		 * array. */
-		writeFile(verbose);
+		writeFile();
 	}
 
 	/** Alternative method using a default verbosity of false.  */
-	public void scalePicture(){
-		scalePicture(false);
+	public void scalePicture(int averageSize) throws IOException {
+		scalePicture(averageSize, true);
 	}
 
-	/** Prints a single character to the screen if a verbose flag is set to
-	 * true; to indicate that a process is still running.
-	 * @param l a character to be printed.
+	/** Prints a percentage complete to the screen if the verbose flag is true.
+	 * @param current the current position in the loop
+	 * @param last the last element in the loop
 	 */
-	private void verbose(char l) {
+	private void verbose(int current, int last) {
 		if (verbose) {
-			System.out.print(l);
+			int percent = (int) (current/(last * 1.0) * 100 +1);
+			if (percent%10 == 0) {
+				System.out.print("\r    \r");
+				System.out.print( "  " + percent + "%");
+			}
+			if (current == last -1 ) {
+				System.out.println();
+			}
 		}
 	}
 }
