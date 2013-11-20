@@ -75,10 +75,27 @@ public class Transcribe {
 
 					/* For each character in the current line of the file,
 					 * perform the toLower method on it and add it to the
-					 * temporary string to be written to the new file. */
+					 * temporary string to be written to the new file. This has
+					 * the effect of removing any extra characters without the
+					 * need for an extra loop through the line. */
 					for (int i = 0; i < line.length(); i++) {
 						newString += toLower(line.charAt(i));
 					}
+
+					/* To use the java String method toLowerCase, apply the
+					 * method here and then apply another loop which removes
+					 * the extraneous characters from the line.
+					newString = line.toLowerCase();
+					for (int i = 0; i < line.length(); i++) {
+						for (int j = 0; j < 26; j++) {
+							if (line.charAt(i) != LOWERS[j]) {
+								// Remove this character from the string
+							}
+						}
+					} */
+
+					/* Maintain readability in the file by re-adding newlines
+					 * after each line is read. */
 					bw.write(newString + "\n");
 				}
 
@@ -111,7 +128,10 @@ public class Transcribe {
 	}
 
 	/** Function that converts the given character to lower case if it is upper
-	 * case, otherwise just returns without chaning it.
+	 * case, otherwise just returns without chaning it. For this example, the
+	 * results are the same as if the String method ".toLowerCase" were used
+	 * but this implementation allows the removal of extra characters to be
+	 * performed at the same time as the conversion.
 	 * @param letter a character to convert to lower case
 	 * @return letter converted to lowercase if in uppercase, else letter as
 	 * given
@@ -136,9 +156,8 @@ public class Transcribe {
 		}
 
 		/* If the letter is none of CAPITALS, LOWERS, space or newline, then
-		 * the null character is returned, since some character has to be
-		 * provided, effectively removing it from the file. */
-		return '\0';
+		 * a space is returned to take the place of the unneeded character. */
+		return ' ';
 	}
 
 	/** Returns the string that is used as a suffix to separate the original

@@ -58,7 +58,11 @@ public class ExamQuestionTest {
 	}
 
 	/* Create an object of type ExamQuestionSimpleChoice, with question, max
-	 * score, a list of possible answers and an answer selection. */
+	 * score, a list of possible answers and an answer selection. Could be
+	 * placed in a separate file so that each class has a corresponding test
+	 * file. For succinctness, tests for both classes are included in the same
+	 * location here. No test is needed for the ExamQuestion superclass since
+	 * this is an abstract class. */
 	@Before
 	public void makeQuestion2(){
 		ArrayList<String> a = new ArrayList<String>();
