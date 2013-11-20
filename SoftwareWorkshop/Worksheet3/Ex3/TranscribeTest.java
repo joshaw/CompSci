@@ -12,10 +12,10 @@
 public class TranscribeTest {
 	public static void main(String[] args) {
 
-		String[] filename = {"../testfile.txt",
-		                     "../DonQuixote.txt",
-		                     "../AliceInWonderland.txt",
-		                     "../FileDoesNotExist.txt"};
+		String[] filename = {"testfile.txt",
+		                     "DonQuixote.txt",
+		                     "AliceInWonderland.txt",
+		                     "FileDoesNotExist.txt"};
 
 		/* For each of the named files, transcribe the contents to lower case
 		 * and write the results to a new file. */

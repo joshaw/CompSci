@@ -19,17 +19,16 @@ public class PictureScaleTest {
 		try {
 			System.out.println("Reading File...");
 			PictureScale compsci =
-				new PictureScale("../ComputerScience-grey.pnm", 5, true);
+				new PictureScale("ComputerScience-grey.pnm");
+
+			System.out.println();
+			System.out.println("Reading, Converting and Writing File...");
+			compsci.scalePicture(5, true);
 
 			System.out.println("Filename    : " + compsci.getFilename());
 			System.out.println("Filetype    : " + compsci.getFiletype());
 			System.out.println("X dimension : " + compsci.getX());
 			System.out.println("Y dimension : " + compsci.getY());
-			System.out.println("Scale factor: " + compsci.getAverageSize());
-
-			System.out.println();
-			System.out.println("Converting and Writing File...");
-			compsci.scalePicture(true);
 
 		} catch (IOException e){
 			System.err.println(e.getMessage());
@@ -42,8 +41,8 @@ public class PictureScaleTest {
 		try{
 			/* Create the object using the filename of an example image, and
 			 * apply the scalePicture method to it. */
-			PictureScale t1 = new PictureScale("../test-grey.pnm", 2, false);
-			t1.scalePicture(false);
+			PictureScale t1 = new PictureScale("test-grey.pnm");
+			t1.scalePicture(2, false);
 
 			/* Compare the resulting image string with the correct value
 			 * provided. */
@@ -63,8 +62,8 @@ public class PictureScaleTest {
 	public void PictureScaleTest2() {
 
 		try{
-			PictureScale t2 = new PictureScale("../test2-grey.pnm", 3, false);
-			t2.scalePicture(false);
+			PictureScale t2 = new PictureScale("test2-grey.pnm");
+			t2.scalePicture(3, false);
 
 			String testImageString = "P2" + "\n" +
 			                         "3 3" + "\n" +

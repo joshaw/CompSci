@@ -20,7 +20,7 @@ public class PictureGreyScaleTest {
 		try {
 			System.out.println("Reading File...");
 			PictureGreyScale compsci = new
-				PictureGreyScale("../ComputerScience");
+				PictureGreyScale("ComputerScience");
 
 			String[] methods = {"brightness", "luminosity", "average"};
 			for (String method: methods) {
@@ -49,8 +49,8 @@ public class PictureGreyScaleTest {
 	public void PictureGreyScaleTest1() {
 
 		try{
-			PictureGreyScale t1 = new PictureGreyScale("../test", "brightness", false);
-			t1.greyScalePicture();
+			PictureGreyScale t1 = new PictureGreyScale("test");
+			t1.greyScalePicture("brightness", false);
 
 			String testImageString = "P2" + "\n" +
 			                         "3 2" + "\n" +
@@ -68,8 +68,8 @@ public class PictureGreyScaleTest {
 	public void PictureGreyScaleTest2() {
 
 		try{
-			PictureGreyScale t2 = new PictureGreyScale("../test", "luminosity", false);
-			t2.greyScalePicture();
+			PictureGreyScale t2 = new PictureGreyScale("test");
+			t2.greyScalePicture("luminosity", false);
 
 			String testImageString = "P2" + "\n" +
 			                         "3 2" + "\n" +
