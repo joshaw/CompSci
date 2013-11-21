@@ -9,9 +9,17 @@
 - Increases the likelihood of data anomalies and lack of integrity
 - A type of inefficiency
 
+###Pointing
+- Referring to a non-local location by means of the definitive location
+	- Means that if the object being referred to moves, then the link is broken
+	- eg linking to chapter X, page Y in an index
+
 ###Associative Linking
 - Using specific individual name or identifier to refer between two locations 
   where the same information is needed in both, eg tables
+	- eg linking to chapter X.Y.Z in an contents
+- When used in a database, typically the column names of the shared attribute 
+  in each table will be the same or similar, though this is not required
 
 ###Referential Integrity
 - Relevant when one place in a data repository needs to refer to something in
@@ -58,6 +66,7 @@
 	- Given as a minimum, a maximum or both a min and max
 
 ###Optionality
+- Also referred to as relationship participation
 - A relationship is optional if it does not have to exist for any given entity
 	- eg **person -> loaned book**
 	- Not every person has to have a book on loan
@@ -81,6 +90,10 @@
 - The determining set of attributes
 	- eg the determinant day-number, month and year determines day-name
 
+###Business Rule
+- A short concise and unique description of a policy, procedure or principle 
+  within a particular organisation
+
 ###Keys
 ####Superkey
 - Determines all other attributes in the table
@@ -96,6 +109,8 @@
 	- The simpler the primary key, the better
 	- Not allowed to contain any null values since there could then be two 
 	  elements with the same null value causing duplication
+- Used to access entities of an entity type as quickly as possible
+	- Better to use short, alphanumeric, non-ambiguous keys
 
 ####Foreign Key
 - A primary key from another table that is included in a table to represent the 
@@ -180,12 +195,16 @@
 ##Types of Relationship
 ####Unary
 - Contains just a single entity
+	- eg **subject -> *requires* -> subject** 
+	- the subjects have to be different, but they are of the same entity type
 
 ####Binary
-- Contains two **type** of entity
+- Contains two **types** of entity
+	- eg **teacher -> *teaches* -> subject**
 
 ####Ternary
 - Contains three **types** of entity
+	- eg **teacher *from* course -> *teaches* -> subject**
 
 ####Recursive
 - Two or more of the relationships contain more than 1 of the same entity types
