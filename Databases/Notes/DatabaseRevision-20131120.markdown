@@ -11,7 +11,7 @@
 
 ###Associative Linking
 - Using specific individual name or identifier to refer between two locations 
-	where the same information is needed in both, eg tables
+  where the same information is needed in both, eg tables
 
 ###Referential Integrity
 - Relevant when one place in a data repository needs to refer to something in
@@ -24,7 +24,7 @@
 
 ###Entity Types
 - The main defining aspect of the data in a single table that allows that data 
-	to be grouped together
+  to be grouped together
 
 ###Entities
 - Each of the individual elements of the same entity type in a table
@@ -33,28 +33,28 @@
 - 1:1
 	- One to One
 	- Every entity in a table is related to exactly 1 entity in another table.  
-		There cannot be more that one connection and there cannot be no 
-		connections.
+	  There cannot be more that one connection and there cannot be no 
+	  connections.
 	- eg **person <-> ID number**
 		- Each person has a single ID and every ID has a single person
 - 1:M
 	- One to Many
-	- Every entity in a table can have many different connections to entity types 
-		in other tables.
+	- Every entity in a table can have many different connections to entity 
+	  types in other tables.
 	- eg **manager <-> people**
-		- Each manager manages sever people, but each person is only managed by a 
-			single manager
+		- Each manager manages sever people, but each person is only managed by 
+		  a single manager
 - M:N
 	- Many to Many
 	- Each entity can be connected to many other entities and connection can be 
-		repeated many times
+	  repeated many times
 	- eg **person <-> lecture courses**
 		- Each person is enrolled on multiple lecture courses, and each lecture 
-			course has many people enrolled on it.
+		  course has many people enrolled on it.
 
 ###Cardinality
 - The number of other entities that are allowed and/or required to be related 
-	to the first for a particular entity
+  to the first for a particular entity
 	- Given as a minimum, a maximum or both a min and max
 
 ###Optionality
@@ -65,15 +65,15 @@
 	- eg **loaned book -> person**
 	- Every book on loan must have some person who has taken it out
 - Both of these require specification of the direction that the optionality is 
-	applied
+  applied
 	- Could be optional in one direction but mandatory in the other
 
 ###Functional Dependence
 - An attribute, or set of attributes, depends on a separate attribute, or set 
-	of attributes, if each value of the first is associated with exactly one in 
-	the other.
+  of attributes, if each value of the first is associated with exactly one in 
+  the other.
 - Conversely, an attribute determines another if the second is functionally 
-	dependant on the first
+  dependant on the first
 	- eg Day-number, month and year **determine** day-name
 	- eg Day-name **is functionally dependant on** day-number, month and year
 
@@ -85,7 +85,7 @@
 ####Superkey
 - Determines all other attributes in the table
 - Trivially, the set of all attributes must be a superkey in order to prevent 
-	duplicate entries in a table
+  duplicate entries in a table
 
 ####Candidate Key
 - A minimal superkey
@@ -95,14 +95,14 @@
 - Chosen candidate key to identify entities in a table
 	- The simpler the primary key, the better
 	- Not allowed to contain any null values since there could then be two 
-		elements with the same null value causing duplication
+	  elements with the same null value causing duplication
 
 ####Foreign Key
 - A primary key from another table that is included in a table to represent the 
-	relationship between those two tables
+  relationship between those two tables
 	- Associative linking
-	- For a 1:1 mapping, the foreign key can be used to identify elements in both 
-		directions as long as there are no null values in either side
+	- For a 1:1 mapping, the foreign key can be used to identify elements in 
+	  both directions as long as there are no null values in either side
 
 ###Bridging Table
 - Also called Linking table
@@ -111,21 +111,21 @@
 		- could be split into 
 	- **Person <-> enrollment** *and* **enrollment <-> lecture courses**
 	- For each person, there are several enrollments, but for each enrollment 
-		there is just a single lecture course. Similarly, for each lecture course, 
-		there are several enrollments but for each enrollment there is only one 
-		person
+	  there is just a single lecture course. Similarly, for each lecture 
+	  course, there are several enrollments but for each enrollment there is 
+	  only one person
 - The primary key in the bridging table is the combination of the foreign keys 
-	for each of the two separate 1:M tables
+  for each of the two separate 1:M tables
 
 ###Relationship Strength
 - A relationship is strong when the second entity contains the primary key of 
-	the first
+  the first
 	- eg **A -> B** is *strong* if B's PK contains A's PK
 	- So B's entities are defined in terms of A's entities
 	- Includes to case when PK(B) = PK(A)
 - When a relationship is not *strong* it is *weak*
-	- Most relationships are weak, ie the PK's in most relationships do not share 
-		attributes.
+	- Most relationships are weak, ie the PK's in most relationships do not 
+	  share attributes.
 - The strength of a relationship is directional
 	- Usually a strong relationship is only strong in one direction
 		- To be strong in both directions, PK(A) = PK(B)
@@ -135,10 +135,10 @@
 
 ### Entity Type Strength
 - An entity type is *weak* if there is a *strong* relationship between it and 
-	another type and it is existence dependant on that other type via the strong 
-	relationship
+  another type and it is existence dependant on that other type via the strong 
+  relationship
 	- eg a person could be said to be weak if they are strongly related so 
-		someone else
+	  someone else
 	- This is the same as saying that the reverse relationship be mandatory
 - Usually entity types are *strong*
 
@@ -146,16 +146,16 @@
 - A multi-valued attribute can have on or more values
 - Several possible methods for dealing with them
 	- Could represent the values as a string with each value concatenated with 
-		the others
+	  the others
 	- Or could give each value a separate attribute
-		- Requires some maximum number of "sub"-attributes that is allowed to be 
-			represented. For the elements where this maximum is not needed, the 
-			values are left blank, null
-		- Need to know the maximum number of attributes in order to create columns 
-			for them
+		- Requires some maximum number of "sub"-attributes that is allowed to 
+		  be represented. For the elements where this maximum is not needed, 
+		  the values are left blank, null
+		- Need to know the maximum number of attributes in order to create 
+		  columns for them
 	- Or separate the multi-quality attribute into a separate linked table so 
-		that the PK in the main table is used to identify the appropriate entries 
-		in the new second table
+	  that the PK in the main table is used to identify the appropriate entries 
+	  in the new second table
 
 ##Sub- and Super-Types
 - Super-type - contains attributes shared by all its sub-types
@@ -209,25 +209,25 @@
 	- Attributes
 	- Relationships
 - Applying this approach in a particular case gives rise to ER models for that 
-	situation
+  situation
 
 ###ERD's
 ####Chen Model
 - Rectangles represent entity types
 	- Weak entity types are shown with a double rectangle
 - Diamonds represent relationships
-	- No information given regarding the direction of the relationship, up to the 
-		designer to make this clear from the names given to the entities involved 
-		and the relationship
+	- No information given regarding the direction of the relationship, up to 
+	  the designer to make this clear from the names given to the entities 
+	  involved and the relationship
 - Bridging types are marked clearly with a diamond inside a rectangle
 - A marker (1, M) is placed above the junction between entity and relationship 
-	to inform regarding the connectivity
+  to inform regarding the connectivity
 - Entities are represented with an oval connected to the relevant entity type
 - A marker is placed below this junction to show cardinality
 	- eg **(0,3)** means at least 0 and at most 3
 	- eg **(4,M)** means more than 4 but no maximum
 - Optionality is shown by changing the end of the line where it meets the 
-	entity type
+  entity type
 	- Normal or mandatory is not changed
 	- Optional replaces the end of the line with a circle
 - The primary is represented by underlining the relevant entities
@@ -236,14 +236,14 @@
 
 ####Crows Foot Model
 - Rectangles represent entity types
-	- Information about the entities, and the primary and foreign keys are shown 
-		below the name of the entity type
+	- Information about the entities, and the primary and foreign keys are 
+	  shown below the name of the entity type
 - Relationships are shown on top of lines connecting entity types
 - Connectivity is shown with the end type of the relationship line
 	- A line with a crossed vertical line represents a 1 relationship
 	- A line which ends in a "crows foot" represents an M relationship
 - Optionality is shown using a circle at the end of the line, before the 
-	connectivity marker for an optional relationship
+  connectivity marker for an optional relationship
 	- Normal and mandatory relationships are not changed
 - Weak relationships are shown with a dashed line
 - There is no specific highlighting of relationship strength
