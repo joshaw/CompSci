@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8" /><link rel=stylesheet href="file:///home/josh/Documents/CompSci/Databases/css.css" /></head><body>
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><link rel=stylesheet href="css.css" /></head><body>
 <h1>Databases</h1>
 
 <h2>Tables, Attributes and Entities</h2>
@@ -20,7 +20,7 @@
 <h3>Associative Linking</h3>
 
 <ul>
-<li>Using specific individual name or identifier to refer between two locations 
+<li>Using specific individual name or identifier to refer between two locations
 where the same information is needed in both, eg tables</li>
 </ul>
 
@@ -41,7 +41,7 @@ other place</li>
 <h3>Entity Types</h3>
 
 <ul>
-<li>The main defining aspect of the data in a single table that allows that data 
+<li>The main defining aspect of the data in a single table that allows that data
 to be grouped together</li>
 </ul>
 
@@ -58,7 +58,7 @@ to be grouped together</li>
 <ul>
 <li>One to One</li>
 <li>Every entity in a table is related to exactly 1 entity in another table. <br />
-There cannot be more that one connection and there cannot be no 
+There cannot be more that one connection and there cannot be no
 connections.</li>
 <li>eg <strong>person &lt;-> ID number</strong>
 <ul>
@@ -68,22 +68,22 @@ connections.</li>
 <li>1:M
 <ul>
 <li>One to Many</li>
-<li>Every entity in a table can have many different connections to entity 
+<li>Every entity in a table can have many different connections to entity
 types in other tables.</li>
 <li>eg <strong>manager &lt;-> people</strong>
 <ul>
-<li>Each manager manages sever people, but each person is only managed by 
+<li>Each manager manages sever people, but each person is only managed by
 a single manager</li>
 </ul></li>
 </ul></li>
 <li>M:N
 <ul>
 <li>Many to Many</li>
-<li>Each entity can be connected to many other entities and connection can be 
+<li>Each entity can be connected to many other entities and connection can be
 repeated many times</li>
 <li>eg <strong>person &lt;-> lecture courses</strong>
 <ul>
-<li>Each person is enrolled on multiple lecture courses, and each lecture 
+<li>Each person is enrolled on multiple lecture courses, and each lecture
 course has many people enrolled on it.</li>
 </ul></li>
 </ul></li>
@@ -92,7 +92,7 @@ course has many people enrolled on it.</li>
 <h3>Cardinality</h3>
 
 <ul>
-<li>The number of other entities that are allowed and/or required to be related 
+<li>The number of other entities that are allowed and/or required to be related
 to the first for a particular entity
 <ul>
 <li>Given as a minimum, a maximum or both a min and max</li>
@@ -112,7 +112,7 @@ to the first for a particular entity
 <li>eg <strong>loaned book -> person</strong></li>
 <li>Every book on loan must have some person who has taken it out</li>
 </ul></li>
-<li>Both of these require specification of the direction that the optionality is 
+<li>Both of these require specification of the direction that the optionality is
 applied
 <ul>
 <li>Could be optional in one direction but mandatory in the other</li>
@@ -122,10 +122,10 @@ applied
 <h3>Functional Dependence</h3>
 
 <ul>
-<li>An attribute, or set of attributes, depends on a separate attribute, or set 
-of attributes, if each value of the first is associated with exactly one in 
+<li>An attribute, or set of attributes, depends on a separate attribute, or set
+of attributes, if each value of the first is associated with exactly one in
 the other.</li>
-<li>Conversely, an attribute determines another if the second is functionally 
+<li>Conversely, an attribute determines another if the second is functionally
 dependant on the first
 <ul>
 <li>eg Day-number, month and year <strong>determine</strong> day-name</li>
@@ -148,7 +148,7 @@ dependant on the first
 
 <ul>
 <li>Determines all other attributes in the table</li>
-<li>Trivially, the set of all attributes must be a superkey in order to prevent 
+<li>Trivially, the set of all attributes must be a superkey in order to prevent
 duplicate entries in a table</li>
 </ul>
 
@@ -167,7 +167,7 @@ duplicate entries in a table</li>
 <li>Chosen candidate key to identify entities in a table
 <ul>
 <li>The simpler the primary key, the better</li>
-<li>Not allowed to contain any null values since there could then be two 
+<li>Not allowed to contain any null values since there could then be two
 elements with the same null value causing duplication</li>
 </ul></li>
 </ul>
@@ -175,11 +175,11 @@ elements with the same null value causing duplication</li>
 <h4>Foreign Key</h4>
 
 <ul>
-<li>A primary key from another table that is included in a table to represent the 
+<li>A primary key from another table that is included in a table to represent the
 relationship between those two tables
 <ul>
 <li>Associative linking</li>
-<li>For a 1:1 mapping, the foreign key can be used to identify elements in 
+<li>For a 1:1 mapping, the foreign key can be used to identify elements in
 both directions as long as there are no null values in either side</li>
 </ul></li>
 </ul>
@@ -195,19 +195,19 @@ both directions as long as there are no null values in either side</li>
 <li>could be split into </li>
 </ul></li>
 <li><strong>Person &lt;-> enrollment</strong> <em>and</em> <strong>enrollment &lt;-> lecture courses</strong></li>
-<li>For each person, there are several enrollments, but for each enrollment 
-there is just a single lecture course. Similarly, for each lecture 
-course, there are several enrollments but for each enrollment there is 
+<li>For each person, there are several enrollments, but for each enrollment
+there is just a single lecture course. Similarly, for each lecture
+course, there are several enrollments but for each enrollment there is
 only one person</li>
 </ul></li>
-<li>The primary key in the bridging table is the combination of the foreign keys 
+<li>The primary key in the bridging table is the combination of the foreign keys
 for each of the two separate 1:M tables</li>
 </ul>
 
 <h3>Relationship Strength</h3>
 
 <ul>
-<li>A relationship is strong when the second entity contains the primary key of 
+<li>A relationship is strong when the second entity contains the primary key of
 the first
 <ul>
 <li>eg <strong>A -> B</strong> is <em>strong</em> if B's PK contains A's PK</li>
@@ -216,7 +216,7 @@ the first
 </ul></li>
 <li>When a relationship is not <em>strong</em> it is <em>weak</em>
 <ul>
-<li>Most relationships are weak, ie the PK's in most relationships do not 
+<li>Most relationships are weak, ie the PK's in most relationships do not
 share attributes.</li>
 </ul></li>
 <li>The strength of a relationship is directional
@@ -234,11 +234,11 @@ share attributes.</li>
 <h3>Entity Type Strength</h3>
 
 <ul>
-<li>An entity type is <em>weak</em> if there is a <em>strong</em> relationship between it and 
-another type and it is existence dependant on that other type via the strong 
+<li>An entity type is <em>weak</em> if there is a <em>strong</em> relationship between it and
+another type and it is existence dependant on that other type via the strong
 relationship
 <ul>
-<li>eg a person could be said to be weak if they are strongly related so 
+<li>eg a person could be said to be weak if they are strongly related so
 someone else</li>
 <li>This is the same as saying that the reverse relationship be mandatory</li>
 </ul></li>
@@ -251,18 +251,18 @@ someone else</li>
 <li>A multi-valued attribute can have on or more values</li>
 <li>Several possible methods for dealing with them
 <ul>
-<li>Could represent the values as a string with each value concatenated with 
+<li>Could represent the values as a string with each value concatenated with
 the others</li>
 <li>Or could give each value a separate attribute
 <ul>
-<li>Requires some maximum number of "sub"-attributes that is allowed to 
-be represented. For the elements where this maximum is not needed, 
+<li>Requires some maximum number of "sub"-attributes that is allowed to
+be represented. For the elements where this maximum is not needed,
 the values are left blank, null</li>
-<li>Need to know the maximum number of attributes in order to create 
+<li>Need to know the maximum number of attributes in order to create
 columns for them</li>
 </ul></li>
-<li>Or separate the multi-quality attribute into a separate linked table so 
-that the PK in the main table is used to identify the appropriate entries 
+<li>Or separate the multi-quality attribute into a separate linked table so
+that the PK in the main table is used to identify the appropriate entries
 in the new second table</li>
 </ul></li>
 </ul>
@@ -350,7 +350,7 @@ sub-types
 </ul></li>
 <li>Anti-symmetric
 <ul>
-<li>An relationship between two entities of the same type cannot allow the 
+<li>An relationship between two entities of the same type cannot allow the
 two type to be related to each other via the same relationship
 <ul>
 <li>eg <strong>course1 -> requires -> course2</strong></li>
@@ -365,13 +365,13 @@ two type to be related to each other via the same relationship
 <h3>ERM</h3>
 
 <ul>
-<li>Just the concept of thinking about a database as consisting of: 
+<li>Just the concept of thinking about a database as consisting of:
 <ul>
 <li>Entities</li>
 <li>Attributes</li>
 <li>Relationships</li>
 </ul></li>
-<li>Applying this approach in a particular case gives rise to ER models for that 
+<li>Applying this approach in a particular case gives rise to ER models for that
 situation</li>
 </ul>
 
@@ -386,12 +386,12 @@ situation</li>
 </ul></li>
 <li>Diamonds represent relationships
 <ul>
-<li>No information given regarding the direction of the relationship, up to 
-the designer to make this clear from the names given to the entities 
+<li>No information given regarding the direction of the relationship, up to
+the designer to make this clear from the names given to the entities
 involved and the relationship</li>
 </ul></li>
 <li>Bridging types are marked clearly with a diamond inside a rectangle</li>
-<li>A marker (1, M) is placed above the junction between entity and relationship 
+<li>A marker (1, M) is placed above the junction between entity and relationship
 to inform regarding the connectivity</li>
 <li>Entities are represented with an oval connected to the relevant entity type</li>
 <li>A marker is placed below this junction to show cardinality
@@ -399,7 +399,7 @@ to inform regarding the connectivity</li>
 <li>eg <strong>(0,3)</strong> means at least 0 and at most 3</li>
 <li>eg <strong>(4,M)</strong> means more than 4 but no maximum</li>
 </ul></li>
-<li>Optionality is shown by changing the end of the line where it meets the 
+<li>Optionality is shown by changing the end of the line where it meets the
 entity type
 <ul>
 <li>Normal or mandatory is not changed</li>
@@ -415,7 +415,7 @@ entity type
 <ul>
 <li>Rectangles represent entity types
 <ul>
-<li>Information about the entities, and the primary and foreign keys are 
+<li>Information about the entities, and the primary and foreign keys are
 shown below the name of the entity type</li>
 </ul></li>
 <li>Relationships are shown on top of lines connecting entity types</li>
@@ -424,7 +424,7 @@ shown below the name of the entity type</li>
 <li>A line with a crossed vertical line represents a 1 relationship</li>
 <li>A line which ends in a "crows foot" represents an M relationship</li>
 </ul></li>
-<li>Optionality is shown using a circle at the end of the line, before the 
+<li>Optionality is shown using a circle at the end of the line, before the
 connectivity marker for an optional relationship
 <ul>
 <li>Normal and mandatory relationships are not changed</li>
