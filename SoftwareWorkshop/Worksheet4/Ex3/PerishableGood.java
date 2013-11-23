@@ -3,6 +3,7 @@ import java.util.Calendar;
 public class PerishableGood extends GeneralGood {
 
 	private Day bestBefore;
+	private boolean perished = false;
 
 	public PerishableGood(String name, int orderNumber, double standardPrice,
 			boolean availible, Day bestBefore) {
@@ -20,9 +21,14 @@ public class PerishableGood extends GeneralGood {
 		return bestBefore;
 	}
 
+	public boolean getPerished() {
+		return perished;
+	}
+
 	private void checkBestBefore() {
 		Calendar c = Calendar.getInstance();
-		c.set(bestBefore.getYear(), bestBefore.getMonth()-1, bestBefore.getDay(), 0, 0);
+		c.set(bestBefore.getYear(), bestBefore.getMonth()-1,
+				bestBefore.getDay(), 0, 0);
 
 		Calendar today = Calendar.getInstance();
 		today.set(Calendar.HOUR_OF_DAY, 0);
@@ -33,9 +39,9 @@ public class PerishableGood extends GeneralGood {
 		}
 
 		c.add(Calendar.DAY_OF_YEAR, 6);
-
 		if (!today.before(c)) {
 			super.setAvailible(false);
+			perished = true;
 		}
 	}
 
