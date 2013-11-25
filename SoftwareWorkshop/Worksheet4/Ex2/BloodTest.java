@@ -7,7 +7,7 @@
  * Worksheet : 4
  * Exercise  : 2
  * File name : BloodTest.java
- * @version 2013-11-22
+ * @version 2013-11-24
  */
 import org.junit.Test;
 import org.junit.Before;
@@ -44,12 +44,12 @@ public class BloodTest {
 
 	@Test
 	public void testHighestSystolic() {
-		assertEquals("Mary S", 177, BloodResult.getHighestSystolic(mary));
+		assertEquals("Mary Sys", 177, BloodResult.getHighestSystolic(mary));
 	}
 
 	@Test
 	public void testAverageDiastolic() {
-		assertEquals("Mary D", 85, BloodResult.getAverageDiastolic(mary));
+		assertEquals("Mary Dia", 85, BloodResult.getAverageDiastolic(mary));
 	}
 
 
@@ -67,14 +67,12 @@ public class BloodTest {
 
 	@Test
 	public void testHighestSystolic2() {
-		System.out.println(BloodResult.getHighestSystolic(john));
-		assertEquals("John S", 177, BloodResult.getHighestSystolic(john));
+		assertEquals("John Sys", 177, BloodResult.getHighestSystolic(john));
 	}
 
 	@Test
 	public void testAverageDiastolic2() {
-		System.out.println(BloodResult.getAverageDiastolic(john));
-		assertEquals("John D", 82, BloodResult.getAverageDiastolic(john));
+		assertEquals("John Dia", 82, BloodResult.getAverageDiastolic(john));
 	}
 
 }

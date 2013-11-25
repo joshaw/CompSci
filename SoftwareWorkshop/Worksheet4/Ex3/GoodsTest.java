@@ -17,4 +17,11 @@ public class GoodsTest {
 
 		pg.setBestBefore(new Day(3, 5, 2013));
 	}
+
+	@Test
+	public void testGoods() {
+		PerishableGood a =
+			new PerishableGood("Name", 1, 2, true, new Day(2, 5, 2013));
+		assertEquals("2/5/2013", a.getBestBefore().toString());
+	}
 }
