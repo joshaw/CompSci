@@ -12,11 +12,11 @@ public class Customer {
 
 	private int customerID;
 	private String firstname;
-	private Sting surname;
+	private String surname;
 	private double orderTotal;
 	private boolean goldStatus;
 
-	public Customer(int customerID, String firstname, Sting surname) {
+	public Customer(int customerID, String firstname, String surname) {
 		this.customerID = customerID;
 		this.firstname = firstname;
 		this.surname = surname;
@@ -38,16 +38,24 @@ public class Customer {
 		return firstname;
 	}
 
-	public void setSurname(Sting surname) {
+	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
-	public Sting getSurname() {
+	public String getSurname() {
 		return surname;
 	}
 
-	public void increaseTotal(double amount) {
+	public void increaseMonthTotal(double amount) {
+		checkFirstDayMonth();
 		orderTotal += amount;
+	}
+
+	private void checkFirstDayMonth() {
+		Calendar cal = Calendar.getInstance();
+		if(cal.get(Calendar.DAY_OF_MONTH) == 1){
+			orderTotal = 0;
+		}
 	}
 
 	private void checkGoldStatus() {
