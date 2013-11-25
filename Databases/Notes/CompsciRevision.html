@@ -1,0 +1,155 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><link rel=stylesheet href="css.css" /></head><body>
+<h1>Introduction to Computer Science</h1>
+
+<h2>Logic</h2>
+
+<h3>Propositional Logic</h3>
+
+<h4>Atoms</h4>
+
+<ul>
+<li>Propositions are called atoms and can be either <strong>true</strong> or <strong>false</strong></li>
+<li>Operators combine truth value
+<ul>
+<li><strong>AND</strong> &and;</li>
+<li><strong>OR</strong> &or;</li>
+<li><strong>NOT</strong> ¬</li>
+<li><strong>IMPLIES</strong> &rarr;</li>
+</ul></li>
+</ul>
+
+<h4>Truth Tables</h4>
+
+<ul>
+<li>Rows give the possible worlds that can exist.</li>
+<li>Columns are the the truth functions.</li>
+<li>Give the outcomes of a logic sentence in evey possible world.
+<ul>
+<li>ie for every combination of true and false for each of the different 
+atoms.</li>
+</ul></li>
+</ul>
+
+<h4>Valid</h4>
+
+<ul>
+<li>True in all possible worlds.</li>
+</ul>
+
+<h4>Satisfiable</h4>
+
+<ul>
+<li>True in some possible worlds.</li>
+</ul>
+
+<h4>Unsatisfiable</h4>
+
+<ul>
+<li>True in none of the possible worlds.
+<ul>
+<li>False in all worlds.</li>
+</ul></li>
+</ul>
+
+<h3>Predicate Logic</h3>
+
+<ul>
+<li>Allows us to construct more informative logical statements about the world.
+<ul>
+<li>Can give information about;
+<ul>
+<li>Properties of objects,</li>
+<li>Relations between objects.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2>Algorithms</h2>
+
+<ul>
+<li>A set of rules for determining a sequence of operations precisely.</li>
+</ul>
+
+<h2>Turing Machine</h2>
+
+<ul>
+<li>Composed of;
+<ul>
+<li>Infinitely long tape with symbols.
+<ul>
+<li>eg <strong>{0,1}</strong>,</li>
+<li>eg <strong>{A,B,C,D}</strong>.</li>
+</ul></li>
+<li>Read/write head can read a symbol from the tape and write a symbol over 
+another and can move the tape left or right,</li>
+<li>Finite set of internal states,
+<ul>
+<li>Exists in one of the states at all times.</li>
+</ul></li>
+<li>Set of transition rules that control the internal state change as a 
+function of the symbols read from the tape.</li>
+</ul></li>
+<li>The current system state is the entire configuration.
+<ul>
+<li>Not just the internal state.</li>
+</ul></li>
+<li>There exist infintely many Turing Machines.</li>
+</ul>
+
+<h4>Halting Problem</h4>
+
+<ul>
+<li>Given a Turing Machine <strong>A</strong>, is there a Turing Machine, <strong>B</strong>, that can tell 
+us (in a finite number of steps) is the Turing Machine <strong>A</strong> will halt or 
+not?</li>
+<li><em>No</em></li>
+</ul>
+
+<h4>Universal Turing Maching (UTM)</h4>
+
+<ul>
+<li>Turing machine capable of taking, not just their data, but their program as 
+an input sequence on the tape.</li>
+<li>Capable of simulatiing any other Turing Machine.</li>
+<li>Not possible to build physically since it would require an infinite memory 
+address.</li>
+<li>Physical computers are an approximation of UTMs.</li>
+<li>Useful for;
+<ul>
+<li>Mathematics - Universality means machines are general purpose and so 
+reusable,</li>
+<li>Physics - Electronics made them small, cheap and powerful,</li>
+<li>Software - Can be standardised and bootstrapped, amplifying the power of 
+an existing tool with each step in technology.</li>
+</ul></li>
+</ul>
+
+<h4>Tiny Turing Machine</h4>
+
+<ul>
+<li>Has been shown that a Turing Machine with 7 internal states and 4 symbols is 
+a UTM; 
+<ul>
+<li>a (7,4) machine.</li>
+</ul></li>
+<li>Also exist (4,6) and (5,5) machines.</li>
+</ul>
+
+<h2>Number Representation Systems</h2>
+
+<h3>Positive Integers</h3>
+
+<ul>
+<li>Decimal 
+<ul>
+<li>0 - 9</li>
+</ul></li>
+<li>Binary
+<ul>
+<li>0 - 1</li>
+</ul></li>
+<li>Hexadecimal
+<ul>
+<li>0 - F</li>
+</ul></li>
+</ul>
