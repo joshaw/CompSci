@@ -1,2 +1,5 @@
 *.class
 *.RData
+*.toc
+*.log
+*.aux
