@@ -1,3 +1,13 @@
+/** Creates a representaion of a credit card with an account name, number, an
+ * initial amount and a limit.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 4
+ * Exercise  : 1
+ * File name : CreditCard.java
+ * @version 2013-11-24
+ */
 public class CreditCard {
 
 	private String name;

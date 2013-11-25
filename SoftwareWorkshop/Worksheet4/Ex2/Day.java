@@ -1,3 +1,13 @@
+/** Extremely simple class to hold the components of a day as represented in UK
+ * standard notation.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 4
+ * Exercise  : 2
+ * File name : Day.java
+ * @version 2013-11-24
+ */
 public class Day {
 
 	private int day;

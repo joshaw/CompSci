@@ -1,3 +1,15 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 4
+ * Exercise  : 4
+ * File name : Student.java
+ * @version 2013-11-24
+ */
+import java.util.InputMismatchException;
+import java.util.ArrayList;
+
 public class Student {
 
 	private int passMark;

@@ -1,3 +1,13 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 4
+ * Exercise  : 3
+ * File name : Customer.java
+ * @version 2013-11-24
+ */
+import java.util.Calendar;
 public class Customer {
 
 	private int customerID;

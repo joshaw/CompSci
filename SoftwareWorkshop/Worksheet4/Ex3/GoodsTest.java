@@ -1,3 +1,15 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : 4
+ * Exercise  : 3
+ * File name : GoodsTest.java
+ * @version 2013-11-24
+ */
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class GoodsTest {
 	public static void main(String[] args) {
 		PerishableGood pg =

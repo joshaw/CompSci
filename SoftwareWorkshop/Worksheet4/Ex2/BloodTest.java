@@ -1,4 +1,6 @@
-/**
+/** Test class for the BloodResult class which calculates the highest
+ * abnormal systolic and average diastolic pressures from a list of blood test
+ * records.
  *
  * @author Josh Wainwright
  * UID       : 1079596

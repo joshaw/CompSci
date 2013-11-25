@@ -1,4 +1,5 @@
-/**
+/** Creates a representation of a blood test record. The systolic and diastolic
+ * pressures and the day the measurement was taken are recorded.
  *
  * @author Josh Wainwright
  * UID       : 1079596
