@@ -19,13 +19,13 @@ public class GoldCard extends CreditCard {
 
 		super(name, accountNumber, amount, limit);
 
-		/* If there is suffiecient funds, the fee is subtracted from the
-		 * initial balance. */
-		if (super.getAmount() > fee) {
+		/* If the limit or the balance is greater than the fee, the fee is
+		 * subtracted from the initial balance. */
+		if (super.getLimit() > fee | super.getAmount() > fee) {
 			super.setAmount(super.getAmount() - fee);
 		} else {
-			throw new InputMismatchException("The fee is greater than the" +
-					" balance of the account.");
+			throw new InputMismatchException("Cannot create account. The fee " +
+					"is greater than the balance of the account.");
 		}
 	}
 }

@@ -1,4 +1,5 @@
-/** 
+/** Class for representing an item as a general good, storing information such
+ * as the name, order number, price and availability of that item.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -12,14 +13,14 @@ public class GeneralGood {
 	private String name;
 	private int orderNumber;
 	private double standardPrice;
-	private boolean availible;
+	private boolean available;
 
 	public GeneralGood(String name, int orderNumber, double standardPrice,
-			boolean availible) {
+			boolean available) {
 		this.name = name;
 		this.orderNumber = orderNumber;
 		this.standardPrice = standardPrice;
-		this.availible = availible;
+		this.available = available;
 	}
 
 	public void setName(String name) {
@@ -46,12 +47,12 @@ public class GeneralGood {
 		return standardPrice;
 	}
 
-	public void setAvailible(boolean availible) {
-		this.availible = availible;
+	public void setavailable(boolean available) {
+		this.available = available;
 	}
 
-	public boolean getAvailible() {
-		return availible;
+	public boolean getavailable() {
+		return available;
 	}
 
 }

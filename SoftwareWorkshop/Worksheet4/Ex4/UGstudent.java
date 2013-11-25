@@ -1,4 +1,5 @@
-/**
+/** Class to represent an undergraduate student. Extends the Student superclass
+ * with only the pass mark being different.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -10,6 +11,8 @@
 public class UGstudent extends Student {
 
 	public UGstudent(String name) {
+
+		// Set the pass mark to 40
 		super(name, 40);
 	}
 }

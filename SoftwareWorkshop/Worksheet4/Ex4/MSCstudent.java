@@ -1,4 +1,5 @@
-/**
+/** Class to represent a postgraduate student. Extends the Student superclass
+ * with only the pass mark being different.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -10,6 +11,8 @@
 public class MSCstudent extends Student {
 
 	public MSCstudent(String name) {
+
+		// Set the pass mark to 50
 		super(name, 50);
 	}
 }

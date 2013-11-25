@@ -1,4 +1,9 @@
-/**
+/** Representation of a customer. Each is associated with an ID, name, order
+ * total and a gold status.
+ *
+ * The order total is increased every time an order is made and reset to zero
+ * at the start of each month. If, during a single month, the order total
+ * exceeds a predefined limit (2000), the customer is given Gold Status.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -14,7 +19,9 @@ public class Customer {
 	private String firstname;
 	private String surname;
 	private double orderTotal;
-	private boolean goldStatus;
+	private boolean goldStatus = false;
+
+	private final int GOLDLIMIT = 2000;
 
 	public Customer(int customerID, String firstname, String surname) {
 		this.customerID = customerID;
@@ -46,11 +53,19 @@ public class Customer {
 		return surname;
 	}
 
+	/** Adds the paid amount the total spent this month
+	 *
+	 * @param amount amount to add to this month's total
+	 */
 	public void increaseMonthTotal(double amount) {
 		checkFirstDayMonth();
 		orderTotal += amount;
+		checkGoldStatus();
 	}
 
+	/** Checks if the current day is the first day of the month. If it is, the
+	 * value of the total money spent is reset to zero.
+	 */
 	private void checkFirstDayMonth() {
 		Calendar cal = Calendar.getInstance();
 		if(cal.get(Calendar.DAY_OF_MONTH) == 1){
@@ -58,8 +73,11 @@ public class Customer {
 		}
 	}
 
+	/** If the customer has spent more than the given amount in a single month,
+	 * they are given Gold Status.
+	 */
 	private void checkGoldStatus() {
-		if (orderTotal > 2000) {
+		if (orderTotal > GOLDLIMIT) {
 			goldStatus = true;
 		}
 	}
