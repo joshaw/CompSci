@@ -1,0 +1,95 @@
+
+data <- read.csv ("       ")
+
+head (data)
+
+# Make 3 variables that we can use in the tests of normality below as well as in the creation of graphs, descriptive statistics etc. We can do this using the subset function
+
+control <- subset (data$score, data$condition=="  ")
+
+control
+
+text <- subset (data$score, data$condition=="   ")
+
+text
+
+talk <- subset (data$score, data$condition=="    ")
+
+talk
+
+# Make a histogram showing the frequency distribution of the driving scores in control, text and talk conditions
+xx = c(0,8)
+yy = c(0,10)
+brks = seq(0,8,1)
+
+hist (    , xlab="Driving Scores", main="Driving scores for texting (blue), talking (pink) \nand control (purple) conditions", xlim=xx, ylim=yy, breaks=brks, col=rgb(0,0,1,1/3))
+hist (    , breaks=brks, col=rgb(0,1,1,1/3), add=T)
+hist (     , breaks=brks, col=rgb(1,0,1,1/3), add=T)
+
+# Draw boxplots of the conditions on the same graph to identify outliers
+         (   $score~     $condition, ylab= ("Driving Score"), ylim= c(0,10))
+
+
+# Gather some descriptive statistics (means, sd) for the conditions
+
+mysummary <- function(x)
+{
+     v1 <- mean(x)
+     v2 <- median(x)
+     v3 <- var(x)
+     v4 <- sd(x)
+     v5 <- length(x)
+     return(list( mean=v1, median=v2, var=v3, sd=v4, N=v5))
+}
+
+mysummary (    )
+
+mysummary (    )
+
+mysummary (    )
+
+# Create a bar graph with error bars showing the condition means for the data
+
+drive.mean <- c( mean(    ), mean(     ), mean (    ) )
+drive.sd <- c( sd(control), sd(text), sd(talk) )
+
+names(drive.mean) <- c("Control", "Text", "Talk")
+
+sd.bar <- function(x, y, upper, lower=upper, length=0.1,...)
+{
+    if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
+       stop("vectors must be same length")
+
+    arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
+       }
+
+
+br <-        (        , main = "Graph of Condition Means", xlab= "Secondary Driving Task", ylab="Driving Score", ylim=c(0,8))
+
+
+
+sd.bar( br, drive.mean, drive.sd/sqrt(   ))
+
+
+
+# Test the assumptions of One Way independent ANOVA- normal distribution (using the shapiro.test() function) and equality of variance (leveneTest() function- You have to install and load the libraries for the car package for the levenes test),
+
+       (      )
+       (      )
+       (      )
+
+# install.package ("car")- This is commented out as the package has been installed for you on the system
+library (car)
+leveneTest(data$score, data$condition, center=median)
+
+# Run the ANOVA using the aov() function. Get the output using the summary() function
+
+model <-      (score~      , data=    )
+summary(    )
+
+# Use post hoc comparisons to compare the levels of the independent variable to find out where the significant difference between conditions are
+pairwise.t.test (    $score, data$condition, paired=      , p.adjust.method="bonferroni")
+
+# Report the ANOVA using the reporting convention shown in the lecture as well as the results of the comparisons between conditions on driving score from the post hoc tests
+# F( , )=  , p
+# there was a statistically significant difference between _______ and _______ (p=     ) as well as the ________and _________ conditions on __________ (p=   ).
