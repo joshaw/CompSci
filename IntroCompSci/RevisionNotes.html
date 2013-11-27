@@ -1,0 +1,1134 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><link rel=stylesheet href="css.css" /></head><body>
+<h1>Introduction to Computer Science</h1>
+
+<h2>Stored Programs</h2>
+
+<ul>
+<li>Concept;
+<ul>
+<li>A program can be encoded as bit patterns and stored in memory,</li>
+<li>The CPU can then extract the instructions and execute them,</li>
+<li>The program can be executed and changed easily.</li>
+</ul></li>
+</ul>
+
+<h4>Machine Instruction</h4>
+
+<ul>
+<li>An instruction (or command) encoded as a bit pattern recognizable by the CPU.</li>
+</ul>
+
+<h4>Machine Language</h4>
+
+<ul>
+<li>The set of all defined instructions recognized by a machine.
+<ul>
+<li>Reduced Instruction Set Computing (RISC);
+<ul>
+<li>Few, simple, efficient and fast instructions,</li>
+<li>eg PowerPC from Motorola.</li>
+</ul></li>
+<li>Complex Instruction Set Computing (CISC)
+<ul>
+<li>Many, convenient and powerful instructions,</li>
+<li>eg Pentium from Intel.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3>Von Neumann Model</h3>
+
+<ul>
+<li>EDVAC - <strong>E</strong>lectronic <strong>D</strong>iscrete <strong>V</strong>ariable <strong>A</strong>utomatic <strong>C</strong>omputer;
+<ul>
+<li>Memory - contains instructions and data,</li>
+<li>Processing Unit - performs arithmetic and logic operations,</li>
+<li>Control Unit - interprets instructions.</li>
+</ul></li>
+</ul>
+
+<h4>Memory</h4>
+
+<ul>
+<li><em>k x m</em> array of stored bits;
+<ul>
+<li>Address - unique n-bit id of location,</li>
+<li>Contents - m-bit value stored in that location.</li>
+</ul></li>
+</ul>
+
+<h4>Basic Operations</h4>
+
+<ul>
+<li>LOAD - read a value from memory,</li>
+<li>STORE - write a value to memory.</li>
+</ul>
+
+<h4>Interfaces to Memory</h4>
+
+<ul>
+<li>Memory address register (MAR)</li>
+<li>Memory data register (MDA)</li>
+<li>eg to read location A:
+<ol>
+<li>write the address A to the MAR,</li>
+<li>send a <em>read</em> signal to the memory,</li>
+<li>read the data from the MDA.</li>
+</ol></li>
+<li>eg write value X to location A:
+<ol>
+<li>write the data X to the MDA,</li>
+<li>write the address A to the MAR,</li>
+<li>send a <em>write</em> signal to the memory.</li>
+</ol></li>
+</ul>
+
+<h4>Processing Unit</h4>
+
+<ul>
+<li>Functional units:
+<ul>
+<li>Arithmetic and Logic Unit (ALU),
+<ul>
+<li>could have many functional units, some of the special purpose,</li>
+<li>eg multiply, square-root,</li>
+</ul></li>
+<li>Temporary registers,
+<ul>
+<li>holds operands and results of functional units,</li>
+</ul></li>
+</ul></li>
+<li><em>Word size</em>
+<ul>
+<li>number of bits normally processed by ALU in one instruction,</li>
+<li>also width of registers.</li>
+</ul></li>
+</ul>
+
+<h4>Control Unit</h4>
+
+<ul>
+<li>Orchestrates execution of the program.</li>
+<li>Contains: 
+<ul>
+<li><em>Instruction Register</em> (IR)
+<ul>
+<li>contains the <strong>current</strong> instruction.</li>
+</ul></li>
+<li><em>Program Counter</em> (PC)
+<ul>
+<li>contains the address of the <strong>next</strong> instruction to be executed.</li>
+</ul></li>
+</ul></li>
+<li>Reads an instruction from memory
+<ul>
+<li>the instruction's address is in the PC</li>
+</ul></li>
+<li>Interprets the instruction, generating signals that tell the other components 
+what to do
+<ul>
+<li>a single <em>instruction</em> may take many machine cycles to complete.</li>
+</ul></li>
+</ul>
+
+<h4>Input and Output</h4>
+
+<ul>
+<li>Each device for getting data into and out of the computer has its own 
+registers,
+<ul>
+<li>like the memory's MDR and MAR</li>
+<li>eg <strong>input</strong>: keyboard, mouse,</li>
+<li>eg <strong>output</strong>: console, frambuffer,</li>
+<li>eg <strong>both</strong>: disk, network.</li>
+</ul></li>
+<li>Driver:
+<ul>
+<li>a program that controls a device </li>
+</ul></li>
+<li>Controller:
+<ul>
+<li>intermediary apparatus that handles communication between the computer 
+and a device,</li>
+<li>Specialized controllers for each type of device</li>
+<li>General purpose controllers (USB, FireWire).</li>
+</ul></li>
+<li>Port:
+<ul>
+<li>point at which a device connects to a computer.</li>
+</ul></li>
+<li>Memory-mapped I/O:
+<ul>
+<li>CPU communicates with peripheral devices as though they were memory 
+cells.</li>
+</ul></li>
+</ul>
+
+<h3>Instruction</h3>
+
+<ul>
+<li>The fundamental unit of work in the computer</li>
+<li>Specifies:
+<ul>
+<li><strong>Operands</strong> - data/locations to be used for the operation</li>
+<li><strong>Opcode</strong> - operation to be performed
+<ul>
+<li>stored as a sequence of bits</li>
+<li>often have fixed length; 16, 32, etc.</li>
+<li>control unit Interprets Instruction and generates a sequence of 
+control signals to carry out operation,</li>
+<li>operation is either executed completely or not at all.</li>
+</ul></li>
+</ul></li>
+<li>Basic kinds of Instruction:
+<ul>
+<li>computational instructions (ADD, AND, ...),</li>
+<li>data movement instructions (LD, ST, ...),</li>
+<li>control instructions (JMP, BRnz, ...).</li>
+</ul></li>
+</ul>
+
+<h4>Instruction Processing</h4>
+
+<ol>
+<li>Fetch Instruction from memory</li>
+<li>Decode Instruction</li>
+<li>Evaluate address</li>
+<li>Fetch operands from memory</li>
+<li>Execute operation</li>
+<li>Store results</li>
+<li><em>Goto 1</em></li>
+</ol>
+
+<h5>Fetch</h5>
+
+<ul>
+<li>Load next instruction from address in PC from memory into IR;
+<ul>
+<li>Load contents of PC into MAR,</li>
+<li>Send read signal to memory,</li>
+<li>Read contents of MDR and store in IR.</li>
+</ul></li>
+<li>Increment PC so it points to next instruction in sequence;
+<ul>
+<li>PC &lt;- PC + 1</li>
+</ul></li>
+</ul>
+
+<h5>Decode</h5>
+
+<ul>
+<li>Identify opcode
+<ul>
+<li>eg first n bits of the instruction</li>
+</ul></li>
+<li>Depending on the opcode, identify the operands from the remaining bits</li>
+</ul>
+
+<h5>Evaluate Address</h5>
+
+<ul>
+<li>For instructions that require memory access.</li>
+<li>Compute address used for access.</li>
+</ul>
+
+<h5>Fetch Operands</h5>
+
+<ul>
+<li>Obtain source Operands needed to perform operation
+<ul>
+<li>from memory or register or other location</li>
+</ul></li>
+</ul>
+
+<h5>Execute</h5>
+
+<ul>
+<li>Perform the operation using the source operands.</li>
+</ul>
+
+<h5>Store</h5>
+
+<ul>
+<li>Write the results to the destination
+<ul>
+<li>either a register or memory location</li>
+</ul></li>
+</ul>
+
+<h4>System Clock</h4>
+
+<ul>
+<li>Keeps control unit moving
+<ul>
+<li>at each clock "tick", control unit moves to the next machine cycle</li>
+<li>may be next Instruction or next phase of current instruction.</li>
+</ul></li>
+<li>Based on crystal oscillator</li>
+<li>Generates regular sequence of <em>0</em> and <em>1</em> logic levels</li>
+<li>A clock (or machine) cycle is the time between leading edge to leading edge.</li>
+</ul>
+
+<h2>Compilation and Interpretation</h2>
+
+<ul>
+<li>A program written in a high language can be run by either
+<ul>
+<li>Compiling it into a program in the native machine language and then run 
+on the target machine</li>
+<li>Directly interpreting it so that the execution is simulated within an 
+interpreter.</li>
+</ul></li>
+</ul>
+
+<h3>Compilation</h3>
+
+<ul>
+<li>Conceptual process of translating source code into a CPU-executable binary 
+target code</li>
+<li>Compiler runs on the same platform as the target code.</li>
+<li><strong>Cross compiler</strong>
+<ul>
+<li>Compiler runs on platform X, target code runs on platform Y.</li>
+</ul></li>
+<li>Compilers try to be as smart as possible to fix decisions that can be taken 
+at <strong>compile</strong> time.</li>
+<li>Avoids generation of code that would have to make these decisions at <strong>run</strong> 
+time
+<ul>
+<li>eg type checking, static allocation, static linking, code optimization.</li>
+</ul></li>
+<li>Leads to better performance in general;
+<ul>
+<li>Allocation of variables without variable lookup at runtime,</li>
+<li>Aggressive code optimization to exploit hardware features.</li>
+</ul></li>
+</ul>
+
+<h4>Pure Compilation and Static Linking</h4>
+
+<ul>
+<li>Adopted by typical Fortran systems.</li>
+<li>Library routines are separately linked with the object code of the program.
+<ul>
+<li>Source program <strong>compiled into</strong> incomplete object code,</li>
+<li>Static library object code and incomplete object code <strong>linked</strong> to a 
+binary executable.</li>
+</ul></li>
+</ul>
+
+<h4>Compilation, Assembly and Static Linking</h4>
+
+<ul>
+<li>Facilitates debugging of the compiler
+<ul>
+<li>Source program <strong>compiled into</strong> assembly program,</li>
+<li>Assembly program <strong>assembled</strong> by the assembler</li>
+<li>Static library code and assembled program <strong>linked</strong> to a binary 
+executable.</li>
+</ul></li>
+</ul>
+
+<h4>Compilation, Assembly and Dynamic Linking</h4>
+
+<ul>
+<li>Dynamic libraries (DLL, .so, .dylib) are linked at runtime by the OS, via 
+stubs in the executable.
+<ul>
+<li>Source program <strong>compiled into</strong> Assembly program,</li>
+<li>Assembly program <strong>assembled</strong> by assembler,</li>
+<li>Shared dynamic libraries <strong>linked</strong> at runtime into the incomplete 
+executable.</li>
+</ul></li>
+</ul>
+
+<h4>Preprocessing</h4>
+
+<ul>
+<li>Most C and C++ compilers use a preprocessor to import header files and expand 
+macros.
+<ul>
+<li>Source program <strong>processed</strong> by preprocessor into a modified source 
+program,</li>
+<li>Modified source program <strong>compiled</strong> by the compiler into assembly or 
+object code.</li>
+</ul></li>
+<li>Early C++ compilers used the CPP preprocessor to generate C code for 
+compilation.</li>
+</ul>
+
+<h3>Interpretation</h3>
+
+<ul>
+<li>Conceptual process of running high level code by an interpreter.</li>
+<li>Facilitates interactive debugging and testing,
+<ul>
+<li>Procedures can be invoked from command line by the user,</li>
+<li>Variables can be inspected and modified by a user.</li>
+</ul></li>
+<li>Some languages cannot be purely compiled to machine code alone,
+<ul>
+<li>need to rewrite/add code to the code base dynamically</li>
+<li>translate data to code for execution (interpretation).</li>
+</ul></li>
+</ul>
+
+<h3>Virtual Machine</h3>
+
+<ul>
+<li>Executes an instruction steam in software.</li>
+<li>Adapted by Pascal, Java, Smalltalk-80, C#, functional and logic languages and 
+some scripting languages.</li>
+<li>Compilation generates intermediate program,</li>
+<li>Virtual machine interprets the intermediate program,
+<ul>
+<li>Virtual machine is written for each different platform, so that the code 
+should run the same on all different platforms for which a virtual 
+machine has been implemented.</li>
+</ul></li>
+</ul>
+
+<h4>Bytecode</h4>
+
+<ul>
+<li>Sometimes the distinction between interpretation and compilation can be fuzzy
+<ul>
+<li>Interpreter is similar to a virtual machine that executes higher level 
+code</li>
+<li>Java is compiled to bytecode which is Interpreted by the Java Virtual 
+Machine (JVM)</li>
+</ul></li>
+<li>Machine independant class file, interpreted by a virtual machine.</li>
+<li>Architecture independant,
+<ul>
+<li>writing a VM is easier than rewriting a compiler for every architecture</li>
+<li>VM's can enforce different levels of security automatically
+<ul>
+<li>eg applets vs applications</li>
+</ul></li>
+<li>Just-in-time (JIT) compiling helps acheive similar speed to traditionally 
+compiled code.</li>
+</ul></li>
+</ul>
+
+<h5>Java Bytecode</h5>
+
+<ul>
+<li>Stack-based virtual machine</li>
+<li>Small instruction set
+<ul>
+<li>202 instructions, all are 1 byte opcode with operands</li>
+<li>Compared with Intel x86: ~280 instructions, 1 to <strong>17</strong> bytes long.</li>
+</ul></li>
+<li>Memory is typed.</li>
+</ul>
+
+<h2>Data Structures</h2>
+
+<ul>
+<li>Abstract Data Structure (ADT)
+<ul>
+<li>A model or theoretical construct for a collection of data, along with 
+certain behavior or rules for accessing or manipulating that data.</li>
+<li>Want to know about how to access and manipulate the data but not worried 
+about the specific implementation.</li>
+<li>For the basis of <em>algorithms</em> for doing more complex operations with 
+data.</li>
+</ul></li>
+</ul>
+
+<h3>Algorithm</h3>
+
+<ul>
+<li>Set of rules for determining a sequence of operations precisely</li>
+</ul>
+
+<h3>Stack</h3>
+
+<ul>
+<li>Ordered collection of elements</li>
+<li>Elements can only be <strong>added</strong> at one end, and <strong>removed</strong> from the <em>same</em> 
+end.</li>
+<li>Capacity - maximum number of elements that can be stored</li>
+<li>Index - number of each element</li>
+<li>Top - highest index currently filled</li>
+<li>If
+<ul>
+<li>stack is <strong>empty</strong>, then top = -1</li>
+<li>stack is <strong>full</strong>, then top = capacity-1</li>
+</ul></li>
+<li>Is a <em>recursive data structure</em>, it is either empty, or consists of a top and 
+the rest which is a stack.
+<ul>
+<li>[A, [B, [C, [D, ]]]]</li>
+</ul></li>
+<li>eg Towers of Hanoi, undo operations in editor, path finding in a maze 
+(backtracking).</li>
+</ul>
+
+<h4>Operations</h4>
+
+<ul>
+<li><em>push(S,x)</em> - add a new element x to the stack S</li>
+<li><em>pop(S)</em> - remove the most recent addition from the stack S</li>
+<li><em>peek(S)</em> - return the most recent addition without removing it</li>
+<li><em>isEmpty(S)</em> - return true if the stack is empty, else return false!</li>
+<li><em>size(S)</em> - return the number of elements in the stack</li>
+</ul>
+
+<h3>Queue</h3>
+
+<ul>
+<li>Ordered collection of elements</li>
+<li>Elements are <strong>added</strong> at one end and <strong>removed</strong> from the <em>other</em> end.
+<ul>
+<li>Added at back and removed from the front.</li>
+<li><strong>F</strong>irst <strong>I</strong>n <strong>F</strong>irst <strong>O</strong>ut, FIFO.</li>
+</ul></li>
+<li>When the index of the last element reaches the capacity, add new elements to 
+begining
+<ul>
+<li><em>Circular Queue</em>
+<ul>
+<li>useful for buffering data streams, in this case dequeuing retreats 
+the front pointer without removing the element (useful if "rewinding" 
+some way is wanted).</li>
+<li>old data is not removed until the buffer becomes full.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4>Operations</h4>
+
+<ul>
+<li><em>enqueue(Q,x)</em> - add a new element x to the queue Q</li>
+<li><em>dequeue(Q)</em> - remove the oldest addition from the queue Q</li>
+<li><em>peek(Q)</em> - return the oldest addition without removing it</li>
+<li><em>isEmpty(Q)</em> - return true if the queue is empty, else return false!</li>
+<li><em>size(Q)</em> - return the number of elements in the queue</li>
+</ul>
+
+<h3>Double Ended Queue (Deque)</h3>
+
+<ul>
+<li>Combines a stack with a queue</li>
+<li>Can add or remove elements from the back or the front</li>
+</ul>
+
+<h4>Operations</h4>
+
+<ul>
+<li><em>pushBack(D,x)</em> - add element x to the back of the deque D</li>
+<li><em>popBack(D)</em> - remove an element from the back</li>
+<li><em>pushFront(D,x)</em> - add element x to the front</li>
+<li><em>popFront(D)</em> - remove an element from the front</li>
+<li><em>peekBack(D)</em> - return the back element without removing it</li>
+<li><em>peekFront(D)</em> - return the front element without removing it</li>
+<li><em>isEmpty(D)</em> - return true if the deque is empty, else return false!</li>
+<li><em>size(D)</em> - return the number of elements in the deque</li>
+</ul>
+
+<h3>Priority Queue</h3>
+
+<ul>
+<li>Stores  the "values" of each element to be able to search for the highest 
+value elements or sort them appropriately.</li>
+</ul>
+
+<h3>Linked List</h3>
+
+<ul>
+<li>A sequence of nodes
+<ul>
+<li>A node, in the simplest form, is a piece of data with a <em>reference</em>
+<ul>
+<li>A reference is a link or pointer to a node</li>
+</ul></li>
+<li>A &rarr; B &rarr; C &rarr; D &rarr; NULL</li>
+</ul></li>
+<li><em>Head node</em> - the node at the start of the linked list which has no nodes 
+linked to it.</li>
+<li><em>Termination Element</em> or null reference - a "non"-node which the last real 
+node in the list links to in order to signal the end of the list.</li>
+<li>Inserting an element is easy;
+<ul>
+<li>just change the reference of the previous node to the new node and link 
+the new to the next node in the list.</li>
+<li>computationally cheap compared to array</li>
+<li>would need to shift all of the elements individually to make room for the 
+new one.</li>
+</ul></li>
+<li>Easy to remove node;
+<ul>
+<li>just remove the node and change the reference of the previous node to the 
+next node in the list.</li>
+</ul></li>
+<li>But indexing is slower
+<ul>
+<li>must traverse the whole list from the head to get to the <em>n</em>th node.</li>
+</ul></li>
+</ul>
+
+<h3>Doubly Linked List</h3>
+
+<ul>
+<li>Linked list with two references associated with each node
+<ul>
+<li>One to the next element, and one to the previous element.</li>
+<li>NULL &larr; A &harr; B &harr; C &harr; D &rarr; NULL</li>
+</ul></li>
+</ul>
+
+<h3>Circularly Linked List</h3>
+
+<ul>
+<li>No termination element is used, instead the last element links back to the 
+head element.
+<ul>
+<li>Similar to a circular buffer.</li>
+</ul></li>
+</ul>
+
+<h2>Trees</h2>
+
+<ul>
+<li>Hierarchical data structure composed of nodes</li>
+<li>Each node contains an element of data and zero or more children
+<ul>
+<li>ie references to other nodes (child nodes)</li>
+</ul></li>
+<li><strong>Root</strong> - the top of the tree</li>
+<li><strong>Siblings</strong> - nodes that share the same parent</li>
+<li><strong>Internal nodes</strong> - nodes that have at least one child</li>
+<li><strong>External nodes</strong> - or leaves, have no children</li>
+<li><strong>Depth</strong> - the length of the path from a node to the root</li>
+<li><strong>Height</strong> - the longest path to one of the node's leaves</li>
+</ul>
+
+<h3>Tree Traversal</h3>
+
+<ul>
+<li>A systematic, or algorthmic, way of visiting every node in the tree</li>
+</ul>
+
+<h4>Pre-Order</h4>
+
+<ul>
+<li><p>Parents re-order: parents before children</p>
+
+<pre><code>function preorder(tree T, node v):
+    visit(v)
+    for each u in children(T,v):
+        preorder(u)
+</code></pre></li>
+</ul>
+
+<h4>Post-Order</h4>
+
+<ul>
+<li><p>Parents <em>after</em> children</p>
+
+<pre><code>function postorder(tree T, node v):
+    for each u in children(T,v):
+        postorder(u)
+    visit(v)
+</code></pre></li>
+</ul>
+
+<h4>Level-Order</h4>
+
+<ul>
+<li><p>Level by level</p>
+
+<pre><code>function levelorder(tree T):
+    queue Q
+    enqueue(Q,root(T))
+    while !isEmpty(Q):
+        node = dequeue(Q)
+        visit(node)
+        for each u in children(T,node):
+            enqueue(Q,u)
+</code></pre></li>
+</ul>
+
+<h3>Binary Tree</h3>
+
+<ul>
+<li>A tree with each node having at most 2 children</li>
+</ul>
+
+<h4>In-Order Traversal</h4>
+
+<ul>
+<li>For binary trees only</li>
+<li><p>First left subtree, then current node, then right subtree</p>
+
+<pre><code>function inorder(tree T, node v):
+    if v.left != NULL:
+        inorder(T,v.left)
+    visit(v)
+    if v.right != NULL:
+        inorder(T,v.right)
+</code></pre></li>
+</ul>
+
+<h3>Ordered Binary Tree</h3>
+
+<ul>
+<li>Or Binary Search Tree</li>
+<li>Used to make searching efficient</li>
+<li>The element of the <em>left</em> child is <em>less</em> than that of the parent.</li>
+<li>The element of the <em>right</em> child is <em>greather</em> than that of the parent.</li>
+</ul>
+
+<h4>Search Ordered Binary Tree</h4>
+
+<ul>
+<li>To find a goal node:
+<ol>
+<li>Start at the root node</li>
+<li>If the element you want is less than the root, go to the left node</li>
+<li>If the element you want if greater than the root, go to the right node</li>
+<li>Repeat this process until you find the goal.</li>
+</ol></li>
+<li>Takes at most the height of the tree</li>
+<li>To keep searching efficient, keep the tree balanced</li>
+<li>Minimum height of tree with n nodes is height = floor(log<sub>2</sub>(n))
+<ul>
+<li>In worst case should take log<sub>2</sub>(n) operations to find an 
+element</li>
+<li>Compare with array or linked list - n operations</li>
+</ul></li>
+</ul>
+
+<h5>Find the Smallest Element</h5>
+
+<ul>
+<li>Keep going left until you cannot go left anymore</li>
+</ul>
+
+<h5>Find the Largest Element</h5>
+
+<ul>
+<li>Keep going right until you cannot go right anymore</li>
+</ul>
+
+<h4>Add Element</h4>
+
+<ol>
+<li>Search through three until a leaf node is reached</li>
+<li>If the new element is less than the leaf node, add the new node to the left, 
+else add it to the right.</li>
+</ol>
+
+<h4>Remove Element</h4>
+
+<ol>
+<li>If the element to be removed is a leaf, simply delete it</li>
+<li>If the element has <em>one</em> child, connect the child to the old node's parent</li>
+<li>If the element has two children, we first need to find the successor
+<ol>
+<li>The successor should be the smallest element of the right sub-tree</li>
+<li><strong>Or</strong> the largest element of the left sub-tree</li>
+<li>Move the successor into the place of the old node</li>
+<li>Move the successor's right sub-tree to where the successor was</li>
+</ol></li>
+</ol>
+
+<h2>Search</h2>
+
+<h3>State-Space Graphs</h3>
+
+<ul>
+<li>Select a goal state</li>
+<li>Identify the current state</li>
+<li>Finding a solution is simply a case of finding a path between these two in 
+the space state graph.</li>
+<li>The <strong>solution</strong> or plan, is the sequence of labels on the arcs</li>
+<li>Usually the graphs are too large to be held completely in memory</li>
+</ul>
+
+<h4>Generating Search Trees</h4>
+
+<ul>
+<li>Generate the search tree by expanding nodes, ie generating its children</li>
+<li>Different search techniques essentially correspond to different ways of 
+selecting the next node.</li>
+</ul>
+
+<h4>Breadth First Search</h4>
+
+<ul>
+<li>Following steps:
+<ol>
+<li>Expand the leaf node with the <strong>lowest</strong> cost path so far,</li>
+<li>Add 1 to the path cost for a node to obtain the path cost of each of its 
+children</li>
+<li>Stop when you expand a node with is a goal node.</li>
+</ol></li>
+<li>Guaranteed to find the shortest path</li>
+<li>Memory intensive if the space is large
+<ul>
+<li>Space Complexity O(b<sup>d</sup>)</li>
+<li>Time Complexity O(b<sup>d</sup>)
+<ul>
+<li>d= branching factor</li>
+<li>b = depth of shallowest goal state.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h5>Algorithm</h5>
+
+<ol>
+<li>Add root node to a queue,</li>
+<li>Dequeue first element from queue,</li>
+<li>If it is the goal state, <em>HALT</em>.</li>
+<li>If it isn't. expand the node to show its children and add each to the queue,</li>
+<li>Dequeue the first element in the queue,</li>
+<li><strong>Goto</strong> 3.</li>
+</ol>
+
+<h6>Pseudocode</h6>
+
+<pre><code>    breadth-first-search(Tree):
+        get root node r
+        create a queue Q
+        add r to Q
+        while Q is not empty:
+            t = Q.dequeue()
+            if t is goal:
+                return t // goal has been reached
+            else:
+                for all edges e Tree.adjacentEdges(t)
+                V = Tree.adjacentVertices(t, e) //list of child nodes from t
+                enqueue V onto Q
+</code></pre>
+
+<h4>Depth First Search</h4>
+
+<ul>
+<li>Following steps:
+<ol>
+<li>Generate the successors of the leaf node with the <strong>highest</strong> cost path 
+so far.</li>
+<li>Add 1 to a node's path cost to obtain the path cost of its children.</li>
+<li>Stop when you expand a goal node.</li>
+</ol></li>
+<li>Use stack as data structure to hold information about the search
+<ul>
+<li>Instead of adding items to examine to the end of a queue, add them to the 
+top of the stack.</li>
+<li>Pop the top item each iteration.</li>
+</ul></li>
+<li>Not guaranteed to find any path to a goal state.</li>
+<li>Memory efficient
+<ul>
+<li>Space Complexity O(bm)</li>
+<li>Time Complexity O(b<sup>m</sup>)
+<ul>
+<li>m = maximum depth of search tree (can't be &infin;)</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h6>Pseudocode</h6>
+
+<pre><code>    depth-first-search(Tree):
+        get root node r
+        create a stack S
+        push r to S
+        while S is not empty:
+            t = S.pop()
+            if t is goal:
+                return t // goal has been reached
+            else:
+                for all edges e Tree.adjacentEdges(t)
+                V = Tree.adjacentVertices
+</code></pre>
+
+<h4>Depth-Limited Search</h4>
+
+<ul>
+<li>Put limit on how deep the DFS goes to guarantee that the search will 
+terminate.</li>
+<li>Perform DFS to a depth limit h</li>
+<li>If the depth of the goal is &le; h, then DLS is complete.</li>
+<li>Still not guaranteed to find the shortest path</li>
+<li>Space Complexity O(bd)</li>
+<li>Time Complexity O(b<sup>d</sup>)</li>
+</ul>
+
+<h4>Depth-First Iterative Deepening</h4>
+
+<ul>
+<li>Extends depth-limited search</li>
+<li>Start by doing DLS with h = 1</li>
+<li>Then reset
+<ul>
+<li>OPEN = [initial-state]</li>
+<li>CLOSED = []</li>
+<li>increase h by 1</li>
+<li>repeat DLS with new limit</li>
+<li>iterate, increasing h by 1 each time.</li>
+</ul></li>
+<li>Always expands many nodes more than once
+<ul>
+<li>Still spends most of its time at the bottom level</li>
+<li>Better that BFS and DFS</li>
+</ul></li>
+<li>Guaranteed to find the goal node.
+<ul>
+<li>Complete and optimal</li>
+</ul></li>
+<li>Space Complexity O(bd)
+<ul>
+<li>same as DFS since only one path is maintained in memory.</li>
+</ul></li>
+</ul>
+
+<h3>Heuristics</h3>
+
+<ul>
+<li>Quick to compute, approximate rules for guide search and reduce work load.</li>
+<li>Used throughout AI</li>
+<li>Not guaranteed to work</li>
+</ul>
+
+<h4>Hill Climbing</h4>
+
+<ul>
+<li>Steepest ascent hill climbing
+<ol>
+<li>Generate the children of the current state</li>
+<li>Calculate the heuristic value of each</li>
+<li>Select the path with the "best" heuristic value</li>
+<li>Repeat until you can't improve</li>
+</ol></li>
+<li>Will often reach a point where there are no improvements to be found
+<ul>
+<li>ie <strong>plateau</strong></li>
+<li>No efficient way to cross a large plateau if there is no information (by 
+definition) to guide the search.</li>
+</ul></li>
+</ul>
+
+<h4>Best-First Search</h4>
+
+<ul>
+<li>Remember the complete tree searched so far (as in BFS),</li>
+<li>Use &#292; (evaluation function) to decide which leaf node to expand next
+<ul>
+<li>instead of path cost.</li>
+</ul></li>
+<li>&#292; function is declared by the designer, specific to the situation.</li>
+</ul>
+
+<h4>A* Search</h4>
+
+<ul>
+<li>To obtain better searching we need to take into account the cose of the path 
+<strong>so far</strong></li>
+<li>g(A) = cost of the path from the root node to node A</li>
+<li>&#292;(A) = heuristic estimate of the cose of the path from node A to a goal 
+state.</li>
+<li>f(A) is an estimate of the total cost of the path through A that starts at 
+the root node and ends at the goal,
+<ul>
+<li>f(A) = g(A) + &#292;(A)</li>
+</ul></li>
+</ul>
+
+<h3>Agenda Based Search</h3>
+
+<ul>
+<li>Combines
+<ul>
+<li>depth-first (depth-limited, DFID),</li>
+<li>breadth-first</li>
+<li>best-first with &#292;</li>
+<li>best-first with f (A* search)</li>
+</ul></li>
+<li>Split the nodes into two lists:
+<ol>
+<li><code>OPEN</code> - nodes to expand (leaves)</li>
+<li><code>CLOSED</code> -nodes already expanded (internal)</li>
+<li>Order nodes in OPEN according to some criteria
+<ul>
+<li>eg order by depth of node 
+<ul>
+<li>deepest first (depth-first search)</li>
+<li>shallowest first (breadth-first search)</li>
+</ul></li>
+</ul></li>
+<li>Expand the first node in OPEN</li>
+<li>Put it in CLOSED</li>
+<li>Add it's children to OPEN</li>
+<li>Reorder OPEN
+<ul>
+<li>To obtain depth-first search, also need to delete nodes from CLOSED 
+when we backtrack.</li>
+</ul></li>
+<li><strong>Goto</strong> 3</li>
+</ol></li>
+</ul>
+
+<h4>Agenda Heuristics</h4>
+
+<ul>
+<li>Reorder OPEN by &#292;
+<ul>
+<li>Now have best-first search</li>
+<li>Also called <em>Greedy-search</em></li>
+</ul></li>
+<li>Best-first search using &#292; to reorder OPEN = greedy search</li>
+<li>Best-first search using g to reorder OPEN = uniform cost search</li>
+<li>Best-first search using f=g(A) + &#292;(A) to reorder OPEN = A* search</li>
+</ul>
+
+<h3>Search for Games</h3>
+
+<ul>
+<li>States of a game such as chess are easy to represent
+<ul>
+<li>Actions on the states are restricted to a small number of well defined 
+actions</li>
+<li>Simplicity of the rules combined with the programmable states of the 
+world means that this can be represented as a search problem through a 
+space of all possible game positions.</li>
+<li>Representation of the game can be correct in every possible way
+<ul>
+<li>unlike eg fighting a war.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4>Chess</h4>
+
+<ul>
+<li>Introduction of an opponent bring uncertainty to the search space
+<ul>
+<li>Oppenent will attempt to make the best possible move.</li>
+</ul></li>
+<li>Average game of chess
+<ul>
+<li>branching factor 35</li>
+<li>roughly 50 moves per player</li>
+<li>Search tree has ~35<sup>100</sup> nodes
+<ul>
+<li>Can't search all possible solutions in reasonable time</li>
+<li>Make guesses based upon past experiences.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4>Decision Making in Two Player Games</h4>
+
+<ul>
+<li>Consider a two player game between players <code>MAX</code> and <code>MIN</code></li>
+<li>Define a game as a search problem:
+<ul>
+<li><strong>Initial state</strong> - board position and whose move it is</li>
+<li><strong>Set of actions</strong> - legal moves a player can make</li>
+<li><strong>Terminal test</strong> - check if the game is over</li>
+<li><strong>Set of utility functions</strong> - numeric value of the outcome of the game, 
++1, 0, -1.</li>
+</ul></li>
+</ul>
+
+<h4>Minimax Algorithm</h4>
+
+<ul>
+<li>Steps:
+<ol>
+<li>Generate the whole game tree down to the terminal states</li>
+<li>Apply the utility function to each terminal state to get its value</li>
+<li>Use this utility value of each terminal to determine the utility value of 
+its parent nodes</li>
+<li>Continue backing up the values from the leaf nodes towards the root, one 
+layer at a time.</li>
+<li>Eventually reach the root of the tree.
+<ul>
+<li>Now <code>MAX</code> must choose the root that maximises the utility value</li>
+</ul></li>
+</ol></li>
+<li>Time Complexity O(b<sup>m</sup>)
+<ul>
+<li>m = maximum depth of the tree</li>
+<li>b = number of legal moves at each point</li>
+<li>Impractical for real games
+<ul>
+<li>Basis for more realistic methods</li>
+</ul></li>
+</ul></li>
+<li>Depth-first search algorthmic</li>
+<li>Implementation uses <strong>recursion</strong> instead of a queue</li>
+</ul>
+
+<h6>Pseudocode</h6>
+
+<pre><code>    MiniMax-Decision( game ):
+        for each action in actions( game ):
+            state = apply( action, game )
+            value[ action ] = MiniMax-Value( state, game)
+        return action with the highest value[ action ]
+
+    MiniMax-Value( state, game ):
+        if state == gameOver: // is a leaf node
+            return utility-value( state )
+        else if state == maxNode: // MAX's move
+            return highest MiniMax-Value of successors( state, game )
+        else: // MIN's move
+            return lowest MiniMax-Value of successors( state, game )
+</code></pre>
+
+<h4>Improvements</h4>
+
+<ul>
+<li>Minimax assumes that a program must search all the way to the terminal states
+<ul>
+<li>not practical</li>
+</ul></li>
+<li>Should cut off the search earlier and apply heuristic evaluation function</li>
+<li>Alter:
+<ol>
+<li>Utility function replaced by evaluation function <code>EVAL</code>
+<ul>
+<li>Estimates expected utility of the game from given position</li>
+</ul></li>
+<li>Terminal test replaced by cutoff test <code>CUTOFF-TEST</code></li>
+</ol></li>
+<li>Quality of game playing program dependant on its evaluation function.
+<ul>
+<li><code>EVAL</code> must agree with utility on terminal states</li>
+<li><code>EVAL</code> must not take too long</li>
+<li><code>EVAL</code> must reflect chances of winning</li>
+</ul></li>
+</ul>
+
+<h4>Cutting Off Search</h4>
+
+<ul>
+<li>Set a depth limit (depth-limited search)</li>
+<li>Depth is chosen to ensure the game does not take too long</li>
+<li>Iterative deepening is a more reliable approach</li>
+<li>When time runs out, program returns move selected by the deepest completed 
+search
+<ul>
+<li>Can have negative consequences</li>
+</ul></li>
+</ul>
+
+<h5>Alpha-Beta Pruning</h5>
+
+<ul>
+<li>Returns same move as Minimax</li>
+<li>Prunes branches that cannot possibly influence the final decision</li>
+<li>Algorithm:
+<ul>
+<li>Consider a node n in the tree</li>
+<li>If a player has a better choice, m, either at the parent node of n or at 
+any point further up, then n will <em>never be reached in actual play</em>.</li>
+<li>Once enough is known about n to reach this decision, it is pruned.</li>
+</ul></li>
+</ul>

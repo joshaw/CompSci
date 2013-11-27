@@ -19,8 +19,7 @@
 		- eg Pentium from Intel.
 
 ### Von Neumann Model
-- EDVAC - **E**lectronic **D**iscrete **V**ariable **A**utomatic 
-  **C**omputer;
+- EDVAC - **E**lectronic **D**iscrete **V**ariable **A**utomatic **C**omputer;
 	- Memory - contains instructions and data,
 	- Processing Unit - performs arithmetic and logic operations,
 	- Control Unit - interprets instructions.
@@ -347,3 +346,358 @@
 - No termination element is used, instead the last element links back to the 
   head element.
 	- Similar to a circular buffer.
+
+## Trees
+- Hierarchical data structure composed of nodes
+- Each node contains an element of data and zero or more children
+	- ie references to other nodes (child nodes)
+- **Root** - the top of the tree
+- **Siblings** - nodes that share the same parent
+- **Internal nodes** - nodes that have at least one child
+- **External nodes** - or leaves, have no children
+- **Depth** - the length of the path from a node to the root
+- **Height** - the longest path to one of the node's leaves
+
+### Tree Traversal
+- A systematic, or algorthmic, way of visiting every node in the tree
+
+#### Pre-Order
+- Parents re-order: parents before children
+
+		function preorder(tree T, node v):
+			visit(v)
+			for each u in children(T,v):
+				preorder(u)
+
+#### Post-Order
+- Parents *after* children
+
+		function postorder(tree T, node v):
+			for each u in children(T,v):
+				postorder(u)
+			visit(v)
+
+#### Level-Order
+- Level by level
+
+		function levelorder(tree T):
+			queue Q
+			enqueue(Q,root(T))
+			while !isEmpty(Q):
+				node = dequeue(Q)
+				visit(node)
+				for each u in children(T,node):
+					enqueue(Q,u)
+
+### Binary Tree
+- A tree with each node having at most 2 children
+
+#### In-Order Traversal
+- For binary trees only
+- First left subtree, then current node, then right subtree
+
+		function inorder(tree T, node v):
+			if v.left != NULL:
+				inorder(T,v.left)
+			visit(v)
+			if v.right != NULL:
+				inorder(T,v.right)
+
+### Ordered Binary Tree
+- Or Binary Search Tree
+- Used to make searching efficient
+- The element of the *left* child is *less* than that of the parent.
+- The element of the *right* child is *greather* than that of the parent.
+
+#### Search Ordered Binary Tree
+- To find a goal node:
+	1. Start at the root node
+	1. If the element you want is less than the root, go to the left node
+	1. If the element you want if greater than the root, go to the right node
+	1. Repeat this process until you find the goal.
+- Takes at most the height of the tree
+- To keep searching efficient, keep the tree balanced
+- Minimum height of tree with n nodes is height = floor(log<sub>2</sub>(n))
+	- In worst case should take log<sub>2</sub>(n) operations to find an 
+	  element
+	- Compare with array or linked list - n operations
+
+##### Find the Smallest Element
+- Keep going left until you cannot go left anymore
+
+##### Find the Largest Element
+- Keep going right until you cannot go right anymore
+
+#### Add Element
+1. Search through three until a leaf node is reached
+1. If the new element is less than the leaf node, add the new node to the left, 
+else add it to the right.
+
+#### Remove Element
+1. If the element to be removed is a leaf, simply delete it
+1. If the element has *one* child, connect the child to the old node's parent
+1. If the element has two children, we first need to find the successor
+	1. The successor should be the smallest element of the right sub-tree
+	1. **Or** the largest element of the left sub-tree
+	1. Move the successor into the place of the old node
+	1. Move the successor's right sub-tree to where the successor was
+
+## Search
+
+### State-Space Graphs
+- Select a goal state
+- Identify the current state
+- Finding a solution is simply a case of finding a path between these two in 
+  the space state graph.
+- The **solution** or plan, is the sequence of labels on the arcs
+- Usually the graphs are too large to be held completely in memory
+
+#### Generating Search Trees
+- Generate the search tree by expanding nodes, ie generating its children
+- Different search techniques essentially correspond to different ways of 
+  selecting the next node.
+
+#### Breadth First Search
+- Following steps:
+	1. Expand the leaf node with the **lowest** cost path so far,
+	1. Add 1 to the path cost for a node to obtain the path cost of each of its 
+	children
+	1. Stop when you expand a node with is a goal node.
+- Guaranteed to find the shortest path
+- Memory intensive if the space is large
+	- Space Complexity O(b<sup>d</sup>)
+	- Time Complexity O(b<sup>d</sup>)
+		- d= branching factor
+		- b = depth of shallowest goal state.
+
+##### Algorithm
+1. Add root node to a queue,
+1. Dequeue first element from queue,
+1. If it is the goal state, *HALT*.
+1. If it isn't. expand the node to show its children and add each to the queue,
+1. Dequeue the first element in the queue,
+1. **Goto** 3.
+
+###### Pseudocode
+
+		breadth-first-search(Tree):
+			get root node r
+			create a queue Q
+			add r to Q
+			while Q is not empty:
+				t = Q.dequeue()
+				if t is goal:
+					return t // goal has been reached
+				else:
+					for all edges e Tree.adjacentEdges(t)
+					V = Tree.adjacentVertices(t, e) //list of child nodes from t
+					enqueue V onto Q
+
+#### Depth First Search
+- Following steps:
+	1. Generate the successors of the leaf node with the **highest** cost path 
+	so far.
+	1. Add 1 to a node's path cost to obtain the path cost of its children.
+	1. Stop when you expand a goal node.
+- Use stack as data structure to hold information about the search
+	- Instead of adding items to examine to the end of a queue, add them to the 
+	  top of the stack.
+	- Pop the top item each iteration.
+- Not guaranteed to find any path to a goal state.
+- Memory efficient
+	- Space Complexity O(bm)
+	- Time Complexity O(b<sup>m</sup>)
+		- m = maximum depth of search tree (can't be &infin;)
+
+###### Pseudocode
+
+		depth-first-search(Tree):
+			get root node r
+			create a stack S
+			push r to S
+			while S is not empty:
+				t = S.pop()
+				if t is goal:
+					return t // goal has been reached
+				else:
+					for all edges e Tree.adjacentEdges(t)
+					V = Tree.adjacentVertices
+
+#### Depth-Limited Search
+- Put limit on how deep the DFS goes to guarantee that the search will 
+  terminate.
+- Perform DFS to a depth limit h
+- If the depth of the goal is &le; h, then DLS is complete.
+- Still not guaranteed to find the shortest path
+- Space Complexity O(bd)
+- Time Complexity O(b<sup>d</sup>)
+
+#### Depth-First Iterative Deepening
+- Extends depth-limited search
+- Start by doing DLS with h = 1
+- Then reset
+	- OPEN = [initial-state]
+	- CLOSED = []
+	- increase h by 1
+	- repeat DLS with new limit
+	- iterate, increasing h by 1 each time.
+- Always expands many nodes more than once
+	- Still spends most of its time at the bottom level
+	- Better that BFS and DFS
+- Guaranteed to find the goal node.
+	- Complete and optimal
+- Space Complexity O(bd)
+	- same as DFS since only one path is maintained in memory.
+
+### Heuristics
+- Quick to compute, approximate rules for guide search and reduce work load.
+- Used throughout AI
+- Not guaranteed to work
+
+#### Hill Climbing
+- Steepest ascent hill climbing
+	1. Generate the children of the current state
+	1. Calculate the heuristic value of each
+	1. Select the path with the "best" heuristic value
+	1. Repeat until you can't improve
+- Will often reach a point where there are no improvements to be found
+	- ie **plateau**
+	- No efficient way to cross a large plateau if there is no information (by 
+	  definition) to guide the search.
+
+#### Best-First Search
+- Remember the complete tree searched so far (as in BFS),
+- Use &#292; (evaluation function) to decide which leaf node to expand next
+	- instead of path cost.
+- &#292; function is declared by the designer, specific to the situation.
+
+#### A\* Search
+- To obtain better searching we need to take into account the cose of the path 
+  **so far**
+- g(A) = cost of the path from the root node to node A
+- &#292;(A) = heuristic estimate of the cose of the path from node A to a goal 
+  state.
+- f(A) is an estimate of the total cost of the path through A that starts at 
+  the root node and ends at the goal,
+	- f(A) = g(A) + &#292;(A)
+
+### Agenda Based Search
+- Combines
+	- depth-first (depth-limited, DFID),
+	- breadth-first
+	- best-first with &#292;
+	- best-first with f (A\* search)
+- Split the nodes into two lists:
+	1. `OPEN` - nodes to expand (leaves)
+	1. `CLOSED` -nodes already expanded (internal)
+	1. Order nodes in OPEN according to some criteria
+		- eg order by depth of node 
+			- deepest first (depth-first search)
+			- shallowest first (breadth-first search)
+	1. Expand the first node in OPEN
+	1. Put it in CLOSED
+	1. Add it's children to OPEN
+	1. Reorder OPEN
+		- To obtain depth-first search, also need to delete nodes from CLOSED 
+		  when we backtrack.
+	1. **Goto** 3
+
+#### Agenda Heuristics
+- Reorder OPEN by &#292;
+	- Now have best-first search
+	- Also called *Greedy-search*
+- Best-first search using &#292; to reorder OPEN = greedy search
+- Best-first search using g to reorder OPEN = uniform cost search
+- Best-first search using f=g(A) + &#292;(A) to reorder OPEN = A\* search
+
+### Search for Games
+- States of a game such as chess are easy to represent
+	- Actions on the states are restricted to a small number of well defined 
+	  actions
+	- Simplicity of the rules combined with the programmable states of the 
+	  world means that this can be represented as a search problem through a 
+	  space of all possible game positions.
+	- Representation of the game can be correct in every possible way
+		- unlike eg fighting a war.
+
+#### Chess
+- Introduction of an opponent bring uncertainty to the search space
+	- Oppenent will attempt to make the best possible move.
+- Average game of chess
+	- branching factor 35
+	- roughly 50 moves per player
+	- Search tree has ~35<sup>100</sup> nodes
+		- Can't search all possible solutions in reasonable time
+		- Make guesses based upon past experiences.
+
+#### Decision Making in Two Player Games
+- Consider a two player game between players `MAX` and `MIN`
+- Define a game as a search problem:
+	- **Initial state** - board position and whose move it is
+	- **Set of actions** - legal moves a player can make
+	- **Terminal test** - check if the game is over
+	- **Set of utility functions** - numeric value of the outcome of the game, 
+	  +1, 0, -1.
+
+#### Minimax Algorithm
+- Steps:
+	1. Generate the whole game tree down to the terminal states
+	1. Apply the utility function to each terminal state to get its value
+	1. Use this utility value of each terminal to determine the utility value of 
+	its parent nodes
+	1. Continue backing up the values from the leaf nodes towards the root, one 
+	layer at a time.
+	1. Eventually reach the root of the tree.
+		- Now `MAX` must choose the root that maximises the utility value
+- Time Complexity O(b<sup>m</sup>)
+	- m = maximum depth of the tree
+	- b = number of legal moves at each point
+	- Impractical for real games
+		- Basis for more realistic methods
+- Depth-first search algorthmic
+- Implementation uses **recursion** instead of a queue
+
+###### Pseudocode
+		MiniMax-Decision( game ):
+			for each action in actions( game ):
+				state = apply( action, game )
+				value[ action ] = MiniMax-Value( state, game)
+			return action with the highest value[ action ]
+
+		MiniMax-Value( state, game ):
+			if state == gameOver: // is a leaf node
+				return utility-value( state )
+			else if state == maxNode: // MAX's move
+				return highest MiniMax-Value of successors( state, game )
+			else: // MIN's move
+				return lowest MiniMax-Value of successors( state, game )
+
+#### Improvements
+- Minimax assumes that a program must search all the way to the terminal states
+	- not practical
+- Should cut off the search earlier and apply heuristic evaluation function
+- Alter:
+	1. Utility function replaced by evaluation function `EVAL`
+		- Estimates expected utility of the game from given position
+	1. Terminal test replaced by cutoff test `CUTOFF-TEST`
+- Quality of game playing program dependant on its evaluation function.
+	- `EVAL` must agree with utility on terminal states
+	- `EVAL` must not take too long
+	- `EVAL` must reflect chances of winning
+
+#### Cutting Off Search
+- Set a depth limit (depth-limited search)
+- Depth is chosen to ensure the game does not take too long
+- Iterative deepening is a more reliable approach
+- When time runs out, program returns move selected by the deepest completed 
+  search
+	- Can have negative consequences
+
+##### Alpha-Beta Pruning
+- Returns same move as Minimax
+- Prunes branches that cannot possibly influence the final decision
+- Algorithm:
+	- Consider a node n in the tree
+	- If a player has a better choice, m, either at the parent node of n or at 
+	  any point further up, then n will *never be reached in actual play*.
+	- Once enough is known about n to reach this decision, it is pruned.
