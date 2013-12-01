@@ -172,7 +172,13 @@
 	  that the PK in the main table is used to identify the appropriate entries 
 	  in the new second table
 
-##Sub- and Super-Types
+## Generalisation Hierarchy
+- Or specialization hierarchy
+- A group of relationships each of which is between a higher-level *supertype* 
+  entity and a lower-level *subtype* entity.
+- Primary key of a subtype is the same as the primary key of its supertype.
+
+###Sub- and Super-Types
 - Super-type - contains attributes shared by all its sub-types
 - Sub-type - contains special attributes not shared by its sisters
 	- A super-type has a 1:1 relationship with each sub-type

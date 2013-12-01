@@ -17,11 +17,26 @@
 <li>A type of inefficiency</li>
 </ul>
 
+<h3>Pointing</h3>
+
+<ul>
+<li>Referring to a non-local location by means of the definitive location
+<ul>
+<li>Means that if the object being referred to moves, then the link is broken</li>
+<li>eg linking to chapter X, page Y in an index</li>
+</ul></li>
+</ul>
+
 <h3>Associative Linking</h3>
 
 <ul>
 <li>Using specific individual name or identifier to refer between two locations 
-where the same information is needed in both, eg tables</li>
+where the same information is needed in both, eg tables
+<ul>
+<li>eg linking to chapter X.Y.Z in an contents</li>
+</ul></li>
+<li>When used in a database, typically the column names of the shared attribute 
+in each table will be the same or similar, though this is not required</li>
 </ul>
 
 <h3>Referential Integrity</h3>
@@ -102,6 +117,7 @@ to the first for a particular entity
 <h3>Optionality</h3>
 
 <ul>
+<li>Also referred to as relationship participation</li>
 <li>A relationship is optional if it does not have to exist for any given entity
 <ul>
 <li>eg <strong>person -> loaned book</strong></li>
@@ -142,6 +158,13 @@ dependant on the first
 </ul></li>
 </ul>
 
+<h3>Business Rule</h3>
+
+<ul>
+<li>A short concise and unique description of a policy, procedure or principle 
+within a particular organisation</li>
+</ul>
+
 <h3>Keys</h3>
 
 <h4>Superkey</h4>
@@ -169,6 +192,10 @@ duplicate entries in a table</li>
 <li>The simpler the primary key, the better</li>
 <li>Not allowed to contain any null values since there could then be two 
 elements with the same null value causing duplication</li>
+</ul></li>
+<li>Used to access entities of an entity type as quickly as possible
+<ul>
+<li>Better to use short, alphanumeric, non-ambiguous keys</li>
 </ul></li>
 </ul>
 
@@ -267,7 +294,16 @@ in the new second table</li>
 </ul></li>
 </ul>
 
-<h2>Sub- and Super-Types</h2>
+<h2>Generalisation Hierarchy</h2>
+
+<ul>
+<li>Or specialization hierarchy</li>
+<li>A group of relationships each of which is between a higher-level <em>supertype</em> 
+entity and a lower-level <em>subtype</em> entity.</li>
+<li>Primary key of a subtype is the same as the primary key of its supertype.</li>
+</ul>
+
+<h3>Sub- and Super-Types</h3>
 
 <ul>
 <li>Super-type - contains attributes shared by all its sub-types</li>
@@ -314,19 +350,29 @@ sub-types
 <h4>Unary</h4>
 
 <ul>
-<li>Contains just a single entity</li>
+<li>Contains just a single entity
+<ul>
+<li>eg <strong>subject -> <em>requires</em> -> subject</strong> </li>
+<li>the subjects have to be different, but they are of the same entity type</li>
+</ul></li>
 </ul>
 
 <h4>Binary</h4>
 
 <ul>
-<li>Contains two <strong>type</strong> of entity</li>
+<li>Contains two <strong>types</strong> of entity
+<ul>
+<li>eg <strong>teacher -> <em>teaches</em> -> subject</strong></li>
+</ul></li>
 </ul>
 
 <h4>Ternary</h4>
 
 <ul>
-<li>Contains three <strong>types</strong> of entity</li>
+<li>Contains three <strong>types</strong> of entity
+<ul>
+<li>eg <strong>teacher <em>from</em> course -> <em>teaches</em> -> subject</strong></li>
+</ul></li>
 </ul>
 
 <h4>Recursive</h4>
