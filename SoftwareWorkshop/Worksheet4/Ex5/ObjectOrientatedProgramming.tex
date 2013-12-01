@@ -4,6 +4,7 @@
 \documentclass[11pt]{article} % use larger type; default would be 10pt
 
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage{url}
 
 %%% PAGE DIMENSIONS
 \usepackage[top=0.6in, left=0.8in, right=0.8in, bottom=0.7in]{geometry} % to change the page dimensions
@@ -45,14 +46,14 @@
 %\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
 
 %%% END Article customizations
-\renewcommand{\d}{\,\mathrm{d}} % for integrals
-\newcommand{\dx}[2]{\frac{\textrm{d} #1}{\textrm{d} #2}} % for derivatives
-\newcommand{\dd}[2]{\frac{\textrm{d}^2 #1}{\textrm{d} #2^2}} % for double derivatives
-\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
-\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} % for double partial derivatives
-\newcommand{\e}[1]{\text{e}^{#1}} % for exponentials
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\inter}[1]{\shortintertext{#1}}
+%\renewcommand{\d}{\,\mathrm{d}} % for integrals
+%\newcommand{\dx}[2]{\frac{\textrm{d} #1}{\textrm{d} #2}} % for derivatives
+%\newcommand{\dd}[2]{\frac{\textrm{d}^2 #1}{\textrm{d} #2^2}} % for double derivatives
+%\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
+%\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} % for double partial derivatives
+%\newcommand{\e}[1]{\text{e}^{#1}} % for exponentials
+%\newcommand{\code}[1]{\texttt{#1}}
+%\newcommand{\inter}[1]{\shortintertext{#1}}
 
 \author{Josh Wainwright \\ UID:1079596}
 
@@ -67,15 +68,16 @@
 %\vspace{1cm}\hrule \vspace{1cm}
 %\newpage
 
-Object oriented programming is defined as
+Object oriented programming (OOP) is defined as
 
 \begin{quote}
 	\textit{using a methodology which enables a system to be modelled as a set
-	of objects which can be controlled and manipulated in a modular manner.}
+	of objects which can be controlled and manipulated in a modular
+	manner.}\cite{oed}
 \end{quote}
 
 This means that complex situations can be broken down and implemented in
-managable peices and allows code to be grouped into semantically related
+manageable pieces and allows code to be grouped into semantically related
 sections.
 
 Object oriented programming is designed to address the issue of code re-use in
@@ -83,19 +85,107 @@ larger programming projects. Even at the smaller level, re-implementation of
 code wherever it is needed leads to problems, for the developer, the maintainer
 and, ultimately, the end user.
 
-This conceptual model of programming offers a number of advantages over more
-traditional programming methods and models, as well as a few disadvantages.
+This conceptual model of programming offers a number of advantages over other
+programming methods and models, such as functional and procedural programming,
+as well as a few disadvantages.
 
 \section{Advantages}
-For the developer not using an object oriented technique, as they are creating
-a program, they must continually re-write code that they want to use from a
-part of the program not directly connected to the current section.
+\begin{enumerate}
+	\item Clear modular structure\cite{Abadi:1996:TO:547964}.
 
-For the maintainer, the act of updating the code written by the developer
-becomes far more difficult. Every time the developer had to duplicate some
-code, the fixes, updates or changes that are made to that code must also be
-duplicated throughout the project. This redundancy can easily lead to different
-implementations and a lack of consistency, causing confusion later on and
-mistakes, meaning the code simply does not work.
+		A program written using OOP is forced to be clearly defined in the way
+		that it is structured. There can be no ambiguity regarding the
+		classification of parts of the code since it must be understandable by
+		the compiler and hence organisation is a requirement.
 
+		This organised structure applies to all programming languages, but when
+		using OOP, it is enforced more strongly since every new type that is
+		created must have rules applied at creation time, thus enforcing the
+		use of that type to the purpose originally intended.
+
+	\item Easier maintenance and modification of code.
+
+		Since the modular structure keeps related code together and allows a
+		simple and clear hierarchy within the program, it is much easier to get
+		an understanding of the whole program through high level descriptions
+		of the code, rather than having to understand the workings of every
+		line.
+
+		This improves the ability to go back to previously written code, or
+		another's code and edit it without having to understand how a
+		particular job is achieved, but simply knowing the interface that is
+		used to achieve it. From this, it is then also easier to upgrade
+		software, or make improvement, since a method or action can be changed
+		without needing to know what makes use of it, just what they expect the
+		results to be.
+
+		For example, consider the case of calling a method that accepts an
+		array and returns a sorted copy of it from a main program. The
+		particular way that the array is sorted is of no consequence to the
+		program and so it can be modified to use any other sorting algorithm
+		without that programming knowing, or needing to know, that anything has
+		been changed.
+
+	\item Faster and cheaper development\cite{amblerscott}.
+
+		Following from the first two points, the development of programs making
+		use of OOP will naturally be faster to build a substantial code base,
+		and cheaper to achieve it since code does not have to be rewritten and
+		so less developer time is required, and code modifications are easier,
+		meaning that upgrade and bug fixes are simpler.
+\end{enumerate}
+
+\section{Disadvantages}
+Though OOP is widely used, there remain many languages that do not make use of
+it and instead prefer to use functional or procedural structures. The most
+widely used object oriented languages are C++ and Java, and some use these as
+examples of how OOP is non-beneficial\cite{arc}.
+
+\begin{enumerate}
+	\item Slower programs\cite{Cardelli:1996:BEP:242224.242415}.
+
+		During the translation from written code to binary execution, OOP
+		generally requires more machine level instructions than functional
+		programing equivalents and so, even when not using a virtual machine
+		language like Java, the program is likely to run more slowly. This is
+		usually because of the use of many small objects that leave the
+		codebase fragmented.
+
+		This is also generally the case for the written code before
+		compilation, meaning that object oriented projects often require more
+		lines of code.
+
+	\item Steep learning curve to learn languages.
+
+		Since the structure of the program must be broken down so finely, the
+		learning curve required to start programming with and OO language is
+		generally higher than for a procedural language. This is particularly a
+		problem when a one-off project requires that use of OOP since the
+		developer, if they are not already familiar with OOP, is unlikely to
+		want to spend time learning the programming paradigm as well as the
+		language, and so the result might be substandard quality code.
+
+	\item There are several other more specific disadvantages to do with the
+		particular language implementation that comes from OOP\@. For example,
+		the fact that when using OOP, everything must be an object, i.e.\ a
+		``time'' must be represented by an object, whereas a non-OOP language
+		can represent a time as an instance of a data type.
+
+		Also, the essential linking of data and functions can be confusing.
+		Data structures hold information, functions take an input and perform
+		operations, often, it is not necessary, or desired, to have these two
+		linked.
+\end{enumerate}
+
+There are many and varied opinions on the virtues and failings of object
+oriented programming. However, it is likely to remain in widespread use simply
+because there are some programming problems that are well solved using it, just
+as there are some problems that are better solved using functional programming,
+procedural programming, logical programming, machine code, literate,
+declarative, imperative, mathematical or symbolic programming paradigms. The
+issue is not with any one of these in particular, but the implementation and
+the use to which it is put.
+
+\bibliographystyle{plain}
+\bibliography{ObjectOrientatedProgramming}
 \end{document}

@@ -9,11 +9,11 @@ CHECKDIR=mkdir -p $(DIR)
 all:
 	$(CHECKDIR)
 	$(BUILDTEX)
-	#$(BIBTEX) $(PROJECT)
+	$(BIBTEX) ${DIR}/$(PROJECT)
 	$(BUILDTEX)
 	$(BUILDTEX)
 clean-all:
-	rm -f *.dvi *.log *.bak *.aux *.bbl *.blg *.idx *.ps *.eps *.pdf *.toc *.out *~
+	rm -f ${DIR}/{*.dvi,*.log,*.bak,*.aux,*.bbl,*.blg,*.idx,*.ps,*.eps,*.pdf,*.toc,*.out,*~}
 
 clean:
-	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~
+	rm -f ${DIR}/{*.log,*.bak,*.aux,*.bbl,*.blg,*.idx,*.toc,*.out,*~}
