@@ -14,6 +14,14 @@ public class GoldCard extends CreditCard {
 
 	private double fee;
 
+	/** Constructor for a Gold Card account for the GoldCard class.
+	 *
+	 * @param name a name associated with the account
+	 * @param accountNumber a number associated with the account
+	 * @param amount an initial amount that is stored in the account
+	 * @param limit a maximum value that can be removed from the account
+	 * @param fee an initial cost for setting up the account
+	 */
 	public GoldCard(String name, String accountNumber,
 			double amount, double limit, double fee) {
 

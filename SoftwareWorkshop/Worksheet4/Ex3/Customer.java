@@ -23,6 +23,13 @@ public class Customer {
 
 	private final int GOLDLIMIT = 2000;
 
+	/** Constructor for the Customer class to represent a customer with th
+	 * orders they have made and if they have gold status or not.
+	 *
+	 * @param customerID a unique number to identify each customer
+	 * @param firstname the firstname of the customer
+	 * @param surname the last name of the customer
+	 */
 	public Customer(int customerID, String firstname, String surname) {
 		this.customerID = customerID;
 		this.firstname = firstname;

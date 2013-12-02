@@ -30,8 +30,9 @@ public class BloodTest {
 		BloodResult.printResult(mary);
 	}
 
+	/** Create a new patient record with several blood test results
+	 */
 	ArrayList<Blood> mary = new ArrayList<Blood>();
-
 	@Before
 	public void makePatientRecord() {
 		mary.add(new Blood(94, 61, new Day(2, 5, 2013)));
@@ -42,19 +43,21 @@ public class BloodTest {
 		mary.add(new Blood(145, 89, new Day(7, 5, 2013)));
 	}
 
+	/** Test the systolic and diastolic pressures held in the blood test record
+	 * for the first patient.
+	 */
 	@Test
 	public void testHighestSystolic() {
 		assertEquals("Mary Sys", 177, BloodResult.getHighestSystolic(mary));
 	}
-
 	@Test
 	public void testAverageDiastolic() {
 		assertEquals("Mary Dia", 85, BloodResult.getAverageDiastolic(mary));
 	}
 
-
+	/** Create a new patient record with several blood test results
+	 */
 	ArrayList<Blood> john = new ArrayList<Blood>();
-
 	@Before
 	public void makePatientRecord2() {
 		john.add(new Blood(94, 61, new Day(2, 5, 2013)));
@@ -65,11 +68,13 @@ public class BloodTest {
 		john.add(new Blood(115, 84, new Day(7, 5, 2013)));
 	}
 
+	/** Test the systolic and diastolic pressures held in the blood test record
+	 * for the second patient.
+	 */
 	@Test
 	public void testHighestSystolic2() {
 		assertEquals("John Sys", 177, BloodResult.getHighestSystolic(john));
 	}
-
 	@Test
 	public void testAverageDiastolic2() {
 		assertEquals("John Dia", 82, BloodResult.getAverageDiastolic(john));

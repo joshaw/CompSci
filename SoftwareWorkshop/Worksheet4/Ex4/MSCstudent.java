@@ -16,3 +16,5 @@ public class MSCstudent extends Student {
 		super(name, 50);
 	}
 }
+
+

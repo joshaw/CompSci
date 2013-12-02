@@ -14,6 +14,12 @@ public class Day {
 	private int month;
 	private int year;
 
+	/** Constructor for the Day class to hold a particular date.
+	 *
+	 * @param day an integer representing a day of the month
+	 * @param month an integer representing a month of the year
+	 * @param year an integer representing the year (ad).
+	 */
 	public Day(int day, int month, int year) {
 		this.day = day;
 		this.month = month;
@@ -42,6 +48,11 @@ public class Day {
 
 	public int getYear() {
 		return year;
+	}
+
+	@Override
+	public String toString() {
+		return day + "/" + month + "/" + year;
 	}
 
 }

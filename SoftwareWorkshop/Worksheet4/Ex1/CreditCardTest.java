@@ -24,18 +24,27 @@ public class CreditCardTest {
 		System.out.println(gcTest);
 	}
 
+	/** Test a new general credit card with name TestCard, account number
+	 * 123abc, initial amount 1000 and a limit of 500.
+	 */
 	@Test
 	public void testCreditCard() {
 		CreditCard b = new CreditCard("TestCard", "123abc", 1000, 500);
 		assertEquals(1000, b.getAmount(), 0.001);
 	}
 
+	/** Test a new gold credit card with name TestGold, account number
+	 * 987zyx, initial amount 2000, a limit of 1000 and a fee of 200.
+	 */
 	@Test
 	public void testGoldCard() {
 		GoldCard b = new GoldCard("TestGold", "987zyx", 2000, 10000, 200);
 		assertEquals(1800, b.getAmount(), 0.001);
 	}
 
+	/** Test a new gold credit card with name TestGold, account number
+	 * 987zyx, initial amount 2000, a limit of 1000 and a fee of 200.
+	 */
 	@Test
 	public void testGoldCard2() {
 		GoldCard b = new GoldCard("TestGold", "987zyx", 2000, 10000, 200);
