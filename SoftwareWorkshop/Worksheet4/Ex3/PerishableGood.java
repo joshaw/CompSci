@@ -24,6 +24,7 @@ public class PerishableGood extends GeneralGood {
 
 	public void setBestBefore(Day bestBefore) {
 		this.bestBefore = bestBefore;
+		checkBestBefore();
 	}
 
 	public Day getBestBefore() {
@@ -34,9 +35,9 @@ public class PerishableGood extends GeneralGood {
 		return perished;
 	}
 
-
 	/** Checks the best before date compared to the current date. If the best
-	 * before date is 8 or less days in the future, then the price of the item
+	 * before date is 8 or less days in, the future, then the price of the item
+    GoodsTest.java
 	 * is reduced by half. If the best before date is 2 or less days in the
 	 * future then the item is said to be perished and shall not be shipped.
 	 */
@@ -65,8 +66,11 @@ public class PerishableGood extends GeneralGood {
 		 * has perished. */
 		c.add(Calendar.DAY_OF_YEAR, reducePriceDays - perishedDays);
 		if (!today.before(c)) {
-			super.setAvailible(false);
+			super.setAvailable(false);
 			perished = true;
+		} else {
+			super.setAvailable(true);
+			perished = false;
 		}
 	}
 

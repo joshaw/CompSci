@@ -1,0 +1,68 @@
+> data <- read.csv("stats_fitts.csv")
+> data
+   ID    W5    W1
+1   1 316.3 416.3
+2   2 320.7 434.7
+3   3 399.6 476.2
+4   4 181.5 491.0
+5   5 236.0 596.0
+6   6 251.9 578.0
+7   7 363.6 487.2
+8   8 512.0 584.7
+9   9 318.7 432.1
+10 10 154.1 582.7
+11 11 320.8 525.9
+12 12 361.1 487.2
+13 13 362.7 645.5
+14 14 280.3 420.5
+15 15 296.0 512.0
+16 16 228.3 456.0
+17 17 300.0 395.0
+18 18 249.0 440.0
+19 19 377.0 640.0
+20 20 314.0 590.0
+21 21 253.0 547.0
+22 22 277.0 524.0
+23 23 490.0 660.0
+24 24 440.0 590.0
+25 25 380.0 470.0
+26 26 380.0 470.0
+27 27 210.0 410.0
+28 28 240.0 510.0
+> 
+> pdf( height=11, width=8.5, file="graphs.pdf" )
+> par( omi=c( 0.5,0.5,0.5,0.5 ) )
+> 
+> plot (data$ID, data$W1, ylim=c(0, 650))
+> points (data$ID, data$W5, col="red")
+> 
+> t.test(data$W1, data$W5, paired=F)
+
+	Welch Two Sample t-test
+
+data:  data$W1 and data$W5
+t = 9.0824, df = 53.326, p-value = 2.062e-12
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 154.6807 242.3478
+sample estimates:
+mean of x mean of y 
+ 513.2857  314.7714 
+
+> t.test(data$W1, data$W5, paired=T)
+
+	Paired t-test
+
+data:  data$W1 and data$W5
+t = 10.9342, df = 27, p-value = 2.021e-11
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 161.2625 235.7661
+sample estimates:
+mean of the differences 
+               198.5143 
+
+> 
+> proc.time()
+   user  system elapsed 
+  0.391   0.027   0.420 

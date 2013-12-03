@@ -19,8 +19,20 @@ public abstract class Student {
 	private String name;
 	private ArrayList<int[]> assessments = new ArrayList<int[]>();
 
+	/** Constructor for an object of type Student
+	 *
+	 * @param name the name of the student being represented
+	 * @param passMark the passmark asociated with that student, defines and is
+	 * defined by whether the student is MSc or UG.
+	 */
 	public Student(String name, int passMark) {
 		this.name = name;
+
+		// Throw an error if a student is created that is not one of MSc or UG
+		if (passMark != 40 && passMark != 50) {
+			throw new InputMismatchException("The passmark can be either 40 " +
+					"for an UG or 50 for a MSc student. Found " + passMark);
+		}
 		this.passMark = passMark;
 	}
 
