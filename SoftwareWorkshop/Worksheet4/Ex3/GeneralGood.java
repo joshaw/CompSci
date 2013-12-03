@@ -12,14 +12,22 @@ public class GeneralGood {
 
 	private String name;
 	private int orderNumber;
-	private double standardPrice;
-	private boolean available;
+	private double price;
+	private boolean available = true;
 
-	public GeneralGood(String name, int orderNumber, double standardPrice,
+	/** Constructor for the GeneralGood class to represent a good that has no
+	 * expiry date.
+	 *
+	 * @param name a name of the product being represented
+	 * @param orderNumber a number representing the order that has been made
+	 * @param price a price of the item
+	 * @param available a boolean value describing the availiblity of the item
+	 */
+	public GeneralGood(String name, int orderNumber, double price,
 			boolean available) {
 		this.name = name;
 		this.orderNumber = orderNumber;
-		this.standardPrice = standardPrice;
+		this.price = price;
 		this.available = available;
 	}
 
@@ -39,20 +47,29 @@ public class GeneralGood {
 		return orderNumber;
 	}
 
-	public void setStandardPrice(double standardPrice) {
-		this.standardPrice = standardPrice;
+	public void setStandardPrice(double price) {
+		this.price = price;
 	}
 
 	public double getStandardPrice() {
-		return standardPrice;
+		return price;
 	}
 
-	public void setavailable(boolean available) {
+	public void setAvailable(boolean available) {
 		this.available = available;
 	}
 
-	public boolean getavailable() {
+	public boolean getAvailable() {
 		return available;
+	}
+
+	@Override
+	public String toString() {
+		if (available) {
+			return name + " (" + orderNumber + "): " + price;
+		} else {
+			return name + " (" + orderNumber + "): Unavailable";
+		}
 	}
 
 }
