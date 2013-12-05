@@ -9,11 +9,13 @@ CHECKDIR=mkdir -p $(DIR)
 all:
 	$(CHECKDIR)
 	$(BUILDTEX)
-	#$(BIBTEX) $(PROJECT)
+	#$(BIBTEX) ${DIR}/$(PROJECT)
 	$(BUILDTEX)
 	$(BUILDTEX)
 clean-all:
-	rm -f *.dvi *.log *.bak *.aux *.bbl *.blg *.idx *.ps *.eps *.pdf *.toc *.out *~
+	find ${DIR}/ -type f -delete
 
 clean:
-	rm -f *.log *.bak *.aux *.bbl *.blg *.idx *.toc *.out *~
+	find ${DIR}/ -type f ! -name "*.pdf" -delete
+
+# vim:ft=make
