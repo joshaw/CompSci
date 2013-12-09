@@ -1,5 +1,3 @@
-> data <- read.csv("stats_fitts.csv")
-> data
    ID    W5    W1
 1   1 316.3 416.3
 2   2 320.7 434.7
@@ -29,27 +27,6 @@
 26 26 380.0 470.0
 27 27 210.0 410.0
 28 28 240.0 510.0
-> 
-> pdf( height=11, width=8.5, file="graphs.pdf" )
-> par( omi=c( 0.5,0.5,0.5,0.5 ) )
-> 
-> plot (data$ID, data$W1, ylim=c(0, 650))
-> points (data$ID, data$W5, col="red")
-> 
-> t.test(data$W1, data$W5, paired=F)
-
-	Welch Two Sample t-test
-
-data:  data$W1 and data$W5
-t = 9.0824, df = 53.326, p-value = 2.062e-12
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- 154.6807 242.3478
-sample estimates:
-mean of x mean of y 
- 513.2857  314.7714 
-
-> t.test(data$W1, data$W5, paired=T)
 
 	Paired t-test
 
@@ -62,7 +39,60 @@ sample estimates:
 mean of the differences 
                198.5143 
 
-> 
+$mean
+[1] 513.2857
+
+$median
+[1] 500.5
+
+$var
+[1] 5936.212
+
+$sd
+[1] 77.04681
+
+$N
+[1] 28
+
+$mean
+[1] 314.7714
+
+$median
+[1] 315.15
+
+$var
+[1] 7440.308
+
+$sd
+[1] 86.25722
+
+$N
+[1] 28
+
+
+	Shapiro-Wilk normality test
+
+data:  data$W1
+W = 0.9499, p-value = 0.1972
+
+
+	Shapiro-Wilk normality test
+
+data:  data$W5
+W = 0.9765, p-value = 0.7609
+
+
+	Welch Two Sample t-test
+
+data:  data$W1 and data$W1
+t = 0, df = 54, p-value = 1
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -41.28373  41.28373
+sample estimates:
+mean of x mean of y 
+ 513.2857  513.2857 
+
 > proc.time()
    user  system elapsed 
-  0.391   0.027   0.420 
+  0.457   0.039   0.492 
