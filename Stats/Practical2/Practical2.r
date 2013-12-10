@@ -56,7 +56,10 @@ mysummary <- function(x) {
 # Use the mysummary function (defined for you above) to get descriptive
 #statistics for both conditions
 
+cat("W1-------------\n")
 mysummary (data$W1)
+
+cat("W5-------------\n")
 mysummary (data$W5)
 
 # As we are conducting an independent samples t-test we need to identify

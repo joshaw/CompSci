@@ -39,6 +39,7 @@ sample estimates:
 mean of the differences 
                198.5143 
 
+W1-------------
 $mean
 [1] 513.2857
 
@@ -54,6 +55,7 @@ $sd
 $N
 [1] 28
 
+W5-------------
 $mean
 [1] 314.7714
 
@@ -95,4 +97,4 @@ mean of x mean of y
 
 > proc.time()
    user  system elapsed 
-  0.457   0.039   0.492 
+  0.453   0.044   1.233 

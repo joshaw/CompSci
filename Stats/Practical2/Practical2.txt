@@ -7,7 +7,7 @@ Time: TBC
 Assessment 2 will be a 1 hour test
 
 Test Content
-------------
+============
 The test will include multiple choice questions, short answer and numeric
 answer questions as well as free text questions.
 
@@ -15,19 +15,21 @@ The questions will cover lecture and practical material as well as details from
 the analysis of a dataset.
 
 Lecture and Practical Content
------------------------------
+=============================
 The questions can cover ***any*** aspect of the course covered in the lectures
 and practicals.
 
 Analysis of a Dataset- Fitt's Law
----------------------------------
+=================================
 A segment of the test will also ask questions on the analysis of a dataset
 focusing on Fitt's Law.
 
 Before the test, your task is to analyse the data (stats_fitts.csv- available
 on Canvas) to test the following hypothesis:
 
-H1: Icon width has a statistically significant effect on the reaction time to
+H1
+--
+Icon width has a statistically significant effect on the reaction time to
 select icons. Larger icons will take a statistically significantly shorter time
 to select than smaller icons.
 
