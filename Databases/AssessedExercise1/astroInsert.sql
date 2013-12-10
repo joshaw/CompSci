@@ -1,6 +1,8 @@
 DELETE FROM Object;
+DELETE FROM component;
 DELETE FROM Star;
 DELETE FROM Planet;
+DELETE FROM asteroid;
 
 INSERT INTO Object VALUES
 	(DEFAULT ,474, 2759),
@@ -11,7 +13,7 @@ INSERT INTO Object VALUES
 	(DEFAULT ,744, 2993),
 	(DEFAULT ,450, 10704),
 	(DEFAULT ,162, 5063),
-	(DEFAULT ,515, 2107)
+	(DEFAULT ,515, 2107),
 	(DEFAULT ,315, 4107)
 	;
 
@@ -23,9 +25,22 @@ INSERT INTO star VALUES
 	;
 
 INSERT INTO planet VALUES
-	(5, DEFAULT, 1.3, 'rocky'),
-	(6, DEFAULT, 12, 'rocky'),
-	(7, DEFAULT, 4.3, 'gasseous')
+	(5, 'Zark', 1.3, 'rocky'),
+	(6, 'Jupiter', 12, 'rocky'),
+	(7, 'Io', 4.3, 'gasseous')
+	;
+
+INSERT INTO component VALUES
+	('Zark', DEFAULT, 'plutonium'),
+	('Zark', DEFAULT, 'carbon'),
+	('Zark', DEFAULT, 'hydrogren'),
+	('Jupiter', DEFAULT, 'iron'),
+	('Jupiter', DEFAULT, 'silicon'),
+	('Jupiter', DEFAULT, 'oxygen'),
+	('Io', DEFAULT, 'iron'),
+	('Io', DEFAULT, 'lithium'),
+	('Io', DEFAULT, 'silicon'),
+	('Io', DEFAULT, 'carbon')
 	;
 
 INSERT INTO asteroid VALUES
