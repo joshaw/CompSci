@@ -2,6 +2,7 @@
 
 DROP TABLE Object CASCADE;
 DROP TABLE Planet CASCADE;
+DROP TABLE Component CASCADE;
 DROP TABLE Asteroid CASCADE;
 DROP TABLE Disc_by CASCADE;
 DROP TABLE Discoverer CASCADE;
@@ -15,10 +16,16 @@ CREATE TABLE Object (object_id SERIAL PRIMARY KEY,
                     );
 
 CREATE TABLE Planet (object_id   SERIAL REFERENCES Object,
-                     planet_id   SERIAL PRIMARY KEY,
+                     planet_name VARCHAR(30) UNIQUE PRIMARY KEY,
                      year_length INT CHECK(year_length > 0),
                      class       CHAR(8)
                     );
+
+CREATE TABLE Component (planet_name  VARCHAR(30) REFERENCES Planet,
+                        component_id SERIAL,
+                        comp_name    VARCHAR(30),
+                        PRIMARY KEY (planet_name, component_id)
+                       );
 
 CREATE TABLE Asteroid (object_id    SERIAL REFERENCES Object,
                        asteroid_id  SERIAL PRIMARY KEY,
@@ -30,8 +37,6 @@ CREATE TABLE Discoverer (firstname    VARCHAR(20),
                          title        VARCHAR(5) NOT NULL,
                          organisation VARCHAR(30),
                          PRIMARY KEY (firstname, surname)
-                         /* CHECK (title = "Mr" || title = "Mrs" || */
-                         /* 	title = "Prof" || title = "Ms" ) */
                         );
 
 CREATE TABLE Disc_by (asteroid_id SERIAL REFERENCES Asteroid,

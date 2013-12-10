@@ -43,6 +43,7 @@
 %\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
 %\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
 %\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+\newcommand{\includecode}[2][c]{\lsinputlisting[caption=#2, escapechar=, style=custom#1]{#2}}
 
 %%% END Article customizations
 
@@ -163,5 +164,8 @@ measuring it.
 \end{figure}
 
 % section low_level_erd (end)
+
+\section{Table Creation}
+\includecode{astro.sql}
 
 \end{document}
