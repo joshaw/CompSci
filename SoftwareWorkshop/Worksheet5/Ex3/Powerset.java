@@ -4,13 +4,15 @@ public class Powerset extends Set {
 
 	public static void main(String[] args) {
 		Set s =
-			Set.cons(1, Set.cons(2, Set.cons(3, Set.cons(4, Set.empty()))));
+			Set.cons(1, Set.cons(2, Set.cons(3, Set.empty())));
 		System.out.println(s);
-		System.out.println(Powerset.powerSet(s));
+		Powerset.powerSet(s);
+		System.out.println();
+		// System.out.println(Powerset.powerSet(s));
 
 		Set r =
 			Set.cons(1, Set.cons(2, Set.cons(3, Set.cons(4, Set.empty()))));
-		System.out.println(r);
+		// System.out.println(r);
 
 	}
 
@@ -38,13 +40,28 @@ public class Powerset extends Set {
 
 	public static ArrayList<Set> powerSet(Set originalSet, ArrayList<Set> sets){
 		if (originalSet.isEmpty()) {
+
+			// System.out.println(1);
 			sets.add(new Set());
+			System.out.print("[], ");
 			return sets;
+
 		} else if (originalSet.getTail().isEmpty()){
+
+			// System.out.println(2);
 			sets.add(new Set(originalSet.getHead(), Set.empty()));
-			return sets;
+			System.out.print(originalSet.getHead() + ", ");
+			return powerSet(Set.toSet(originalSet.getTail()), sets);
+
 		} else {
+
+			// System.out.println(3);
 			sets.add(new Set(originalSet.getHead(), Set.empty()));
+			Set temp = new Set();
+			for (Set x: sets ) {
+				temp = new Set(originalSet.getTail().getHead(), x);
+			}
+			System.out.print(temp + ", " + originalSet.getHead() + ", ");
 			return powerSet(Set.toSet(originalSet.getTail()), sets);
 		}
 	}
