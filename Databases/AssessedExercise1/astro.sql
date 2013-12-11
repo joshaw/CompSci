@@ -70,9 +70,9 @@ CREATE TABLE Star_Elements (
 );
 
 CREATE TABLE orbit_member (
-	star_id   SERIAL REFERENCES Star,
 	orbit_num SERIAL,
-	PRIMARY KEY (star_id, orbit_num)
+	star_id   SERIAL REFERENCES Star,
+	PRIMARY KEY (orbit_num, star_id)
 );
 
 CREATE TABLE orbit (

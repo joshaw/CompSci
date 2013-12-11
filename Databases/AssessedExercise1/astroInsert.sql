@@ -24,6 +24,21 @@ INSERT INTO star VALUES
 	(4, DEFAULT, 7)
 	;
 
+INSERT INTO orbit VALUES
+	(DEFAULT, 1000000),
+	(DEFAULT, 92000000),
+	(DEFAULT, 5100000),
+	(DEFAULT, 25000000),
+	(DEFAULT, 10000),
+	;
+
+INSERT INTO orbit_member VALUES
+	(1, 1),
+	(1, 2),
+	(2, 3),
+	(2, 4)
+	;
+
 INSERT INTO Star_Elements VALUES
 	(1, 1),
 	(1, 2),
