@@ -23,6 +23,7 @@
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage{mathtools} % for math environments like align
 \usepackage{amssymb} % for symbols like \therefore
+\usepackage{listings}
 
 %%% OPTIONAL PACKAGES
 %\usepackage{braket}
@@ -43,7 +44,6 @@
 %\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
 %\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
 %\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
-\newcommand{\includecode}[2][c]{\lsinputlisting[caption=#2, escapechar=, style=custom#1]{#2}}
 
 %%% END Article customizations
 
@@ -164,9 +164,36 @@ measuring it.
 	\includegraphics[width=1.0\textwidth]{ERD-low-CF.pdf}
 \end{figure}
 
+\subsection{Notes}
+\label{sub:notes}
+\begin{itemize}
+	\item Crows foot low level entity relationship diagram.
+\end{itemize}
+
+% subsection notes (end)
+
 % section low_level_erd (end)
 
+\newpage
 \section{Table Creation}
-\includecode{astro.sql}
+\label{sec:table_creation}
+
+\lstinputlisting[frame=single, language=SQL, firstline=12]{astro.sql}
+
+% section table_creation (end)
+
+\section{Adding Entities}
+\label{sec:adding_entities}
+
+\lstinputlisting[frame=single, language=SQL, firstline=7]{astroInsert.sql}
+
+% section adding_entities (end)
+
+\section{Queries}
+\label{sec:queries}
+
+\lstinputlisting[frame=single, language=SQL]{astroQuery.sql}
+
+% section queries (end)
 
 \end{document}
