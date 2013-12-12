@@ -67,17 +67,38 @@ public class Set extends List {
 	/** Converts a set to an array for internal use. An array is easier to
 	 * check the contents, but is more difficult to add/remove elements.
 	 *
+	 * The set is used since it is easy and efficient to add/remove/change
+	 * values that are not at the end, since the pointers to the rest of the
+	 * elements can be easily changed. The array is used for fast adding,
+	 * removing and comparason operations since the data is held all in the
+	 * same location in memory. For this reason, we can convert a set to an
+	 * array for operations like compare since the array exists only for the
+	 * time the comparason operates and is much better suited to this
+	 * operation. This results in a more efficient algorithm, so faster
+	 * results.
+	 *
 	 * @param s set to be converted
 	 * @param array the array which is added to as the set is traversed.
 	 * @return an ArrayList containing all the numeric elements of the original
 	 * set.
 	 */
 	private static ArrayList<Integer> setToArray(Set s, ArrayList<Integer> array) {
+
+		/* If the array is empty, ie the recursion has reached the empty list
+		 * at the end of the set, then return the array. */
 		if (s.isEmpty()) {
 			return array;
 		} else {
+
+			/* If the array has in it the current head of the set, then there
+			 * is no need to re-add it, so do nothing except call the method
+			 * again on the rest of the set. */
 			if (array.contains(s.getHead())) {
 				return setToArray(Set.toSet(s.getTail()), array);
+
+			/* Otherwise, the array does not contain the current value at head,
+			 * so add it as a new element to the array and call the method
+			 * again on the rest of the set. */
 			} else {
 				array.add(s.getHead());
 				return setToArray(Set.toSet(s.getTail()), array);
