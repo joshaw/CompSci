@@ -13,7 +13,7 @@ import java.util.InputMismatchException;
 public class Quadtree {
 
 	private int value;
-	private boolean isValue;
+	private boolean primitive;
 	private Quadtree lu, ll, ru, rl;
 
 	public Quadtree(Quadtree lu, Quadtree ll, Quadtree ru, Quadtree rl) {
@@ -21,6 +21,7 @@ public class Quadtree {
 		this.ll = ll;
 		this.ru = ru;
 		this.rl = rl;
+		this.primitive = false;
 	}
 
 	/** Create a base level Quadtree with a single value, rather than a sub
@@ -32,9 +33,26 @@ public class Quadtree {
 
 		/* Quadtrees can be used to store images, so a value outside the 0-255
 		 * greyscale range would not be accepted. */
+		// if (value >= 0 && value < 256) {
+		// 	this.value = value;
+		// 	this.primitive = true;
+		// } else {
+		// 	throw new InputMismatchException("Value must be between 0 and " +
+		// 			"255. Found " + value);
+		// }
+		this.setValue(value);
+		this.primitive = true;
+	}
+
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+
+		/* Quadtrees can be used to store images, so a value outside the 0-255
+		 * greyscale range would not be accepted. */
 		if (value >= 0 && value < 256) {
 			this.value = value;
-			this.isValue = true;
 		} else {
 			throw new InputMismatchException("Value must be between 0 and " +
 					"255. Found " + value);
@@ -69,8 +87,8 @@ public class Quadtree {
 		this.rl = rl;
 	}
 
-	public boolean isValue() {
-		return isValue;
+	public boolean isPrimitive() {
+		return primitive;
 	}
 
 	/** toString works by calling itself on each sub Quadtree in order. The
@@ -81,7 +99,7 @@ public class Quadtree {
 	 */
 	@Override
 	public String toString() {
-		if (isValue) {
+		if (primitive) {
 			return value + "";
 		} else {
 			return "[" + getLU().toString() + ", " + getLL().toString() + ", "
@@ -105,7 +123,7 @@ public class Quadtree {
 
 		// lu -> ll -> rl -> ru -> lu
 		/* If the Quadtree contains just a value, then it can't be rotated. */
-		if (qt.isValue()) {
+		if (qt.isPrimitive()) {
 			return qt;
 		} else {
 
