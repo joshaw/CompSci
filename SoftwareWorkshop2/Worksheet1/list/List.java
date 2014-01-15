@@ -1,4 +1,3 @@
-
 /**
  * @author Uday Reddy, with changes by Manfred Kerber
  * @version 2013-11-28 based on Uday's version of 2012
@@ -6,6 +5,8 @@
  * List class defines a recursive type called List, and provides
  * constructor and getter methods.
  */
+
+package list;
 
 public class List {
 
@@ -88,7 +89,7 @@ public class List {
     		return false;
     	}
     }
- if this list is empty
+    if this list is empty
      */
     public boolean isEmpty() {
         return empty;
@@ -119,5 +120,4 @@ public class List {
         }
         return tail;
     }
-
 }
