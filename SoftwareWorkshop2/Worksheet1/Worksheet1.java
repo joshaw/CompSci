@@ -16,7 +16,8 @@ import static tree.SearchTreeOps.find;
 public class Worksheet1 {
 
 	/** Returns true iff all elements of an integer list a greater than zero.
-	 * If the list is empty, then there are no non-positive elements, so true.
+	 * If the list is empty, then there are no non-positive elements, so
+	 * vacuously true.
 	 *
 	 * @param a list to be checked
 	 * @return true iff all elements are positive, else false.
@@ -166,29 +167,29 @@ public class Worksheet1 {
 		return new List(b.getHead(), preppend(a, b.getTail()));
 	}
 
-	// /** Reverses the order of the elements of an integer list.
-	//  *
-	//  * @param a list to be reversed
-	//  * @return new list which is the reverse of the original.
-	//  */
-	// public static List reverse(List a) {
-	// 	return reverse(a, new List());
-	// }
+//	/** Reverses the order of the elements of an integer list.
+//	 *
+//	 * @param a list to be reversed
+//	 * @return new list which is the reverse of the original.
+//	 */
+//	public static List reverse(List a) {
+//		return reverse(a, new List());
+//	}
 
-	// /** Auxillary reverse method. Reverses the order of the elements of a list.
-	//  *
-	//  * @param a list to be reversed
-	//  * @param reversed list holding the intermediate steps in the reversal of
-	//  * the original.
-	//  * @return new list which is the reverse of the original.
-	//  */
-	// private static List reverse(List a, List reversed) {
-	// 	if (a.isEmpty()) {
-	// 		return reversed;
-	// 	}
-	// 	reversed = new List(a.getHead(), reversed);
-	// 	return reverse(a.getTail(), reversed);
-	// }
+//	/** Auxillary reverse method. Reverses the order of the elements of a list.
+//	 *
+//	 * @param a list to be reversed
+//	 * @param reversed list holding the intermediate steps in the reversal of
+//	 * the original.
+//	 * @return new list which is the reverse of the original.
+//	 */
+//	private static List reverse(List a, List reversed) {
+//		if (a.isEmpty()) {
+//			return reversed;
+//		}
+//		reversed = new List(a.getHead(), reversed);
+//		return reverse(a.getTail(), reversed);
+//	}
 
 	/** Returns a new tree which is the mirror image of the input tree in the
 	 * vertical plane. If the tree is empty, then it is the mirror image of
@@ -267,24 +268,36 @@ public class Worksheet1 {
 	 * @return a new tree without one copy of the value x.
 	 */
 	public static Tree delete(Tree a, int x) {
-		Tree subtree = tree.SearchTreeOps.find(x, a);
-		return delete(a, x, subtree, new Tree());
+		return delete(a, x, new Tree());
 	}
 
-	public static Tree delete(Tree a, int x, Tree subtree, Tree newTree) {
-		if (subtree.getLeft().getEmpty() && subtree.getRight().getEmpty()) {
-			if (a == subtree) {
+	public static Tree delete(Tree a, int x, Tree newTree) {
+		if (a.getEmpty()) {
+			throw new IllegalStateException("Tree does not contain " + x);
+		} else if (a.getValue() == x) {
+			if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
 				// Just delete the node since it is a leaf
+				return new Tree();
+			} else if (a.getLeft().getEmpty()) {
+				// Make child node the new root
+				return a.getRight();
+			} else if (a.getRight().getEmpty()) {
+				// Make child node the new root
+				return a.getLeft();
 			} else {
-				// add to newtree
+				// Largest child from left subtree becomes new root.
+				int maxFromSub = max(a.getLeft());
+				return new Tree(maxFromSub,
+						delete(a.getLeft(), maxFromSub, new Tree()),
+						a.getRight());
 			}
-		} else if (subtree.getLeft().getEmpty()) {
-			// Make child node the new root
-		} else if (subtree.getRight().getEmpty()) {
-			// Make child node the new root
+		} else if (x > a.getValue()) {
+			return new Tree(a.getValue(),
+					a.getLeft(), delete(a.getRight(), x, newTree));
 		} else {
-			// Largest child from left subtree becomes new root.
+			return new Tree(a.getValue(),
+					delete(a.getLeft(), x, newTree), a.getRight());
+			// return delete(a.getLeft(), x, tmpTree);
 		}
-		return new Tree();
 	}
 }
