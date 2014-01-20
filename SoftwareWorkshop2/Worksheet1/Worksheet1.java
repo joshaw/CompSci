@@ -64,12 +64,12 @@ public class Worksheet1 {
 	 * duplicates.
 	 */
 	public static List merge(List a, List b) {
-		if (a.isEmpty()) {
-			return b;
-		}
-		if (b.isEmpty()) {
-			return a;
-		}
+		// if (a.isEmpty()) {
+		// 	return b;
+		// }
+		// if (b.isEmpty()) {
+		// 	return a;
+		// }
 
 		return list.ListOps.reverse(merge(a, b, new List()));
 	}
@@ -87,14 +87,14 @@ public class Worksheet1 {
 		if (a.isEmpty()) {
 
 			// add all rest of b to merged
-			merged = preppend(merged, b);
-			return merged;
+			// merged = preppend(merged, b);
+			return b;
 		}
 		if (b.isEmpty()) {
 
 			// add all rest of a to merged
-			merged = preppend(merged, a);
-			return merged;
+			// merged = preppend(merged, a);
+			return a;
 		}
 
 		int aHead = a.getHead();
@@ -104,9 +104,11 @@ public class Worksheet1 {
 		 * to the new list and continue with it's tail and the whole of the
 		 * other list, and vice versa. */
 		if (aHead < bHead) {
-			return merge(a.getTail(), b, new List(aHead, merged));
+			return new List(aHead, merge(a.getTail(), b));
 		} else {
-			return merge(a, b.getTail(), new List(bHead, merged));
+			// TODO: Fix this
+			return new List(bHead, merge(a, b.getTail()));
+			// return merge(a, b.getTail(), new List(bHead, merged));
 		}
 	}
 
@@ -276,15 +278,19 @@ public class Worksheet1 {
 			throw new IllegalStateException("Tree does not contain " + x);
 		} else if (a.getValue() == x) {
 			if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
+
 				// Just delete the node since it is a leaf
 				return new Tree();
 			} else if (a.getLeft().getEmpty()) {
+
 				// Make child node the new root
 				return a.getRight();
 			} else if (a.getRight().getEmpty()) {
+
 				// Make child node the new root
 				return a.getLeft();
 			} else {
+
 				// Largest child from left subtree becomes new root.
 				int maxFromSub = max(a.getLeft());
 				return new Tree(maxFromSub,
@@ -297,7 +303,6 @@ public class Worksheet1 {
 		} else {
 			return new Tree(a.getValue(),
 					delete(a.getLeft(), x, newTree), a.getRight());
-			// return delete(a.getLeft(), x, tmpTree);
 		}
 	}
 }

@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class Worksheet1Test {
 
 	static List la = new List(2, new List(3, new List(4, new List())));
@@ -17,8 +20,10 @@ public class Worksheet1Test {
 	static List lf = new List(2, new List(5, new List(5, new List(5,
 						new List(7, new List(8, new List(8, new List(9,
 						new List()))))))));
+	static List lEmpty = new List();
 
 	static Tree ta;
+	static Tree tEmpty = new Tree();
 
 	public static void main(String[] args) {
 
@@ -78,6 +83,11 @@ public class Worksheet1Test {
 		assertTrue(Worksheet1.allPositive(la));
 	}
 
+	@Test // True
+	public void testAllPositiveTrue2() {
+		assertTrue(Worksheet1.allPositive(lEmpty));
+	}
+
 	@Test // False
 	public void testAllPositiveFalse() {
 		assertFalse(Worksheet1.allPositive(lb));
@@ -97,10 +107,10 @@ public class Worksheet1Test {
 	// Test method "merge"
 	@Test
 	public void testMerge() {
-		List compList = new List(2, new List(5, new List(5, new List(5,
+		List compareList = new List(2, new List(5, new List(5, new List(5,
 			new List(7, new List(8, new List(8, new List(9, new List()))))))));
 
-		assertTrue(List.equals(compList, Worksheet1.merge(ld, le)));
+		assertTrue(List.equals(compareList, Worksheet1.merge(ld, le)));
 	}
 
 	// Test method "removeDuplicates"
@@ -108,11 +118,21 @@ public class Worksheet1Test {
 	public void testRemoveDuplicates() {
 		List dupList = new List(2, new List(5, new List(5, new List(5,
 			new List(7, new List(8, new List(8, new List(9, new List()))))))));
-		List compList = new List(2, new List(5, new List(7, new List(8,
+		List compareList = new List(2, new List(5, new List(7, new List(8,
 							new List(9, new List())))));
 
-		assertTrue(List.equals(compList,
+		assertTrue(List.equals(compareList,
 					Worksheet1.removeDuplicates(dupList)));
+	}
+
+	@Test
+	public void testRemoveDuplicates2() {
+
+		/* Empty list contains no duplicates so the new list is the same as the
+		 * original. */
+		List compareList = new List();
+		assertTrue(List.equals(compareList,
+					Worksheet1.removeDuplicates(lEmpty)));
 	}
 
 	// Create tree for testing
@@ -128,6 +148,13 @@ public class Worksheet1Test {
 	// Test method "mirror"
 	@Test
 	public void testMirror() {
+		Tree tEmptyReversed = new Tree();
+		assertEquals(tEmptyReversed.toString(),
+				Worksheet1.mirror(tEmpty).toString());
+	}
+
+	@Test
+	public void testMirror2() {
 		Tree taReversed = new Tree(1,
 							new Tree(5,
 								new Tree(9,
@@ -157,8 +184,13 @@ public class Worksheet1Test {
 		assertEquals(9, Worksheet1.max(ta));
 	}
 
-	@Test // True
+	@Test (expected=IllegalStateException.class)
 	public void testMax2() {
+		Worksheet1.max(tEmpty);
+	}
+
+	@Test
+	public void testMax3() {
 
 		// 8 is not the max, so the equality is true
 		assertTrue(8 != Worksheet1.max(ta));
@@ -173,6 +205,23 @@ public class Worksheet1Test {
 		}
 
 		assertEquals(taDel.toString(), Worksheet1.delete(ta, 3).toString());
+	}
+
+	// Test method "printDescending"
+	@Test
+	public void testPrintDescending() {
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		Worksheet1.printDescending(ta);
+		assertEquals("9 8 7 6 5 4 3 2 1 ", outContent.toString());
+	}
+
+	@Test
+	public void testPrintDescending2() {
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		Worksheet1.printDescending(tEmpty);
+		assertEquals("", outContent.toString());
 	}
 
 	// @Test
