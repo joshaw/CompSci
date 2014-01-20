@@ -1,3 +1,13 @@
+/** Recursive Data Structures. Methods for use with Lists and Trees as defined
+ * in the accompanying packages "list" and "tree".
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : Worksheet1
+ * Exercise  : 1-8
+ * File name : Worksheet1Test.java
+ * @version 2014-01-17
+ */
 import list.*;
 import tree.*;
 
@@ -7,6 +17,7 @@ import static org.junit.Assert.*;
 
 public class Worksheet1Test {
 
+	// Create data structures for use in tests.
 	static List la = new List(2, new List(3, new List(4, new List())));
 	static List lb = new List(2, new List(-3, new List(4, new List())));
 	static List lc = new List();
@@ -22,14 +33,17 @@ public class Worksheet1Test {
 
 	public static void main(String[] args) {
 
+		// Test all positive
 		System.out.println("allPositive");
-		System.out.println(la + " " + Worksheet1.allPositive(la));
-		System.out.println(lb + " " + Worksheet1.allPositive(lb));
+		System.out.println(la + " " + Worksheet1.allPositive(la)); // true
+		System.out.println(lb + " " + Worksheet1.allPositive(lb)); // false
 
+		// Test sorted list
 		System.out.println("\nsorted");
-		System.out.println(la + " " + Worksheet1.sorted(la));
-		System.out.println(lb + " " + Worksheet1.sorted(lb));
+		System.out.println(la + " " + Worksheet1.sorted(la)); // true
+		System.out.println(lb + " " + Worksheet1.sorted(lb)); // false
 
+		// Merge two lists
 		System.out.println("\nmerge");
 		System.out.println(ld);
 		System.out.println(le);
@@ -44,32 +58,35 @@ public class Worksheet1Test {
 		// System.out.println(la);
 		// System.out.println(Worksheet1.reverse(la));
 
+		// Remove duplicate entries
 		System.out.println("\nremoveDuplicates");
 		System.out.println(lf);
 		System.out.println(Worksheet1.removeDuplicates(lf));
 
+		// Populate tree for testing
 		int[] numbers = {1, 5, 9, 2, 8, 4, 7, 3, 6};
 		Tree ta = new Tree();
 		for (int i = 0; i < numbers.length; i++) {
 			ta = tree.SearchTreeOps.insert(numbers[i], ta);
 		}
 
+		// Mirror tree along vertical axis
 		System.out.println("\nmirror");
 		System.out.println(ta);
 		System.out.println(Worksheet1.mirror(ta));
 
+		// Print all entries in descending order
 		System.out.println("\nprintDescending");
 		Worksheet1.printDescending(ta);
 
+		// Return max element
 		System.out.println("\nmax");
 		System.out.println(Worksheet1.max(ta));
 
+		// Delete an element
 		System.out.println("\ndelete");
-		// System.out.println(tb);
-		// System.out.println(Worksheet1.delete(tb, 3));
-
-		System.out.println(ta);
-		System.out.println(Worksheet1.delete(ta, 5));
+		System.out.println("[ [ Orig ] ]\n" + ta);
+		System.out.println("\n[ [ New ] ] \n" + Worksheet1.delete(ta, 5)); // remove 5
 	}
 
 	@Test
@@ -162,16 +179,24 @@ public class Worksheet1Test {
 	}
 
 	@Test
-	public void testDeletej() {
-		int[] numbers = {1, 9, 2, 8, 4, 7, 3, 6};
+	public void testDelete1() {
+		int[] numbers = {1, 4, 2, 9, 3, 8, 7, 6};
 		Tree taDel = new Tree();
 		for (int i = 0; i < numbers.length; i++) {
 			taDel = tree.SearchTreeOps.insert(numbers[i], taDel);
 		}
 
-		System.out.println("\n\n" + taDel);
-		System.out.println("\n" + Worksheet1.delete(ta, 5) + "\n\n");
 		assertEquals(taDel.toString(), Worksheet1.delete(ta, 5).toString());
+	}
+
+	@Test(expected=IllegalStateException.class)
+	public void testDelete2() {
+		int[] numbers = {1, 4, 2, 9, 3, 8, 7, 6};
+		Tree taDel = new Tree();
+		for (int i = 0; i < numbers.length; i++) {
+			taDel = tree.SearchTreeOps.insert(numbers[i], taDel);
+		}
+		 Worksheet1.delete(ta, 10);
 	}
 
 }
