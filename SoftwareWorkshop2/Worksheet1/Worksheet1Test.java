@@ -72,26 +72,29 @@ public class Worksheet1Test {
 		System.out.println(Worksheet1.delete(ta, 5));
 	}
 
-	@Test
+	// Test method "allPositive"
+	@Test // True
 	public void testAllPositiveTrue() {
 		assertTrue(Worksheet1.allPositive(la));
 	}
 
-	@Test
+	@Test // False
 	public void testAllPositiveFalse() {
 		assertFalse(Worksheet1.allPositive(lb));
 	}
 
-	@Test
+	// Test method "sorted"
+	@Test // True
 	public void testSortedTrue() {
 		assertTrue(Worksheet1.sorted(la));
 	}
 
-	@Test
+	@Test // False
 	public void testSortedFalse() {
 		assertFalse(Worksheet1.sorted(lb));
 	}
 
+	// Test method "merge"
 	@Test
 	public void testMerge() {
 		List compList = new List(2, new List(5, new List(5, new List(5,
@@ -100,6 +103,7 @@ public class Worksheet1Test {
 		assertTrue(List.equals(compList, Worksheet1.merge(ld, le)));
 	}
 
+	// Test method "removeDuplicates"
 	@Test
 	public void testRemoveDuplicates() {
 		List dupList = new List(2, new List(5, new List(5, new List(5,
@@ -111,6 +115,7 @@ public class Worksheet1Test {
 					Worksheet1.removeDuplicates(dupList)));
 	}
 
+	// Create tree for testing
 	@Before
 	public void makeTree() {
 		int[] numbers = {1, 5, 9, 2, 8, 4, 7, 3, 6};
@@ -120,9 +125,10 @@ public class Worksheet1Test {
 		}
 	}
 
+	// Test method "mirror"
 	@Test
 	public void testMirror() {
-		Tree taReverse = new Tree(1,
+		Tree taReversed = new Tree(1,
 							new Tree(5,
 								new Tree(9,
 									new Tree(),
@@ -142,12 +148,20 @@ public class Worksheet1Test {
 									new Tree())),
 							new Tree());
 
-		assertEquals(ta.toString(), Worksheet1.mirror(taReverse).toString());
+		assertEquals(ta.toString(), Worksheet1.mirror(taReversed).toString());
 	}
 
+	// Test method "max"
 	@Test
 	public void testMax() {
 		assertEquals(9, Worksheet1.max(ta));
+	}
+
+	@Test // True
+	public void testMax2() {
+
+		// 8 is not the max, so the equality is true
+		assertTrue(8 != Worksheet1.max(ta));
 	}
 
 	@Test
@@ -161,17 +175,17 @@ public class Worksheet1Test {
 		assertEquals(taDel.toString(), Worksheet1.delete(ta, 3).toString());
 	}
 
-	@Test
-	public void testDeletej() {
-		int[] numbers = {1, 9, 2, 8, 4, 7, 3, 6};
-		Tree taDel = new Tree();
-		for (int i = 0; i < numbers.length; i++) {
-			taDel = tree.SearchTreeOps.insert(numbers[i], taDel);
-		}
+	// @Test
+	// public void testDelete2() {
+	// 	int[] numbers = {1, 9, 2, 8, 4, 7, 3, 6};
+	// 	Tree taDel = new Tree();
+	// 	for (int i = 0; i < numbers.length; i++) {
+	// 		taDel = tree.SearchTreeOps.insert(numbers[i], taDel);
+	// 	}
 
-		System.out.println("\n\n" + taDel);
-		System.out.println("\n" + Worksheet1.delete(ta, 5) + "\n\n");
-		assertEquals(taDel.toString(), Worksheet1.delete(ta, 5).toString());
-	}
+	// 	// System.out.println("\n\n" + taDel);
+	// 	// System.out.println("\n" + Worksheet1.delete(ta, 5) + "\n\n");
+	// 	assertEquals(taDel.toString(), Worksheet1.delete(ta, 5).toString());
+	// }
 
 }

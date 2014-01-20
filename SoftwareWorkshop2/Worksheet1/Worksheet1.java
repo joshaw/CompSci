@@ -1,4 +1,4 @@
-/**
+/** Methods for manipulating the List and Tree recursive data structures.
  *
  * @author Josh Wainwright
  * UID       : 1079596
