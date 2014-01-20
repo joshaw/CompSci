@@ -94,6 +94,10 @@ public class Worksheet1Test {
 		System.out.println("\n[ [ New ] ] \n" + Worksheet1.delete(ta, 5)); // remove 5
 	}
 
+/******************************************************************************
+ * Junit tests - Lists                                                        *
+ *****************************************************************************/
+
 	// Test method "allPositive"
 	@Test // True
 	public void testAllPositiveTrue() {
@@ -130,6 +134,17 @@ public class Worksheet1Test {
 		assertTrue(List.equals(compareList, Worksheet1.merge(ld, le)));
 	}
 
+	@Test // Merge two empty lists
+	public void testMerge2() {
+		List compareList = new List();
+		assertTrue(List.equals(compareList, Worksheet1.merge(lEmpty, lEmpty)));
+	}
+
+	@Test // Merge list with empty list
+	public void testMerge3() {
+		assertTrue(List.equals(la, Worksheet1.merge(la, lEmpty)));
+	}
+
 	// Test method "removeDuplicates"
 	@Test
 	public void testRemoveDuplicates() {
@@ -151,6 +166,10 @@ public class Worksheet1Test {
 		assertTrue(List.equals(compareList,
 					Worksheet1.removeDuplicates(lEmpty)));
 	}
+
+/******************************************************************************
+ * Junit tests - Trees                                                        *
+ *****************************************************************************/
 
 	// Create tree for testing
 	@Before
@@ -213,6 +232,23 @@ public class Worksheet1Test {
 		assertTrue(8 != Worksheet1.max(ta));
 	}
 
+	// Test method "printDescending"
+	@Test
+	public void testPrintDescending() {
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		Worksheet1.printDescending(ta);
+		assertEquals("9 8 7 6 5 4 3 2 1 ", outContent.toString());
+	}
+
+	@Test
+	public void testPrintDescending2() {
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		Worksheet1.printDescending(tEmpty);
+		assertEquals("", outContent.toString());
+	}
+
 	@Test
 	public void testDelete() {
 		int[] numbers = {1, 5, 9, 2, 8, 4, 7, 6};
@@ -235,34 +271,15 @@ public class Worksheet1Test {
 		assertEquals(taDel.toString(), Worksheet1.delete(ta, 5).toString());
 	}
 
-	// Test method "printDescending"
-	@Test
-	public void testPrintDescending() {
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(outContent));
-		Worksheet1.printDescending(ta);
-		assertEquals("9 8 7 6 5 4 3 2 1 ", outContent.toString());
+	@Test (expected=IllegalStateException.class)
+	public void testDelete2() {
+		int[] numbers = {1, 9, 2, 8, 4, 7, 3, 6};
+		Tree taDel = new Tree();
+		for (int i = 0; i < numbers.length; i++) {
+			taDel = tree.SearchTreeOps.insert(numbers[i], taDel);
+		}
+
+		assertEquals(taDel.toString(), Worksheet1.delete(ta, 0).toString());
 	}
-
-	@Test(expected=IllegalStateException.class)
-	public void testPrintDescending2() {
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(outContent));
-		Worksheet1.printDescending(tEmpty);
-		assertEquals("", outContent.toString());
-	}
-
-	// @Test
-	// public void testDelete2() {
-	// 	int[] numbers = {1, 9, 2, 8, 4, 7, 3, 6};
-	// 	Tree taDel = new Tree();
-	// 	for (int i = 0; i < numbers.length; i++) {
-	// 		taDel = tree.SearchTreeOps.insert(numbers[i], taDel);
-	// 	}
-
-	// 	// System.out.println("\n\n" + taDel);
-	// 	// System.out.println("\n" + Worksheet1.delete(ta, 5) + "\n\n");
-	// 	assertEquals(taDel.toString(), Worksheet1.delete(ta, 5).toString());
-	// }
 
 }
