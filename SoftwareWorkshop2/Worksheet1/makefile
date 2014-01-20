@@ -1,1 +1,1 @@
-/home/josh/Documents/CompSci/Makefiles/makefile.java
+../../Makefiles/makefile.java
