@@ -54,26 +54,6 @@ public class Worksheet1 {
 		}
 	}
 
-	/** Merges two sorted integer lists maitaining sorted properties. If either
-	 * list is empty, the other is returned since the merger of a list with an
-	 * empty list is itself.
-	 *
-	 * @param a first integer list to be merged with
-	 * @param b second integer list.
-	 * @return new sorted list with all components of inputs, maintaining any
-	 * duplicates.
-	 */
-	public static List merge(List a, List b) {
-		// if (a.isEmpty()) {
-		// 	return b;
-		// }
-		// if (b.isEmpty()) {
-		// 	return a;
-		// }
-
-		return list.ListOps.reverse(merge(a, b, new List()));
-	}
-
 	/** Auxillary method for merging. Merges two sorted inter lists.
 	 *
 	 * @param a first integer list to be merged with
@@ -83,17 +63,11 @@ public class Worksheet1 {
 	 * @return new sorted list with all components of inputs, maintaining any
 	 * duplicates.
 	 */
-	private static List merge(List a, List b, List merged) {
+	public static List merge(List a, List b) {
 		if (a.isEmpty()) {
-
-			// add all rest of b to merged
-			// merged = preppend(merged, b);
 			return b;
 		}
 		if (b.isEmpty()) {
-
-			// add all rest of a to merged
-			// merged = preppend(merged, a);
 			return a;
 		}
 
@@ -106,9 +80,7 @@ public class Worksheet1 {
 		if (aHead < bHead) {
 			return new List(aHead, merge(a.getTail(), b));
 		} else {
-			// TODO: Fix this
 			return new List(bHead, merge(a, b.getTail()));
-			// return merge(a, b.getTail(), new List(bHead, merged));
 		}
 	}
 
