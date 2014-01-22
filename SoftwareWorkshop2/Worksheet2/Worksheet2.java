@@ -1,15 +1,3 @@
-	// // Exercise 3
-
-	// public static boolean isSearchTree( Tree a )
-	// {
-	// }
-
-	// // Exercise 4
-
-	// public static Tree insertHB(int n, Tree t)
-	// {
-	// }
-
 	// // Exercise 5
 
 	// public static Tree deleteHB( Tree a, int x )
@@ -29,6 +17,11 @@ import tree.*;
 
 public class Worksheet2 {
 
+	/**
+	 *
+	 * @param a
+	 * @return
+	 */
 	public static boolean isHeightBalanced(Tree a) {
 		int heightDiff = a.getRight().getHeight() - a.getLeft().getHeight();
 		if (heightDiff > 1 || heightDiff < -1) {
@@ -40,14 +33,20 @@ public class Worksheet2 {
 		return isHeightBalanced(a.getLeft()) && isHeightBalanced(a.getRight());
 	}
 
+	/**
+	 *
+	 * @param a
+	 * @return
+	 */
 	private static int heightDiff(Tree a) {
 		return a.getRight().getHeight() - a.getLeft().getHeight();
 	}
 
-	// static boolean isSearchTree(Tree a) {
-	// 	return isSearchTree(a, false);
-	// }
-
+	/**
+	 *
+	 * @param a
+	 * @return
+	 */
 	public static boolean isSearchTree(Tree a) {
 		if (a.getEmpty()) {
 			return true;
@@ -75,6 +74,12 @@ public class Worksheet2 {
 
 	}
 
+	/**
+	 *
+	 * @param n
+	 * @param a
+	 * @return
+	 */
 	public static Tree insertHB(int n, Tree a) {
 		if (a.getEmpty()) {
 			return new Tree(n, new Tree(), new Tree());
@@ -96,6 +101,11 @@ public class Worksheet2 {
 		}
 	}
 
+	/**
+	 *
+	 * @param a
+	 * @return
+	 */
 	private static Tree sortHeightDifferences(Tree a) {
 		if (heightDiff(a) < -1) {
 			if (heightDiff(a.getLeft()) < -1) {
@@ -114,6 +124,11 @@ public class Worksheet2 {
 		return a;
 	}
 
+	/** Perform a left-left rotation on a tree. Only works on trees that have a
+	 * height > 2. Used for balancing height balanced trees.
+	 *
+	 * @param t tree to be rotated.
+	 */
 	private static Tree LL(Tree t) {
 		int a = t.getValue();
 		int l = t.getLeft().getValue();
@@ -124,6 +139,10 @@ public class Worksheet2 {
 		return new Tree(l, A, new Tree(a, B, C));
 	}
 
+	/**
+	 *
+	 * @param t
+	 */
 	private static Tree RR(Tree t) {
 		int a = t.getValue();
 		int l = t.getRight().getValue();
@@ -134,6 +153,10 @@ public class Worksheet2 {
 		return new Tree(l, new Tree(a, C, B), A);
 	}
 
+	/**
+	 *
+	 * @param t
+	 */
 	private static Tree LR(Tree t) {
 		int a = t.getValue();
 		int l = t.getLeft().getValue();
@@ -146,6 +169,10 @@ public class Worksheet2 {
 		return new Tree(c, new Tree(l, A, B1), new Tree(a, B2, C));
 	}
 
+	/**
+	 *
+	 * @param t
+	 */
 	private static Tree RL(Tree t) {
 		int a = t.getValue();
 		int l = t.getRight().getValue();
