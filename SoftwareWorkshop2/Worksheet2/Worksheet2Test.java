@@ -35,6 +35,8 @@ public class Worksheet2Test {
 	static Tree tUnbalancedNonSearch;
 	static Tree ta;
 	static Tree taAddHBComp;
+	static Tree tb;
+	static Tree tbAddHBComp;
 	static Tree tEmptyAddHBComp;
 
 	@BeforeClass
@@ -67,11 +69,23 @@ public class Worksheet2Test {
 			ta = tree.SearchTreeOps.insert(numbers2[i], ta);
 		}
 
-		// --------------------------------------------------------------------
 		int[] numbers3 = {6, 3, 8, 1, 5, 7, 9, 2, 4, 10};
 		taAddHBComp = new Tree();
 		for (int i = 0; i < numbers3.length; i++) {
 			taAddHBComp = tree.SearchTreeOps.insert(numbers3[i], taAddHBComp);
+		}
+
+		// --------------------------------------------------------------------
+		int[] numbers4 = {12, 5, 15, 2, 9, 18};
+		tb = new Tree();
+		for (int i = 0; i < numbers4.length; i++) {
+			tb = tree.SearchTreeOps.insert(numbers4[i], tb);
+		}
+
+		int[] numbers5 = {6, 3, 8, 1, 5, 7, 9, 2, 4, 10};
+		tbAddHBComp = new Tree();
+		for (int i = 0; i < numbers5.length; i++) {
+			tbAddHBComp = tree.SearchTreeOps.insert(numbers5[i], tbAddHBComp);
 		}
 
 		// --------------------------------------------------------------------
@@ -132,36 +146,28 @@ public class Worksheet2Test {
 		Tree taAddHB = Worksheet2.insertHB(10, ta);
 
 		assertTrue(taAddHB.equals(taAddHBComp));
-	}
-	@Test
-	public void testInsertHBa() {
-		Tree taAddHB = Worksheet2.insertHB(10, ta);
-
 		assertTrue(Worksheet2.isSearchTree(taAddHB));
-	}
-	@Test
-	public void testInsertHBb() {
-		Tree taAddHB = Worksheet2.insertHB(10, ta);
-
 		assertTrue(Worksheet2.isHeightBalanced(taAddHB));
 	}
 
 	@Test
 	public void testInsertHB2() {
+
+		System.out.println();
+		System.out.println(tb);
+		// Tree tbAddHB = Worksheet2.insertHB(21, tb);
+		System.out.println(Worksheet2.insertHB(21, tb));
+		// assertTrue(tbAddHB.equals(tbAddHBComp));
+		// assertTrue(Worksheet2.isSearchTree(tbAddHB));
+		// assertTrue(Worksheet2.isHeightBalanced(tbAddHB));
+	}
+
+	@Test
+	public void testInsertHB3() {
 		Tree tEmptyAddHB = Worksheet2.insertHB(1, tEmpty);
 
 		assertTrue(tEmptyAddHB.equals(tEmptyAddHBComp));
-	}
-	@Test
-	public void testInsertHB2a() {
-		Tree tEmptyAddHB = Worksheet2.insertHB(10, tEmpty);
-
 		assertTrue(Worksheet2.isSearchTree(tEmptyAddHB));
-	}
-	@Test
-	public void testInsertHB2b() {
-		Tree tEmptyAddHB = Worksheet2.insertHB(10, tEmpty);
-
 		assertTrue(Worksheet2.isHeightBalanced(tEmptyAddHB));
 	}
 	// ------------------------------------------------------------------------
