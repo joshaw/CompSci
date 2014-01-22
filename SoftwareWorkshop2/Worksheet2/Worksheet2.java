@@ -1,9 +1,3 @@
-	// // Exercise 5
-
-	// public static Tree deleteHB( Tree a, int x )
-	// {
-	// }
-// }
 /**
  *
  * @author Josh Wainwright
@@ -17,10 +11,10 @@ import tree.*;
 
 public class Worksheet2 {
 
-	/**
+	/** Returns true if a tree is AVL height balanced.
 	 *
-	 * @param a
-	 * @return
+	 * @param a tree to check.
+	 * @return true if tree is balanced.
 	 */
 	public static boolean isHeightBalanced(Tree a) {
 		int heightDiff = a.getRight().getHeight() - a.getLeft().getHeight();
@@ -33,19 +27,22 @@ public class Worksheet2 {
 		return isHeightBalanced(a.getLeft()) && isHeightBalanced(a.getRight());
 	}
 
-	/**
+	/** Calculates the height difference of a tree from the current node.
+	 * Calculated as (height of right subtree) - (height of left subtree).
 	 *
-	 * @param a
-	 * @return
+	 * @param a tree to compare.
+	 * @return integer height difference of the tree.
 	 */
 	private static int heightDiff(Tree a) {
 		return a.getRight().getHeight() - a.getLeft().getHeight();
 	}
 
-	/**
+	/** Returns true if the given tree is a search tree, ie each value to the
+	 * right is greater and each value to the left is less than the current
+	 * value for every node in the tree.
 	 *
-	 * @param a
-	 * @return
+	 * @param a tree to check.
+	 * @return true if the tree is a search tree.
 	 */
 	public static boolean isSearchTree(Tree a) {
 		if (a.getEmpty()) {
@@ -74,11 +71,12 @@ public class Worksheet2 {
 
 	}
 
-	/**
+	/** Inserts a new value into a balanced search tree and ensures that the
+	 * new tree is also balanced.
 	 *
-	 * @param n
-	 * @param a
-	 * @return
+	 * @param n value to be added.
+	 * @param a tree to add value to.
+	 * @return new balanced search tree with the new value.
 	 */
 	public static Tree insertHB(int n, Tree a) {
 		if (a.getEmpty()) {
@@ -87,15 +85,16 @@ public class Worksheet2 {
 			Tree newTree =
 				new Tree(a.getValue(), insertHB(n, a.getLeft()), a.getRight());
 
-			newTree = balanceTree(newTree);
-
-			return newTree;
+			return balanceTree(newTree);
 
 		} else {
 			Tree newTree =
 				new Tree(a.getValue(), a.getLeft(), insertHB(n, a.getRight()));
 
-			newTree = balanceTree(newTree);
+			return balanceTree(newTree);
+		}
+	}
+
 	/** Deletes a value from a balanced search tree ensuring that the new tree
 	 * is also balanced.
 	 *
@@ -155,10 +154,11 @@ public class Worksheet2 {
 		}
 	}
 
-	/**
+	/** Balances a tree by performing a rotation. Only works when the tree is
+	 * unbalanced by max of 1.
 	 *
-	 * @param a
-	 * @return
+	 * @param a tree to balance.
+	 * @return new tree which is balanced
 	 */
 	private static Tree balanceTree(Tree a) {
 		if (heightDiff(a) < -1) {
@@ -182,6 +182,7 @@ public class Worksheet2 {
 	 * height greater than 1. Used for balancing height balanced trees.
 	 *
 	 * @param t tree to be rotated.
+	 * @return rotated tree
 	 */
 	private static Tree LL(Tree t) {
 		int a = t.getValue();
@@ -193,9 +194,11 @@ public class Worksheet2 {
 		return new Tree(l, A, new Tree(a, B, C));
 	}
 
-	/**
+	/** Perform a right-right rotation on a tree. Only works on trees that have
+	 * a height greater than 1. Used for balancing height balanced trees.
 	 *
-	 * @param t
+	 * @param t tree to be rotated.
+	 * @return rotated tree
 	 */
 	private static Tree RR(Tree t) {
 		int a = t.getValue();
@@ -207,9 +210,11 @@ public class Worksheet2 {
 		return new Tree(l, new Tree(a, C, B), A);
 	}
 
-	/**
+	/** Perform a left-right rotation on a tree. Only works on trees that have
+	 * a height greater than 1. Used for balancing height balanced trees.
 	 *
-	 * @param t
+	 * @param t tree to be rotated.
+	 * @return rotated tree
 	 */
 	private static Tree LR(Tree t) {
 		int a = t.getValue();
@@ -223,9 +228,11 @@ public class Worksheet2 {
 		return new Tree(c, new Tree(l, A, B1), new Tree(a, B2, C));
 	}
 
-	/**
+	/** Perform a right-left rotation on a tree. Only works on trees that have
+	 * a height greater than 1. Used for balancing height balanced trees.
 	 *
-	 * @param t
+	 * @param t tree to be rotated.
+	 * @return rotated tree
 	 */
 	private static Tree RL(Tree t) {
 		int a = t.getValue();
