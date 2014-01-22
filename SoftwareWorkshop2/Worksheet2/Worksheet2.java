@@ -82,9 +82,7 @@ public class Worksheet2 {
 			Tree newTree =
 				new Tree(a.getValue(), insertHB(n, a.getLeft()), a.getRight());
 
-			sortHeightDifferences(newTree);
-			System.out.println("Balanced - " + isHeightBalanced(newTree));
-			System.out.println("Diff - " + heightDiff(newTree));
+			newTree = sortHeightDifferences(newTree);
 
 			return newTree;
 
@@ -92,17 +90,12 @@ public class Worksheet2 {
 			Tree newTree =
 				new Tree(a.getValue(), a.getLeft(), insertHB(n, a.getRight()));
 
-			sortHeightDifferences(newTree);
-			System.out.println("Balanced - " + isHeightBalanced(newTree));
-			System.out.println("Diff - " + heightDiff(newTree));
+			newTree = sortHeightDifferences(newTree);
 
 			return newTree;
 		}
 	}
 
-	// TODO
-	// Current situation - sortHeightDifferences seems to not work. Maybe it
-	// needs to be run more than once.
 	private static Tree sortHeightDifferences(Tree a) {
 		if (heightDiff(a) < -1) {
 			if (heightDiff(a.getLeft()) < -1) {
