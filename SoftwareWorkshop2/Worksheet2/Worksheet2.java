@@ -87,7 +87,7 @@ public class Worksheet2 {
 			Tree newTree =
 				new Tree(a.getValue(), insertHB(n, a.getLeft()), a.getRight());
 
-			newTree = sortHeightDifferences(newTree);
+			newTree = balanceTree(newTree);
 
 			return newTree;
 
@@ -95,7 +95,7 @@ public class Worksheet2 {
 			Tree newTree =
 				new Tree(a.getValue(), a.getLeft(), insertHB(n, a.getRight()));
 
-			newTree = sortHeightDifferences(newTree);
+			newTree = balanceTree(newTree);
 
 			return newTree;
 		}
@@ -106,7 +106,7 @@ public class Worksheet2 {
 	 * @param a
 	 * @return
 	 */
-	private static Tree sortHeightDifferences(Tree a) {
+	private static Tree balanceTree(Tree a) {
 		if (heightDiff(a) < -1) {
 			if (heightDiff(a.getLeft()) < -1) {
 				a = LL(a);
@@ -125,7 +125,7 @@ public class Worksheet2 {
 	}
 
 	/** Perform a left-left rotation on a tree. Only works on trees that have a
-	 * height > 2. Used for balancing height balanced trees.
+	 * height greater than 1. Used for balancing height balanced trees.
 	 *
 	 * @param t tree to be rotated.
 	 */
