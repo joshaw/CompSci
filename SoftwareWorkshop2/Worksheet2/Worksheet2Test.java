@@ -114,4 +114,44 @@ public class Worksheet2Test {
 	public void testIsSearchTree4() {
 		assertFalse(Worksheet2.isSearchTree(tUnbalancedNonSearch));
 	}
+
+	// ------------------------------------------------------------------------
+	@Test
+	public void testInsertHB() {
+		Tree taAddHB = Worksheet2.insertHB(10, ta);
+
+		assertTrue(taAddHB.equals(taAddHBComp));
+	}
+	@Test
+	public void testInsertHBa() {
+		Tree taAddHB = Worksheet2.insertHB(10, ta);
+
+		assertTrue(Worksheet2.isSearchTree(taAddHB));
+	}
+	@Test
+	public void testInsertHBb() {
+		Tree taAddHB = Worksheet2.insertHB(10, ta);
+
+		assertTrue(Worksheet2.isHeightBalanced(taAddHB));
+	}
+
+	@Test
+	public void testInsertHB2() {
+		Tree tEmptyAddHB = Worksheet2.insertHB(1, tEmpty);
+
+		assertTrue(tEmptyAddHB.equals(tEmptyAddHBComp));
+	}
+	@Test
+	public void testInsertHB2a() {
+		Tree tEmptyAddHB = Worksheet2.insertHB(10, tEmpty);
+
+		assertTrue(Worksheet2.isSearchTree(tEmptyAddHB));
+	}
+	@Test
+	public void testInsertHB2b() {
+		Tree tEmptyAddHB = Worksheet2.insertHB(10, tEmpty);
+
+		assertTrue(Worksheet2.isHeightBalanced(tEmptyAddHB));
+	}
+	// ------------------------------------------------------------------------
 }
