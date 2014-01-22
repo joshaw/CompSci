@@ -238,4 +238,28 @@ public class Worksheet2 {
 
 		return new Tree(c, new Tree(a, C, B2), new Tree(l, B1, A));
 	}
+
+	/** Returns the maximum element from a sorted binary tree.
+	 *
+	 * @param a tree to return the max element from.
+	 * @return the maximum element.
+	 */
+	public static int max(Tree a) {
+		if (a.getEmpty()) {
+
+			// There are no elements to find the max of.
+			throw new IllegalStateException("tree has no elements.");
+
+		} else if (a.getRight().getEmpty()) {
+
+			// If there is nothing to the right, this must be the largest.
+			return a.getValue();
+
+		} else {
+
+			// Otherwise find the largest elements on the right side.
+			return max(a.getRight());
+		}
+	}
+
 }
