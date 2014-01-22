@@ -162,15 +162,15 @@ public class Worksheet2 {
 	 */
 	private static Tree balanceTree(Tree a) {
 		if (heightDiff(a) < -1) {
-			if (heightDiff(a.getLeft()) < -1) {
+			if (heightDiff(a.getLeft()) < 0) {
 				a = LL(a);
-			} else {
+			} else if (heightDiff(a.getLeft()) > 0) {
 				a = LR(a);
 			}
 		} else if (heightDiff(a) > 1) {
-			if (heightDiff(a.getRight()) > 1) {
+			if (heightDiff(a.getRight()) > 0) {
 				a = RR(a);
-			} else {
+			} else if (heightDiff(a.getRight()) < 0) {
 				a = RL(a);
 			}
 		}
