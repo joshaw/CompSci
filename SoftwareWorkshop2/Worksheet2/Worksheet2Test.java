@@ -35,8 +35,10 @@ public class Worksheet2Test {
 	static Tree tUnbalancedNonSearch;
 	static Tree ta;
 	static Tree taAddHBComp;
+	static Tree taDelHBComp;
 	static Tree tb;
 	static Tree tbAddHBComp;
+	static Tree tbDelHBComp;
 	static Tree tEmptyAddHBComp;
 
 	@BeforeClass
@@ -75,17 +77,29 @@ public class Worksheet2Test {
 			taAddHBComp = tree.SearchTreeOps.insert(numbers3[i], taAddHBComp);
 		}
 
-		// --------------------------------------------------------------------
-		int[] numbers4 = {12, 5, 15, 2, 9, 18};
-		tb = new Tree();
+		int[] numbers4 = {6, 4, 8, 3, 5, 7, 9};
+		taDelHBComp = new Tree();
 		for (int i = 0; i < numbers4.length; i++) {
-			tb = tree.SearchTreeOps.insert(numbers4[i], tb);
+			taDelHBComp = tree.SearchTreeOps.insert(numbers4[i], taDelHBComp);
 		}
 
-		int[] numbers5 = {6, 3, 8, 1, 5, 7, 9, 2, 4, 10};
-		tbAddHBComp = new Tree();
+		// --------------------------------------------------------------------
+		int[] numbers5 = {12, 5, 15, 2, 9, 18};
+		tb = new Tree();
 		for (int i = 0; i < numbers5.length; i++) {
-			tbAddHBComp = tree.SearchTreeOps.insert(numbers5[i], tbAddHBComp);
+			tb = tree.SearchTreeOps.insert(numbers5[i], tb);
+		}
+
+		int[] numbers6 = {12, 5, 18, 2, 9, 15, 21};
+		tbAddHBComp = new Tree();
+		for (int i = 0; i < numbers6.length; i++) {
+			tbAddHBComp = tree.SearchTreeOps.insert(numbers6[i], tbAddHBComp);
+		}
+
+		int[] numbers7 = {12, 5, 2, 9, 15};
+		tbDelHBComp = new Tree();
+		for (int i = 0; i < numbers7.length; i++) {
+			tbDelHBComp = tree.SearchTreeOps.insert(numbers7[i], tbDelHBComp);
 		}
 
 		// --------------------------------------------------------------------
@@ -153,13 +167,12 @@ public class Worksheet2Test {
 	@Test
 	public void testInsertHB2() {
 
-		System.out.println();
-		System.out.println(tb);
-		// Tree tbAddHB = Worksheet2.insertHB(21, tb);
-		System.out.println(Worksheet2.insertHB(21, tb));
-		// assertTrue(tbAddHB.equals(tbAddHBComp));
-		// assertTrue(Worksheet2.isSearchTree(tbAddHB));
-		// assertTrue(Worksheet2.isHeightBalanced(tbAddHB));
+		assertTrue(Worksheet2.isHeightBalanced(tb));
+
+		Tree tbAddHB = Worksheet2.insertHB(21, tb);
+		assertTrue(tbAddHB.equals(tbAddHBComp));
+		assertTrue(Worksheet2.isSearchTree(tbAddHB));
+		assertTrue(Worksheet2.isHeightBalanced(tbAddHB));
 	}
 
 	@Test
@@ -170,5 +183,34 @@ public class Worksheet2Test {
 		assertTrue(Worksheet2.isSearchTree(tEmptyAddHB));
 		assertTrue(Worksheet2.isHeightBalanced(tEmptyAddHB));
 	}
+
 	// ------------------------------------------------------------------------
+	@Test
+	public void testDeleteHB() {
+		Tree taDelHB = Worksheet2.deleteHB(ta, 2);
+		taDelHB = Worksheet2.deleteHB(taDelHB, 1);
+
+		assertTrue(taDelHB.equals(taDelHBComp));
+		assertTrue(Worksheet2.isSearchTree(taDelHB));
+		assertTrue(Worksheet2.isHeightBalanced(taDelHB));
+	}
+
+	@Test
+	public void testDeleteHB2() {
+		Tree tbDelHB = Worksheet2.deleteHB(tb, 18);
+
+		assertTrue(tbDelHB.equals(tbDelHBComp));
+		assertTrue(Worksheet2.isSearchTree(tbDelHB));
+		assertTrue(Worksheet2.isHeightBalanced(tbDelHB));
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testDeleteHB3() {
+		Worksheet2.deleteHB(ta, 100);
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testDeleteHB4() {
+		Worksheet2.deleteHB(tEmpty, 1);
+	}
 }
