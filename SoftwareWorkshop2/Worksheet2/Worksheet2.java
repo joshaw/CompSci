@@ -96,8 +96,62 @@ public class Worksheet2 {
 				new Tree(a.getValue(), a.getLeft(), insertHB(n, a.getRight()));
 
 			newTree = balanceTree(newTree);
+	/** Deletes a value from a balanced search tree ensuring that the new tree
+	 * is also balanced.
+	 *
+	 * @param a tree to delete value from.
+	 * @param x value to be deleted.
+	 * @return new balanced search tree without the deleted value.
+	 */
+	public static Tree deleteHB(Tree a, int x) {
+		return deleteHB(a, x, new Tree());
+	}
 
-			return newTree;
+	/** Deletes a value from a balanced search tree ensuring that the new tree
+	 * is also balanced.
+	 *
+	 * @param a tree to delete value from.
+	 * @param x value to be deleted.
+	 * @param newTree copy of the new tree that is added to to make a copy of
+	 * the original without the deleted value.
+	 * @return new balanced search tree without the deleted value.
+	 */
+	public static Tree deleteHB(Tree a, int x, Tree newTree) {
+		if (a.getEmpty()) {
+			throw new IllegalStateException("Value, " + x + ", not in tree");
+
+		} else if (x < a.getValue()) {
+			Tree tmpTree = new Tree(a.getValue(),
+					deleteHB(a.getLeft(), x, newTree), a.getRight());
+			return balanceTree(tmpTree);
+
+		} else if (x > a.getValue()) {
+			Tree tmpTree = new Tree(a.getValue(),
+					a.getLeft(), deleteHB(a.getRight(), x, newTree));
+			return balanceTree(tmpTree);
+
+		} else { // n == a.getValue()
+			if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
+
+				// Just delete the node since it is a leaf
+				return new Tree();
+			} else if (a.getLeft().getEmpty()) {
+
+				// Make child node the new root
+				return a.getRight();
+			} else if (a.getRight().getEmpty()) {
+
+				// Make child node the new root
+				return a.getLeft();
+			} else {
+
+				// Largest child from left subtree becomes new root.
+				int maxFromSub = max(a.getLeft());
+				Tree tmpTree = new Tree(maxFromSub,
+						deleteHB(a.getLeft(), maxFromSub, new Tree()),
+						a.getRight());
+				return balanceTree(tmpTree);
+			}
 		}
 	}
 
