@@ -1,0 +1,549 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><link rel=stylesheet href="css.css" /></head><body>
+<h1>Databases</h1>
+
+<h2>Tables, Attributes and Entities</h2>
+
+<h3>Attribute</h3>
+
+<ul>
+<li>The names of the different information in a table, ie column headers</li>
+</ul>
+
+<h3>Redundancy</h3>
+
+<ul>
+<li>Replicating data in multiple places unnecessarily</li>
+<li>Increases the likelihood of data anomalies and lack of integrity</li>
+<li>A type of inefficiency</li>
+</ul>
+
+<h3>Pointing</h3>
+
+<ul>
+<li>Referring to a non-local location by means of the definitive location
+<ul>
+<li>Means that if the object being referred to moves, then the link is broken</li>
+<li>eg linking to chapter X, page Y in an index</li>
+</ul></li>
+</ul>
+
+<h3>Associative Linking</h3>
+
+<ul>
+<li>Using specific individual name or identifier to refer between two locations 
+where the same information is needed in both, eg tables
+<ul>
+<li>eg linking to chapter X.Y.Z in an contents</li>
+</ul></li>
+<li>When used in a database, typically the column names of the shared attribute 
+in each table will be the same or similar, though this is not required</li>
+</ul>
+
+<h3>Referential Integrity</h3>
+
+<ul>
+<li>Relevant when one place in a data repository needs to refer to something in
+another place</li>
+<li>Referential integrity is achieved when every such referring place contains a
+successful reference to another place or place-occupant (or no reference at
+all)
+<ul>
+<li>Successful there means that the reference succeeds in specifying some
+other place</li>
+</ul></li>
+</ul>
+
+<h3>Entity Types</h3>
+
+<ul>
+<li>The main defining aspect of the data in a single table that allows that data 
+to be grouped together</li>
+</ul>
+
+<h3>Entities</h3>
+
+<ul>
+<li>Each of the individual elements of the same entity type in a table</li>
+</ul>
+
+<h3>Connectivity</h3>
+
+<ul>
+<li>1:1
+<ul>
+<li>One to One</li>
+<li>Every entity in a table is related to exactly 1 entity in another table. <br />
+There cannot be more that one connection and there cannot be no 
+connections.</li>
+<li>eg <strong>person &lt;-> ID number</strong>
+<ul>
+<li>Each person has a single ID and every ID has a single person</li>
+</ul></li>
+</ul></li>
+<li>1:M
+<ul>
+<li>One to Many</li>
+<li>Every entity in a table can have many different connections to entity 
+types in other tables.</li>
+<li>eg <strong>manager &lt;-> people</strong>
+<ul>
+<li>Each manager manages sever people, but each person is only managed by 
+a single manager</li>
+</ul></li>
+</ul></li>
+<li>M:N
+<ul>
+<li>Many to Many</li>
+<li>Each entity can be connected to many other entities and connection can be 
+repeated many times</li>
+<li>eg <strong>person &lt;-> lecture courses</strong>
+<ul>
+<li>Each person is enrolled on multiple lecture courses, and each lecture 
+course has many people enrolled on it.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3>Cardinality</h3>
+
+<ul>
+<li>The number of other entities that are allowed and/or required to be related 
+to the first for a particular entity
+<ul>
+<li>Given as a minimum, a maximum or both a min and max</li>
+</ul></li>
+</ul>
+
+<h3>Optionality</h3>
+
+<ul>
+<li>Also referred to as relationship participation</li>
+<li>A relationship is optional if it does not have to exist for any given entity
+<ul>
+<li>eg <strong>person -> loaned book</strong></li>
+<li>Not every person has to have a book on loan</li>
+</ul></li>
+<li>A relationship is mandatory if it has to exist for an entity
+<ul>
+<li>eg <strong>loaned book -> person</strong></li>
+<li>Every book on loan must have some person who has taken it out</li>
+</ul></li>
+<li>Both of these require specification of the direction that the optionality is 
+applied
+<ul>
+<li>Could be optional in one direction but mandatory in the other</li>
+</ul></li>
+</ul>
+
+<h3>Functional Dependence</h3>
+
+<ul>
+<li>An attribute, or set of attributes, depends on a separate attribute, or set 
+of attributes, if each value of the first is associated with exactly one in 
+the other.</li>
+<li>Conversely, an attribute determines another if the second is functionally 
+dependant on the first
+<ul>
+<li>eg Day-number, month and year <strong>determine</strong> day-name</li>
+<li>eg Day-name <strong>is functionally dependant on</strong> day-number, month and year</li>
+</ul></li>
+</ul>
+
+<h3>Determinant</h3>
+
+<ul>
+<li>The determining set of attributes
+<ul>
+<li>eg the determinant day-number, month and year determines day-name</li>
+</ul></li>
+</ul>
+
+<h3>Business Rule</h3>
+
+<ul>
+<li>A short concise and unique description of a policy, procedure or principle 
+within a particular organisation</li>
+</ul>
+
+<h3>Keys</h3>
+
+<h4>Superkey</h4>
+
+<ul>
+<li>Determines all other attributes in the table</li>
+<li>Trivially, the set of all attributes must be a superkey in order to prevent 
+duplicate entries in a table</li>
+</ul>
+
+<h4>Candidate Key</h4>
+
+<ul>
+<li>A minimal superkey
+<ul>
+<li>Cannot remove any attributes and still have a superkey</li>
+</ul></li>
+</ul>
+
+<h4>Primary Key</h4>
+
+<ul>
+<li>Chosen candidate key to identify entities in a table
+<ul>
+<li>The simpler the primary key, the better</li>
+<li>Not allowed to contain any null values since there could then be two 
+elements with the same null value causing duplication</li>
+</ul></li>
+<li>Used to access entities of an entity type as quickly as possible
+<ul>
+<li>Better to use short, alphanumeric, non-ambiguous keys</li>
+</ul></li>
+</ul>
+
+<h4>Foreign Key</h4>
+
+<ul>
+<li>A primary key from another table that is included in a table to represent the 
+relationship between those two tables
+<ul>
+<li>Associative linking</li>
+<li>For a 1:1 mapping, the foreign key can be used to identify elements in 
+both directions as long as there are no null values in either side</li>
+</ul></li>
+</ul>
+
+<h3>Bridging Table</h3>
+
+<ul>
+<li>Also called Linking table</li>
+<li>Splits an M:N relationship into two relationships that are both 1:M
+<ul>
+<li>eg <strong>Person &lt;-> lecture courses</strong>
+<ul>
+<li>could be split into </li>
+</ul></li>
+<li><strong>Person &lt;-> enrollment</strong> <em>and</em> <strong>enrollment &lt;-> lecture courses</strong></li>
+<li>For each person, there are several enrollments, but for each enrollment 
+there is just a single lecture course. Similarly, for each lecture 
+course, there are several enrollments but for each enrollment there is 
+only one person</li>
+</ul></li>
+<li>The primary key in the bridging table is the combination of the foreign keys 
+for each of the two separate 1:M tables</li>
+</ul>
+
+<h3>Relationship Strength</h3>
+
+<ul>
+<li>A relationship is strong when the second entity contains the primary key of 
+the first
+<ul>
+<li>eg <strong>A -> B</strong> is <em>strong</em> if B's PK contains A's PK</li>
+<li>So B's entities are defined in terms of A's entities</li>
+<li>Includes to case when PK(B) = PK(A)</li>
+</ul></li>
+<li>When a relationship is not <em>strong</em> it is <em>weak</em>
+<ul>
+<li>Most relationships are weak, ie the PK's in most relationships do not 
+share attributes.</li>
+</ul></li>
+<li>The strength of a relationship is directional
+<ul>
+<li>Usually a strong relationship is only strong in one direction
+<ul>
+<li>To be strong in both directions, PK(A) = PK(B)</li>
+</ul></li>
+<li>if <strong>PK(A) &isin; PK(B)</strong> then relationship BA is strong</li>
+<li>if <strong>PK(B) &isin; PK(A)</strong> then relationship AB is strong</li>
+<li>if <strong>PK(A) = PK(B)</strong> then both relationship AB and BA are strong</li>
+</ul></li>
+</ul>
+
+<h3>Entity Type Strength</h3>
+
+<ul>
+<li>An entity type is <em>weak</em> if there is a <em>strong</em> relationship between it and 
+another type and it is existence dependant on that other type via the strong 
+relationship
+<ul>
+<li>eg a person could be said to be weak if they are strongly related so 
+someone else</li>
+<li>This is the same as saying that the reverse relationship be mandatory</li>
+</ul></li>
+<li>Usually entity types are <em>strong</em></li>
+</ul>
+
+<h3>Multi-Valued Attributes</h3>
+
+<ul>
+<li>A multi-valued attribute can have on or more values</li>
+<li>Several possible methods for dealing with them
+<ul>
+<li>Could represent the values as a string with each value concatenated with 
+the others</li>
+<li>Or could give each value a separate attribute
+<ul>
+<li>Requires some maximum number of "sub"-attributes that is allowed to 
+be represented. For the elements where this maximum is not needed, 
+the values are left blank, null</li>
+<li>Need to know the maximum number of attributes in order to create 
+columns for them</li>
+</ul></li>
+<li>Or separate the multi-quality attribute into a separate linked table so 
+that the PK in the main table is used to identify the appropriate entries 
+in the new second table</li>
+</ul></li>
+</ul>
+
+<h2>Generalisation Hierarchy</h2>
+
+<ul>
+<li>Or specialization hierarchy</li>
+<li>A group of relationships each of which is between a higher-level <em>supertype</em> 
+entity and a lower-level <em>subtype</em> entity.</li>
+<li>Primary key of a subtype is the same as the primary key of its supertype.</li>
+</ul>
+
+<h3>Sub- and Super-Types</h3>
+
+<ul>
+<li>Super-type - contains attributes shared by all its sub-types</li>
+<li>Sub-type - contains special attributes not shared by its sisters
+<ul>
+<li>A super-type has a 1:1 relationship with each sub-type
+<ul>
+<li><strong>Mandatory</strong> in the <strong>sub-to-super</strong> direction</li>
+<li><strong>Optional</strong> in the <strong>super-to-sub</strong> direction</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3>Disjoint</h3>
+
+<ul>
+<li>Each entity in the super-type can appear in at most one of the subtypes
+<ul>
+<li><strong>0</strong> or <strong>1</strong></li>
+</ul></li>
+</ul>
+
+<h3>Overlapping</h3>
+
+<ul>
+<li>A given entity type can appear in more than one sub-type
+<ul>
+<li><strong>0</strong> or <strong>more</strong></li>
+</ul></li>
+</ul>
+
+<h3>Exhaustive</h3>
+
+<ul>
+<li>Each entity in the super-type must appear in at least one one of the
+sub-types
+<ul>
+<li><strong>1</strong> or <strong>more</strong></li>
+</ul></li>
+</ul>
+
+<h2>Types of Relationship</h2>
+
+<h4>Unary</h4>
+
+<ul>
+<li>Contains just a single entity
+<ul>
+<li>eg <strong>subject -> <em>requires</em> -> subject</strong> </li>
+<li>the subjects have to be different, but they are of the same entity type</li>
+</ul></li>
+</ul>
+
+<h4>Binary</h4>
+
+<ul>
+<li>Contains two <strong>types</strong> of entity
+<ul>
+<li>eg <strong>teacher -> <em>teaches</em> -> subject</strong></li>
+</ul></li>
+</ul>
+
+<h4>Ternary</h4>
+
+<ul>
+<li>Contains three <strong>types</strong> of entity
+<ul>
+<li>eg <strong>teacher <em>from</em> course -> <em>teaches</em> -> subject</strong></li>
+</ul></li>
+</ul>
+
+<h4>Recursive</h4>
+
+<ul>
+<li>Two or more of the relationships contain more than 1 of the same entity types
+<ul>
+<li>eg <strong>person -> married to -> person</strong></li>
+</ul></li>
+</ul>
+
+<h4>Symmetry</h4>
+
+<ul>
+<li>Symmetric
+<ul>
+<li>Both entities in a two entity recursive relationship refer to each other
+<ul>
+<li>eg <strong>person -> married to -> person</strong></li>
+</ul></li>
+</ul></li>
+<li>Anti-symmetric
+<ul>
+<li>An relationship between two entities of the same type cannot allow the 
+two type to be related to each other via the same relationship
+<ul>
+<li>eg <strong>course1 -> requires -> course2</strong></li>
+<li>course1 and course2 cannot be the same</li>
+</ul></li>
+</ul></li>
+<li>Only makes sense in the 1:1 and M:N cases</li>
+</ul>
+
+<h2>Entity Relationship Models and Diagrams (ERM &amp; ERD)</h2>
+
+<h3>ERM</h3>
+
+<ul>
+<li>Just the concept of thinking about a database as consisting of: 
+<ul>
+<li>Entities</li>
+<li>Attributes</li>
+<li>Relationships</li>
+</ul></li>
+<li>Applying this approach in a particular case gives rise to ER models for that 
+situation</li>
+</ul>
+
+<h3>ERD's</h3>
+
+<h4>Chen Model</h4>
+
+<ul>
+<li>Rectangles represent entity types
+<ul>
+<li>Weak entity types are shown with a double rectangle</li>
+</ul></li>
+<li>Diamonds represent relationships
+<ul>
+<li>No information given regarding the direction of the relationship, up to 
+the designer to make this clear from the names given to the entities 
+involved and the relationship</li>
+</ul></li>
+<li>Bridging types are marked clearly with a diamond inside a rectangle</li>
+<li>A marker (1, M) is placed above the junction between entity and relationship 
+to inform regarding the connectivity</li>
+<li>Entities are represented with an oval connected to the relevant entity type</li>
+<li>A marker is placed below this junction to show cardinality
+<ul>
+<li>eg <strong>(0,3)</strong> means at least 0 and at most 3</li>
+<li>eg <strong>(4,M)</strong> means more than 4 but no maximum</li>
+</ul></li>
+<li>Optionality is shown by changing the end of the line where it meets the 
+entity type
+<ul>
+<li>Normal or mandatory is not changed</li>
+<li>Optional replaces the end of the line with a circle</li>
+</ul></li>
+<li>The primary is represented by underlining the relevant entities</li>
+</ul>
+
+<p><img src="http://ce-gmbh.com/images/chen2.JPG" alt="Chen Model example diagram" /></p>
+
+<h4>Crows Foot Model</h4>
+
+<ul>
+<li>Rectangles represent entity types
+<ul>
+<li>Information about the entities, and the primary and foreign keys are 
+shown below the name of the entity type</li>
+</ul></li>
+<li>Relationships are shown on top of lines connecting entity types</li>
+<li>Connectivity is shown with the end type of the relationship line
+<ul>
+<li>A line with a crossed vertical line represents a 1 relationship</li>
+<li>A line which ends in a "crows foot" represents an M relationship</li>
+</ul></li>
+<li>Optionality is shown using a circle at the end of the line, before the 
+connectivity marker for an optional relationship
+<ul>
+<li>Normal and mandatory relationships are not changed</li>
+</ul></li>
+<li>Weak relationships are shown with a dashed line</li>
+<li>There is no specific highlighting of relationship strength</li>
+</ul>
+
+<p><img src="http://i.stack.imgur.com/V62Rm.jpg" alt="Crows Foot Model diagram" /></p>
+
+<h2>Sets</h2>
+
+<h3>Membership Relationships</h3>
+
+<ul>
+<li><strong>a</strong> is a member of <strong>A</strong>
+<ul>
+<li>a &isin; A</li>
+</ul></li>
+<li><strong>a</strong> is not a member of <strong>A</strong>
+<ul>
+<li>a &notin; A</li>
+</ul></li>
+<li><strong>A</strong> is a subset of <strong>B</strong>
+<ul>
+<li>A &sube; B</li>
+</ul></li>
+<li><strong>A</strong> is not a subset of <strong>B</strong>
+<ul>
+<li>A &nsub; B</li>
+</ul></li>
+</ul>
+
+<h3>Operations</h3>
+
+<ul>
+<li><em>Union</em> of <strong>A</strong> and <strong>B</strong> (OR)
+<ul>
+<li>A &cup; B</li>
+<li>Note: no repetitions created</li>
+</ul></li>
+<li><em>Intersection of</em> <strong>A</strong> and <strong>B</strong> (AND)
+<ul>
+<li>A &cap; B</li>
+</ul></li>
+<li><em>Difference</em> of <strong>A</strong> with <strong>B</strong> (NOT)
+<ul>
+<li>A - B</li>
+<li>A ¬ B</li>
+<li>A \ B</li>
+<li>Note: set of elements that are in A but not B</li>
+</ul></li>
+</ul>
+
+<h4>Properties of Operations</h4>
+
+<ul>
+<li>Union and intersection are commutititve;
+<ul>
+<li>A &cup; B = B &cup; A</li>
+<li>A &cap; B = B &cap; A</li>
+</ul></li>
+<li>Union and intersection are associative
+<ul>
+<li>A &cup; ( B &cup; C ) = ( A &cup; B ) &cup; C</li>
+<li>A &cap; ( B &cap; C ) = ( A &cap; B ) &cap; C</li>
+</ul></li>
+<li>Union <em>distributes over</em> intersection
+<ul>
+<li>A &cup; ( B &cap; C ) = ( A &cup; B ) &cap; ( A &cup; C )</li>
+</ul></li>
+<li>Intersection <em>distributes over</em> union
+<ul>
+<li>A &cap; ( B &cup; C ) = ( A &cap; B ) &cup; ( A &cap; C )</li>
+</ul></li>
+</ul>
