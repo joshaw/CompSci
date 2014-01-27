@@ -8,6 +8,7 @@
  * @version 2014-01-21
  */
 import tree.*;
+import list.*;
 
 public class Worksheet2 {
 
@@ -44,31 +45,45 @@ public class Worksheet2 {
 	 * @param a tree to check.
 	 * @return true if the tree is a search tree.
 	 */
+	// public static boolean isSearchTree(Tree a) {
+	// 	if (a.getEmpty()) {
+	// 		return true;
+	// 	}
+
+	// 	if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
+	// 		return true;
+	// 	}
+
+	// 	if (a.getLeft().getEmpty() && a.getValue() < a.getRight().getValue()) {
+	// 		return isSearchTree(a.getRight());
+	// 	}
+
+	// 	if (a.getRight().getEmpty() && a.getLeft().getValue() < a.getValue()) {
+	// 		return isSearchTree(a.getLeft());
+	// 	}
+
+	// 	if (a.getValue() < a.getRight().getValue()
+	// 			&& a.getValue() > a.getLeft().getValue()) {
+	// 		return isSearchTree(a.getLeft())
+	// 			&& isSearchTree(a.getRight());
+	// 	}
+
+	// 	return false;
+	// }
+
 	public static boolean isSearchTree(Tree a) {
-		if (a.getEmpty()) {
+		List elements = TreeOps.inorder(a);
+		return isSortedList(elements);
+	}
+
+	private static boolean isSortedList(List elements) {
+		if (elements.isEmpty() || elements.getTail().isEmpty()) {
 			return true;
 		}
-
-		if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
-			return true;
+		if (elements.getHead() < elements.getTail().getHead()) {
+			return isSortedList(elements.getTail());
 		}
-
-		if (a.getLeft().getEmpty() && a.getValue() < a.getRight().getValue()) {
-			return isSearchTree(a.getRight());
-		}
-
-		if (a.getRight().getEmpty() && a.getLeft().getValue() < a.getValue()) {
-			return isSearchTree(a.getLeft());
-		}
-
-		if (a.getValue() < a.getRight().getValue()
-				&& a.getValue() > a.getLeft().getValue()) {
-			return isSearchTree(a.getLeft())
-				&& isSearchTree(a.getRight());
-		}
-
 		return false;
-
 	}
 
 	/** Inserts a new value into a balanced search tree and ensures that the
