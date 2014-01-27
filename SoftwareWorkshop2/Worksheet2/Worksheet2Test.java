@@ -39,6 +39,7 @@ public class Worksheet2Test {
 	static Tree tb;
 	static Tree tbAddHBComp;
 	static Tree tbDelHBComp;
+	static Tree tc;
 	static Tree tEmptyAddHBComp;
 
 	@BeforeClass
@@ -104,6 +105,17 @@ public class Worksheet2Test {
 
 		// --------------------------------------------------------------------
 		tEmptyAddHBComp = new Tree(1, new Tree(), new Tree());
+
+		tc = new Tree(5,
+				new Tree(5,
+					new Tree(),
+					new Tree()
+				),
+				new Tree(5,
+					new Tree(),
+					new Tree()
+				)
+			);
 	}
 
 	// ------------------------------------------------------------------------
@@ -122,6 +134,11 @@ public class Worksheet2Test {
 		assertEquals(3, ta.getHeight());
 	}
 
+	@Test
+	public void testGetHeight4() {
+		assertEquals(2, tb.getHeight());
+	}
+
 	// ------------------------------------------------------------------------
 	@Test
 	public void testIsHeightBalanced() {
@@ -131,6 +148,11 @@ public class Worksheet2Test {
 	@Test
 	public void testIsHeightBalanced2() {
 		assertFalse(Worksheet2.isHeightBalanced(tUnbalancedSearch));
+	}
+
+	@Test
+	public void testIsHeightBalanced3() {
+		assertTrue(Worksheet2.isHeightBalanced(tb));
 	}
 
 	// ------------------------------------------------------------------------
@@ -152,6 +174,11 @@ public class Worksheet2Test {
 	@Test
 	public void testIsSearchTree4() {
 		assertFalse(Worksheet2.isSearchTree(tUnbalancedNonSearch));
+	}
+
+	@Test
+	public void testIsSearchTree5() {
+		assertTrue(Worksheet2.isSearchTree(tc));
 	}
 
 	// ------------------------------------------------------------------------
@@ -184,6 +211,28 @@ public class Worksheet2Test {
 		assertTrue(Worksheet2.isHeightBalanced(tEmptyAddHB));
 	}
 
+	@Test
+	public void testInsertHB4() {
+		Tree tcAddHB = Worksheet2.insertHB(5, tc);
+		Tree tcAddHBComp = new Tree(5,
+				new Tree(5,
+					new Tree(5,
+						new Tree(),
+						new Tree()
+					),
+					new Tree()
+				),
+				new Tree(5,
+					new Tree(),
+					new Tree()
+				)
+			);
+
+		assertTrue(tcAddHB.equals(tcAddHBComp));
+		assertTrue(Worksheet2.isSearchTree(tcAddHB));
+		assertTrue(Worksheet2.isHeightBalanced(tcAddHB));
+	}
+
 	// ------------------------------------------------------------------------
 	@Test
 	public void testDeleteHB() {
@@ -213,4 +262,21 @@ public class Worksheet2Test {
 	public void testDeleteHB4() {
 		Worksheet2.deleteHB(tEmpty, 1);
 	}
+
+	@Test
+	public void testDeleteHB5() {
+		Tree tcDelHB = Worksheet2.deleteHB(tc, 5);
+		Tree tcDelHBComp = new Tree(5,
+				new Tree(),
+				new Tree(5,
+					new Tree(),
+					new Tree()
+				)
+			);
+
+		assertTrue(tcDelHB.equals(tcDelHBComp));
+		assertTrue(Worksheet2.isSearchTree(tcDelHB));
+		assertTrue(Worksheet2.isHeightBalanced(tcDelHB));
+	}
+
 }

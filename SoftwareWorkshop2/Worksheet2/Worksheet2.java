@@ -45,42 +45,51 @@ public class Worksheet2 {
 	 * @param a tree to check.
 	 * @return true if the tree is a search tree.
 	 */
-	// public static boolean isSearchTree(Tree a) {
-	// 	if (a.getEmpty()) {
-	// 		return true;
-	// 	}
+/*	public static boolean isSearchTree(Tree a) {
+		if (a.getEmpty()) {
+			return true;
+		}
 
-	// 	if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
-	// 		return true;
-	// 	}
+		if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
+			return true;
+		}
 
-	// 	if (a.getLeft().getEmpty() && a.getValue() < a.getRight().getValue()) {
-	// 		return isSearchTree(a.getRight());
-	// 	}
+		if (a.getLeft().getEmpty() && a.getValue() < a.getRight().getValue()) {
+			return isSearchTree(a.getRight());
+		}
 
-	// 	if (a.getRight().getEmpty() && a.getLeft().getValue() < a.getValue()) {
-	// 		return isSearchTree(a.getLeft());
-	// 	}
+		if (a.getRight().getEmpty() && a.getLeft().getValue() < a.getValue()) {
+			return isSearchTree(a.getLeft());
+		}
 
-	// 	if (a.getValue() < a.getRight().getValue()
-	// 			&& a.getValue() > a.getLeft().getValue()) {
-	// 		return isSearchTree(a.getLeft())
-	// 			&& isSearchTree(a.getRight());
-	// 	}
+		if (a.getValue() < a.getRight().getValue()
+				&& a.getValue() > a.getLeft().getValue()) {
+			return isSearchTree(a.getLeft())
+				&& isSearchTree(a.getRight());
+		}
 
-	// 	return false;
-	// }
-
+		return false;
+	}
+*/
 	public static boolean isSearchTree(Tree a) {
+
+		/* Traverse the tree in order and add to a List. If this list is
+		 * sorted, the tree must be a search tree.*/
 		List elements = TreeOps.inorder(a);
 		return isSortedList(elements);
 	}
 
+	/** Returns true if a list is sorted. Used to check if a tree converted to
+	 * a list by in-order tranversal is a search tree.
+	 *
+	 * @param elements list to check for sortedness
+	 * @return true if the list is sorted.
+	 */
 	private static boolean isSortedList(List elements) {
 		if (elements.isEmpty() || elements.getTail().isEmpty()) {
 			return true;
 		}
-		if (elements.getHead() < elements.getTail().getHead()) {
+		if (elements.getHead() <= elements.getTail().getHead()) {
 			return isSortedList(elements.getTail());
 		}
 		return false;
