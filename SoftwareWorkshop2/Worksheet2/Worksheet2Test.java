@@ -40,6 +40,7 @@ public class Worksheet2Test {
 	static Tree tbAddHBComp;
 	static Tree tbDelHBComp;
 	static Tree tc;
+	static Tree td;
 	static Tree tEmptyAddHBComp;
 
 	@BeforeClass
@@ -116,6 +117,20 @@ public class Worksheet2Test {
 					new Tree()
 				)
 			);
+
+		td = new Tree(30,
+				new Tree(20,
+					new Tree(15,
+						new Tree(13),
+						new Tree(18)
+					),
+					new Tree(25)
+				),
+				new Tree(40,
+					new Tree(35),
+					new Tree(50)
+				)
+			);
 	}
 
 	// ------------------------------------------------------------------------
@@ -179,6 +194,47 @@ public class Worksheet2Test {
 	@Test
 	public void testIsSearchTree5() {
 		assertTrue(Worksheet2.isSearchTree(tc));
+	}
+
+	// ------------------------------------------------------------------------
+	@Test
+	public void testBalanceTree(){
+		assertTrue(tc.equals(Worksheet2.balanceTree(tc)));
+	}
+
+	@Test
+	public void testBalanceTree2() {
+		Tree tz = new Tree(30,
+				new Tree(20,
+					new Tree(10),
+					new Tree()
+				),
+				new Tree()
+			);
+		Tree tzComp = new Tree(20,
+				new Tree(10),
+				new Tree(30)
+			);
+		assertTrue(tzComp.equals(Worksheet2.balanceTree(tz)));
+	}
+
+	@Test
+	public void testBalanceTree3() {
+		Tree tz = new Tree(30,
+				new Tree(20,
+					new Tree(10),
+					new Tree(15)
+				),
+				new Tree()
+			);
+		Tree tzComp = new Tree(20,
+				new Tree(10),
+				new Tree(30,
+					new Tree(15),
+					new Tree()
+				)
+			);
+		assertTrue(tzComp.equals(Worksheet2.balanceTree(tz)));
 	}
 
 	// ------------------------------------------------------------------------
@@ -277,6 +333,11 @@ public class Worksheet2Test {
 		assertTrue(tcDelHB.equals(tcDelHBComp));
 		assertTrue(Worksheet2.isSearchTree(tcDelHB));
 		assertTrue(Worksheet2.isHeightBalanced(tcDelHB));
+	}
+
+	@Test
+	public void testDeleteHB6() {
+		// System.out.println(Worksheet2.deleteHB(td,30));
 	}
 
 }

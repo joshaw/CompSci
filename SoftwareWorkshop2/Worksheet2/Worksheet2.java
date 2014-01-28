@@ -1,4 +1,5 @@
-/**
+/** Methods for working with AVL height balanced trees, ie trees which follow
+ * the format leftValue < rootValue < rightValue.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -14,17 +15,22 @@ public class Worksheet2 {
 
 	/** Returns true if a tree is AVL height balanced.
 	 *
-	 * @param a tree to check.
+	 * @param a tree to check for height balanced-ness.
 	 * @return true if tree is balanced.
 	 */
 	public static boolean isHeightBalanced(Tree a) {
+
+		// Difference in height between two subtrees of this root.
 		int heightDiff = a.getRight().getHeight() - a.getLeft().getHeight();
+
 		if (heightDiff > 1 || heightDiff < -1) {
 			return false;
 		}
+
 		if (a.getLeft().getEmpty() || a.getRight().getEmpty()){
 			return true;
 		}
+
 		return isHeightBalanced(a.getLeft()) && isHeightBalanced(a.getRight());
 	}
 
@@ -35,6 +41,8 @@ public class Worksheet2 {
 	 * @return integer height difference of the tree.
 	 */
 	private static int heightDiff(Tree a) {
+		if (a.getEmpty()) return 0;
+
 		return a.getRight().getHeight() - a.getLeft().getHeight();
 	}
 
@@ -69,8 +77,7 @@ public class Worksheet2 {
 		}
 
 		return false;
-	}
-*/
+	} */
 	public static boolean isSearchTree(Tree a) {
 
 		/* Traverse the tree in order and add to a List. If this list is
@@ -86,12 +93,16 @@ public class Worksheet2 {
 	 * @return true if the list is sorted.
 	 */
 	private static boolean isSortedList(List elements) {
+
+		// Is empty or only contains a single value.
 		if (elements.isEmpty() || elements.getTail().isEmpty()) {
 			return true;
 		}
+
 		if (elements.getHead() <= elements.getTail().getHead()) {
 			return isSortedList(elements.getTail());
 		}
+
 		return false;
 	}
 
@@ -105,18 +116,20 @@ public class Worksheet2 {
 	public static Tree insertHB(int n, Tree a) {
 		if (a.getEmpty()) {
 			return new Tree(n, new Tree(), new Tree());
-		} else if (n <= a.getValue()) {
+		}
+
+		// New Value needs to go to the left
+		if (n <= a.getValue()) {
 			Tree newTree =
 				new Tree(a.getValue(), insertHB(n, a.getLeft()), a.getRight());
-
-			return balanceTree(newTree);
-
-		} else {
-			Tree newTree =
-				new Tree(a.getValue(), a.getLeft(), insertHB(n, a.getRight()));
-
 			return balanceTree(newTree);
 		}
+
+		// New Value needs to go to the right
+		// n >= a.getValue()
+		Tree newTree =
+			new Tree(a.getValue(), a.getLeft(), insertHB(n, a.getRight()));
+		return balanceTree(newTree);
 	}
 
 	/** Deletes a value from a balanced search tree ensuring that the new tree
@@ -140,42 +153,48 @@ public class Worksheet2 {
 	 * @return new balanced search tree without the deleted value.
 	 */
 	public static Tree deleteHB(Tree a, int x, Tree newTree) {
+
+		// Empty tree cannot have any value removed
 		if (a.getEmpty()) {
 			throw new IllegalStateException("Value, " + x + ", not in tree");
+		}
 
-		} else if (x < a.getValue()) {
+		// Value to be removed must be in left subtree
+		if (x < a.getValue()) {
 			Tree tmpTree = new Tree(a.getValue(),
 					deleteHB(a.getLeft(), x, newTree), a.getRight());
 			return balanceTree(tmpTree);
+		}
 
-		} else if (x > a.getValue()) {
+		// Value to be removed must be in right subtree
+		if (x > a.getValue()) {
 			Tree tmpTree = new Tree(a.getValue(),
 					a.getLeft(), deleteHB(a.getRight(), x, newTree));
 			return balanceTree(tmpTree);
-
-		} else { // n == a.getValue()
-			if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
-
-				// Just delete the node since it is a leaf
-				return new Tree();
-			} else if (a.getLeft().getEmpty()) {
-
-				// Make child node the new root
-				return a.getRight();
-			} else if (a.getRight().getEmpty()) {
-
-				// Make child node the new root
-				return a.getLeft();
-			} else {
-
-				// Largest child from left subtree becomes new root.
-				int maxFromSub = max(a.getLeft());
-				Tree tmpTree = new Tree(maxFromSub,
-						deleteHB(a.getLeft(), maxFromSub, new Tree()),
-						a.getRight());
-				return balanceTree(tmpTree);
-			}
 		}
+
+		// We've found the value to be removed, n == a.getValue()
+
+		// Just delete the node since it is a leaf
+		if (a.getLeft().getEmpty() && a.getRight().getEmpty())
+			return new Tree();
+
+		// Make right child node the new root
+		if (a.getLeft().getEmpty()) return a.getRight();
+
+		// Make left child node the new root
+		if (a.getRight().getEmpty()) return a.getLeft();
+
+		// Largest child from left subtree becomes new root.
+		int maxFromSub = max(a.getLeft());
+		Tree leftBalanced = deleteHB(a.getLeft(), maxFromSub);
+		// System.out.println(leftBalanced);
+		// System.out.println("Balance " + balanceTree(leftBalanced));
+
+		Tree tmpTree = new Tree(maxFromSub,
+				leftBalanced,
+				a.getRight());
+		return balanceTree(tmpTree);
 	}
 
 	/** Balances a tree by performing a rotation. Only works when the tree is
@@ -184,21 +203,29 @@ public class Worksheet2 {
 	 * @param a tree to balance.
 	 * @return new tree which is balanced
 	 */
-	private static Tree balanceTree(Tree a) {
+	public static Tree balanceTree(Tree a) {
+
+		// Left subtree is too tall
 		if (heightDiff(a) < -1) {
-			if (heightDiff(a.getLeft()) < 0) {
-				a = LL(a);
-			} else if (heightDiff(a.getLeft()) > 0) {
-				a = LR(a);
-			}
-		} else if (heightDiff(a) > 1) {
-			if (heightDiff(a.getRight()) > 0) {
-				a = RR(a);
-			} else if (heightDiff(a.getRight()) < 0) {
-				a = RL(a);
-			}
+
+			// Single rotation needed
+			if (heightDiff(a.getLeft()) < 0) return LL(a);
+
+			// Double rotation needed
+			if (heightDiff(a.getLeft()) > 0) return LR(a);
 		}
 
+		// Right subtree is too tall
+		if (heightDiff(a) > 1) {
+
+			// Single rotation needed
+			if (heightDiff(a.getRight()) > 0) return RR(a);
+
+			// Double rotation needed
+			if (heightDiff(a.getRight()) < 0) return RL(a);
+		}
+
+		// Tree is balanced
 		return a;
 	}
 
@@ -276,21 +303,19 @@ public class Worksheet2 {
 	 * @return the maximum element.
 	 */
 	public static int max(Tree a) {
+
+		// There are no elements to find the max of.
 		if (a.getEmpty()) {
-
-			// There are no elements to find the max of.
 			throw new IllegalStateException("tree has no elements.");
-
-		} else if (a.getRight().getEmpty()) {
-
-			// If there is nothing to the right, this must be the largest.
-			return a.getValue();
-
-		} else {
-
-			// Otherwise find the largest elements on the right side.
-			return max(a.getRight());
 		}
+
+		// If there is nothing to the right, this must be the largest.
+		if (a.getRight().getEmpty()) {
+			return a.getValue();
+		}
+
+		// Otherwise find the largest elements on the right side.
+		return max(a.getRight());
 	}
 
 }
