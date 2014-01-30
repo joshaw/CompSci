@@ -11,7 +11,7 @@ public class Words2SigProto {
 				System.out.println(PredictivePrototype.wordToSignature(word));
 			}
 		} else {
-			String testFile = "words";
+			String testFile = "testfiles/words";
 			System.out.println("###\nReading from file " + testFile + "\n###");
 
 			File file = new File(testFile);

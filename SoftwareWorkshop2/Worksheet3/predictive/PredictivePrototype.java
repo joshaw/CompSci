@@ -7,6 +7,9 @@ import java.util.TreeSet;
 
 public class PredictivePrototype {
 
+	private static String dictFile = "testfiles/words";
+	private static File file = new File(dictFile);
+
 	public static String wordToSignature(String word) {
 		String letter = "";
 
@@ -36,8 +39,6 @@ public class PredictivePrototype {
 	}
 
 	public static Set<String> signatureToWords(String signature){
-		String dict = "words";
-		File file = new File(dict);
 		String dictSig = new String();
 
 		TreeSet<String> wordSet = new TreeSet<String>();
@@ -65,7 +66,7 @@ public class PredictivePrototype {
 		return wordSet;
 	}
 
-	private static boolean isValidWord(String word) {
+	protected static boolean isValidWord(String word) {
 		if (word.replaceAll("[a-z]","").equals("")) {
 			return true;
 		}
