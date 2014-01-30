@@ -50,34 +50,15 @@ public class Worksheet2 {
 	 * right is greater and each value to the left is less than the current
 	 * value for every node in the tree.
 	 *
+	 * Uses a list, first tranverses the tree in order, ie left subtree, root
+	 * node, right subtree and places each node as an element into the list.
+	 * The list is then checked to see if it is sorted, ie smallest element
+	 * first, largest last. Both of these opperations have complexity O(n),
+	 * thus this opperation is O(n).
+	 *
 	 * @param a tree to check.
 	 * @return true if the tree is a search tree.
 	 */
-/*	public static boolean isSearchTree(Tree a) {
-		if (a.getEmpty()) {
-			return true;
-		}
-
-		if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
-			return true;
-		}
-
-		if (a.getLeft().getEmpty() && a.getValue() < a.getRight().getValue()) {
-			return isSearchTree(a.getRight());
-		}
-
-		if (a.getRight().getEmpty() && a.getLeft().getValue() < a.getValue()) {
-			return isSearchTree(a.getLeft());
-		}
-
-		if (a.getValue() < a.getRight().getValue()
-				&& a.getValue() > a.getLeft().getValue()) {
-			return isSearchTree(a.getLeft())
-				&& isSearchTree(a.getRight());
-		}
-
-		return false;
-	} */
 	public static boolean isSearchTree(Tree a) {
 
 		/* Traverse the tree in order and add to a List. If this list is
@@ -105,6 +86,31 @@ public class Worksheet2 {
 
 		return false;
 	}
+/*	public static boolean isSearchTree(Tree a) {
+		if (a.getEmpty()) {
+			return true;
+		}
+
+		if (a.getLeft().getEmpty() && a.getRight().getEmpty()) {
+			return true;
+		}
+
+		if (a.getLeft().getEmpty() && a.getValue() < a.getRight().getValue()) {
+			return isSearchTree(a.getRight());
+		}
+
+		if (a.getRight().getEmpty() && a.getLeft().getValue() < a.getValue()) {
+			return isSearchTree(a.getLeft());
+		}
+
+		if (a.getValue() < a.getRight().getValue()
+				&& a.getValue() > a.getLeft().getValue()) {
+			return isSearchTree(a.getLeft())
+				&& isSearchTree(a.getRight());
+		}
+
+		return false;
+	} */
 
 	/** Inserts a new value into a balanced search tree and ensures that the
 	 * new tree is also balanced.
@@ -152,7 +158,7 @@ public class Worksheet2 {
 	 * the original without the deleted value.
 	 * @return new balanced search tree without the deleted value.
 	 */
-	public static Tree deleteHB(Tree a, int x, Tree newTree) {
+	private static Tree deleteHB(Tree a, int x, Tree newTree) {
 
 		// Empty tree cannot have any value removed
 		if (a.getEmpty()) {
@@ -188,8 +194,6 @@ public class Worksheet2 {
 		// Largest child from left subtree becomes new root.
 		int maxFromSub = max(a.getLeft());
 		Tree leftBalanced = deleteHB(a.getLeft(), maxFromSub);
-		// System.out.println(leftBalanced);
-		// System.out.println("Balance " + balanceTree(leftBalanced));
 
 		Tree tmpTree = new Tree(maxFromSub,
 				leftBalanced,
@@ -209,7 +213,7 @@ public class Worksheet2 {
 		if (heightDiff(a) < -1) {
 
 			// Single rotation needed
-			if (heightDiff(a.getLeft()) < 0) return LL(a);
+			if (heightDiff(a.getLeft()) <= 0) return LL(a);
 
 			// Double rotation needed
 			if (heightDiff(a.getLeft()) > 0) return LR(a);
@@ -219,7 +223,7 @@ public class Worksheet2 {
 		if (heightDiff(a) > 1) {
 
 			// Single rotation needed
-			if (heightDiff(a.getRight()) > 0) return RR(a);
+			if (heightDiff(a.getRight()) >= 0) return RR(a);
 
 			// Double rotation needed
 			if (heightDiff(a.getRight()) < 0) return RL(a);
