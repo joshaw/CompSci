@@ -30,6 +30,13 @@ public class PredictivePrototypeTest {
 	}
 
 	@Test
+	public void testWordToSignature4() {
+		String comp = "763866668587264276726742745426865226626646747";
+		assertTrue(comp.equals(PredictivePrototype.wordToSignature(
+						"pneumonoultramicroscopicsilicovolcanoconiosis")));
+	}
+
+	@Test
 	public void testSignatureToWords() {
 		TreeSet<String> comp = new TreeSet<String>();
 		comp.add("gome");
