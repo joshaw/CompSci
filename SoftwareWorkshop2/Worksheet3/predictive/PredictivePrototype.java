@@ -119,11 +119,14 @@ public class PredictivePrototype {
 	 * @return true if the word is valid.
 	 */
 	protected static boolean isValidWord(String word) {
-		String validTest = "[a-z]";
-		if (word.replaceAll(validTest,"").equals("")) {
-			return true;
-		}
-		return false;
+		// String validTest = "[a-z]";
+		// if (word.replaceAll(validTest,"").equals("")) {
+		// 	return true;
+		// }
+		// return false;
+
+		// Match letters 0 or more times.
+		return word.matches("[a-zA-Z]*");
 	}
 
 }
