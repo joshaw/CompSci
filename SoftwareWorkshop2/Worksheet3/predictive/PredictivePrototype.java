@@ -49,6 +49,9 @@ public class PredictivePrototype {
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < word.length(); i++) {
+
+			/* Convert each letter in the word to a character to be compared
+			 * against a regex to determine corresponding number. */
 			letter = Character.toString(word.charAt(i));
 			if (letter.matches("[a-c]")) {
 				sb.append("2");
@@ -66,7 +69,7 @@ public class PredictivePrototype {
 				sb.append("8");
 			} else if (letter.matches("[w-z]")) {
 				sb.append("9");
-			} else {
+			} else { // anything other than [a-z] return space.
 				sb.append(" ");
 			}
 		}
@@ -89,7 +92,9 @@ public class PredictivePrototype {
 			Scanner in = new Scanner(file);
 			String word = new String();
 
-			do {
+			/* For the whole file, if the word is valid, calculate its
+			 * signature and add it to the set of words. */
+			while(in.hasNextLine()) {
 				word = in.nextLine();
 
 				if (isValidWord(word)) {
@@ -98,13 +103,11 @@ public class PredictivePrototype {
 						wordSet.add(word);
 					}
 				}
-
-			} while(in.hasNextLine());
+			}
 
 		} catch (FileNotFoundException e) {
-			System.err.println("Dictionary file not found.");
+			System.err.println("Dictionary file not found. " + dictFile);
 		}
-
 		return wordSet;
 	}
 
