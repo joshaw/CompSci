@@ -1,4 +1,4 @@
-/** Test class for the ListDictionary implementation of a dictionary to hold
+/** Test class for the MapDictionary implementation of a dictionary to hold
  * word/signature pairs which allows the reverse searching of signatures to
  * find relevant words.
  *
@@ -18,46 +18,46 @@ import org.junit.BeforeClass;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class ListDictionaryTest {
+public class MapDictionaryTest {
 	public static void main(String[] args) {
-		ListDictionary dict = new ListDictionary();
+		MapDictionary dict = new MapDictionary();
 
-		System.out.println(ListDictionary.wordToSignature("home"));
-		System.out.println(ListDictionary.wordToSignature("hello"));
+		System.out.println(MapDictionary.wordToSignature("home"));
+		System.out.println(MapDictionary.wordToSignature("hello"));
 
 		System.out.println(dict.signatureToWords("4663"));
 	}
 
-	static ListDictionary dict;
+	static MapDictionary dict;
 
-	/* Creat a ListDictionary object that can be used by subsequent tests since
+	/* Creat a MapDictionary object that can be used by subsequent tests since
 	 * reading file takes considerable time, this should not be performed for
 	 * every test case. */
 	@BeforeClass
 	public static void makeDictionary() {
-		dict = new ListDictionary();
+		dict = new MapDictionary();
 	}
 
 	// test wordToSignature ---------------------------------------------------
 	@Test // simple case
 	public void testWordToSignature() {
-		assertEquals("4663", ListDictionary.wordToSignature("home"));
+		assertEquals("4663", PredictiveText.wordToSignature("home"));
 	}
 
 	@Test // empty string
 	public void testWordToSignature2() {
-		assertEquals("", ListDictionary.wordToSignature(""));
+		assertEquals("", PredictiveText.wordToSignature(""));
 	}
 
 	@Test // repeated letters
 	public void testWordToSignature3() {
-		assertEquals("222222", ListDictionary.wordToSignature("aaaaaa"));
+		assertEquals("222222", PredictiveText.wordToSignature("aaaaaa"));
 	}
 
 	@Test // very long word
 	public void testWordToSignature4() {
 		String comp = "763866668587264276726742745426865226626646747";
-		assertTrue(comp.equals(ListDictionary.wordToSignature(
+		assertTrue(comp.equals(PredictiveText.wordToSignature(
 						"pneumonoultramicroscopicsilicovolcanoconiosis")));
 	}
 
@@ -82,14 +82,14 @@ public class ListDictionaryTest {
 	@Test //empty string
 	public void testSignatureToWords2() {
 		TreeSet<String> comp = new TreeSet<String>();
-		assertTrue(comp.equals(PredictivePrototype.signatureToWords("")));
+		assertTrue(comp.equals(dict.signatureToWords("")));
 	}
 
 	@Test // very long signature
 	public void testSignatureToWords3() {
 		TreeSet<String> comp = new TreeSet<String>();
 		comp.add("pneumonoultramicroscopicsilicovolcanoconiosis");
-		assertTrue(comp.equals(PredictivePrototype.signatureToWords(
+		assertTrue(comp.equals(dict.signatureToWords(
 						"763866668587264276726742745426865226626646747")));
 	}
 

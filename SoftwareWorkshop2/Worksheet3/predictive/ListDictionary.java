@@ -2,6 +2,9 @@
  * converting a word signature to its set of possible words. Means that the
  * dictionary does not need to be parsed for every signature to be converted.
  *
+ * An ArrayList of pairs of signatures and words is used for simple addition of
+ * words, which can be sorted for faster access.
+ *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 3
@@ -16,8 +19,6 @@ import java.util.*;
 
 public class ListDictionary extends PredictiveText implements Dictionary {
 
-	// private String dictFile = "testfiles/words";
-	// private File file = new File(dictFile);
 	private ArrayList<WordSig> wordSet = new ArrayList<WordSig>();
 
 	/** Constructor for the ListDictionary class. Reads the default dictionary
@@ -46,7 +47,7 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 	}
 
 	/** Parses a dictionary file (line separated list of words), calculates the
-	 * signature for each file and stores the word and its signature in an
+	 * signature for each word and stores the word and its signature in an
 	 * arraylist.
 	 *
 	 * Words deemed non-valid are ignored.
@@ -58,7 +59,7 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 
 		try {
 			Scanner in = new Scanner(file);
-			String word = new String();
+			String word;
 
 			while(in.hasNextLine()) {
 				word = in.nextLine();
@@ -76,68 +77,14 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 		Collections.sort(wordSet);
 	}
 
-	// /** Converts a word to its numerical signature.
-	//  *
-	//  * @param word alphabetical sequence to be converted in to mobile
-	//  * signature.
-	//  * @return string containing the nuerical signature of the input word.
-	//  */
-	// public static String wordToSignature(String word) {
-	// 	String letter = "";
-
-	// 	/* StringBuilder class is used to compile the digits since it presents
-	// 	 * significant speed improvements when concatenation of strings is
-	// 	 * performed many times. For each word, there will be only a few digits
-	// 	 * that are combined, so a simple String += would be sufficient. When
-	// 	 * calculating the signatures of an entire dictionary, the speed
-	// 	 * restrictions become large.
-	// 	 *
-	// 	 * StringBuffer is another alternative to StringBuilder. It offers the
-	// 	 * benefits of being synchronised. This means it can be useful when
-	// 	 * multiple threads are used, but reduces the maximum possible speed of
-	// 	 * operation. The threaded operation is not utilised here, so
-	// 	 * StringBuilder is used to be faster, and is almost always the
-	// 	 * preferable method. */
-	// 	StringBuilder sb = new StringBuilder();
-
-	// 	for (int i = 0; i < word.length(); i++) {
-	// 		letter = Character.toString(word.charAt(i));
-	// 		if (letter.matches("[a-c]")) {
-	// 			sb.append("2");
-	// 		} else if (letter.matches("[d-f]")) {
-	// 			sb.append("3");
-	// 		} else if (letter.matches("[g-i]")) {
-	// 			sb.append("4");
-	// 		} else if (letter.matches("[j-l]")) {
-	// 			sb.append("5");
-	// 		} else if (letter.matches("[m-o]")) {
-	// 			sb.append("6");
-	// 		} else if (letter.matches("[p-s]")) {
-	// 			sb.append("7");
-	// 		} else if (letter.matches("[t-v]")) {
-	// 			sb.append("8");
-	// 		} else if (letter.matches("[w-z]")) {
-	// 			sb.append("9");
-	// 		} else {
-	// 			sb.append(" ");
-	// 		}
-	// 	}
-	// 	return sb.toString();
-	// }
-
 	/** Using the dictionary file created with this object, the set of words
 	 * that have the signature provided are located. A treeSet of those words
 	 * is returned.
 	 *
 	 * @param signature signature to search for the corresponding words.
-	 * @param upperRange maximum number of words to search forwards to find
-	 * others that have the same signature.
-	 * @param lowerRange maximum number of words to search backwards that have
-	 * have the same signature.
 	 * @return set of words that have the same signature as the one provided.
 	 */
-	public Set<String> signatureToWords(String signature,
-			int upperRange, int lowerRange) {
+	public Set<String> signatureToWords(String signature) {
 
 		if (signature.equals("")) {
 			return new TreeSet<String>();
@@ -148,36 +95,30 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 
 		TreeSet<String> foundWords = new TreeSet<String>();
 
-		int upperMax = index + upperRange;
-		int lowerMin = index - lowerRange;
-
-		if (upperMax > wordSet.size()) {
-			upperMax = wordSet.size();
+		/* Check signatures for the wordSig's before this one, until the
+		 * signatures no longer match. */
+		String tempSig = signature;
+		int i = index - 1;
+		while (i >= 0 && tempSig.equals(signature)) {
+			foundWords.add(wordSet.get(i).getWord());
+			i--;
+			tempSig = wordSet.get(i).getSignature();
 		}
-		if (lowerMin < 0) {
-			lowerMin = 0;
-		}
 
-		for (int i = lowerMin; i < upperMax; i++) {
+		// Add the word with corresponding signature.
+		foundWords.add(wordSet.get(index).getWord());
 
-			WordSig attempt = wordSet.get(i);
-			if (attempt.getSignature().equals(signature)) {
-				foundWords.add(attempt.getWord());
-			}
+		/* Check signatures for the wordSig's after this one, until the
+		 * signatures no longer match. */
+		tempSig = signature;
+		i = index + 1;
+		while (i < wordSet.size() && tempSig.equals(signature)) {
+			foundWords.add(wordSet.get(i).getWord());
+			i++;
+			tempSig = wordSet.get(i).getSignature();
 		}
 
 		return foundWords;
-	}
-
-	/** Using the dictionary file created with this object, the set of words
-	 * that have the signature provided are located. A treeSet of those words
-	 * is returned.
-	 *
-	 * @param signature signature to search for the corresponding words.
-	 * @return set of words that have the same signature as the one provided.
-	 */
-	public Set<String> signatureToWords(String signature){
-		return signatureToWords(signature, 15, 15);
 	}
 
 	/** Returns the word at the given index in the list of word pairs
@@ -199,23 +140,5 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 	public String getSignature(int index) {
 		return wordSet.get(index).getSignature();
 	}
-
-	// /** Method to limit the words that are considered as valid when converting
-	//  * a signature to words. Currently ignores words that contain anything
-	//  * other than lower case a-z.
-	//  *
-	//  * @param word string of letters to check for valididy.
-	//  * @return true if the word is valid.
-	//  */
-	// protected static boolean isValidWord(String word) {
-	// 	// String validTest = "[a-z]";
-	// 	// if (word.replaceAll(validTest,"").equals("")) {
-	// 	// 	return true;
-	// 	// }
-	// 	// return false;
-
-	// 	// Match letters 0 or more times.
-	// 	return word.matches("[a-z]*");
-	// }
 
 }

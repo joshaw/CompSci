@@ -1,11 +1,11 @@
 /** Commandline program to convert a word provided to its numerical signature
- * using the PredictivePrototype class.
+ * using the MapDictionary class.
  *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : SoftwareWorkshop2
  * Exercise  : Worksheet3
- * File name : Words2SigProto.java
+ * File name : Words2SigMap.java
  * @version 2014-02-03
  */
 import predictive.*;
@@ -13,7 +13,7 @@ import predictive.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class Words2SigProto {
+public class Words2SigMap {
 	public static void main(String[] args) {
 
 		/* If arguements are given on the command line, then for each of those
@@ -21,7 +21,7 @@ public class Words2SigProto {
 		if (args.length > 0) {
 			for (String word: args) {
 				System.out.print(word + ": ");
-				System.out.println(PredictivePrototype.wordToSignature(word));
+				System.out.println(MapDictionary.wordToSignature(word));
 			}
 		} else {
 
@@ -44,7 +44,7 @@ public class Words2SigProto {
 						if (!word.equals("")) {
 
 							System.out.println(word + ": " +
-									PredictivePrototype.wordToSignature(word));
+									ListDictionary.wordToSignature(word));
 						}
 					}
 				}

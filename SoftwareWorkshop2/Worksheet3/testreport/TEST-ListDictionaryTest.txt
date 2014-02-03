@@ -1,8 +1,0 @@
-Testsuite: ListDictionaryTest
-Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.01 sec
-
-Testcase: warning took 0.002 sec
-	FAILED
-No tests found in ListDictionaryTest
-junit.framework.AssertionFailedError: No tests found in ListDictionaryTest
-

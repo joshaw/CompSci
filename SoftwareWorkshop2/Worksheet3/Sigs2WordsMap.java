@@ -1,5 +1,5 @@
 /** Commandline program to convert a signature provided to its corresponding
- * word using the ListDictionary class.
+ * word using the MapDictionary class.
  *
  * @author Josh Wainwright
  * UID       : 1079596
@@ -12,9 +12,9 @@ import predictive.*;
 
 import java.util.Scanner;
 
-public class Sigs2WordsList {
+public class Sigs2WordsMap {
 	public static void main(String[] args) {
-		ListDictionary dict = new ListDictionary();
+		MapDictionary dict = new MapDictionary();
 
 		/* If arguements are given on the command line, then for each of those
 		 * signatures, calculate the possible words. */
