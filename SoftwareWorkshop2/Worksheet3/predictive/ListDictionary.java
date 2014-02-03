@@ -14,10 +14,10 @@ package predictive;
 import java.io.*;
 import java.util.*;
 
-public class ListDictionary implements predictive.Dictionary {
+public class ListDictionary extends PredictiveText implements Dictionary {
 
-	private String dictFile = "testfiles/words";
-	private File file = new File(dictFile);
+	// private String dictFile = "testfiles/words";
+	// private File file = new File(dictFile);
 	private ArrayList<WordSig> wordSet = new ArrayList<WordSig>();
 
 	/** Constructor for the ListDictionary class. Reads the default dictionary
@@ -33,7 +33,7 @@ public class ListDictionary implements predictive.Dictionary {
 	 * @param dictFile path to the dictionary file to be used.
 	 */
 	public ListDictionary(String dictFile) {
-		readDictionary(this.dictFile);
+		readDictionary(dictFile);
 	}
 
 	/** Returns arrayList containing the pairs of words and signatures
@@ -76,54 +76,54 @@ public class ListDictionary implements predictive.Dictionary {
 		Collections.sort(wordSet);
 	}
 
-	/** Converts a word to its numerical signature.
-	 *
-	 * @param word alphabetical sequence to be converted in to mobile
-	 * signature.
-	 * @return string containing the nuerical signature of the input word.
-	 */
-	public static String wordToSignature(String word) {
-		String letter = "";
+	// /** Converts a word to its numerical signature.
+	//  *
+	//  * @param word alphabetical sequence to be converted in to mobile
+	//  * signature.
+	//  * @return string containing the nuerical signature of the input word.
+	//  */
+	// public static String wordToSignature(String word) {
+	// 	String letter = "";
 
-		/* StringBuilder class is used to compile the digits since it presents
-		 * significant speed improvements when concatenation of strings is
-		 * performed many times. For each word, there will be only a few digits
-		 * that are combined, so a simple String += would be sufficient. When
-		 * calculating the signatures of an entire dictionary, the speed
-		 * restrictions become large.
-		 *
-		 * StringBuffer is another alternative to StringBuilder. It offers the
-		 * benefits of being synchronised. This means it can be useful when
-		 * multiple threads are used, but reduces the maximum possible speed of
-		 * operation. The threaded operation is not utilised here, so
-		 * StringBuilder is used to be faster, and is almost always the
-		 * preferable method. */
-		StringBuilder sb = new StringBuilder();
+	// 	/* StringBuilder class is used to compile the digits since it presents
+	// 	 * significant speed improvements when concatenation of strings is
+	// 	 * performed many times. For each word, there will be only a few digits
+	// 	 * that are combined, so a simple String += would be sufficient. When
+	// 	 * calculating the signatures of an entire dictionary, the speed
+	// 	 * restrictions become large.
+	// 	 *
+	// 	 * StringBuffer is another alternative to StringBuilder. It offers the
+	// 	 * benefits of being synchronised. This means it can be useful when
+	// 	 * multiple threads are used, but reduces the maximum possible speed of
+	// 	 * operation. The threaded operation is not utilised here, so
+	// 	 * StringBuilder is used to be faster, and is almost always the
+	// 	 * preferable method. */
+	// 	StringBuilder sb = new StringBuilder();
 
-		for (int i = 0; i < word.length(); i++) {
-			letter = Character.toString(word.charAt(i));
-			if (letter.matches("[a-c]")) {
-				sb.append("2");
-			} else if (letter.matches("[d-f]")) {
-				sb.append("3");
-			} else if (letter.matches("[g-i]")) {
-				sb.append("4");
-			} else if (letter.matches("[j-l]")) {
-				sb.append("5");
-			} else if (letter.matches("[m-o]")) {
-				sb.append("6");
-			} else if (letter.matches("[p-s]")) {
-				sb.append("7");
-			} else if (letter.matches("[t-v]")) {
-				sb.append("8");
-			} else if (letter.matches("[w-z]")) {
-				sb.append("9");
-			} else {
-				sb.append(" ");
-			}
-		}
-		return sb.toString();
-	}
+	// 	for (int i = 0; i < word.length(); i++) {
+	// 		letter = Character.toString(word.charAt(i));
+	// 		if (letter.matches("[a-c]")) {
+	// 			sb.append("2");
+	// 		} else if (letter.matches("[d-f]")) {
+	// 			sb.append("3");
+	// 		} else if (letter.matches("[g-i]")) {
+	// 			sb.append("4");
+	// 		} else if (letter.matches("[j-l]")) {
+	// 			sb.append("5");
+	// 		} else if (letter.matches("[m-o]")) {
+	// 			sb.append("6");
+	// 		} else if (letter.matches("[p-s]")) {
+	// 			sb.append("7");
+	// 		} else if (letter.matches("[t-v]")) {
+	// 			sb.append("8");
+	// 		} else if (letter.matches("[w-z]")) {
+	// 			sb.append("9");
+	// 		} else {
+	// 			sb.append(" ");
+	// 		}
+	// 	}
+	// 	return sb.toString();
+	// }
 
 	/** Using the dictionary file created with this object, the set of words
 	 * that have the signature provided are located. A treeSet of those words
@@ -200,22 +200,22 @@ public class ListDictionary implements predictive.Dictionary {
 		return wordSet.get(index).getSignature();
 	}
 
-	/** Method to limit the words that are considered as valid when converting
-	 * a signature to words. Currently ignores words that contain anything
-	 * other than lower case a-z.
-	 *
-	 * @param word string of letters to check for valididy.
-	 * @return true if the word is valid.
-	 */
-	protected static boolean isValidWord(String word) {
-		// String validTest = "[a-z]";
-		// if (word.replaceAll(validTest,"").equals("")) {
-		// 	return true;
-		// }
-		// return false;
+	// /** Method to limit the words that are considered as valid when converting
+	//  * a signature to words. Currently ignores words that contain anything
+	//  * other than lower case a-z.
+	//  *
+	//  * @param word string of letters to check for valididy.
+	//  * @return true if the word is valid.
+	//  */
+	// protected static boolean isValidWord(String word) {
+	// 	// String validTest = "[a-z]";
+	// 	// if (word.replaceAll(validTest,"").equals("")) {
+	// 	// 	return true;
+	// 	// }
+	// 	// return false;
 
-		// Match letters 0 or more times.
-		return word.matches("[a-zA-Z]*");
-	}
+	// 	// Match letters 0 or more times.
+	// 	return word.matches("[a-z]*");
+	// }
 
 }

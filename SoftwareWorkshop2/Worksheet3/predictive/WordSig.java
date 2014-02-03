@@ -22,9 +22,6 @@ public class WordSig implements Comparable<WordSig> {
 
 	@Override
 	public int compareTo(WordSig ws) {
-		// BigInteger sig = new BigInteger(signature);
-		// BigInteger wsSig = new BigInteger(ws.signature);
-		// return sig.compareTo(wsSig);
 		double sig = Double.parseDouble(signature);
 		double wsSig = Double.parseDouble(ws.signature);
 		if (sig < wsSig) return -1;

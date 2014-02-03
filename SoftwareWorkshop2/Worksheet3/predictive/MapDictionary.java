@@ -14,10 +14,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.TreeMap;
 
-public class MapDictionary implements Dictionary {
+public class MapDictionary extends PredictiveText implements Dictionary {
 
-	private String dictFile = "testfiles/words";
-	private File file = new File(dictFile);
 	private TreeMap<String,String> wordSet = new TreeMap<String,String>();
 
 	public MapDictionary() {
@@ -25,7 +23,7 @@ public class MapDictionary implements Dictionary {
 	}
 
 	public MapDictionary(String dictFile) {
-		readDictionary(this.dictFile);
+		readDictionary(dictFile);
 	}
 
 	private void readDictionary(String dictFile) {
