@@ -5,6 +5,7 @@
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 3
+ * Exercise  : Worksheet3
  * File name : ListDictionary.java
  * @version 2014-02-02
  */
@@ -23,7 +24,7 @@ public class ListDictionary implements predictive.Dictionary {
 	 * file into memory on creation of the object.
 	 */
 	public ListDictionary() {
-		readFileToArrayList(dictFile);
+		readDictionary(dictFile);
 	}
 
 	/** Constructor for the ListDictionary class. Reads the default dictionary
@@ -32,7 +33,7 @@ public class ListDictionary implements predictive.Dictionary {
 	 * @param dictFile path to the dictionary file to be used.
 	 */
 	public ListDictionary(String dictFile) {
-		readFileToArrayList(this.dictFile);
+		readDictionary(this.dictFile);
 	}
 
 	/** Returns arrayList containing the pairs of words and signatures
@@ -52,7 +53,7 @@ public class ListDictionary implements predictive.Dictionary {
 	 *
 	 * @param dictFile
 	 */
-	private void readFileToArrayList(String dictFile) {
+	private void readDictionary(String dictFile) {
 		String dictSig = new String();
 
 		try {
@@ -207,11 +208,14 @@ public class ListDictionary implements predictive.Dictionary {
 	 * @return true if the word is valid.
 	 */
 	protected static boolean isValidWord(String word) {
-		String validTest = "[a-z]";
-		if (word.replaceAll(validTest,"").equals("")) {
-			return true;
-		}
-		return false;
+		// String validTest = "[a-z]";
+		// if (word.replaceAll(validTest,"").equals("")) {
+		// 	return true;
+		// }
+		// return false;
+
+		// Match letters 0 or more times.
+		return word.matches("[a-zA-Z]*");
 	}
 
 }
