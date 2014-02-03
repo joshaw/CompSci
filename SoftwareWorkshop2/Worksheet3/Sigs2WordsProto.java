@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : SoftwareWorkshop2
+ * Exercise  : Worksheet3
+ * File name : Sigs2WordsProto.java
+ * @version 2014-02-03
+ */
 import predictive.*;
 
 public class Sigs2WordsProto {
