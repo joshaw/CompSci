@@ -1,3 +1,14 @@
+/** Tests for the PredictivePrototype class which converts words to their
+ * corresponding numerical signature and converts signatures to the set of
+ * words with that signature.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : SoftwareWorkshop2
+ * Exercise  : Worksheet3
+ * File name : PredictivePrototypeTest.java
+ * @version 2014-02-03
+ */
 import predictive.*;
 
 import org.junit.Test;
@@ -14,29 +25,31 @@ public class PredictivePrototypeTest {
 		System.out.println(PredictivePrototype.signatureToWords("4663"));
 	}
 
+	// test wordToSignature ----------------------------------------------------
 	@Test
 	public void testWordToSignature() {
 		assertEquals("4663", PredictivePrototype.wordToSignature("home"));
 	}
 
-	@Test
+	@Test // empty string
 	public void testWordToSignature2() {
 		assertEquals("", PredictivePrototype.wordToSignature(""));
 	}
 
-	@Test
+	@Test // repeated letters
 	public void testWordToSignature3() {
 		assertEquals("222222", PredictivePrototype.wordToSignature("aaaaaa"));
 	}
 
-	@Test
+	@Test // very long word
 	public void testWordToSignature4() {
 		String comp = "763866668587264276726742745426865226626646747";
 		assertTrue(comp.equals(PredictivePrototype.wordToSignature(
 						"pneumonoultramicroscopicsilicovolcanoconiosis")));
 	}
 
-	@Test
+	// test signatureToWords ---------------------------------------------------
+	@Test // multi-word returned
 	public void testSignatureToWords() {
 		TreeSet<String> comp = new TreeSet<String>();
 		comp.add("gome");
@@ -53,13 +66,13 @@ public class PredictivePrototypeTest {
 		assertTrue(comp.equals(PredictivePrototype.signatureToWords("4663")));
 	}
 
-	@Test
+	@Test // empty string
 	public void testSignatureToWords2() {
 		TreeSet<String> comp = new TreeSet<String>();
 		assertTrue(comp.equals(PredictivePrototype.signatureToWords("")));
 	}
 
-	@Test
+	@Test // very long word
 	public void testSignatureToWords3() {
 		TreeSet<String> comp = new TreeSet<String>();
 		comp.add("pneumonoultramicroscopicsilicovolcanoconiosis");
