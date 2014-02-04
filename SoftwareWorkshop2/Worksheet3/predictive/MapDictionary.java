@@ -50,7 +50,7 @@ public class MapDictionary extends PredictiveText implements Dictionary {
 	 * @param dictFile
 	 */
 	private void readDictionary(String dictFile) {
-		String dictSig = new String();
+		String dictSig;
 
 		try {
 			Scanner in = new Scanner(file);

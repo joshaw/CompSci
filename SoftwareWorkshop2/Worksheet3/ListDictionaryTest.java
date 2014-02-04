@@ -22,7 +22,7 @@ import java.io.*;
 public class ListDictionaryTest {
 	public static void main(String[] args) {
 
-		ListDictionary dict;
+		ListDictionary dict = new ListDictionary();
 
 		/* Exploring writing the dictionary object to disk so that it can be
 		 * read from disk instead of creating the dictionary every time the
