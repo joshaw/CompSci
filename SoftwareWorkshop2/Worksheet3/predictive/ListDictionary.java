@@ -17,7 +17,7 @@ package predictive;
 import java.io.*;
 import java.util.*;
 
-public class ListDictionary extends PredictiveText implements Dictionary {
+public class ListDictionary extends PredictiveText implements Dictionary, java.io.Serializable {
 
 	private ArrayList<WordSig> wordSet = new ArrayList<WordSig>();
 

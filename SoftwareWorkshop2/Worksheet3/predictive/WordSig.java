@@ -13,7 +13,7 @@ package predictive;
 
 import java.math.BigInteger;
 
-public class WordSig implements Comparable<WordSig> {
+public class WordSig implements Comparable<WordSig>, java.io.Serializable {
 
 	private String word;
 	private String signature;
