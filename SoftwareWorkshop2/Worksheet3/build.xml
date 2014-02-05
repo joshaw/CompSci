@@ -30,7 +30,7 @@
 
 	<!-- Compiles the java code (including the usage of library for JUnit -->
 	<target name="compile" depends="makedir">
-		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
+		<javac debug="on" includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
 			<classpath refid="junit.class.path" />
 		</javac>
 
@@ -50,7 +50,7 @@
 		</junit>
 	</target>
 
-	<target name="main" depends="compile, junit">
+	<target name="main" depends="compile">
 		<description>Main target</description>
 	</target>
 

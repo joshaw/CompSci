@@ -8,15 +8,15 @@ import java.util.TreeSet;
 public class TreeDictionary extends PredictiveText implements Dictionary {
 
 	private boolean empty;
-	private Set<String> value;
+	private Set<String> wordSet;
 	private TreeDictionary td2, td3, td4, td5, td6, td7, td8, td9;
 
-	public TreeDictionary(Set<String> value, TreeDictionary td2,
+	public TreeDictionary(Set<String> wordSet, TreeDictionary td2,
 			TreeDictionary td3, TreeDictionary td4, TreeDictionary td5,
 			TreeDictionary td6, TreeDictionary td7, TreeDictionary td8,
 			TreeDictionary td9){
 		this.empty = false;
-		this.value = value;
+		this.wordSet = wordSet;
 		this.td2 = td2;
 		this.td3 = td3;
 		this.td4 = td4;
@@ -27,12 +27,28 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		this.td9 = td9;
 	}
 
-	public TreeDictionary(boolean head) {
-		if (!head) {
-			throw new IllegalStateException("Not recognised.");
-		}
-		this.empty = false;
-		this.value = value;
+	// public TreeDictionary(boolean head) {
+	// 	if (!head) {
+	// 		throw new IllegalStateException("Not recognised.");
+	// 	}
+	// 	this.empty = false;
+	// 	this.wordSet = wordSet;
+	// 	this.td2 = new TreeDictionary();
+	// 	this.td3 = new TreeDictionary();
+	// 	this.td4 = new TreeDictionary();
+	// 	this.td5 = new TreeDictionary();
+	// 	this.td6 = new TreeDictionary();
+	// 	this.td7 = new TreeDictionary();
+	// 	this.td8 = new TreeDictionary();
+	// 	this.td9 = new TreeDictionary();
+	// }
+
+	public TreeDictionary() {
+		this.empty = true;
+		this.wordSet = new TreeSet<String>();
+	}
+
+	public TreeDictionary(String dictFile){
 		this.td2 = new TreeDictionary();
 		this.td3 = new TreeDictionary();
 		this.td4 = new TreeDictionary();
@@ -41,26 +57,19 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		this.td7 = new TreeDictionary();
 		this.td8 = new TreeDictionary();
 		this.td9 = new TreeDictionary();
-	}
-
-	public TreeDictionary() {
-		this.empty = true;
-	}
-
-	public TreeDictionary(String dictFile){
 		readDictionary(dictFile);
 	}
 
-	public boolean getEmpty() {
+	public boolean isEmpty() {
 		return empty;
 	}
 
 	public Set<String> getValue() {
-		if (getEmpty()) {
+		if (isEmpty()) {
 			throw new IllegalStateException(
 					"Trying to access root not of an empty tree");
 		}
-		return value;
+		return wordSet;
 	}
 
 	public TreeDictionary getTD(int number) {
@@ -75,6 +84,29 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 			case 9: return td9;
 			default : throw new IllegalStateException(
 							  "Not a valid dictionary.");
+		}
+	}
+
+	public void addToTD(int number, String word) {
+		switch (number) {
+			case 2: td2.wordSet.add(word);
+					break;
+			case 3: td3.wordSet.add(word);
+					break;
+			case 4: td4.wordSet.add(word);
+					break;
+			case 5: td5.wordSet.add(word);
+					break;
+			case 6: td6.wordSet.add(word);
+					break;
+			case 7: td7.wordSet.add(word);
+					break;
+			case 8: td8.wordSet.add(word);
+					break;
+			case 9: td9.wordSet.add(word);
+					break;
+			default : throw new IllegalStateException(
+							 "Not a valid dictionary.");
 		}
 	}
 
@@ -94,12 +126,17 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 					dictSig = wordToSignature(word);
 
 					for (int i = 0; i < dictSig.length(); i++) {
-						char num = dictSig.charAt(i);
+						int num = Character.getNumericValue(dictSig.charAt(i));
+						this.addToTD(num, word);
 					}
 				}
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("Dictionary file not found.");
+		}
+
+		for (int i = 2; i <= 9; i++) {
+			System.out.println(i + " = " + this.getTD(i).wordSet);
 		}
 	}
 
