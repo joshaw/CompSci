@@ -22,7 +22,7 @@ import java.io.*;
 public class TreeDictionaryTest {
 	public static void main(String[] args) {
 
-		TreeDictionary dict = new TreeDictionary("testfiles/shortwords.txt");
+		TreeDictionary dict = new TreeDictionary("testfiles/words.txt");
 
 		// System.out.println(ListDictionary.wordToSignature("home"));
 		// System.out.println(ListDictionary.wordToSignature("hello"));
