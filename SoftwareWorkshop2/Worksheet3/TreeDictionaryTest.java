@@ -28,6 +28,7 @@ public class TreeDictionaryTest {
 		// System.out.println(ListDictionary.wordToSignature("hello"));
 
 		// System.out.println(dict.signatureToWords("4663"));
+		System.out.println(dict);
 	}
 
 	static ListDictionary dict;
