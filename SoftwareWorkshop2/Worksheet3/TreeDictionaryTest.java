@@ -17,6 +17,7 @@ import org.junit.BeforeClass;
 
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Scanner;
 import java.io.*;
 
 public class TreeDictionaryTest {
@@ -24,11 +25,20 @@ public class TreeDictionaryTest {
 
 		TreeDictionary dict = new TreeDictionary("testfiles/words.txt");
 
-		// System.out.println(ListDictionary.wordToSignature("home"));
-		// System.out.println(ListDictionary.wordToSignature("hello"));
+		System.out.println(dict.signatureToWords("567"));
 
-		// System.out.println(dict.signatureToWords("4663"));
-		System.out.println(dict);
+		/* If no arguments are given to the program, calculate the possible
+		 * words for every word provided. */
+			Scanner in = new Scanner(System.in);
+			String input = "";
+
+			do {
+				System.out.print("Signature: ");
+				input = in.next();
+				System.out.print(" = ");
+				System.out.print(dict.signatureToWords(input));
+				System.out.println();
+			} while (!input.equals("STOP"));
 	}
 
 	static ListDictionary dict;
