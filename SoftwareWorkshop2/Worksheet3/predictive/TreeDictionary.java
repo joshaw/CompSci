@@ -100,28 +100,18 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 					dictSig = wordToSignature(word);
 
 					addWord(dictSig, word, this);
-					// for (int i = 0; i < dictSig.length(); i++) {
-					// 	int num = Character.getNumericValue(dictSig.charAt(i));
-					// 	this.addToTD(num, word);
-					// }
 				}
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("Dictionary file not found.");
-		}
-
-		for (int i = 2; i <= 9; i++) {
-			System.out.println(i + " = " + this.getTD(i).wordSet);
 		}
 	}
 
 	private void addWord(String signature, String word, TreeDictionary tree) {
 		String num = signature.substring(0,1);
 		int numInt = Integer.parseInt(num);
-		// System.out.println(num + " " + signature + " - " + word);
 
 		if (signature.length() == 1) {
-			// System.out.println("1");
 			return;
 		}
 		if (tree.isEmpty()) {
@@ -133,10 +123,17 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 	}
 
 	public Set<String> signatureToWords(String signature) {
-		while (signature.length()) {
-			
+		TreeDictionary temp = this;
+		int num;
+		while (signature.length() > 0) {
+			num = Integer.parseInt(signature.substring(0,1));
+			signature = signature.substring(1);
+			temp = temp.getTD(num);
 		}
-		return new TreeSet<String>();
+			if (temp.isEmpty()) {
+				return new TreeSet<String>();
+			}
+		return temp.wordSet;
 	}
 
 	private TreeDictionary[] makeTrees() {
