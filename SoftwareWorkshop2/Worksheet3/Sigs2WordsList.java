@@ -13,6 +13,7 @@ import predictive.*;
 import java.util.Scanner;
 
 public class Sigs2WordsList {
+
 	public static void main(String[] args) {
 		ListDictionary dict = new ListDictionary();
 

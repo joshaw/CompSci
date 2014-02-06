@@ -7,56 +7,21 @@ import java.util.TreeSet;
 
 public class TreeDictionary extends PredictiveText implements Dictionary {
 
+	private int number;
 	private boolean empty;
 	private Set<String> wordSet;
-	private TreeDictionary td2, td3, td4, td5, td6, td7, td8, td9;
-
-	public TreeDictionary(Set<String> wordSet, TreeDictionary td2,
-			TreeDictionary td3, TreeDictionary td4, TreeDictionary td5,
-			TreeDictionary td6, TreeDictionary td7, TreeDictionary td8,
-			TreeDictionary td9){
-		this.empty = false;
-		this.wordSet = wordSet;
-		this.td2 = td2;
-		this.td3 = td3;
-		this.td4 = td4;
-		this.td5 = td5;
-		this.td6 = td6;
-		this.td7 = td7;
-		this.td8 = td8;
-		this.td9 = td9;
-	}
-
-	// public TreeDictionary(boolean head) {
-	// 	if (!head) {
-	// 		throw new IllegalStateException("Not recognised.");
-	// 	}
-	// 	this.empty = false;
-	// 	this.wordSet = wordSet;
-	// 	this.td2 = new TreeDictionary();
-	// 	this.td3 = new TreeDictionary();
-	// 	this.td4 = new TreeDictionary();
-	// 	this.td5 = new TreeDictionary();
-	// 	this.td6 = new TreeDictionary();
-	// 	this.td7 = new TreeDictionary();
-	// 	this.td8 = new TreeDictionary();
-	// 	this.td9 = new TreeDictionary();
-	// }
+	private TreeDictionary[] treeArray = new TreeDictionary[10];
+	// private TreeDictionary td2, td3, td4, td5, td6, td7, td8, td9;
 
 	public TreeDictionary() {
-		this.empty = true;
 		this.wordSet = new TreeSet<String>();
+		this.empty = true;
 	}
 
 	public TreeDictionary(String dictFile){
-		this.td2 = new TreeDictionary();
-		this.td3 = new TreeDictionary();
-		this.td4 = new TreeDictionary();
-		this.td5 = new TreeDictionary();
-		this.td6 = new TreeDictionary();
-		this.td7 = new TreeDictionary();
-		this.td8 = new TreeDictionary();
-		this.td9 = new TreeDictionary();
+		this.empty = false;
+		// this.treeArray = new TreeDictionary[10];
+		treeArray = makeTrees();
 		readDictionary(dictFile);
 	}
 
@@ -64,50 +29,16 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		return empty;
 	}
 
-	public Set<String> getValue() {
-		if (isEmpty()) {
-			throw new IllegalStateException(
-					"Trying to access root not of an empty tree");
-		}
+	public Set<String> getWordSet() {
 		return wordSet;
 	}
 
 	public TreeDictionary getTD(int number) {
-		switch (number) {
-			case 2: return td2;
-			case 3: return td3;
-			case 4: return td4;
-			case 5: return td5;
-			case 6: return td6;
-			case 7: return td7;
-			case 8: return td8;
-			case 9: return td9;
-			default : throw new IllegalStateException(
-							  "Not a valid dictionary.");
-		}
+		return treeArray[number];
 	}
 
 	public void addToTD(int number, String word) {
-		switch (number) {
-			case 2: td2.wordSet.add(word);
-					break;
-			case 3: td3.wordSet.add(word);
-					break;
-			case 4: td4.wordSet.add(word);
-					break;
-			case 5: td5.wordSet.add(word);
-					break;
-			case 6: td6.wordSet.add(word);
-					break;
-			case 7: td7.wordSet.add(word);
-					break;
-			case 8: td8.wordSet.add(word);
-					break;
-			case 9: td9.wordSet.add(word);
-					break;
-			default : throw new IllegalStateException(
-							 "Not a valid dictionary.");
-		}
+		treeArray[number].wordSet.add(word);
 	}
 
 	private void readDictionary(String dictFile) {
@@ -125,6 +56,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 				if (isValidWord(word)) {
 					dictSig = wordToSignature(word);
 
+					addWord(dictSig, word, this);
 					for (int i = 0; i < dictSig.length(); i++) {
 						int num = Character.getNumericValue(dictSig.charAt(i));
 						this.addToTD(num, word);
@@ -140,7 +72,31 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		}
 	}
 
+	private void addWord(String signature, String word, TreeDictionary tree) {
+		String num = signature.substring(0,1);
+		int numInt = Integer.parseInt(num);
+		System.out.println(num + " " + signature + " - " + word + " - " + num);
+
+		if (signature.length() == 1) {
+			System.out.println("1");
+			return;
+		}
+		if (tree.isEmpty()) {
+			tree.treeArray = makeTrees();
+		}
+		addWord(signature.substring(1), word, tree.getTD(numInt));
+	}
+
 	public Set<String> signatureToWords(String signature) {
 		return new TreeSet<String>();
 	}
+
+	private TreeDictionary[] makeTrees() {
+		TreeDictionary[] temp = new TreeDictionary[10];
+		for (int i = 0; i < 10; i++) {
+			temp[i] = new TreeDictionary();
+		}
+		return temp;
+	}
+
 }
