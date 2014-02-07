@@ -27,42 +27,42 @@ public class ListDictionaryTest {
 		/* Exploring writing the dictionary object to disk so that it can be
 		 * read from disk instead of creating the dictionary every time the
 		 * program is run. Turns out not to offer any speed improvements. Does
-		 * illustrate the size of the dictionary when all words ahve been read
+		 * illustrate the size of the dictionary when all words have been read
 		 * and signatures calculated ~11MB. */
-		// File f = new File("dictionary.ser");
-		// if(f.exists()) {
+	/*	File f = new File("dictionary.ser");
+		if(f.exists()) {
 
-		// 	System.out.println("Using existing dictionary file.");
-		// 	try{
-		// 		FileInputStream dictStream = new FileInputStream("dictionary.ser");
-		// 		ObjectInputStream reader = new ObjectInputStream(dictStream);
-		// 		dict = (ListDictionary) reader.readObject();
+			System.out.println("Using existing dictionary file.");
+			try{
+				FileInputStream dictStream = new FileInputStream("dictionary.ser");
+				ObjectInputStream reader = new ObjectInputStream(dictStream);
+				dict = (ListDictionary) reader.readObject();
 
-		// 	} catch (IOException e) {
-		// 		System.out.println("IOException");
-		// 		System.err.println(e.getMessage());
-		// 		dict = new ListDictionary();
+			} catch (IOException e) {
+				System.out.println("IOException");
+				System.err.println(e.getMessage());
+				dict = new ListDictionary();
 
-		// 	} catch (ClassNotFoundException e) {
-		// 		System.out.println("ClassNotFoundException");
-		// 		System.err.println(e.getMessage());
-		// 		dict = new ListDictionary();
-		// 	}
+			} catch (ClassNotFoundException e) {
+				System.out.println("ClassNotFoundException");
+				System.err.println(e.getMessage());
+				dict = new ListDictionary();
+			}
 
-		// } else {
-		// 	System.out.println("Creating new dictionary file.");
-		// 	dict = new ListDictionary();
-		// 	try{
-		// 		// Serialize data object to a file
-		// 		ObjectOutputStream out = new ObjectOutputStream(
-		// 				new FileOutputStream("dictionary.ser"));
-		// 		out.writeObject(dict);
-		// 		out.close();
-		// 	} catch (IOException e) {
-		// 		System.err.println(e);
-		// 		dict = new ListDictionary();
-		// 	}
-		// }
+		} else {
+			System.out.println("Creating new dictionary file.");
+			dict = new ListDictionary();
+			try{
+				// Serialize data object to a file
+				ObjectOutputStream out = new ObjectOutputStream(
+						new FileOutputStream("dictionary.ser"));
+				out.writeObject(dict);
+				out.close();
+			} catch (IOException e) {
+				System.err.println(e);
+				dict = new ListDictionary();
+			}
+		} */
 
 		System.out.println(ListDictionary.wordToSignature("home"));
 		System.out.println(ListDictionary.wordToSignature("hello"));

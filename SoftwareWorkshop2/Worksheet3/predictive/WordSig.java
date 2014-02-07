@@ -13,7 +13,7 @@ package predictive;
 
 import java.math.BigInteger;
 
-public class WordSig implements Comparable<WordSig>, java.io.Serializable {
+public class WordSig implements Comparable<WordSig> {
 
 	private String word;
 	private String signature;
@@ -31,6 +31,12 @@ public class WordSig implements Comparable<WordSig>, java.io.Serializable {
 		return signature;
 	}
 
+	/** Comparator method for the wordSig object. Uses the signature to
+	 * compare, irrespective of the word itself.
+	 *
+	 * @param ws wordSig object to compare to.
+	 * @return -x, 0 or x if the arguement is smaller, equal to or larger than.
+	 */
 	@Override
 	public int compareTo(WordSig ws) {
 

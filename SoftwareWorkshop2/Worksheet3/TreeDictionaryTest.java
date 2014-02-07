@@ -24,8 +24,9 @@ public class TreeDictionaryTest {
 	public static void main(String[] args) {
 
 		TreeDictionary dict = new TreeDictionary("testfiles/words.txt");
+		// TreeDictionary dict = new TreeDictionary("/usr/share/dict/words");
 
-		System.out.println(dict.signatureToWords("567"));
+		System.out.println(dict.signatureToWords("4663"));
 
 		/* If no arguments are given to the program, calculate the possible
 		 * words for every word provided. */
@@ -41,14 +42,14 @@ public class TreeDictionaryTest {
 			} while (!input.equals("STOP"));
 	}
 
-	static ListDictionary dict;
+	static TreeDictionary dict;
 
 	/* Creat a ListDictionary object that can be used by subsequent tests since
 	 * reading file takes considerable time, this should not be performed for
 	 * every test case. */
 	@BeforeClass
 	public static void makeDictionary() {
-		dict = new ListDictionary();
+		dict = new TreeDictionary("testfiles/words.txt");
 	}
 
 	// test wordToSignature ---------------------------------------------------

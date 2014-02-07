@@ -47,6 +47,10 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		return empty;
 	}
 
+	/** Set the empty flag of the current object.
+	 *
+	 * @param empty boolean value for empty.
+	 */
 	public void setEmpty(boolean empty) {
 		this.empty = empty;
 	}
@@ -107,35 +111,68 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		}
 	}
 
+	/** Add a word, with the given signature to a given TreeDictionary. Adds
+	 * the word to the Set that is contained in the appropriate tree. The word
+	 * is added recursively to all applicable subtrees from the signature.
+	 *
+	 * eg, the word 'home', which as signature '4663' will be added to the set
+	 * in subtree 4, in the subtree 6 of 4, the subtree of 6 of 6 of 4 and 3 of
+	 * 6 of 6 of 4.
+	 *
+	 * Adding, to an initially empty TreeDictionary object, the words 'home',
+	 * 'goal' and then 'ions' gives the following tree.
+	 *
+	 *    root
+	 *        4 [home, goal, ions]
+	 *            6 [home, goal, ions]
+	 *                2 [goal]
+	 *                    5 [goal]
+	 *                6 [home, ions]
+	 *                    3 [home]
+	 *                    7 [ions]
+	 *
+	 * @param signature
+	 * @param word
+	 * @param tree
+	 */
 	private void addWord(String signature, String word, TreeDictionary tree) {
 		String num = signature.substring(0,1);
 		int numInt = Integer.parseInt(num);
 
-		if (signature.length() == 1) {
-			return;
-		}
 		if (tree.isEmpty()) {
 			tree.treeArray = makeTrees();
 		}
 		tree.addToTD(numInt, word);
 		tree.setEmpty(false);
-		addWord(signature.substring(1), word, tree.getTD(numInt));
+
+		if (signature.length() > 1) {
+			addWord(signature.substring(1), word, tree.getTD(numInt));
+		}
 	}
 
+	/**
+	 *
+	 * @param signature
+	 * @return
+	 */
 	public Set<String> signatureToWords(String signature) {
 		TreeDictionary temp = this;
 		int num;
 		while (signature.length() > 0) {
 			num = Integer.parseInt(signature.substring(0,1));
 			signature = signature.substring(1);
-			temp = temp.getTD(num);
-		}
 			if (temp.isEmpty()) {
 				return new TreeSet<String>();
 			}
+			temp = temp.getTD(num);
+		}
 		return temp.wordSet;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	private TreeDictionary[] makeTrees() {
 		TreeDictionary[] temp = new TreeDictionary[10];
 		for (int i = 0; i < 10; i++) {
@@ -143,38 +180,4 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		}
 		return temp;
 	}
-
-	// @Override
-	// public String toString() {
-	// 	return toString(this);
-	// }
-
-	// private String toString(TreeDictionary tree) {
-	// 	// System.out.println(this.getTD(4).getTD(2).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(3).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(4).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(5).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(6).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(7).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(8).wordSet);
-	// 	// System.out.println(this.getTD(4).getTD(9).wordSet);
-	// 	// System.out.println(this.wordSet.size());
-	// 	// System.out.println(this.isEmpty());
-	// 	if (this.isEmpty()) {
-	// 		// StringBuilder temp = new StringBuilder();
-	// 		// for (int i = 2; i < 10; i++) {
-	// 		// 	temp.append(this.getTD(i));
-	// 		// }
-	// 		return "isEmpty";
-	// 		// return temp.toString();
-	// 	}
-
-	// 	StringBuilder treeString = new StringBuilder();
-	// 	for (int i = 2; i < 10; i++) {
-	// 	System.out.println("HERE +  " + i);
-	// 		treeString.append(i + " - " + toString(tree.getTD(i)));
-	// 	}
-	// 	return treeString.toString();
-	// }
-
 }
