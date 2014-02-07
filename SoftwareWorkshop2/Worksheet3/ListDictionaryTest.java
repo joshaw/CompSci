@@ -107,17 +107,13 @@ public class ListDictionaryTest {
 	@Test // multiple returned possible words
 	public void testSignatureToWords() {
 		TreeSet<String> comp = new TreeSet<String>();
-		comp.add("gome");
-		comp.add("gond");
 		comp.add("gone");
 		comp.add("good");
 		comp.add("goof");
 		comp.add("home");
-		comp.add("hond");
 		comp.add("hone");
 		comp.add("hood");
 		comp.add("hoof");
-		comp.add("inne");
 		assertTrue(comp.equals(dict.signatureToWords("4663")));
 	}
 

@@ -1,0 +1,19 @@
+Testsuite: TreeDictionaryTest
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.682 sec
+------------- Standard Output ---------------
+comp + [hometown, hometowns]
+dict + []
+------------- ---------------- ---------------
+
+Testcase: testWordToSignature2 took 0.001 sec
+Testcase: testWordToSignature3 took 0 sec
+Testcase: testWordToSignature4 took 0 sec
+Testcase: testSignatureToWords2 took 0.465 sec
+Testcase: testSignatureToWords3 took 0.19 sec
+Testcase: testWordToSignature took 0 sec
+Testcase: testSignatureToWords took 0.001 sec
+	FAILED
+null
+junit.framework.AssertionFailedError
+	at TreeDictionaryTest.testSignatureToWords(TreeDictionaryTest.java:86)
+
