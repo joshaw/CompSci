@@ -43,9 +43,13 @@ public class WordSig implements Comparable<WordSig> {
 		/* signatures are stored as strings. Here they are converted to Doubles
 		 * so that they are sorted numerically rather than lexiographically.
 		 * Double is large enough to allow words up to ~300 letters. */
-		Double sig = Double.parseDouble(signature);
-		Double wsSig = Double.parseDouble(ws.signature);
-		return sig.compareTo(wsSig);
+		// Double sig = Double.parseDouble(signature);
+		// Double wsSig = Double.parseDouble(ws.signature);
+		// return sig.compareTo(wsSig);
+
+		/* Comparing the signatures directly as strings means a saving of 2
+		 * operations per compare. */
+		return signature.compareTo(ws.signature);
 	}
 
 }
