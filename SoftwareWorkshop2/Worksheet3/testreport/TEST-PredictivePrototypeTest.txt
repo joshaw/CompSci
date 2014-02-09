@@ -1,10 +1,10 @@
 Testsuite: PredictivePrototypeTest
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.828 sec
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.888 sec
 
 Testcase: testWordToSignature2 took 0.001 sec
 Testcase: testWordToSignature3 took 0 sec
 Testcase: testWordToSignature4 took 0 sec
-Testcase: testSignatureToWords2 took 0.454 sec
-Testcase: testSignatureToWords3 took 0.186 sec
+Testcase: testSignatureToWords2 took 0.478 sec
+Testcase: testSignatureToWords3 took 0.198 sec
 Testcase: testWordToSignature took 0 sec
-Testcase: testSignatureToWords took 0.173 sec
+Testcase: testSignatureToWords took 0.191 sec
