@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TreeDictionary extends PredictiveText implements Dictionary {
+public class TreeDictionary extends PredictiveText implements Dictionary, java.io.Serializable {
 
 	private int number;
 	private boolean empty;
@@ -142,12 +142,13 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		if (tree.isEmpty()) {
 			tree.treeArray = makeTrees();
 		}
-		tree.addToTD(numInt, word);
 		tree.setEmpty(false);
+		tree.addToTD(numInt, word);
 
 		if (signature.length() > 1) {
 			addWord(signature.substring(1), word, tree.getTD(numInt));
 		}
+		System.out.println("Done - " + word);
 	}
 
 	/**

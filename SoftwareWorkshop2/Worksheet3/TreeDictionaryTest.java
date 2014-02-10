@@ -1,4 +1,4 @@
-/** Test class for the ListDictionary implementation of a dictionary to hold
+/** Test class for the TreeDictionary implementation of a dictionary to hold
  * word/signature pairs which allows the reverse searching of signatures to
  * find relevant words.
  *
@@ -6,7 +6,7 @@
  * UID       : 1079596
  * Worksheet : SoftwareWorkshop2
  * Exercise  : Worksheet3
- * File name : ListDictionaryTest.java
+ * File name : TreeDictionaryTest.java
  * @version 2014-02-03
  */
 import predictive.*;
@@ -23,7 +23,7 @@ import java.io.*;
 public class TreeDictionaryTest {
 	public static void main(String[] args) {
 
-		TreeDictionary dict = new TreeDictionary("testfiles/words.txt");
+		TreeDictionary dict = new TreeDictionary("testfiles/shortwords.txt");
 		// TreeDictionary dict = new TreeDictionary("/usr/share/dict/words");
 
 		System.out.println(dict.signatureToWords("4663"));
@@ -44,7 +44,7 @@ public class TreeDictionaryTest {
 
 	static TreeDictionary dict;
 
-	/* Creat a ListDictionary object that can be used by subsequent tests since
+	/* Creat a TreeDictionary object that can be used by subsequent tests since
 	 * reading file takes considerable time, this should not be performed for
 	 * every test case. */
 	@BeforeClass
@@ -55,23 +55,23 @@ public class TreeDictionaryTest {
 	// test wordToSignature ---------------------------------------------------
 	@Test // simple case
 	public void testWordToSignature() {
-		assertEquals("4663", ListDictionary.wordToSignature("home"));
+		assertEquals("4663", TreeDictionary.wordToSignature("home"));
 	}
 
 	@Test // empty string
 	public void testWordToSignature2() {
-		assertEquals("", ListDictionary.wordToSignature(""));
+		assertEquals("", TreeDictionary.wordToSignature(""));
 	}
 
 	@Test // repeated letters
 	public void testWordToSignature3() {
-		assertEquals("222222", ListDictionary.wordToSignature("aaaaaa"));
+		assertEquals("222222", TreeDictionary.wordToSignature("aaaaaa"));
 	}
 
 	@Test // very long word
 	public void testWordToSignature4() {
 		String comp = "763866668587264276726742745426865226626646747";
-		assertTrue(comp.equals(ListDictionary.wordToSignature(
+		assertTrue(comp.equals(TreeDictionary.wordToSignature(
 						"pneumonoultramicroscopicsilicovolcanoconiosis")));
 	}
 
