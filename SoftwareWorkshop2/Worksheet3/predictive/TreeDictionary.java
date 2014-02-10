@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Iterator;
 
 public class TreeDictionary extends PredictiveText implements Dictionary {
 
@@ -160,6 +161,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 	 * @return set of possible words for that signature.
 	 */
 	public Set<String> signatureToWords(String signature) {
+		int sigLength = signature.length();
 		TreeDictionary temp = this;
 		int num;
 
@@ -167,18 +169,26 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		 * refer to the relevant subtree in the TreeDictionary object. */
 		while (signature.length() > 0) {
 			try {
-			num = Integer.parseInt(signature.substring(0,1));
-			if (num < 2) {
-				throw new IllegalArgumentException("Signature can " +
-						"only contain the values 2-9, found " + num + ".");
-			}
+				num = Integer.parseInt(signature.substring(0,1));
+				if (num < 2) {
+					throw new IllegalArgumentException("Signature can " +
+							"only contain the values 2-9, found " + num + ".");
+				}
 
-			signature = signature.substring(1);
-			if (!temp.isEmpty()) {
-				temp = temp.getTD(num);
+				signature = signature.substring(1);
+				if (!temp.isEmpty()) {
+					temp = temp.getTD(num);
+				}
+			} catch(IllegalArgumentException e) {
+				System.err.println(e);
 			}
 		}
-		return temp.wordSet;
+
+			TreeSet<String> trimmed = new TreeSet<String>();
+			for (String c: temp.wordSet) {
+				trimmed.add(c.substring(0,sigLength));
+			}
+		return trimmed;
 	}
 
 	/** Makes a set of 10 trees for extending the TreeDictionary object to a
