@@ -81,8 +81,6 @@ public class TreeDictionaryTest {
 		TreeSet<String> comp = new TreeSet<String>();
 		comp.add("hometown");
 		comp.add("hometowns");
-		System.out.println("comp + " + comp);
-		System.out.println("dict + " + dict.signatureToWords("46638"));
 		assertTrue(comp.equals(dict.signatureToWords("46638")));
 	}
 

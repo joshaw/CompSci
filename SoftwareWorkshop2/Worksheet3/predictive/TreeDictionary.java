@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TreeDictionary extends PredictiveText implements Dictionary, java.io.Serializable {
+public class TreeDictionary extends PredictiveText implements Dictionary {
 
 	private int number;
 	private boolean empty;
@@ -23,7 +23,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 
 	/** Constructor for the TreeDictionary class.
 	 */
-	public TreeDictionary() {
+	private TreeDictionary() {
 		this.wordSet = new TreeSet<String>();
 		this.empty = true;
 	}
@@ -43,7 +43,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 	 *
 	 * @return true if empty.
 	 */
-	public boolean isEmpty() {
+	private boolean isEmpty() {
 		return empty;
 	}
 
@@ -51,7 +51,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 	 *
 	 * @param empty boolean value for empty.
 	 */
-	public void setEmpty(boolean empty) {
+	private void setEmpty(boolean empty) {
 		this.empty = empty;
 	}
 
@@ -60,7 +60,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 	 *
 	 * @return Set containing the words that match a given signature.
 	 */
-	public Set<String> getWordSet() {
+	private Set<String> getWordSet() {
 		return wordSet;
 	}
 
@@ -70,7 +70,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 	 * @return a TreeDictionary holding the words corresponding to the given
 	 * signature.
 	 */
-	public TreeDictionary getTD(int number) {
+	private TreeDictionary getTD(int number) {
 		return treeArray[number];
 	}
 
@@ -79,7 +79,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 	 * @param number subtree to add to.
 	 * @param word word to add.
 	 */
-	public void addToTD(int number, String word) {
+	private void addToTD(int number, String word) {
 		treeArray[number].wordSet.add(word);
 	}
 
@@ -139,44 +139,61 @@ public class TreeDictionary extends PredictiveText implements Dictionary, java.i
 		String num = signature.substring(0,1);
 		int numInt = Integer.parseInt(num);
 
+		// Populate with empty trees.
 		if (tree.isEmpty()) {
 			tree.treeArray = makeTrees();
+			tree.setEmpty(false);
 		}
 		tree.setEmpty(false);
 		tree.addToTD(numInt, word);
 
+		// If the signature still has some integers left.
 		if (signature.length() > 1) {
 			addWord(signature.substring(1), word, tree.getTD(numInt));
 		}
-		System.out.println("Done - " + word);
 	}
 
-	/**
+	/** Converts the given signature to a set of possible words that could be
+	 * represented by it using the TreeDictionary object that is operated on.
 	 *
-	 * @param signature
-	 * @return
+	 * @param signature signature to calculate possible words for.
+	 * @return set of possible words for that signature.
 	 */
 	public Set<String> signatureToWords(String signature) {
 		TreeDictionary temp = this;
 		int num;
+
+		/* While the signature is not empty, remove the first value and use to
+		 * refer to the relevant subtree in the TreeDictionary object. */
 		while (signature.length() > 0) {
+			try {
 			num = Integer.parseInt(signature.substring(0,1));
-			signature = signature.substring(1);
-			if (temp.isEmpty()) {
-				return new TreeSet<String>();
+			if (num < 2) {
+				throw new IllegalArgumentException("Signature can " +
+						"only contain the values 2-9, found " + num + ".");
 			}
-			temp = temp.getTD(num);
+
+			signature = signature.substring(1);
+			if (!temp.isEmpty()) {
+				temp = temp.getTD(num);
+			}
 		}
 		return temp.wordSet;
 	}
 
-	/**
+	/** Makes a set of 10 trees for extending the TreeDictionary object to a
+	 * new layer.
 	 *
-	 * @return
+	 * @return array of empty TreeDictionary objects for use in a
+	 * TreeDictionary.
 	 */
 	private TreeDictionary[] makeTrees() {
 		TreeDictionary[] temp = new TreeDictionary[10];
-		for (int i = 0; i < 10; i++) {
+
+		/* Start at 2 since 0 and 1 are not used on numerical keypad, so do not
+		 * appear in signatures. Leave these array positions empty for easier
+		 * reference between signature value and position. */
+		for (int i = 2; i < 10; i++) {
 			temp[i] = new TreeDictionary();
 		}
 		return temp;
