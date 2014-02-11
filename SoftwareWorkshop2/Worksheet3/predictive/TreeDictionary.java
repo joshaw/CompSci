@@ -153,7 +153,12 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 			tree.setEmpty(false);
 		}
 		tree.setEmpty(false);
-		tree.addToTD(numInt, word);
+
+		/* Trim word to length of signature thus far. For user input signature
+		 * of length n, only word prefixes of length n will be returned.
+		 * TODO better comments here*/
+		String trimWord = word.substring(0, word.length()-signature.length()+1);
+		tree.addToTD(numInt, trimWord);
 
 		// If the signature still has some integers left.
 		if (signature.length() > 1) {
@@ -191,11 +196,7 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 			}
 		}
 
-			TreeSet<String> trimmed = new TreeSet<String>();
-			for (String c: temp.wordSet) {
-				trimmed.add(c.substring(0,sigLength));
-			}
-		return trimmed;
+		return temp.wordSet;
 	}
 
 	/** Makes a set of 10 trees for extending the TreeDictionary object to a
