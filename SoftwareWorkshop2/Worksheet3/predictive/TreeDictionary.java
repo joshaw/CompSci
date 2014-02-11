@@ -1,4 +1,11 @@
-/**
+/** Class which reads a dictionary of words into memory for use when converting
+ * a word signature to its set of possible words. This means that the
+ * dictionary does not need to be parsed for every signature to be converted.
+ *
+ * A custom recursive data structure, based on TreeSet's is used where each
+ * treeSet has a total of 8 subchildren, one for each of the possible values in
+ * the signature, 2-9. Within each of these, a set of the possible words is
+ * stored for quick retreval when searching for a signature.
  *
  * @author Josh Wainwright
  * UID       : 1079596
