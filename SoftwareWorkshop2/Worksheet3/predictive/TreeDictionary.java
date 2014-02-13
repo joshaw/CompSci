@@ -7,6 +7,20 @@
  * the signature, 2-9. Within each of these, a set of the possible words is
  * stored for quick retreval when searching for a signature.
  *
+ * On reading the dictionary file, the signature of each word is calculated and
+ * the word is inserted into the tree. The position of the word is determined
+ * by the signature such that the route followed to retrieve the word is the
+ * same as the original signature.
+ *
+ * In order to support prefix matching, the start of each word, up to the
+ * length of the signature at the given point down the tree on route to the
+ * final word, is stored in the set at that node. Since no duplicates are
+ * allowed in sets, the number of stored words is greatly smaller than storing
+ * every word at every node down the tree, for example, at the first node 2,
+ * one the prefixes ["a", "b", "c"] are stored. This means that, to retrieve
+ * the possible word prefixes for a given signature, the class simply returns
+ * the set at the position given by the signature.
+ *
  * @author Josh Wainwright
  * UID       : 1079596
  * Worksheet : 3
@@ -154,9 +168,12 @@ public class TreeDictionary extends PredictiveText implements Dictionary {
 		}
 		tree.setEmpty(false);
 
-		/* Trim word to length of signature thus far. For user input signature
-		 * of length n, only word prefixes of length n will be returned.
-		 * TODO better comments here*/
+		/* Trim word to length of signature thus far. For input signature of
+		 * length n, only word prefixes of length n will be returned. All of
+		 * the possible/nessessary words for all subtrees are stored at each
+		 * level to increase speed of retrieval, but since no duplicates are
+		 * allowed in a set, the space occupied in memeory is much smaller than
+		 * storing all words. */
 		String trimWord = word.substring(0, word.length()-signature.length()+1);
 		tree.addToTD(numInt, trimWord);
 

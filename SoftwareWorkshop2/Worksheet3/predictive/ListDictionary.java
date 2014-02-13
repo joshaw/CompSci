@@ -93,6 +93,10 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 		WordSig test = new WordSig("", signature);
 		int index = Collections.binarySearch(wordSet, test);
 
+		if (index < 0) {
+			return new TreeSet<String>();
+		}
+
 		TreeSet<String> foundWords = new TreeSet<String>();
 
 		/* Check signatures for the wordSig's before this one, until the
@@ -102,7 +106,9 @@ public class ListDictionary extends PredictiveText implements Dictionary {
 		while (i >= 0 && tempSig.equals(signature)) {
 			foundWords.add(wordSet.get(i).getWord());
 			i--;
-			tempSig = wordSet.get(i).getSignature();
+			if (i >= 0) {
+				tempSig = wordSet.get(i).getSignature();
+			}
 		}
 
 		// Add the word with corresponding signature.

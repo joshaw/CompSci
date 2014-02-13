@@ -79,9 +79,15 @@ public class TreeDictionaryTest {
 	@Test // multiple returned possible words
 	public void testSignatureToWords() {
 		TreeSet<String> comp = new TreeSet<String>();
-		comp.add("hometown");
-		comp.add("hometowns");
-		assertTrue(comp.equals(dict.signatureToWords("46638")));
+		comp.add("gm");
+		comp.add("gn");
+		comp.add("go");
+		comp.add("hm");
+		comp.add("ho");
+		comp.add("im");
+		comp.add("in");
+		comp.add("io");
+		assertTrue(comp.equals(dict.signatureToWords("46")));
 	}
 
 	@Test //empty string

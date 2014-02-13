@@ -1,0 +1,19 @@
+echo "\n\nMultiple 2's\n\n"
+
+echo "####Tree####";
+/usr/bin/time -p java Sigs2WordsTree $(for i in {1..100000}; do echo 2; done) > /dev/null;
+echo "####Map####";
+/usr/bin/time -p java Sigs2WordsMap $(for i in {1..100000}; do echo 2; done) > /dev/null;
+echo "####List####";
+/usr/bin/time -p java Sigs2WordsList $(for i in {1..100000}; do echo 2; done) > /dev/null;
+
+echo "\n\nRandom string\n\n"
+
+echo "####Tree####";
+/usr/bin/time -p java Sigs2WordsTree $( echo 314159276585{1..100000} | tr '10' '23') > /dev/null;
+echo "####Map####";
+/usr/bin/time -p java Sigs2WordsMap $( echo 314159276585{1..100000} | tr '10' '23') > /dev/null;
+echo "####List####";
+/usr/bin/time -p java Sigs2WordsList $( echo 314159276585{1..100000} | tr '10' '23') > /dev/null;
+
+# vim: ft=zsh
