@@ -1,0 +1,86 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class PredictiveGUI extends JFrame implements ActionListener {
+	static final String gapList[] = {"0", "10", "15", "20"};
+	final static int maxGap = 20;
+	GridLayout experimentLayout = new GridLayout(0,3);
+
+	public PredictiveGUI(String name) {
+		super(name);
+		setResizable(false);
+	}
+
+	public void addComponentsToPane(final Container pane) {
+		final JPanel compsToExperiment = new JPanel();
+		compsToExperiment.setLayout(experimentLayout);
+		JPanel controls = new JPanel();
+
+		controls.add(new Label("Writing"));
+
+		JButton b1 = new JButton("1");
+		JButton b2 = new JButton("abc 2");
+		JButton b3 = new JButton("def 3");
+		JButton b4 = new JButton("ghi 4");
+		JButton b5 = new JButton("jkl 5");
+		JButton b6 = new JButton("mno 6");
+		JButton b7 = new JButton("pqrs 7");
+		JButton b8 = new JButton("tuv 8");
+		JButton b9 = new JButton("wxyz 9");
+		JButton bstar = new JButton("*");
+		JButton b0 = new JButton("0");
+		JButton bpound = new JButton("#");
+
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		b4.addActionListener(this);
+		b5.addActionListener(this);
+		b6.addActionListener(this);
+		b7.addActionListener(this);
+		b8.addActionListener(this);
+		b9.addActionListener(this);
+		b0.addActionListener(this);
+		bstar.addActionListener(this);
+		bpound.addActionListener(this);
+
+		compsToExperiment.add(b1);
+		compsToExperiment.add(b2);
+		compsToExperiment.add(b3);
+		compsToExperiment.add(b4);
+		compsToExperiment.add(b5);
+		compsToExperiment.add(b6);
+		compsToExperiment.add(b7);
+		compsToExperiment.add(b8);
+		compsToExperiment.add(b9);
+		compsToExperiment.add(bstar);
+		compsToExperiment.add(b0);
+		compsToExperiment.add(bpound);
+
+		pane.add(controls, BorderLayout.NORTH);
+		pane.add(new JSeparator(), BorderLayout.CENTER);
+		pane.add(compsToExperiment, BorderLayout.SOUTH);
+	}
+
+	private static void createAndShowGUI() {
+		//Create and set up the window.
+		PredictiveGUI frame = new PredictiveGUI("GridLayoutDemo");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Set up the content pane.
+		frame.addComponentsToPane(frame.getContentPane());
+		//Display the window.
+		frame.pack();
+		frame.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				createAndShowGUI();
+			}
+		});
+	}
+
+	private static final long serialVersionUID = 7526472295622776147L;
+}

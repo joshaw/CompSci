@@ -3,7 +3,7 @@
 # One line version:
 #     awk '{print $1}' $1 | sort | uniq -c | sort -nr | head -n10
 #
-# Arguement on command line is log file to extract ips from
+# Argument on command line is log file to extract ips from
 logfile=$1
 
 # ips are all in first column, separated from rest of file by space delimiter
