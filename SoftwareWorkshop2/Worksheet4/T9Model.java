@@ -1,31 +1,26 @@
+/*#############################################################################
+#                                    Model                                    #
+#############################################################################*/
+
 import java.util.Observable;
-public final class T9Model extends Observable {
+public final class T9Model {
 
-    private int currentNumber;
+	private static final String INITIAL_VALUE = "0";
+	private int total;
 
-    public T9Model() {
-        currentNumber = 0;
-    }
+	T9Model() {
+		reset();
+	}
 
-    public int getCounter() {
-        return currentNumber;
-    }
+	public void reset() {
+		total = 0;
+	}
 
-    public void setCounter(int counter) {
-        currentNumber = counter;
-        setChanged();
-        notifyObservers();
-    }
+	public void setValue(String val) {
+		System.out.println("Value = " + val);
+	}
 
-    public void IncrementCounter() {
-        currentNumber ++;
-        setChanged();
-        notifyObservers(currentNumber);
-    }
-
-    public void decrementCounter() {
-        currentNumber --;
-        setChanged();
-        notifyObservers(currentNumber);
+    public void printValue(int val) {
+        System.out.println("Int = " + val);
     }
 }
