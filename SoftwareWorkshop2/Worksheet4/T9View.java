@@ -13,7 +13,7 @@ public class T9View extends JFrame {
 
 	int count = 0;
 
-	JButton[] buttons = new JButton[13];
+	JButton[] buttons = new JButton[14];
 
 	JTextArea textArea = new JTextArea();
 	private T9Model model;
@@ -23,7 +23,7 @@ public class T9View extends JFrame {
 		this.model = model;
 
 		JPanel controls = new JPanel();
-		GridLayout ControlsLayout = new GridLayout(0, 3);
+		GridLayout ControlsLayout = new GridLayout(0, 3, 5, 5);
 		BorderLayout PanelLayout = new BorderLayout();
 
 		textArea = new JTextArea(5, 10);
@@ -33,7 +33,7 @@ public class T9View extends JFrame {
 		add(textArea, BorderLayout.PAGE_START);
 		controls.setLayout(ControlsLayout);
 
-		for (int i = 1; i < 13; i++) {
+		for (int i = 1; i < 14; i++) {
 			String buttonID = "" + i;
 			buttons[i] = new JButton();
 			buttons[i].setActionCommand(buttonID);
@@ -62,6 +62,7 @@ public class T9View extends JFrame {
 		buttons[10].setText("*");
 		buttons[11].setText("space");
 		buttons[12].setText("#");
+		buttons[13].setText("Del");
 	}
 
 	public void reset() {
@@ -76,8 +77,14 @@ public class T9View extends JFrame {
 	}
 
 	public void addButtonListner(ActionListener bal) {
-		for (int i = 1; i < 13; i++) {
+		for (int i = 1; i < 14; i++) {
 			buttons[i].addActionListener(bal);
+			buttons[i].setMnemonic(i+96);
+
+			if (i == 10) { buttons[i].setMnemonic(107); } // STAR - ADD
+			else if (i == 11) { buttons[i].setMnemonic(32); } // SPACE
+			else if (i == 12) { buttons[i].setMnemonic(109); } // HASH-SUBTRACT
+			else if (i == 13) { buttons[i].setMnemonic(8); } // BACK_SPACE
 		}
 	}
 
