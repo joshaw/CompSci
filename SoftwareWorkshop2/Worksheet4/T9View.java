@@ -81,6 +81,10 @@ public class T9View extends JFrame {
 		}
 	}
 
+	public void redrawText(String textContent) {
+		textArea.setText(textContent);
+	}
+
 	private static final long serialVersionUID = 1L;
 
 }

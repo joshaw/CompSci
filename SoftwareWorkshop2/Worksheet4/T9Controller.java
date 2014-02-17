@@ -10,6 +10,8 @@ public class T9Controller {
 	private ArrayList<String> currentWords;
 	private int sel = 0;
 	private String curWord = "";
+	private String curSig = "";
+	private String textContent = "";
 
 	public T9Controller(T9Model model, T9View view) {
 		this.model = model;
@@ -20,7 +22,7 @@ public class T9Controller {
 
 	private String getWord(int i) {
 		String temp = currentWords.get(i);
-		return "THIS";
+		return temp;
 	}
 
 	class ButtonListener implements ActionListener {
@@ -30,20 +32,33 @@ public class T9Controller {
 
 			String oldText = view.getTextArea();
 
-			if (buttonNumber > 0 && buttonNumber <= 9) {
-
-				currentWords = model.wordPrefixList("" + buttonNumber);
+			if (buttonNumber > 1 && buttonNumber <= 9) {
+				curSig += buttonNumber;
+				currentWords = model.wordPrefixList(curSig);
 				view.setTextArea(getWord(sel));
+//TODO
+				view.setTextArea(textContent);
 
-			} else if (buttonNumber == 10) {
-				sel++;
-				view.setTextArea(getWord(sel));
-			} else if (buttonNumber == 11) {
-				curWord = "";
+			} else if (buttonNumber == 10) { // STAR
+				if (sel < currentWords.size()-1) {
+					sel++;
+					curWord = getWord(sel);
+					view.setTextArea(textContent + " " + curWord);
+				}
+
+			} else if (buttonNumber == 12) { // HASH
+				if (sel > 0) {
+					sel--;
+					curWord = getWord(sel);
+					view.setTextArea(textContent + " " + curWord);
+				}
+
+			} else if (buttonNumber == 11) { // SPACE
+				textContent += " " + curWord + " ";
+				view.redrawText(textContent);
+				curSig = "";
 				sel = 0;
-				view.reset();
-			} else if (buttonNumber == 12) {
-				view.setTextArea("Hash button pressed");
+				curWord = "";
 			}
 		}
 	}
