@@ -20,14 +20,6 @@ public class T9Controller {
 		view.addButtonListner(new ButtonListener());
 	}
 
-	private String getWord(int i) {
-		if (currentWords.size() == 0) {
-			return curSig;
-		}
-		String temp = currentWords.get(i);
-		return temp;
-	}
-
 	class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
@@ -36,49 +28,19 @@ public class T9Controller {
 			String oldText = view.getTextArea();
 
 			if (buttonNumber > 1 && buttonNumber <= 9) {
-				curSig += buttonNumber;
-				currentWords = model.wordPrefixList(curSig);
-				curWord = getWord(0);
-				view.setTextArea(textContent + curWord);
+				model.handleNumberButton(buttonNumber);
 
 			} else if (buttonNumber == 10) { // STAR
-				if (sel < currentWords.size()-1) {
-					sel++;
-					curWord = getWord(sel);
-					view.setTextArea(textContent + curWord);
-				}
+				model.handleStarButton();
 
 			} else if (buttonNumber == 12) { // HASH
-				if (sel > 0) {
-					sel--;
-					curWord = getWord(sel);
-					view.setTextArea(textContent + curWord);
-				}
+				model.handleHashButton();
 
 			} else if (buttonNumber == 11) { // SPACE
-				textContent += curWord + " ";
-				view.redrawText(textContent);
-				curSig = "";
-				sel = 0;
-				curWord = "";
-			} else if (buttonNumber == 13) {
-				int lastSpace = textContent.lastIndexOf(" ");
+				model.handleSpace();
 
-				if (curWord.length() > 0) {
-					curSig = curSig.substring(0, curSig.length() - 1);
-					currentWords = model.wordPrefixList(curSig);
-					curWord = getWord(0);
-					view.setTextArea(textContent + curWord);
-				} else {
-					if (lastSpace > 0) {
-						textContent = textContent.substring(0, lastSpace);
-					} else {
-						textContent = "";
-					}
-					view.setTextArea(textContent);
-
-				}
-
+			} else if (buttonNumber == 13) { // DEL
+				model.handleDelete();
 			}
 		}
 	}

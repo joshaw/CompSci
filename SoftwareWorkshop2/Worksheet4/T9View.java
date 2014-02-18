@@ -1,7 +1,12 @@
-/*#############################################################################
-#                                    View                                     #
-#############################################################################*/
-
+/** View component of the T9 Predictive Text application GUI.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : SoftwareWorkshop2
+ * Exercise  : Worksheet4
+ * File name : T9View.java
+ * @version 2014-02-18
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,7 +14,7 @@ import javax.swing.*;
 import java.util.Observer;
 import java.util.Observable;
 
-public class T9View extends JFrame {
+public class T9View extends JFrame implements Observer {
 
 	int count = 0;
 
@@ -27,6 +32,9 @@ public class T9View extends JFrame {
 		BorderLayout PanelLayout = new BorderLayout();
 
 		textArea = new JTextArea(5, 10);
+		textArea.setFont(new Font("Serif", Font.PLAIN, 18));
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
 
 		this.setLayout(new BorderLayout());
 		textArea.setPreferredSize( new Dimension( 400, 240 ) );
@@ -90,6 +98,10 @@ public class T9View extends JFrame {
 
 	public void redrawText(String textContent) {
 		textArea.setText(textContent);
+	}
+
+	public void update(Observable obs, Object obj) {
+		textArea.setText(obj.toString());
 	}
 
 	private static final long serialVersionUID = 1L;
