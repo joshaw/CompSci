@@ -29,6 +29,7 @@ public class T9Controller {
 
 			if (buttonNumber > 1 && buttonNumber <= 9) {
 				model.handleNumberButton(buttonNumber);
+				System.out.println(buttonNumber);
 
 			} else if (buttonNumber == 10) { // STAR
 				model.handleStarButton();
