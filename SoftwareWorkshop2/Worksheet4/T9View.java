@@ -16,47 +16,69 @@ import java.util.Observable;
 
 public class T9View extends JFrame implements Observer {
 
-	int count = 0;
+	private int count = 0;
 
-	JButton[] buttons = new JButton[14];
+	private JButton[] buttons = new JButton[14];
+	private JTextArea textArea = new JTextArea();
 
-	JTextArea textArea = new JTextArea();
 	private T9Model model;
 
+	/** Constructor for the T9View class. Initiates the user interface with an
+	 * instance of the model.
+	 *
+	 * @param model the backend to use to support the UI.
+	 */
 	public T9View(T9Model model) {
+
+		/* UI consists of a main panel which contains the text area for
+		 * displaying the entered text and another panel which contains the
+		 * buttons for entering text.
+		 *
+		 * The main panel has a border layout with the text area at the top and
+		 * the buttons panel in the center. The buttons panel is arranged using
+		 * a grid layout with small spacing between the buttons. */
 
 		this.model = model;
 
-		JPanel controls = new JPanel();
-		GridLayout ControlsLayout = new GridLayout(0, 3, 5, 5);
+		// Layout of overall window and buttons.
 		BorderLayout PanelLayout = new BorderLayout();
+		GridLayout ControlsLayout = new GridLayout(0, 3, 5, 5);
 
-		textArea = new JTextArea(5, 10);
-		textArea.setFont(new Font("Serif", Font.PLAIN, 18));
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(true);
-
-		this.setLayout(new BorderLayout());
-		textArea.setPreferredSize( new Dimension( 400, 240 ) );
-		add(textArea, BorderLayout.PAGE_START);
+		JPanel controls = new JPanel();
 		controls.setLayout(ControlsLayout);
 
+		textArea = new JTextArea(5, 10);
+		textArea.setPreferredSize(new Dimension( 400, 240 ));
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setFont(new Font("Serif", Font.PLAIN, 18));
+
+		/* Buttons are stored in an array for simplicity. array position 0 is
+		 * empty for easy reference to buttons 1-9 and star (10), space (11),
+		 * hash (12) and delete (13). The actionCommand of each button is set
+		 * to the number it represents so that the button can be identified
+		 * whilst allowing other aspect, eg text, to be changed. */
 		for (int i = 1; i < 14; i++) {
-			String buttonID = "" + i;
 			buttons[i] = new JButton();
-			buttons[i].setActionCommand(buttonID);
+			buttons[i].setActionCommand("" + i);
 			controls.add(buttons[i]);
 		}
 
-		setButtonText();
+		this.setLayout(new BorderLayout());
+		this.add(textArea, BorderLayout.PAGE_START);
 
+		setButtonText();
+		this.addButtonListner(new ButtonListener());
 		add(controls);
+
 		this.pack();
 		this.setTitle("T9 Predictive Text");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 	}
 
+	/** Set the text on each button to be displayed.
+	 */
 	private void setButtonText() {
 		buttons[1].setText("    1");
 		buttons[2].setText("abc 2");
@@ -73,17 +95,13 @@ public class T9View extends JFrame implements Observer {
 		buttons[13].setText("Del");
 	}
 
-	public void reset() {
-		textArea.setText("");
-	}
-
-	public void setTextArea(String text) {
-		textArea.setText(text);
-	}
-	public String getTextArea() {
-		return textArea.getText();
-	}
-
+	/** Add an ActionListener to all buttons along with mnemonic for keyboard
+	 * control of buttons. (To use mnemonic hold alt while using number pad to
+	 * press relevent button. Space key might not work work depending on window
+	 * manager being used).
+	 *
+	 * @param bal ActionListener to add to this button.
+	 */
 	public void addButtonListner(ActionListener bal) {
 		for (int i = 1; i < 14; i++) {
 			buttons[i].addActionListener(bal);
@@ -96,12 +114,53 @@ public class T9View extends JFrame implements Observer {
 		}
 	}
 
-	public void redrawText(String textContent) {
-		textArea.setText(textContent);
-	}
-
+	/** Update method, called by the notifyObservers method in a model class.
+	 * Changes the textArea's text to a new value.
+	 *
+	 * @param obs Observable which caused the change.
+	 * @param obj new text to replce in the textArea.
+	 */
+	@Override
 	public void update(Observable obs, Object obj) {
 		textArea.setText(obj.toString());
+	}
+
+	/** Button listener inner class. Defines the action to take when a button
+	 * is pressed.
+	 */
+	class ButtonListener implements ActionListener {
+
+		/** Perform this action.
+		 *
+		 * @param e when this event is triggered.
+		 */
+		public void actionPerformed(ActionEvent e) {
+
+			int buttonNumber = Integer.parseInt(e.getActionCommand());
+
+			String oldText = textArea.getText();
+
+			// Button pressed was a number.
+			if (buttonNumber > 1 && buttonNumber <= 9) {
+				model.handleNumberButton(buttonNumber);
+
+			// Button pressed was star.
+			} else if (buttonNumber == 10) {
+				model.handleStarButton();
+
+			// Button pressed was hash.
+			} else if (buttonNumber == 12) {
+				model.handleHashButton();
+
+			// Button pressed was space.
+			} else if (buttonNumber == 11) {
+				model.handleSpace();
+
+			// Button pressed was delete.
+			} else if (buttonNumber == 13) {
+				model.handleDelete();
+			}
+		}
 	}
 
 	private static final long serialVersionUID = 1L;
