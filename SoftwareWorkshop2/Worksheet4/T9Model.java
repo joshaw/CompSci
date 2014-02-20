@@ -1,4 +1,4 @@
-/**
+/** Class for the model component of the T9 Predictive Text application GUI.
  *
  * @author Josh Wainwright
  * UID       : 1079596
