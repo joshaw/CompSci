@@ -23,6 +23,8 @@ public class T9View extends JFrame implements Observer {
 
 	private T9Model model;
 
+	public void test(){}
+
 	/** Constructor for the T9View class. Initiates the user interface with an
 	 * instance of the model.
 	 *

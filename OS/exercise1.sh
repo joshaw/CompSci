@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # One line version:
-#     awk '{print $1}' $1 | sort | uniq -c | sort -nr | head -n10
+#     awk '{print $1}' $1 | sort | uniq -c | sort -nr | head
 #
 # Argument on command line is log file to extract ips from
 logfile=$1
