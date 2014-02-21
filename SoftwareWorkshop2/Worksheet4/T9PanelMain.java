@@ -1,12 +1,20 @@
-import javax.swing.*;
-
+/** Main method for the T9 Predictive Text GUI. Initiates a model instance and
+ * a view instance and sets the application to be visible.
+ *
+ * @author Josh Wainwright
+ * UID       : 1079596
+ * Worksheet : SoftwareWorkshop2
+ * Exercise  : Worksheet4
+ * File name : T9PanelMain.java
+ * @version 2014-02-19
+ */
 class T9PanelMain {
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        T9Model model = new T9Model();
-        T9View view = new T9View(model);
-        T9Controller controller = new T9Controller(model, view);
+		T9Model model = new T9Model();
+		T9View view = new T9View(model);
+		model.addObserver(view);
 
-        view.setVisible(true);
-    }
+		view.setVisible(true);
+	}
 }
