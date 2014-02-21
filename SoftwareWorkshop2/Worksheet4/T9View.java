@@ -42,13 +42,13 @@ public class T9View extends JFrame implements Observer {
 
 		// Layout of overall window and buttons.
 		BorderLayout PanelLayout = new BorderLayout();
-		GridLayout ControlsLayout = new GridLayout(0, 3, 5, 5);
+		GridLayout ControlsLayout = new GridLayout(0, 3, 3, 3);
 
 		JPanel controls = new JPanel();
 		controls.setLayout(ControlsLayout);
 
 		textArea = new JTextArea(5, 10);
-		textArea.setPreferredSize(new Dimension( 400, 240 ));
+		textArea.setPreferredSize(new Dimension( 300, 140 ));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Serif", Font.PLAIN, 18));
