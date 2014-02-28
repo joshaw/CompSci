@@ -1,0 +1,206 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%%% PAGE DIMENSIONS ------------------------------------------------------------
+\usepackage[top=3cm]{geometry}
+\usepackage[parfill]{parskip}
+
+%%% HEADERS & FOOTERS ----------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}
+\renewcommand{\headrulewidth}{0pt}
+\lfoot{}\cfoot{page \thepage}\rfoot{}
+
+%%% PACKAGES -------------------------------------------------------------------
+%\usepackage{morefloats}
+\usepackage[hypcap=false,
+	font=small,
+	labelfont=bf,
+	textfont=it]{caption}
+\usepackage[pdftex]{graphicx}
+\usepackage{booktabs}
+\usepackage[strict]{changepage}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pdflscape}
+\usepackage[percentage]{overpic}
+\usepackage{marginfix}
+\usepackage[%
+	activate={true,nocompatibility},
+	final,
+	tracking=true,
+	kerning=true,
+	spacing=true,
+	factor=1100,
+	stretch=10,
+	shrink=10]{microtype}
+\microtypecontext{spacing=nonfrench}
+
+%% BIBIOGRAPHY -----------------------------------------------------------------
+\usepackage{cite}
+
+%%% ToC (table of contents) APPEARANCE -----------------------------------------
+% \usepackage[nottoc,notlof,notlot]{tocbibind}
+\usepackage[titles,subfigure]{tocloft}
+% \renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+% \renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape}
+% \setcounter{tocdepth}{2}
+
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+
+%%% PDF LINKS AND STYLE --------------------------------------------------------
+% \usepackage[unicode=true,
+% 	bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,
+% 	bookmarksopenlevel=2, breaklinks=false,pdfborder={0 0 0},backref=false,
+% 	colorlinks=false]{hyperref}
+\usepackage[bookmarks=true]{hyperref}
+\hypersetup{%
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+% \hypersetup{pdftitle={Human Computer Interaction},
+% 	pdfauthor={}}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{@{}l@{\extracolsep{\fill}}}
+
+\newcommand\marginFig[4][1]{%
+	\marginpar{%
+		\centering
+		\includegraphics[width=#1\marginparwidth]{#2}
+		\captionof{figure}{#3}\label{#4}
+	}
+}
+\newcommand{\ts}{\textsuperscript}
+
+%*******************************************************************************
+%******************************** END HEADER ***********************************
+%*******************************************************************************
+
+\title{Java Software Workshop \\ Project Proposal --- Group Osaka}
+\author{%
+    Benjamin Crispin \\
+    Samuel Farmer \\
+    Deedar Fatima \\
+    Rowan Stringer \\
+    Josh Wainwright
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Project Outline}
+\label{sec:project_outline}
+
+Our group are proposing an educational tool for use in the classroom which
+would allow a group of students to participate in a live quiz competition. A
+teacher would be able to input a number of questions which are all either
+multiple choice, or have simple numerical answers, along with the answers. The
+students are then in a race to answer the question presented as fast as
+possible; the next question will be displayed when the set time for the current
+question has elapsed.
+
+This program would require the building of a user interface for answering the
+questions as well as a means of entering questions and their answers, a server
+which handles the questions, serving them, one at a time, to all the students
+logged in to it, and a database which holds the questions and answers, as well
+as details about the users that have logged in in the past.
+
+\section{System Requirements}
+\label{sec:system_requirements}
+
+\begin{itemize}
+	\item The system allows Students to log into a user account.
+	\item The system allows logged in Students to compete in a many-on-many
+		multiple choice/simple-answer quiz.
+	\item The system gives a set number of questions per quiz (as per the
+		Admin).
+	\item The system will allow the Admin to add or remove questions.
+	\item The system ensures all clients and the server are synchronised.
+	\item The system allows users to log on with past question results.
+	\item The system displays a leader board and some feedback about the
+		question to the Student.
+	\item The system displays a basic statistical information during the quiz
+		to the Admin.
+	\item The system displays a summary report of statistical information at
+		the end of the quiz to the Admin.
+	\item The system will log information about the Student's quiz session
+		session.
+\end{itemize}
+
+\section{Group Roles}
+\label{sec:group_roles}
+
+Initial roles are proposed as follows (subject to change throughout duration of
+project):
+\begin{description}
+	\item[Rowan, Deedar] Database implementation, database relationship diagram
+		and architecture. Will incorporate defining some parts of API for
+		communication between the server and database layers, deciding on
+		attributes and table structures and writing documentation for database.
+	\item[Sam, Ben, Josh] Server/client model, JDBC connectivity with database.
+		Will incorporate client/server socket communication, defining initial
+		push/pull structure for communication between clients and server and
+		implementing database API via JDBC as defined above.
+\end{description}
+
+\section{Planned Timescales}
+\label{sec:planned_timescales}
+
+\begin{longtabu}{p{0.33\textwidth}X}
+	\toprule
+	\textbf{Date to Complete} & \textbf{Task} \\
+	\midrule
+	Week 1 \newline (25\ts{th} February --- 2\ts{nd} March) &
+	\begin{itemize}
+		\item Complete database implementation with a basic server/client setup
+			that can query the database and write entries to it.
+		\item Implement basic JDBC layer for communication between server and
+			database.
+		\item Several possible prototype diagrams for various GUI interfaces.
+	\end{itemize}\\
+
+	Week 2 \newline (3\ts{rd} March --- 9\ts{th} March) &
+	\begin{itemize}
+		\item Have fully working Admin and Student clients able to communicate
+			with server and with database via the server.
+		\item Have started implementing GUI for both Admin and Student clients.
+	\end{itemize} \\
+
+	Week 3 \newline (10\ts{th} March --- 16\ts{th} March) &
+	\begin{itemize}
+		\item Finish all elements of GUI including functionality for Admin to
+			add and remove questions and Students to answer questions during
+			quiz session.
+		\item By close of week, fully working quiz system should be
+			implemented, incorporating client, server, database and GUI's.
+	\end{itemize} \\
+
+	Week 4 \newline (17\ts{th} March --- 23\ts{rd} March) &
+	\begin{itemize}
+		\item Testing of system.
+		\item Final bug fixing, refinements etc.
+	\end{itemize} \\
+
+	24\ts{th} March &
+	\begin{itemize}
+		\item Final hand-in date for project and report.
+	\end{itemize} \\
+	\bottomrule
+\end{longtabu}
+
+\end{document}
