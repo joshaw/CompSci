@@ -1,4 +1,5 @@
 import quizObject.*;
+import loginRequest.*;
 
 import java.net.Socket;
 import java.io.PrintWriter;
@@ -29,6 +30,8 @@ public class QuizClient {
 
 		objectInput = new ObjectInputStream(socket.getInputStream());
 
+		createNewLogin("josh", "password");
+
 		/* Read the next from the stream. If its a Quiz object, perform
 		 * some actions, otherwise, do something else. */
 		Object object = objectInput.readObject();
@@ -57,6 +60,11 @@ public class QuizClient {
 	public static void main(String[] args) throws Exception {
 		QuizClient client = new QuizClient();
 		client.run();
+	}
+
+	public void createNewLogin(String username, String password) {
+		LoginRequest login = new LoginRequest(username, password);
+		System.out.println(login);
 	}
 
 }
