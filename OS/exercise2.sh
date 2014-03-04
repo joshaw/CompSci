@@ -1,5 +1,11 @@
 #!/bin/bash
 
+## Simple version
+
+# while read ip; do
+# 	curl -s http://freegeoip.net/csv/"$ip" | awk -F "," '{print$1 "," $2}'
+# done
+
 usage="$(basename "$0") [-hu]
 Prints the estimated country code of the given
 ip address using the service at freegeoip.net.
