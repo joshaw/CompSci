@@ -19,9 +19,10 @@ function exercise2() {
 
 		# Compare the read line with an ip regex. If it doesn't match, print an
 		# error message to stderr and skip the rest of this loop.
-		if ! [[ "$ip" =~ ^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$ ]];
+		# if ! [[ "$ip" =~ ^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$ ]];
+		if ! [[ "$ip" =~ ^([0-9]{1,3}[.]){3}([0-9]{1,3})$ ]];
 		then
-			echo "Input is not a valid ip address" >&2
+			echo "Input is not a valid ip address, only ipv4 supported by freegeoip.net" >&2
 			continue
 		fi
 
