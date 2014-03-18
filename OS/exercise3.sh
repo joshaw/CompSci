@@ -10,11 +10,6 @@ function exercise1() {
 # Exercise 2
 function exercise2() {
 
-	if [[ "$1" == "-u" ]]; then
-		unquote=true
-		shift
-	fi
-
 	while read ip; do
 
 		# Compare the read line with an ip regex. If it doesn't match, print an
@@ -32,14 +27,7 @@ function exercise2() {
 		# Extract the first two fields, as separated by comma.
 		specData=$(awk -F "," '{print $1 "," $2}' <<< "$data")
 
-		# if the option to unquote the final text was given, delete all quote
-		# characters from the string.
-		if $unquote ; then
-			specData=$(tr -d "\"" <<< "$specData")
-		fi
-
 		# Print the final data, should be of the form
-		# xxx.xxx.xxx.xxx,AA      or
 		# "xxx.xxx.xxx.xxx","AA"
 		echo "$specData"
 	done
@@ -47,7 +35,7 @@ function exercise2() {
 
 ################
 # Exercise 3
-usage="$(basename "$0") [-hu] [log file [log file [...]]]
+usage="$(basename "$0") [-h] [log file [log file [...]]]
 Prints the estimated country code and the count
 of the top 10 most common ip addresses in the
 given file using the service at freegeoip.net.
@@ -65,17 +53,10 @@ if [[ "$1" == "-h" ]]; then
 	exit 0
 fi
 
-if [[ "$1" == "-u" ]]; then
-	unquote=$1
-	shift
-fi
-
 #### Start script ####
 
 # Use ex1 to get ips with counts from files
-ipWithCounts=$(exercise1 $*)
-
-ipWithCounts=$(sed '/^$/d' <<< "$ipWithCounts")
+ipWithCounts=$(exercise1 $* | sed '/^$/d')
 
 # For each line of the data from ex1
 while read line; do
@@ -85,6 +66,6 @@ while read line; do
 	read -a array <<< $line
 
 	# Print the count then use ex2 to get the country.
-	echo -n ${array[0]}" "
-	exercise2 $unquote <<< ${array[1]}
+	echo -n ${array[0]}","
+	exercise2 <<< ${array[1]}
 done <<< "$ipWithCounts"
