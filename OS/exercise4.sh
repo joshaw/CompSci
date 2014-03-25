@@ -1,9 +1,20 @@
 #!/bin/bash
 
+usage="$(basename $0) [-hnf] [-o output] logfile [logfile [...]]
+
+Count the unique ip addresses in a log file, approximate
+the country of origin and print the results as a table to
+an output file.
+
+    -h          print this help message
+    -n          print to stdout instead of file
+    -o output   file to write html table to
+    -f          force overwriting existing files."
+
 ################
 # Exercise 1
 function exercise1 {
-	awk '{print $1}' $* | sort | uniq -c | sort -nr | head 
+	awk '{print $1}' $* | sort | uniq -c | sort -nr | head
 }
 
 ################
@@ -41,22 +52,47 @@ function write {
 ################
 # Exercise 3
 
-toFile=true
-if [[ $1 == "-n" ]]; then
-	toFile=false
-	shift
-fi
+outputFile="table.html"
+while getopts "hno:f" opt; do
+	case "$opt" in
+		h)
+			echo "$usage"
+			exit 0
+			;;
+		n)
+			toFile=false
+			;;
+		o)
+			outputFile=${OPTARG}
+			;;
+		f)
+			overwrite=true
+			;;
+		*)
+			echo "Flag "$opt" not recognised."
+			echo "$usage"
+			exit 0
+			;;
+	esac
+done
+shift $((OPTIND-1))
 
 #### Start script ####
-outputFile="table.html"
+
+# Clear output file
 if $toFile; then
-	>$outputFile
+	if [[ ! -e "$outputFile" || "$overwrite" ]]; then
+		>"$outputFile"
+	else
+		echo "Error: File exists."
+		exit 0
+	fi
 fi
 
 # Use ex1 to get ips with counts from files
 ipWithCounts=$(exercise1 $*)
 
-header="<style>
+htmlHeader="<style>
 table,th,td {
 	border:1px solid black;
 	border-collapse:collapse;
@@ -70,7 +106,7 @@ table,th,td {
 		<th>Country</th>
 	</tr>"
 
-write "$header"
+write "$htmlHeader"
 
 # For each line of the data from ex1
 innerTable=$(while read line; do
