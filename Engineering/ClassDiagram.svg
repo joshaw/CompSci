@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="84cm" height="44cm" viewBox="-401 -164 1675 867" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="207.473" y="-0.968309" width="333.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="207.473" y="-0.968309" width="333.4" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="374.173" y="18.0317">Travel</text>
+    <rect style="fill: #ffffff" x="207.473" y="27.0317" width="333.4" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="207.473" y="27.0317" width="333.4" height="68"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="41.0317">-type: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="57.0317">-price: double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="73.0317">-date: Date</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="89.0317">-return: boolean</text>
+    <rect style="fill: #ffffff" x="207.473" y="95.0317" width="333.4" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="207.473" y="95.0317" width="333.4" height="52"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="109.032">+makeReview(review:String,username:String)</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="125.032">+getPrice(): double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="210.473" y="141.032">+book(): Booking</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-114.984" y="-0.968309" width="210.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-114.984" y="-0.968309" width="210.2" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="-9.88372" y="18.0317">Accomodation</text>
+    <rect style="fill: #ffffff" x="-114.984" y="27.0317" width="210.2" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-114.984" y="27.0317" width="210.2" height="100"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="41.0317">-type: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="57.0317">-price: double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="73.0317">-location: Location</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="89.0317">-startDate: Date</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="105.032">-endDate: Date</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="121.032">-stars: int</text>
+    <rect style="fill: #ffffff" x="-114.984" y="127.032" width="210.2" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-114.984" y="127.032" width="210.2" height="68"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="141.032">+makeReview(review:String)</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="157.032">+getPrice(): double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="173.032">+setStars(stars:int)</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-111.984" y="189.032">+book(): Booking</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="72.9844" y="-162.968" width="187.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="72.9844" y="-162.968" width="187.1" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="166.534" y="-143.968">Bookable</text>
+    <rect style="fill: #ffffff" x="72.9844" y="-134.968" width="187.1" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="72.9844" y="-134.968" width="187.1" height="20"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="75.9844" y="-120.968">+price: double</text>
+    <rect style="fill: #ffffff" x="72.9844" y="-114.968" width="187.1" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="72.9844" y="-114.968" width="187.1" height="36"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="75.9844" y="-100.968">+getPrice(): double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="75.9844" y="-84.9683">+setPrice(price:double)</text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="293.894" y1="-1.97398" x2="212.462" y2="-78.0572"/>
+    <ellipse style="fill: #ffffff" cx="217.577" cy="-73.2783" rx="7" ry="7"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="217.577" cy="-73.2783" rx="7" ry="7"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="70.2334" y1="-1.9691" x2="131.905" y2="-78.1773"/>
+    <ellipse style="fill: #ffffff" cx="127.502" cy="-72.7359" rx="7" ry="7"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="127.502" cy="-72.7359" rx="7" ry="7"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-399.147" y="173.756" width="148.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-399.147" y="173.756" width="148.6" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="-324.847" y="192.756">Location</text>
+    <rect style="fill: #ffffff" x="-399.147" y="201.756" width="148.6" height="132"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-399.147" y="201.756" width="148.6" height="132"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="215.756">-name: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="231.756">-number: int</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="247.756">-road: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="263.756">-city: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="279.756">-country: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="295.756">-zipCode: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="311.756">-longitude: double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="327.756">-latitude: double</text>
+    <rect style="fill: #ffffff" x="-399.147" y="333.756" width="148.6" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-399.147" y="333.756" width="148.6" height="36"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="347.756">+get()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-396.147" y="363.756">+set()</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="-114.984,69.0317 -324.847,69.0317 -324.847,167.051 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-329.847,154.403 -324.847,170.403 -319.847,154.403 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="466.789" y="294.42" width="217.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="466.789" y="294.42" width="217.9" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="575.739" y="313.42">TravelResults</text>
+    <rect style="fill: #ffffff" x="466.789" y="322.42" width="217.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="466.789" y="322.42" width="217.9" height="20"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="469.789" y="336.42">-results: ArrayList&lt;Travel&gt;</text>
+    <rect style="fill: #ffffff" x="466.789" y="342.42" width="217.9" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="466.789" y="342.42" width="217.9" height="68"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="469.789" y="356.42">+sort()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="469.789" y="372.42">+filterType()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="469.789" y="388.42">+filterPrice()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="469.789" y="404.42">+filterDate()</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-104.695" y="298.591" width="264.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-104.695" y="298.591" width="264.1" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="27.3551" y="317.591">AccomodationResults</text>
+    <rect style="fill: #ffffff" x="-104.695" y="326.591" width="264.1" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-104.695" y="326.591" width="264.1" height="20"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-101.695" y="340.591">-results: ArrayList&lt;Accomodation&gt;</text>
+    <rect style="fill: #ffffff" x="-104.695" y="346.591" width="264.1" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-104.695" y="346.591" width="264.1" height="84"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-101.695" y="360.591">+sort()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-101.695" y="376.591">+filterType()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-101.695" y="392.591">+filterLocation()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-101.695" y="408.591">+filterPrice()</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="-101.695" y="424.591">+filterDate()</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="553.709" y="556.986" width="140.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="553.709" y="556.986" width="140.9" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="624.159" y="575.986">User</text>
+    <rect style="fill: #ffffff" x="553.709" y="584.986" width="140.9" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="553.709" y="584.986" width="140.9" height="36"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="556.709" y="598.986">-name: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="556.709" y="614.986">-username: String</text>
+    <rect style="fill: #ffffff" x="553.709" y="620.986" width="140.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="553.709" y="620.986" width="140.9" height="8"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1070.71" y="597.288" width="202.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1070.71" y="597.288" width="202.5" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="1171.96" y="616.288">PaymentCard</text>
+    <rect style="fill: #ffffff" x="1070.71" y="625.288" width="202.5" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1070.71" y="625.288" width="202.5" height="68"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1073.71" y="639.288">-cardType: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1073.71" y="655.288">-cardNumber: String</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1073.71" y="671.288">-cardStartDate: Date</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="1073.71" y="687.288">-billingAddress: Location</text>
+    <rect style="fill: #ffffff" x="1070.71" y="693.288" width="202.5" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1070.71" y="693.288" width="202.5" height="8"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="906.16" y="469.146" width="187.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="906.16" y="469.146" width="187.1" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="999.71" y="488.146">Payment</text>
+    <rect style="fill: #ffffff" x="906.16" y="497.146" width="187.1" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="906.16" y="497.146" width="187.1" height="36"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="909.16" y="511.146">-value: double</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="909.16" y="527.146">-card: Card</text>
+    <rect style="fill: #ffffff" x="906.16" y="533.146" width="187.1" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="906.16" y="533.146" width="187.1" height="20"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="909.16" y="547.146">+sendDetails(): boolean</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 8; stroke: #000000" points="1093.26,523.146 1171.96,523.146 1171.96,590.582 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1166.96,577.935 1171.96,593.935 1176.96,577.935 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="374.173,148.038 374.173,216.983 575.739,216.983 575.739,268.251 "/>
+    <polygon style="fill: #000000" points="575.739,293.422 570.939,279.422 575.739,265.422 580.539,279.422 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="575.739,293.422 570.939,279.422 575.739,265.422 580.539,279.422 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="378.173" y="160.038"> 1..*</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="586.739" y="289.422"> 0..1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-9.88372,196.038 -9.88372,246.81 27.3551,246.81 27.3551,272.411 "/>
+    <polygon style="fill: #000000" points="27.3551,297.583 22.5551,283.583 27.3551,269.583 32.1551,283.583 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="27.3551,297.583 22.5551,283.583 27.3551,269.583 32.1551,283.583 "/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="8.73569" y="242.81"></text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="-5.88372" y="208.038"> 1..*</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="-5.88372" y="224.038"></text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="38.3551" y="293.583"> 0..1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="695.618,592.986 800.386,592.986 800.386,511.146 905.154,511.146 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="802.386" y="548.066">Pays a</text>
+    <polygon style="fill: #000000" points="850.586,548.066 850.586,540.066 858.586,544.066 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="279.582" y="474.845" width="140.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="279.582" y="474.845" width="140.9" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="350.032" y="493.845">Search</text>
+    <rect style="fill: #ffffff" x="279.582" y="502.845" width="140.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="279.582" y="502.845" width="140.9" height="20"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="282.582" y="516.845">-criteria: String</text>
+    <rect style="fill: #ffffff" x="279.582" y="522.845" width="140.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="279.582" y="522.845" width="140.9" height="8"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="552.7,592.986 487.095,592.986 487.095,502.845 421.49,502.845 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="489.095" y="543.916">Makes a</text>
+    <polygon style="fill: #000000" points="485.095,543.916 485.095,535.916 477.095,539.916 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="421.49,502.845 443.636,502.845 443.636,352.42 465.782,352.42 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="445.636" y="423.633">Contains</text>
+    <polygon style="fill: #000000" points="509.236,423.633 509.236,415.633 517.236,419.633 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="350.032,473.838 350.032,452.719 27.3551,452.719 27.3551,431.599 "/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="188.693" y="448.719">Contains</text>
+    <polygon style="fill: #000000" points="153.893,448.719 153.893,440.719 145.893,444.719 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="841.112" y="7.42076" width="148.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="841.112" y="7.42076" width="148.6" height="28"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:16;font-family:sanserif;font-style:normal;font-weight:700" x="915.412" y="26.4208">Booking</text>
+    <rect style="fill: #ffffff" x="841.112" y="35.4208" width="148.6" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="841.112" y="35.4208" width="148.6" height="8"/>
+    <rect style="fill: #ffffff" x="841.112" y="43.4208" width="148.6" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="841.112" y="43.4208" width="148.6" height="36"/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="844.112" y="57.4208">+cancel(): boolean</text>
+    <text style="fill: #000000;text-anchor:start;font-size:12.8;font-family:monospace;font-style:normal;font-weight:normal" x="844.112" y="73.4208">+amend(): boolean</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="695.618,592.986 767.86,592.986 767.86,43.4208 840.103,43.4208 "/>
+    <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:monospace;font-style:normal;font-weight:normal" x="769.86" y="314.203">can view</text>
+    <polygon style="fill: #000000" points="833.46,314.203 833.46,306.203 841.46,310.203 "/>
+  </g>
+</svg>
