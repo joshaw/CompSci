@@ -1,0 +1,147 @@
+﻿Detailing a Use Case
+
+
+Use Case: Register
+Actors
+	Online user (primary actor)
+Servers  (secondary actor)
+ 
+	Pre-conditions
+	1. User does not have an account with Travpedia
+2. User has an email address
+ 
+	Flow of events
+	1. User opens the Travpedia website
+2. User is on the homepage and clicks ‘Create an Account’ link
+3. The system presents the user with an interface with empty fields asking for the following details:
+            - Email Address
+            - Password
+            - Confirm Password
+4. User fills these fields in and clicks ‘Next’
+5. User then has the option to provide their mobile number and tick ‘please text and email me with Travpedia deals and promotional offers’ if they wish to receive this service 
+6. User ticks ‘I have read and agree to the Terms and Conditions’
+7. User clicks ‘Create Account’ button
+            - If any details are invalid or a field has not been filled, the user will be shown an error message and asked to re-enter their information
+8. The system validates the users details and sends a confirmation email to the users email address
+9. The system displays a message telling the user that they should have received a confirmation email and that they should open this email to verify their email address
+10.User opens the confirmation email and clicks on the link to verify their email address
+11.The system redirects them back to Travpedia website and informs the user that their registration was successful
+ 
+	Post-conditions
+	1. Details are stored and backed in the servers
+2. The user is now registered and is signed in
+3. The user can now search and make a booking
+ 
+	Scenarios
+	1. User forgets to tick the box confirming they have read and agree to the terms and conditions – cannot proceed to next page
+2. User does not confirm their email address - their registration is incomplete
+3. User leaves the interface before clicking ‘Create Account’ – registration is incomplete
+ 
+	Additional notes
+	The user has the opportunity to update their profile by going into their account, here they can specify travel and hotel preferences
+ 
+	 
+Use Case: Make a booking (Hotel only)
+Actors
+	Online user (primary actor)
+Servers  (secondary actor)
+Third Party Consortium (secondary actor)
+ 
+	Pre-conditions
+	1. User is registered with Travpedia
+2. User has signed in
+ 
+	Flow of events
+	1. User is on the homepage where they can begin entering their search criteria
+2. User ticks ‘Hotel’. Other options include:
+            - Travel
+            - Hotel & Travel
+3. The interface changes slightly to accommodate booking a hotel only, the following details are required:
+            ­- Destination/Hotel name (User can enter  
+              town, city, region or specific hotel)
+            - Check in date (link to a calendar)
+            - Check out date (link to a calendar)
+            - How many rooms
+            - How many adults
+            - How many children
+            - Target price range
+4. User clicks ‘Search’
+5. The system presents the user with a list of available hotels, who have subscribed to Travpedia, matching their search criteria
+6. User browses the search results. Can filter by:
+                    - Price
+                    - Star rating
+                    - Board basis
+And sort by:
+                    - Price
+                    - Review score
+                    - Star rating
+7. User click on the hotel they would like to book
+8. The system presents the user with a more detailed view of the hotel including photos and specific rooms available
+9. User selects which type of room they want and selects how many of these rooms they require
+10. User clicks ‘Book Now’
+11.The system presents the user with an interface with empty fields asking for various payment details:
+- Name on card
+- Billing address
+- Card type
+- Account number
+- Sort code
+- Expiry date
+- Security number
+- Voucher code (if entered, the system will reload the page displaying the new price to pay)
+- Option to have Travpedia save payment  details
+12. User fills in all the fields
+13. User ticks to agree to terms and conditions
+14. User clicks ‘Pay Now’
+15. User is presented with another screen summarising booking and payments details
+16. User clicks ‘Confirm’
+17. The transaction information is securely passed by the system to the credit/debit card consortium where the user’s payment details are validated
+18. The system redirects the users to a page thanking them for their booking
+ 
+	Post-conditions
+	1. User receives a confirmation email
+2. Details of the booking are stored in the servers – behaviour of user is used to determine future promotional offers and recommendations
+3. Payment details are securely stored in the servers (if user selects to save payment details)
+4. Details of the booking are available to view in ‘Manage Bookings’
+5. Hotel company is notified of the booking
+ 
+	Scenarios
+	1. The destination or hotel name the user has specified produces no matches
+2. User enters the incorrect account number  – consortium confirms this, system generates an error message
+3. User may think booking is complete after clicking ‘Pay Now’ – leaves website before clicking ‘Confirm’ – booking is incomplete
+4. When user clicks ‘Confirm’, the system loads for several minutes and eventually times out – booking is incomplete
+ 
+	
+
+ Use Case: Cancel a booking
+Actors
+	1. Online user (primary actor)
+2. Servers (secondary actor)
+	Pre-conditions
+	1. User is registered
+2. User is logged in
+3. User has made a booking
+4. The terms and conditions of the booking in question specify that cancellations are permitted
+
+
+	Flow of events
+	1. User clicks ‘Manage Bookings’ on the websites homepage
+2. The system directs the user to a page showing their past and current bookings
+3. User clicks on the booking they wish to cancel
+4. The system shows the booking in more detail with an option to cancel the booking
+5. User clicks ‘Cancel booking’
+6. User is asked to confirm that they are sure they want to cancel the booking
+7. User clicks ‘Confirm Cancellation’
+8. This information is relayed to the credit/debit card consortium which will handle the refund  
+9. The system redirects the user to a page confirming their cancellation was successful
+
+
+	Post-conditions
+	1. Hotel company is notified of the cancellation
+2. User receives email confirmation of cancellation
+3. Booking is removed from the user’s account in ‘Manage Bookings’
+4. Servers are updated of changes
+5. User receives money into their bank account 
+ 
+	Scenarios
+	1. User disputes a no refund policy – not possible using website. User must contact the company directly
+2. User leaves the website after clicking ‘Cancel Booking’ – User has not clicked ‘Confirm Cancellation’ – Booking has not been cancelled

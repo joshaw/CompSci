@@ -1,0 +1,93 @@
+﻿Specification
+
+Travpedia is an online travel and hotel booking system. Travel and
+accommodation companies are able to subscribe to Travpedia for a monthly
+subscription cost of £200 plus an initial £50 joining fee. This subscriptions
+allows the company to offer their products on the Travpedia website where they
+can be purchased by visiting users. Travel products that are eligible for
+advertisement on the Travpedia website include journeys by road, rail, sea and
+air while accommodation products include hostels, hotels and resorts. These
+products can be offered both individually and as packages.
+
+Visitors to the website, after registering an account, are able to search for
+all available products offered by these subscribed companies. They are able to
+search with a number of criteria including type of product, number of people,
+location, date and price. These users can then book and pay for these products
+through the website. Users may also rate and review individual products and
+services that they have purchased. A product gains a review score based on
+these ratings. This review rating system provides a further search criteria
+whereby a user can filter by product rating.
+
+Payments made by both subscribing companies and users are handled online by a
+third party consortium. Subscribers must pay by debit or credit card while
+users have the additional option of paying with gift vouchers offered by
+Travpedia.
+
+Users are able to view bookings they have made and, where possible, cancel
+these bookings and receive a refund via the third party consortium.
+
+Travpedia disseminates advertisements and promotional offers to users based on
+previous patterns of use and previous purchases. These personalised offering
+are sent to mobile phones through SMS and email accounts and are displayed on
+the Travpedia website through the use of banners. Users may opt out of
+receiving phone and email alerts.
+
+Travpedia also has a number of critical compliance and security requirements.
+Travpedia stores user's personal information and payment details that should
+not be disclosed to other parties or kept for any longer than necessary. If
+this data is maliciously accessed, disclosed, leaked or manipulated it could
+breach confidentiality and data protection. Furthermore, any transaction
+information sent to the third party consortium used for payment must be kept
+secure. This is done with encryption using 128-bit SSL certificates.
+
+During peak time, Travpedia receives up to one million simultaneous users and
+is designed to handle this number of users. The design is also scalable to
+accommodate its growing number of users and subscribers. This system is used by
+users 24 hours a days and must be always available. All data that Travpedia
+stores must also be kept safe from system failures. For this reason, user's
+profile, itinerary and transaction data and subscribers data are stored and
+backed up on three database servers in three distinct locations. Two of these
+locations are in the UK and the other is in the USA. This allows Travpedia to
+minimise downtime after unforeseen system failures.
+
+Scope
+
+The scope of our design is limited primarily to subsystems devoted to user’s
+interactions with the Travpedia website. In particular, we will consider the
+following:
+* Travpedia account registration.
+* Searching for products.
+* Making new bookings.
+* Viewing and cancelling previous bookings.
+
+Assumptions
+
+We have made a number of assumptions regarding the external systems and
+remaining internal modules described in the whole system specification. We
+assume that these other modules have their own interface with which we can
+communicate when necessary.
+
+Subscribers All aspects of company subscriptions to Travpedia are handled by a
+separate module. We assume that vouchers are provided by subscribers.
+
+Consortium The third party consortium will deal with all aspects of forwarding
+userpayments to Travpedia’s subscribers. We will be responsible for sending
+user payments to this consortium who will then respond accordingly about the
+success of the transaction.
+
+Database We can make a number of requests to the database including updating
+and retrieving user profile and account data, product information, rating
+information and voucher information. In addition to this, the database ensures
+its data is encrypted to protect it from leaks and attempts of malicious
+access. We also assume that another module handles ensuring this data is backed
+up across the three distinct database locations. Finally, this module also
+ensures that data is not held longer than necessary in order to comply with the
+Data Protection Act.
+
+Review scores A separate module handles user reviews and ratings and keeps
+these up to date in the database. We can request this information to inform
+user searches and be displayed on product pages.
+
+Email and phone notifications Users can request email and phone notifications.
+Our system will provide the user with the option to receive these, but a
+separate module deals with the selection and dissemination of this information.

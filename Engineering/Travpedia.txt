@@ -1,0 +1,123 @@
+﻿Travpedia
+
+
+
+
+Things we have to include:-
+
+
+
+
+Action
+	Who
+	What
+	Advertise
+	Airlines
+Companies
+Hotels
+	Flights
+hotel rooms
+promotional deals
+...
+	Subscribe
+	Airlines
+Companies
+Hotels
+	Joining fee
+monthly subscription
+	Browse
+	Users
+	products
+	Search
+	Users
+	products
+	Review
+	Users
+	Review products – flights, hotels, etc
+share reviews
+discuss reviews
+
+
+
+
+	Rank
+	Users
+	Flights
+Hotels
+Services
+Other products?
+	Book
+	Users
+	Flights
+Hotels
+Services
+Other products?
+	Pay
+	Users
+
+
+
+
+
+
+
+
+Airlines, Companies, hotels
+	Flights
+Hotels
+Services
+Other products?
+
+
+Subscription
+	Recommend
+	Travpedia
+	Products to users based on 
+* reviews
+* budget
+* preference info from profile
+* patterns of use
+
+
+	Sign up
+	Users
+	Sign up to Travpedia
+	
+
+
+
+
+
+
+
+
+
+Other functionality
+
+
+Compliance
+
+
+	data protection
+	
+
+	Scaleability
+	System needs to handle up to 
+1 million users
+	
+
+	Security
+	Transaction information to be encrypted during transfer
+
+
+user profiles to be kept secure
+ (personal data, credit card details, preferences)
+	using 128-bit SSl certificates
+	Backup
+	user profiles
+itineraries
+transactions
+	
+
+	Availability
+	available 24/7
