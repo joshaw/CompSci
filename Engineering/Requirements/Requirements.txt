@@ -1,7 +1,7 @@
 ﻿1. Registration
 	1. The system shall allow visitors to the site to become a customer by
 	   registering for a new account
-		1. The system shall require each account to have a unique customername
+		1. The system shall require each account to have a unique customer name
 		2. The system shall require the customer to choose and enter a password
 		   for his/her account
 		3. The system shall require the  customer to provide a valid email
@@ -11,7 +11,7 @@
 
 1. Logging in
 	1. The system shall require the customer to log in using their registered
-	   customername and password in order to use the facilities offered by
+	   customer name and password in order to use the facilities offered by
 	   Travpedia via the website
 
 1. Customer Profiles
@@ -64,8 +64,8 @@
 
 1. Make a payment
 	1. The system shall allow the customer to make a payment
-		1. The system shall allow the customer to pay bycredit/debit card
-		2. The system shall allow the customer to pay byTravpedia voucher
+		1. The system shall allow the customer to pay by credit/debit card
+		2. The system shall allow the customer to pay by Travpedia voucher
 		3. The system shall allow the customer to pay by third-party voucher
 
 Non-Functional Requirements
