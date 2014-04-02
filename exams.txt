@@ -1,0 +1,11 @@
+Day        Date        Start     Duration  Module Code  Exam Code  Exam Title
+------------------------------------------------------------------------------------------------------------------
+Wednesday  07/05/2014  14:00:00  01:30:00  6 26260      A30297     LM Software Workshop 1 (MSc)
+Monday     12/05/2014  14:00:00  01:30:00  6 26261      A30299     LM Software Workshop 2 (MSc)
+Wednesday  14/05/2014  14:00:00  01:30:00  6 23856      A28423     LM Evalu Methods & Statistics
+Monday     19/05/2014  14:00:00  01:30:00  6 21933      A27228     LM Fundamentals: Intro to Computer Science
+Wednesday  21/05/2014  09:30:00  01:30:00  6 21936      A27229     LM Fundamentals: Software Engineering main exam
+Friday     30/05/2014  09:30:00  01:30:00  6 21923      A27227     LM Fundamentals: Databases main exam
+Monday     02/06/2014  14:00:00  01:30:00  6 20008      A22648     LM Cryptography
+Tuesday    03/06/2014  09:30:00  01:30:00  6 21921      A27544     LM Fundamentals: Data Struct main exam
+Wednesday  04/06/2014  09:30:00  01:30:00  6 26255      A30291     LM Operat Syst + Network (MSc)
