@@ -7,7 +7,7 @@ html, body {
     background:#fefefe;
 }
 body {
-	font: 1.1em "Vollkorn", Palatino, Times;
+	font: 1.0em "Vollkorn", Palatino, Times;
 	color: #333;
 	line-height: 1.5;
 	text-align: justify;
@@ -123,7 +123,6 @@ p#heart{
 body#index li {
 	margin-bottom: 1em;
 }
-
 
 /* iPad
 -------------------------------------------------------- */
