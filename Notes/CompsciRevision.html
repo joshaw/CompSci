@@ -1,57 +1,72 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8" /><link rel=stylesheet href="css.css" /></head><body>
-<h1>Introduction to Computer Science</h1>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xml:lang="en">
+<head><meta http-equiv="Content-type" content="application/xhtml+xml;charset=utf-8" /><title>Introduction to Computer Science Notes.</title><link type="text/css" rel="stylesheet" href="css.css" />
+</head>
+<body>
+<h1 id="introduction_to_computer_science">Introduction to Computer Science</h1>
+<hr /><div class="maruku_toc"><ul><li><a href="#introduction_to_computer_science">Introduction to Computer Science</a><ul><li><a href="#logic">Logic</a><ul><li><a href="#propositional_logic">Propositional Logic</a><ul><li><a href="#atoms">Atoms</a></li><li><a href="#truth_tables">Truth Tables</a></li><li><a href="#valid">Valid</a></li><li><a href="#satisfiable">Satisfiable</a></li><li><a href="#unsatisfiable">Unsatisfiable</a></li></ul></li><li><a href="#predicate_logic">Predicate Logic</a></li></ul></li><li><a href="#algorithms">Algorithms</a></li><li><a href="#turing_machine">Turing Machine</a><ul><li><a href="#halting_problem">Halting Problem</a></li><li><a href="#universal_turing_maching_utm">Universal Turing Maching (UTM)</a></li><li><a href="#tiny_turing_machine">Tiny Turing Machine</a></li></ul></li><li><a href="#number_representation_systems">Number Representation Systems</a><ul><li><a href="#positive_integers">Positive Integers</a><ul><li><a href="#binary_to_decimal">Binary to Decimal</a></li></ul></li><li><a href="#positive_real_numbers">Positive Real Numbers</a></li></ul></li><li><a href="#negative_numbers">Negative Numbers</a><ul><li><a href="#twos_complement">Two’s Complement</a></li></ul></li><li><a href="#floating_point_numbers">Floating Point Numbers</a></li></ul></li><li><a href="#computer_architectures">Computer Architectures</a><ul><li><a href="#von_neumann_architecture">Von Neumann Architecture</a><ul><li><a href="#requirements_of_a_computing_device">Requirements of a Computing Device</a></li><li><a href="#basic_structure">Basic Structure</a></li><li><a href="#main_memory">Main Memory</a></li><li><a href="#loadstore_unit">Load/Store Unit</a></li><li><a href="#registers">Registers</a></li><li><a href="#instruction_register">Instruction Register</a></li><li><a href="#alu">ALU</a></li><li><a href="#program_counter">Program Counter</a></li><li><a href="#clock_cycle">Clock Cycle</a></li></ul></li><li><a href="#instruction_cycle">Instruction Cycle</a><ul><li><a href="#fetchdecodeexecute_cycle">Fetch-Decode-Execute Cycle</a></li><li><a href="#starting_a_program">Starting a Program</a></li><li><a href="#fetch">Fetch</a></li><li><a href="#decode">Decode</a></li><li><a href="#execute">Execute</a></li></ul></li><li><a href="#instruction_set">Instruction Set</a></li></ul></li><li><a href="#stored_programs">Stored Programs</a><ul><li><a href="#memory">Memory</a><ul><li><a href="#interface_to_memory">Interface to Memory</a></li></ul></li><li><a href="#processing_unit">Processing Unit</a></li><li><a href="#input_and_output">Input and Output</a></li><li><a href="#control_unit_finite_state_machine">Control Unit (Finite State Machine)</a></li><li><a href="#machine_language_philosophies">Machine Language Philosophies</a></li></ul></li></ul></div><hr />
+<h2 id="logic">Logic</h2>
 
-<h2>Logic</h2>
+<h3 id="propositional_logic">Propositional Logic</h3>
 
-<h3>Propositional Logic</h3>
-
-<h4>Atoms</h4>
+<h4 id="atoms">Atoms</h4>
 
 <ul>
 <li>Propositions are called atoms and can be either <strong>true</strong> or <strong>false</strong></li>
+
 <li>Operators combine truth value
 <ul>
-<li><strong>AND</strong> &and;</li>
-<li><strong>OR</strong> &or;</li>
+<li><strong>AND</strong> ∧</li>
+
+<li><strong>OR</strong> ∨</li>
+
 <li><strong>NOT</strong> ¬</li>
-<li><strong>IMPLIES</strong> &rarr;</li>
-</ul></li>
+
+<li><strong>IMPLIES</strong> →</li>
+</ul>
+</li>
 </ul>
 
-<h4>Truth Tables</h4>
+<h4 id="truth_tables">Truth Tables</h4>
 
 <ul>
 <li>Rows give the possible worlds that can exist.</li>
+
 <li>Columns are the the truth functions.</li>
+
 <li>Give the outcomes of a logic sentence in evey possible world.
 <ul>
-<li>ie for every combination of true and false for each of the different 
-atoms.</li>
-</ul></li>
+<li>ie for every combination of true and false for each of the different atoms.</li>
+</ul>
+</li>
 </ul>
 
-<h4>Valid</h4>
+<h4 id="valid">Valid</h4>
 
 <ul>
 <li>True in all possible worlds.</li>
 </ul>
 
-<h4>Satisfiable</h4>
+<h4 id="satisfiable">Satisfiable</h4>
 
 <ul>
 <li>True in some possible worlds.</li>
 </ul>
 
-<h4>Unsatisfiable</h4>
+<h4 id="unsatisfiable">Unsatisfiable</h4>
 
 <ul>
 <li>True in none of the possible worlds.
 <ul>
 <li>False in all worlds.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
-<h3>Predicate Logic</h3>
+<h3 id="predicate_logic">Predicate Logic</h3>
 
 <ul>
 <li>Allows us to construct more informative logical statements about the world.
@@ -59,18 +74,21 @@ atoms.</li>
 <li>Can give information about;
 <ul>
 <li>Properties of objects,</li>
+
 <li>Relations between objects.</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
-<h2>Algorithms</h2>
+<h2 id="algorithms">Algorithms</h2>
 
 <ul>
 <li>A set of rules for determining a sequence of operations precisely.</li>
 </ul>
 
-<h2>Turing Machine</h2>
+<h2 id="turing_machine">Turing Machine</h2>
 
 <ul>
 <li>Composed of;
@@ -78,78 +96,691 @@ atoms.</li>
 <li>Infinitely long tape with symbols.
 <ul>
 <li>eg <strong>{0,1}</strong>,</li>
+
 <li>eg <strong>{A,B,C,D}</strong>.</li>
-</ul></li>
-<li>Read/write head can read a symbol from the tape and write a symbol over 
-another and can move the tape left or right,</li>
+</ul>
+</li>
+
+<li>Read/write head can read a symbol from the tape and write a symbol over another and can move the tape left or right,</li>
+
 <li>Finite set of internal states,
 <ul>
 <li>Exists in one of the states at all times.</li>
-</ul></li>
-<li>Set of transition rules that control the internal state change as a 
-function of the symbols read from the tape.</li>
-</ul></li>
+</ul>
+</li>
+
+<li>Set of transition rules that control the internal state change as a function of the symbols read from the tape.</li>
+</ul>
+</li>
+
 <li>The current system state is the entire configuration.
 <ul>
 <li>Not just the internal state.</li>
-</ul></li>
+</ul>
+</li>
+
 <li>There exist infintely many Turing Machines.</li>
 </ul>
 
-<h4>Halting Problem</h4>
+<h4 id="halting_problem">Halting Problem</h4>
 
 <ul>
-<li>Given a Turing Machine <strong>A</strong>, is there a Turing Machine, <strong>B</strong>, that can tell 
-us (in a finite number of steps) is the Turing Machine <strong>A</strong> will halt or 
-not?</li>
+<li>Given a Turing Machine <strong>A</strong>, is there a Turing Machine, <strong>B</strong>, that can tell us (in a finite number of steps) is the Turing Machine <strong>A</strong> will halt or not?</li>
+
 <li><em>No</em></li>
 </ul>
 
-<h4>Universal Turing Maching (UTM)</h4>
+<h4 id="universal_turing_maching_utm">Universal Turing Maching (UTM)</h4>
 
 <ul>
-<li>Turing machine capable of taking, not just their data, but their program as 
-an input sequence on the tape.</li>
+<li>Turing machine capable of taking, not just their data, but their program as an input sequence on the tape.</li>
+
 <li>Capable of simulatiing any other Turing Machine.</li>
-<li>Not possible to build physically since it would require an infinite memory 
-address.</li>
+
+<li>Not possible to build physically since it would require an infinite memory address.</li>
+
 <li>Physical computers are an approximation of UTMs.</li>
+
 <li>Useful for;
 <ul>
-<li>Mathematics - Universality means machines are general purpose and so 
-reusable,</li>
+<li>Mathematics - Universality means machines are general purpose and so reusable,</li>
+
 <li>Physics - Electronics made them small, cheap and powerful,</li>
-<li>Software - Can be standardised and bootstrapped, amplifying the power of 
-an existing tool with each step in technology.</li>
-</ul></li>
+
+<li>Software - Can be standardised and bootstrapped, amplifying the power of an existing tool with each step in technology.</li>
+</ul>
+</li>
 </ul>
 
-<h4>Tiny Turing Machine</h4>
+<h4 id="tiny_turing_machine">Tiny Turing Machine</h4>
 
 <ul>
-<li>Has been shown that a Turing Machine with 7 internal states and 4 symbols is 
-a UTM; 
+<li>Has been shown that a Turing Machine with 7 internal states and 4 symbols is a UTM;
 <ul>
 <li>a (7,4) machine.</li>
-</ul></li>
+</ul>
+</li>
+
 <li>Also exist (4,6) and (5,5) machines.</li>
 </ul>
 
-<h2>Number Representation Systems</h2>
+<h2 id="number_representation_systems">Number Representation Systems</h2>
 
-<h3>Positive Integers</h3>
+<h3 id="positive_integers">Positive Integers</h3>
 
 <ul>
-<li>Decimal 
+<li>Decimal
 <ul>
 <li>0 - 9</li>
-</ul></li>
+</ul>
+</li>
+
 <li>Binary
 <ul>
 <li>0 - 1</li>
-</ul></li>
+</ul>
+</li>
+
 <li>Hexadecimal
 <ul>
 <li>0 - F</li>
-</ul></li>
 </ul>
+</li>
+</ul>
+
+<h4 id="binary_to_decimal">Binary to Decimal</h4>
+
+<pre><code>24/2 = 12r0
+12/2 = 6r0
+6/2 = 3r0
+3/2 = 1r1
+1/2 = 0r1</code></pre>
+
+<ul>
+<li>So 24<sub>10</sub> = 11000<sub>2</sub></li>
+</ul>
+
+<h3 id="positive_real_numbers">Positive Real Numbers</h3>
+
+<ul>
+<li>Use radix notation</li>
+
+<li>3.14 = 3×10<sup>0</sup> + 1×10<sup>-1</sup> + 4×10<sup>-2</sup>
+<ul>
+<li>eg 101.001<sub>2</sub> = 1×2<sup>2</sup> + 1×2<sup>0</sup> + 1×2<sup>-3</sup></li>
+
+<li>= 5 1/8</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="negative_numbers">Negative Numbers</h2>
+
+<ul>
+<li>Could use a sign bit to represent negative numbers</li>
+
+<li>This reduces the number of bits available for storing the numbers</li>
+
+<li>But gives an easily readable representation.</li>
+
+<li>However, this makes it more difficult to implement in a computer
+<ul>
+<li>Need specialised hardware to perform the calculations.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="twos_complement">Two’s Complement</h3>
+
+<ul>
+<li>Use the overflow observation.
+<ul>
+<li>When a number, as large as that number of bits is able to represent, has 1 added to it, the values of all the bits overflow and all give 0.
+<ul>
+<li>eg 1111 + 1 = 0000</li>
+</ul>
+</li>
+
+<li>As long as the number of bits cannot change, like in a computer.
+<ul>
+<li>eg 0101101 + 1010010 = 0000000</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>To the computer, the numbers look like the negative of each other, since they sum to zero, even though, they actually sum to the value 1 greater that the maximum size of the bits.</li>
+
+<li>Gives foundation of two’s complement.</li>
+
+<li>To find the two’s complement of a number:
+<ul>
+<li>Positive numbers (and zero) always begin with at least one leading zero but are otherwise identical to unsigned numbers.</li>
+
+<li>Invert all bits.</li>
+
+<li>Add 1.</li>
+</ul>
+</li>
+
+<li>So all negative numbers start with a leading one.</li>
+
+<li>Range of -2<sup>n-1</sup>-1 to 2<sup>n-1</sup>-1</li>
+
+<li>The ranges are then:
+<ul>
+<li>The <em>largest positive</em> integer is 011…11</li>
+
+<li>The <em>smallest positive</em> integer is 000…01</li>
+
+<li>The <em>smallest negative</em> integer is 111…11</li>
+
+<li>The <em>largest negative</em> integer is 100…00.</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="floating_point_numbers">Floating Point Numbers</h2>
+
+<ul>
+<li>Fixed point numbers have limited ranges and precisions.</li>
+
+<li>Floating point numbers have the
+<ul>
+<li><strong>Mantisa</strong>, M, and the</li>
+
+<li><strong>Exponent</strong>, E.</li>
+
+<li>V = M×2<sup>E</sup>.</li>
+</ul>
+</li>
+
+<li>Gives much higher range of possible values</li>
+
+<li>At the cost of lower resolution, so the steps between the possible values are higher.</li>
+
+<li>The exponent means that the resolution is not linear
+<ul>
+<li>Larger numbers have a smaller resolution than smaller numbers.</li>
+
+<li>Shouldn’t use floating point numbers for precise values such as currency.</li>
+</ul>
+</li>
+</ul>
+
+<h1 id="computer_architectures">Computer Architectures</h1>
+
+<ul>
+<li>All computer programs are made of two components
+<ul>
+<li><em>Data</em></li>
+
+<li><em>Instructions</em></li>
+
+<li>The instructions allow the computer to perform actions on the data.</li>
+
+<li>The data and the instructions both have to be stored in the computer in binary format.
+<ul>
+<li>There is no way to distinguish between them by examining them.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="von_neumann_architecture">Von Neumann Architecture</h2>
+
+<p><img src="http://www.coertvonk.com/wp-content/uploads/architecture-von-Neumann2.png" alt="Von Neumann Architecture" /></p>
+
+<h3 id="requirements_of_a_computing_device">Requirements of a Computing Device</h3>
+
+<ul>
+<li>Basic requirements of the central processing unit:
+<ul>
+<li>Load the program from some external storage device,</li>
+
+<li>Receive further input from external devices,</li>
+
+<li>Process instructions correctly and in the correct order,</li>
+
+<li>Access and modify pieces of data in accordance with the program’s instrucitons,</li>
+
+<li>Take decisions according to the results of the computations,</li>
+
+<li>Send the results to some external device or store them for further use,</li>
+</ul>
+</li>
+
+<li>This leads to a list of functional units that implement the high-level functionality:
+<ul>
+<li>Load/Store instructions to/from memory,</li>
+
+<li>Store instructions and data locally,</li>
+
+<li>Interpret the instructions to do the necessary computations,</li>
+
+<li>Send the results to external devices,</li>
+
+<li>Take appropriate decisions and control whats happening, and</li>
+
+<li>Keep track of program execution.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="basic_structure">Basic Structure</h3>
+
+<ul>
+<li>The basic structure defined in the draft of <strong>E</strong>lectronic <strong>D</strong>iscrete <strong>V</strong>ariable <strong>A</strong>utomatic <strong>C</strong>omputer became known as a Von Neumann Machine.</li>
+
+<li><em>Memory</em> containing instructions and data,</li>
+
+<li><em>Processing unit</em> for performing arithmetic calculations, and</li>
+
+<li><em>Control unit</em> for processing instructions.</li>
+</ul>
+
+<h3 id="main_memory">Main Memory</h3>
+
+<ul>
+<li>Referred to RAM</li>
+
+<li>Instructions and data are stored in separate locations so they can be distinguished.</li>
+
+<li>Instructions are stored sequentially so that the order of the program is implicit from them.</li>
+
+<li>Not applicable for long term storage as the contents are lost when there is not power.</li>
+</ul>
+
+<h3 id="loadstore_unit">Load/Store Unit</h3>
+
+<ul>
+<li>Interface between the CPU and the outside world.</li>
+
+<li>Gives and receives instructions to transfer instructions and data between the CPU and memory.</li>
+</ul>
+
+<h3 id="registers">Registers</h3>
+
+<ul>
+<li>Local, fast storage to hold data currently in use.</li>
+
+<li>Each register holds one word of data.</li>
+
+<li>Only hold data, instructions are dealt with separately.</li>
+</ul>
+
+<h3 id="instruction_register">Instruction Register</h3>
+
+<ul>
+<li>Holds the current instruction.</li>
+
+<li>Used by the control unit to configure the ALU to perform the desired computation.</li>
+</ul>
+
+<h3 id="alu">ALU</h3>
+
+<ul>
+<li>Arithmetic and Logic Unit.</li>
+
+<li>Where all computations are performed.</li>
+
+<li>Takes data from the registers and updates them with the results of the computations.</li>
+</ul>
+
+<h3 id="program_counter">Program Counter</h3>
+
+<ul>
+<li>Special register that holds the location (<em>address</em>) of the next instruction to be executed.</li>
+</ul>
+
+<h3 id="clock_cycle">Clock Cycle</h3>
+
+<ul>
+<li>All computer programs are synchronous</li>
+
+<li>Every activity is coordinated by an external clock signal.</li>
+
+<li>The speed of this pulse is quoted as a measure of the CPU performance</li>
+
+<li>Keeps all aspects of the computer synchronised.</li>
+
+<li>With each cycle of the CPU clock, a new operation is triggered.</li>
+</ul>
+
+<h2 id="instruction_cycle">Instruction Cycle</h2>
+
+<h3 id="fetchdecodeexecute_cycle">Fetch-Decode-Execute Cycle</h3>
+
+<ul>
+<li>Triggered by the clock cycle
+<ul>
+<li>Can have several stages, triggered by successive clock pulse.</li>
+</ul>
+</li>
+
+<li>Executing instructions is a very complex process.</li>
+
+<li>Most follow a similar set of stages
+<ul>
+<li><strong>Fetch</strong>
+<ol>
+<li>Inspect the program counter to find the address of the next instruction</li>
+
+<li>Load the next instruction from memory into the instruction register.</li>
+
+<li>Update the program counter.</li>
+</ol>
+</li>
+
+<li><strong>Decode</strong>
+<ol>
+<li>Determine the type of instruction fetched</li>
+
+<li>If the instruction requires data from memory, determine its address.</li>
+
+<li>Fetch any required data from memory into one of the CPU registers.</li>
+</ol>
+</li>
+
+<li><strong>Execute</strong>
+<ol>
+<li>Execute the instruction.</li>
+
+<li>Return to step 1 to fetch the next instruction.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="starting_a_program">Starting a Program</h3>
+
+<ul>
+<li>The program is loaded into memory from disk</li>
+
+<li>The instructions and data associated with the program each occupy a block of data
+<ul>
+<li>Allocated by the operating system.</li>
+</ul>
+</li>
+
+<li>Memory address of the first instruction in the program is called the <strong>entry point</strong>.</li>
+
+<li>When the program is started, the entry point is loaded into the program counter.
+<ul>
+<li>This becomes the starting point for the cycle.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="fetch">Fetch</h3>
+
+<ul>
+<li>The instruction at the location of the entry point of the program must be fetched from memory and placed in the instruction register. - Depending on the relative speeds of the clock cycle and the memory, it could take several cycles before the instruction is ready in the IR.
+<ul>
+<li><code>IR &lt;- memory(PC)</code></li>
+</ul>
+</li>
+
+<li>The program counter is incremented by one to point to the next instruction.
+<ul>
+<li><code>PC &lt;- PC + 1</code></li>
+
+<li>Some instructions change the increment value, for example <code>loop</code> and <code>branch</code>.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="decode">Decode</h3>
+
+<ul>
+<li>The type of the instruction is determined by the control unit.</li>
+
+<li>Some typical types of instruction include:
+<ul>
+<li>move data around
+<ul>
+<li><code>a = b</code></li>
+</ul>
+</li>
+
+<li>combine operands
+<ul>
+<li><code>c = a + b</code></li>
+</ul>
+</li>
+
+<li>manipulate one operand
+<ul>
+<li>Bit shift, roation</li>
+</ul>
+</li>
+
+<li>test/comparason to change the program flow
+<ul>
+<li>branch</li>
+</ul>
+</li>
+
+<li>IO</li>
+
+<li>control loops</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="execute">Execute</h3>
+
+<ul>
+<li>Data must be fetched from memory
+<ul>
+<li>Each piece of data will have been allocated a memory address by the compiler, this will be specified as part of the instruction.</li>
+
+<li>The address is extracted from the IR and passed to the load-store unit in the same way as the instruction was fetched.</li>
+
+<li>Data is loaded into one of the registers.
+<ul>
+<li>The register is specified as part of the instruction.</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>Once the data is in one of the registers, it can be acted upon.</li>
+</ul>
+
+<h2 id="instruction_set">Instruction Set</h2>
+
+<ul>
+<li>Modern computers are <em>Turing Complete</em> and so should be able to complete any computation, that can be completed.</li>
+
+<li>But the exact set of instructions has an impact on the programmer’s abilities. - The <strong>Instruction Set</strong> is the set of all primitive instructions that the computer can perform.</li>
+
+<li>All languages can be decomposed to these instructions.</li>
+
+<li>Each type of CPU has a different set of instructions.
+<ul>
+<li>They are essentially incompatable with each other.</li>
+
+<li>Low level code is strongly dependant on the machine and is much harder to read, write and debug.
+<ul>
+<li>So most programming is done in higher level languages.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h1 id="stored_programs">Stored Programs</h1>
+
+<ul>
+<li>A program can be stored as a bit sequence and stored in main memory.</li>
+
+<li>From there the CPU can extract the instructions and execute them.</li>
+
+<li>Also, the program can be easily altered and re-run.</li>
+</ul>
+
+<h2 id="memory">Memory</h2>
+
+<ul>
+<li>k×m array of stored bits.
+<ul>
+<li>k is usually 2<sup>n</sup></li>
+
+<li><strong>Address</strong>
+<ul>
+<li>unique n-bit identifier of location</li>
+</ul>
+</li>
+
+<li><strong>Contents</strong>
+<ul>
+<li>m-bit vlaue stored in that location.</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>Basic operations
+<ul>
+<li>LOAD</li>
+
+<li>STORE</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="interface_to_memory">Interface to Memory</h3>
+
+<ul>
+<li><strong>MAR</strong> - Memory address register</li>
+
+<li><strong>MDR</strong> - Memory data register.</li>
+
+<li>To read from location A,
+<ol>
+<li>Write the address A into the MAR,</li>
+
+<li>Send a read signal to the memory,</li>
+
+<li>Read the data from the MDR.</li>
+</ol>
+</li>
+
+<li>To write a value X to location A,
+<ol>
+<li>Write data X to the MDR,</li>
+
+<li>Write the address A to the MAR</li>
+
+<li>Send a write signal to the memory.</li>
+</ol>
+</li>
+</ul>
+
+<h2 id="processing_unit">Processing Unit</h2>
+
+<ul>
+<li>Functional Units
+<ul>
+<li><strong>ALU</strong> - Arithmetic and Logic Unit.</li>
+
+<li>could have many functional units for special purpose jobs,
+<ul>
+<li>eg square root</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>Registers
+<ul>
+<li>Small temporary storage</li>
+
+<li>Operands and results of functional units,</li>
+</ul>
+</li>
+
+<li>Word size
+<ul>
+<li>number of bits normally processed by ALU in one instruction</li>
+
+<li>also the width of the registers.</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="input_and_output">Input and Output</h2>
+
+<ul>
+<li>Input
+<ul>
+<li>Keyboard,</li>
+
+<li>mouse</li>
+
+<li>scanner</li>
+
+<li>disk</li>
+</ul>
+</li>
+
+<li>Output
+<ul>
+<li>Monitor</li>
+
+<li>Printer</li>
+
+<li>LED</li>
+
+<li>Disk</li>
+</ul>
+</li>
+
+<li>Each device has its own interface,
+<ul>
+<li>usually a set of registers like the MAR and MDR</li>
+</ul>
+</li>
+
+<li>Program that controls access to a device is called a <em>driver</em>.</li>
+</ul>
+
+<h2 id="control_unit_finite_state_machine">Control Unit (Finite State Machine)</h2>
+
+<ul>
+<li>Orchestrates execution of a program.
+<ul>
+<li>IR</li>
+
+<li>PC</li>
+</ul>
+</li>
+
+<li>Reads an instruction from memory</li>
+
+<li>Interprets the instruction, generating signals that tell the other components what to do.</li>
+</ul>
+
+<h2 id="machine_language_philosophies">Machine Language Philosophies</h2>
+
+<ul>
+<li><strong>RISC</strong>
+<ul>
+<li>Reduced Instruction Set Computing</li>
+
+<li>Few, simple, efficient, and fast instructions.</li>
+</ul>
+</li>
+
+<li><strong>CISC</strong>
+<ul>
+<li>Complex Instruction Set Computing</li>
+
+<li>Many, convenient and powerful instructions.</li>
+</ul>
+</li>
+</ul>
+</body></html>
