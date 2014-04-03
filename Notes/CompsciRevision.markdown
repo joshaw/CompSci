@@ -22,8 +22,8 @@ CSS: css.css
 
 #### Truth Tables
 - Rows give the possible worlds that can exist.
-- Columns are the the truth functions.
-- Give the outcomes of a logic sentence in evey possible world.
+- Columns are the truth functions.
+- Give the outcomes of a logic sentence in every possible world.
 	- ie for every combination of true and false for each of the different 
 	  atoms.
 
@@ -59,7 +59,7 @@ CSS: css.css
 	  function of the symbols read from the tape.
 - The current system state is the entire configuration.
 	- Not just the internal state.
-- There exist infintely many Turing Machines.
+- There exist infinitely many Turing Machines.
 
 #### Halting Problem
 - Given a Turing Machine **A**, is there a Turing Machine, **B**, that can tell 
@@ -67,10 +67,10 @@ CSS: css.css
   not?
 - *No*
 
-#### Universal Turing Maching (UTM)
+#### Universal Turing Machine (UTM)
 - Turing machine capable of taking, not just their data, but their program as 
   an input sequence on the tape.
-- Capable of simulatiing any other Turing Machine.
+- Capable of simulating any other Turing Machine.
 - Not possible to build physically since it would require an infinite memory 
   address.
 - Physical computers are an approximation of UTMs.
@@ -287,7 +287,7 @@ CSS: css.css
 		- `c = a + b`
 	- manipulate one operand
 		- Bit shift, roation
-	- test/comparason to change the program flow
+	- test/comparison to change the program flow
 		- branch
 	- IO
 	- control loops
@@ -311,7 +311,7 @@ CSS: css.css
 	  computer can perform.
 - All languages can be decomposed to these instructions.
 - Each type of CPU has a different set of instructions.
-	- They are essentially incompatable with each other.
+	- They are essentially incompatible with each other.
 	- Low level code is strongly dependant on the machine and is much harder to 
 	  read, write and debug.
 		- So most programming is done in higher level languages.
@@ -386,3 +386,79 @@ CSS: css.css
 - **CISC**
 	- Complex Instruction Set Computing
 	- Many, convenient and powerful instructions.
+
+# Compilation
+
+## Options
+- A program written in a high level language can be:
+	- Compiled into the machine's native machine language and then run on the 
+	  target machine, or
+	- Directly interpreted, so that the execution is simulated by an 
+	  interpreter that is run in the machine's native language.
+	
+## Compilation
+- The conceptual process of translating source code into a CPU-executable 
+  binary target code.
+- Compiler runs on the same hardware as the target machine.
+- **Cross Compilation**
+	- Compiler runs on hardware Y, code is run on hardware X.
+- Compilers try to be as smart as possible
+	- Fix decisions that can be made at compile time so that the decision does 
+	  not have to be made at run time
+		- Type checking
+		- Static allocation
+		- Static linking
+		- Code optimization
+- Leads to better performance in general
+	- Allocation of variables without variable lookup at runtime
+	- Aggressive code optimisations to take advantage of hardware features.
+
+## Interpretation
+- The conceptual process of running high level code by an interpreter.
+- Facilitates interactive debugging and testing
+	- Procedures can be invoked by the user at a command line
+	- Variable values can be inspected and changed by a user.
+
+## Bytecode
+- Some languages use *bytecode* which is somewhere between compiled and 
+  interpreted language.
+- Code is compiled into byte code, but then interpreted by a virtual machine.
+- A processor (CPU) can be viewed as an implementation in hardware of a virtual 
+  machine
+- "Compile once, run anywhere"
+- Bytecode is independent of the host machine
+- The virtual machine is specific to the computer architecture and operating 
+  system.
+- **Java Bytecode**
+	- Stack based virtual machine.
+	- Small instruction set
+		- 202 instuctions
+		- All 1 byte opcode + operands
+	- Memory is typed.
+
+### Virtual Machine
+- Executes an instruction stream in software.
+- Adopted by
+	- Pascal
+	- Java
+	- Smalltalk-80
+- Java compilers generate code that can be interpreted by the Java Virtual 
+  Machine (**JVM**).
+	- The JVM can translate bytecode into machine code by *Just-In-Time* 
+	  compilation (**JIT**).
+	- This can achieve similar performance as natively compiled code.
+
+### Compilation and Execution on VM
+- Compiler generates intermediate program
+- VM interprets the intermediate program.
+- **Pure Compilation and Static Linking**
+	- Library routines are separately linked (merged) with the object code of 
+	  the program
+- **Compilation, Assembly and Static Linking**
+	- Facilitates debugging of the compiler.
+- **Compilation, Assembly and Dynamic Linking**
+	- Dynamic libraries are linked at runtime by the OS
+		- eg DLL, `.so`, `.dylib`.
+- **Preprocessing**
+	- Preprocessor imports header files and expands macros
+		- eg `#define`, `#inlude`.
