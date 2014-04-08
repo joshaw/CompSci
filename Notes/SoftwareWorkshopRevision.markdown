@@ -16,6 +16,7 @@ Title: Software Workshop
 - Platform independent
 
 ## Types of Numbers
+
 ### Integers Numbers
 - `byte`
 	- -128 to 127
@@ -40,7 +41,11 @@ Title: Software Workshop
 		- 6-7 significant decimal digits
 		- Float.MAX_VALUE = 3.4028235e38
 		- Float.MIN_VALUE = 1.4e-45
-
+- `double`
+	- represented by 8 bytes
+		- 15 significant decimal digits
+		- Double.MAX_VALUE = 1.7976931e308
+		- Double.MIN_VALUE = 4.9e-324
 
 ## Other Primitive Types
 - `char`
@@ -52,17 +57,26 @@ Title: Software Workshop
 ## Programming Constructs
 
 ### Loop Invariant
+
 - Property that holds before and after each repetition of a code loop.
-    int j = 9
-    for (int i=0; i<10; i++) {
-        j--;
-    }
+
+~~~
+	int j = 9
+	for (int i=0; i<10; i++) {
+    	j--;
+	}
+~~~
+
 - A loop invariant is the fact that `i + j = 9`
 - Also `i >= 0 && i < 10`
 	- because of the termination condition of the loop
 
 ### Arrays
-    int[] array = new int[100];
+
+~~~
+int[] array = new int[100];
+~~~
+
 - Smallest index is 0
 - Largest index is `(n=100)-1`
 
@@ -90,6 +104,9 @@ Title: Software Workshop
 	- Although a final variable, once initialized, cannot be changed, if the 
 	  variable is an instance of a class, any variables within that class are 
 	  free to be altered in any way.
+
+#### Access Modifiers
+
 - `public`
 	- The variable is available to be accessed and changed by any method
 	- Accessible from all classes
@@ -104,14 +121,13 @@ Title: Software Workshop
 	- The variable is accessible from the class it was initialized in and from 
 	  any subclasses, but not by any other classes.
 
-### Modifier Table
 |---
 | Modifier | Class | Package | Subclass | World |
-+----------+-------+---------+----------+-------+
-public        | Y | Y | Y | Y |
-protected     | Y | Y | Y | N |
-*no modifier* | Y | Y | N | N |
-private       | Y | N | N | N |
+| :------- | :---: | :-----: | :------: | :---: |
+| public        | Y | Y | Y | Y |
+| protected     | Y | Y | Y | N |
+| *no modifier* | Y | Y | N | N |
+| private       | Y | N | N | N |
 
 ## Exceptions
 - Three types of exceptions:
@@ -139,17 +155,18 @@ private       | Y | N | N | N |
 	- eg, user input the wrong sort of data
 	- eg, a connection was lost
 - Works for non-checked exceptions that are not found at compile time.
-```
+
+~~~
 try {
-	// do some code which might cause an exeption
+    // do some code which might cause an exeption
 } catch (ExeptionType1 e1) {
-	// what to do if the exeption happened
+    // what to do if the exeption happened
 } catch (ExeptionType2 e2) {
-	// what to do if a different exeption happened
+    // what to do if a different exeption happened
 } finally {
-	// what to do whatever happens
+    // what to do whatever happens
 }
-```
+~~~
 
 ## Inheritance
 - A subclass inherits from its *unique* superclass.
@@ -166,8 +183,42 @@ try {
 - Do not have immediate objects
 - Only instantiated via subclasses.
 
+#### Abstract Methods
+- Abstract classes can have abstract methods.
+- Methods which have no body, just a declaration
+- These must be written in the corresponding (concrete) subclasses
+
+#### Interfaces
+- Allows methods to be defined such that they have to be implemented in any 
+  classes which `implements` the interface.
+- Gives a means by which all classes which are related in some way have to have 
+  one or several methods with the same name and the same arguements so that the 
+  particular way that the method was written does not matter, but it can be 
+  guaranteed that they will behave in the same way.
+- Have to specify
+	- return type
+	- name of the method
+	- arguements.
+
+#### Abstract Classes vs Interfaces
+- Abstract Classes = **AC**
+- Interfaces = **If**
+- AC's can contain fields that are not static and final and they can contain 
+  implemented methods.
+- These AB's are similar to interfaces, but they also provide a partial 
+  implementation, it is the job of the subclasses to complete the 
+  implementation
+- If an AC only contains abstract methds, it should be an If
+- Multiple interfaces can be implemented by classes anywhere in the class 
+  hierarchy, whether or not they are related to one another.
+
 ### Packages
 - Collection of java classes that are related and so belong together.
 - `import` statements make packages available to a program
 
 ## Polymorphism
+- Allows writing multiple methods with the same name but with different types 
+  of invocation.
+	- eg `multiply(3, 20)` and `multiply(3, 5, 4)`
+
+## Recursion
