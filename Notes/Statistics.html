@@ -7,6 +7,240 @@
 </head>
 <body>
 <h1 id="evalutation_methods_and_statistics">Evalutation Methods and Statistics</h1>
-<hr /><div class="maruku_toc"><ul><li><a href="#header">Header</a></li></ul></div><hr />
-<h2 id="header">Header</h2>
+<hr /><div class="maruku_toc"><ul><li><a href="#data_types">Data Types</a></li><li><a href="#variables">Variables</a><ul><li><a href="#randomisation">Randomisation</a></li></ul></li><li><a href="#significance">Significance</a><ul><li><a href="#evidence_of_absence">Evidence of Absence</a></li><li><a href="#null_hypothesis">Null Hypothesis</a></li></ul></li><li><a href="#variability">Variability</a><ul><li><a href="#degrees_of_freedom">Degrees of Freedom</a></li><li><a href="#methods">Methods</a></li><li><a href="#variance_s">Variance (s<sup>2</sup>)</a></li><li><a href="#correlation_r">Correlation (r)</a></li><li><a href="#pearsons_r">Pearson’s r</a><ul><li><a href="#covariance">Co-Variance</a></li><li><a href="#pearsons_r_2">Pearson’s r</a></li></ul></li><li><a href="#significance_p">Significance (p)</a></li></ul></li></ul></div><hr />
+<h2 id="data_types">Data Types</h2>
+
+<ul>
+<li>Catagorical Data
+<ul>
+<li>eg names, identifiers</li>
+</ul>
+</li>
+
+<li>Ordinal Data
+<ul>
+<li>Data that can be ordered</li>
+
+<li>eg a person’s favourite ice creams.</li>
+</ul>
+</li>
+
+<li>Interval
+<ul>
+<li>Like ordinal, but with the addition that we know the size of the gaps betweeen points on the scale</li>
+</ul>
+</li>
+
+<li>Ratio
+<ul>
+<li>Like interval, but the scale has a zero point</li>
+
+<li>eg reaction times.</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+<li><strong>Idependant</strong> variables define the conditions of the experiment.</li>
+
+<li><strong>Dependant</strong> variables are what is measured in the experiment.
+<ul>
+<li>They are <em>dependant</em> on the conditions of the experiment and are so interesting enough to be measured.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="randomisation">Randomisation</h3>
+
+<ul>
+<li>Without randomisation, bias is introduced to the sample.
+<ul>
+<li>The selection of samples, candidates and participants must be outside the experimenter’s hands.</li>
+</ul>
+</li>
+
+<li>Bias reduces the validity with which the sample represents the population.</li>
+
+<li>Full randomisation from a global population is difficult (or impossible) to achieve.
+<ul>
+<li>There are accepted limits on randomisation.</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="significance">Significance</h2>
+
+<ul>
+<li>Significance tests allow us to test hypotheses</li>
+
+<li>A good hypothesis is falsifiable.
+<ul>
+<li>Which of these is falsifiable?
+<ul>
+<li>H0: There are no vultures on the UoB campus.</li>
+
+<li>H1: There are vultures on the UoB campus.</li>
+</ul>
+</li>
+
+<li>H0 is falsifiable since we can check the campus and if we find a vulture, then the statement is immediately false. However, to falsify the claim that there are vultures requires us to check all of campus, so is much less feasible.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="evidence_of_absence">Evidence of Absence</h3>
+
+<ul>
+<li>Absence of evidence is not evidence of absence.</li>
+
+<li>We can look for vultures all day and fail to find them, but this does not allow us to reject H1 because all we have is an absence of evidence.</li>
+
+<li>H0 is fundamentally different. We can reject H0 as soon as we see a vulture in the campus.</li>
+
+<li><strong>H0 is falsifiable. It is the <em>null hypothesis</em></strong>.</li>
+</ul>
+
+<h3 id="null_hypothesis">Null Hypothesis</h3>
+
+<ul>
+<li>The significance of a test tells us if it reasonable to reject the null hypothesis.</li>
+
+<li>The null hypothesis says that <em>nothing happened</em>.
+<ul>
+<li>eg Comparing samples in an experiment, the null hypothesis is that they are going to be the same.</li>
+
+<li>eg When testing whether there is a correlation between two variables, the null hypotyhesis is that there is no correlation.</li>
+</ul>
+</li>
+
+<li>The null hypothesis must be <em>falsifiable</em>.</li>
+
+<li>The null hypotheses is rejected when it can be said that it is sufficiently unlikely. - eg The probability of the null hypothesis happening is less than 0.001, ie p &lt; 0.001, so the null hypotheses can be rejected.</li>
+</ul>
+
+<h2 id="variability">Variability</h2>
+
+<ul>
+<li>Everything varies</li>
+
+<li>Range is a simple method of measuring variability but it does not take into account any grouping of data.
+<ul>
+<li>eg normal distribution.</li>
+</ul>
+</li>
+</ul>
+
+<h4 id="degrees_of_freedom">Degrees of Freedom</h4>
+
+<ul>
+<li>In general degrees of freedom is
+<ul>
+<li>The number of data points minus the number of parameters that went into the calculation.</li>
+</ul>
+</li>
+
+<li>For the calculation of variance, the number of parameters is 1.</li>
+
+<li>So the degrees of freedom when calculating the variance is N-1.</li>
+</ul>
+
+<h3 id="methods">Methods</h3>
+
+<ul>
+<li>Range</li>
+
+<li>Sum of differences
+<ul>
+<li>sum(y - mean(y))</li>
+
+<li>But this gives zero when the differences cancel each other out</li>
+</ul>
+</li>
+
+<li>Sum of squares
+<ul>
+<li>Sum of absolute differences.</li>
+
+<li>sum( (y- mean(y))^2 )</li>
+
+<li>Increases as the variability increases (good) but also as the amount of data increases.</li>
+</ul>
+</li>
+
+<li>Variance</li>
+</ul>
+
+<h3 id="variance_s">Variance (s<sup>2</sup>)</h3>
+
+<ul>
+<li>Sum of squares divided by the degrees of freedom to prevent additional data increasing the value.</li>
+
+<li><strong>Standard Deviation</strong> is the square root of the variance.</li>
+</ul>
+
+<h3 id="correlation_r">Correlation (r)</h3>
+
+<ul>
+<li>A measure of the relationship between variables</li>
+
+<li>Pearson’s r as a quantitative measure of correlation</li>
+
+<li><em>Co-vary</em>
+<ul>
+<li>If the scores for one variable change, the scores for the other variable will chane in a predictable way.</li>
+
+<li>Means that the variables are not independent.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="pearsons_r">Pearson’s r</h3>
+
+<h4 id="covariance">Co-Variance</h4>
+
+<ul>
+<li>sum((x - mean(x))(y - mean(y))) / (N-1)</li>
+</ul>
+
+<h4 id="pearsons_r_2">Pearson’s r</h4>
+
+<ul>
+<li>Measure of correlation that does not increase with the variance.</li>
+
+<li>r = cov(x,y) / Sx Sy</li>
+
+<li>Polarity (- or +)
+<ul>
+<li>whether the relationship is positive or negative</li>
+</ul>
+</li>
+
+<li>Coefficient
+<ul>
+<li>strength of the relationship</li>
+</ul>
+</li>
+
+<li><em>Assumes</em>
+<ul>
+<li>Continuous variables</li>
+
+<li>Pearson’s r is a parametric test and it demands normal distributions of data.</li>
+
+<li>Linear relationship.</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="significance_p">Significance (p)</h3>
+
+<ul>
+<li>how significant is a correlation?</li>
+
+<li>is the value of r reliable?</li>
+
+<li>can we reject the hypotheses that there is no correlation?</li>
+</ul>
 </body></html>

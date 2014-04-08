@@ -1,5 +1,7 @@
+---
+layout: default
 Title: Database Notes.
-CSS: css.css
+---
 
 #Databases
 
@@ -317,8 +319,6 @@ CSS: css.css
 	- A &cup; ( B &cap; C ) = ( A &cup; B ) &cap; ( A &cup; C )
 - Intersection *distributes over* union
 	- A &cap; ( B &cup; C ) = ( A &cap; B ) &cup; ( A &cap; C )
-
-
 
 [1]: http://ce-gmbh.com/images/chen2.JPG
 [2]: http://i.stack.imgur.com/V62Rm.jpg
