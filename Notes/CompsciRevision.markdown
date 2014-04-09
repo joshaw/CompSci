@@ -1,9 +1,7 @@
 ---
 layout: default
 title: Introduction to Computer Science Notes.
-CSS: css.css
 ---
-
 
 #Introduction to Computer Science
 

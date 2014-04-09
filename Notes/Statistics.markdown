@@ -1,6 +1,6 @@
 ---
 layout: default
-Title: Introduction to Computer Science Notes.
+title: Evaluation Methods and Statistics
 ---
 
 #Evalutation Methods and Statistics
