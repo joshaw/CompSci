@@ -230,3 +230,27 @@ try {
 - Can be a more elegant solution
 - Allows the creation of recursive data structures which can be manipulated 
   with far less code.
+
+### Lists
+- Simple data structure to store information in a row.
+- Terminology
+	- First element (x0) is *head* of the list
+	- Remaining elements (x1, x2, ..., xn-1) is the *tail* of the list.
+	- The *empty list* contains no elements.
+
+## Graphical User Interfaces
+- `java.awt` 
+	- Original GUi toolkit in JDK 1.1
+	- Implemented using native GUI libraries of the operating system
+	- Not portable
+- `javax.swing`
+	- Portable GUI toolkit added in Java 2
+	- Extends `java.awt`
+	- Platform independant
+	- Slower
+
+### `ActionListner`s
+- Must import `java.awt.event.*;`
+- Allows a class to handle events
+- A class that `implements ActionListener` is added to a button or other 
+  component to define that that class handles the event from that button etc.
