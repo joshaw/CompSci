@@ -101,7 +101,7 @@ title: Evaluation Methods and Statistics
 	  data increases.
 - Variance
 
-### Variance (s²)
+### Variance (s<sup>2</sup>)
 - Sum of squares divided by the degrees of freedom to prevent additional data 
   increasing the value.
 - **Standard Deviation** is the square root of the variance.
