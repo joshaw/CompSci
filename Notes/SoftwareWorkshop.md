@@ -220,5 +220,13 @@ try {
 - Allows writing multiple methods with the same name but with different types 
   of invocation.
 	- eg `multiply(3, 20)` and `multiply(3, 5, 4)`
+	- method overriding
+- "Collections"
+	- `Car` is a `Motorised` is a `Vehical`
 
 ## Recursion
+- A method that calls itself
+- Make some computations easier
+- Can be a more elegant solution
+- Allows the creation of recursive data structures which can be manipulated 
+  with far less code.
