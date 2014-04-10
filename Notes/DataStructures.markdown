@@ -67,13 +67,65 @@ title: Data Structures Notes
 - Average case is the time that a normal input, or averaged over many different 
   inputs, takes to complete.
 
+## Trees
+- Set of nodes with zero or more children.
+- Each node can have at most 1 parent.
+
+### Binary Trees
+- Special type of trees where nodes have 0, 1 or 2 children.
+- Height
+	- Number of levels from top to bottom of the tree.
+	- Maximum possible is n-1 where n is the number of nodes in the tree
+		- Only when the tree is arranged in a line
+	- Minimum possible when the tree is perfectly balanced
+		- h = log₂(s+1)-1 ≈ log₂s
+- Height of a node
+	- Number of levels from the bottom of the tree to the current node.
+- Depth of a node
+	- Number of levels from the root node of the tree to the current node.
+
+### Binary Search Tree
+- Same as a search tree but with specified order for children of each node
+	- The left element must be smaller than the root
+	- Right child must be larger than the root.
+- Order of nodes then is
+
+  ~~~
+  left child → root node → right child
+  ~~~
+
+#### Deleting Nodes
+1. If the node to be deleted is a leaf node, just remove it.
+1. If only one of the nodes subtrees is non-empty, just "move up" the remaining 
+   subtree to take the place of the node that has been removed.
+1.  If the node to be deleted has two subtrees, take the largest node from the
+	left subtree and use this to overwrite the node that is to be deleted.  
+	Replace the left-must node by its right subtree, if this exists, otherwise 
+	just delete it.
+
+### Balanced Trees
+- Simplest form of balanced tree is the AVL tree
+	- Specifies that the heights of the subtrees of any node can differ by at 
+	  most 1.
+	- Right and left rotations are used to balance an unbalanced tree.
+
+### Heap Trees
+
+#### Complete Trees
+- A tree is complete if all of the levels, except possibly the last, is 
+  completely filled, and all leaves on the last level are placed as far to the 
+  left as possible.
+- Allows trees to be stored in arrays
+	- Not efficient to store unbalanced tree in array since space must be left 
+	  for missing elements which could mean many empty elements.
+
 |--
 | Name           | Strategy  | Worst Case | Average Case |
 | :---           | :-------  | :--------: | :----------: |
 | Bubble sort    | Exchange  | O(n²)      | O(n²)        |
 | Select sort    | Selection | O(n²)      | O(n²)        |
 | Insertion sort | Insertion | O(n²)      | O(n²)        |
-| Tree sort      | Insertion | O(n²)      | O(n log n)   |
-| Heap sort      | Selection | O(n log n) | O(n log n)   |
-| Quick sort     | D & C     | O(n²)      | O(n log n)   |
-| Merge sort     | D & C     | O(n log n) | O(n log n)   |
+| Tree sort      | Insertion | O(n²)      | O(n log₂n)   |
+| Heap sort      | Selection | O(n log₂n) | O(n log₂n)   |
+| Quick sort     | D & C     | O(n²)      | O(n log₂n)   |
+| Merge sort     | D & C     | O(n log₂n) | O(n log₂n)   |
