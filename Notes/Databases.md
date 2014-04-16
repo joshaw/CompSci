@@ -1,37 +1,37 @@
 ---
-layout: default
-Title: Database Notes.
+ layout: default
+ Title: Database Notes.
 ---
 
-#Databases
+# Databases
 
 * * *
 * TOC
 {:toc}
 * * *
 
-##Tables, Attributes and Entities
-###Attribute
+## Tables, Attributes and Entities
+### Attribute
 - The names of the different information in a table, ie column headers
 
-###Redundancy
+### Redundancy
 - Replicating data in multiple places unnecessarily
 - Increases the likelihood of data anomalies and lack of integrity
 - A type of inefficiency
 
-###Pointing
+### Pointing
 - Referring to a non-local location by means of the definitive location
 	- Means that if the object being referred to moves, then the link is broken
 	- eg linking to chapter X, page Y in an index
 
-###Associative Linking
+### Associative Linking
 - Using specific individual name or identifier to refer between two locations 
   where the same information is needed in both, eg tables
 	- eg linking to chapter X.Y.Z in an contents
 - When used in a database, typically the column names of the shared attribute 
   in each table will be the same or similar, though this is not required
 
-###Referential Integrity
+### Referential Integrity
 - Relevant when one place in a data repository needs to refer to something in
 	another place
 - Referential integrity is achieved when every such referring place contains a
@@ -40,14 +40,14 @@ Title: Database Notes.
 	- Successful there means that the reference succeeds in specifying some
 		other place
 
-###Entity Types
+### Entity Types
 - The main defining aspect of the data in a single table that allows that data 
   to be grouped together
 
-###Entities
+### Entities
 - Each of the individual elements of the same entity type in a table
 
-###Connectivity
+### Connectivity
 - 1:1
 	- One to One
 	- Every entity in a table is related to exactly 1 entity in another table.  
@@ -70,12 +70,12 @@ Title: Database Notes.
 		- Each person is enrolled on multiple lecture courses, and each lecture 
 		  course has many people enrolled on it.
 
-###Cardinality
+### Cardinality
 - The number of other entities that are allowed and/or required to be related 
   to the first for a particular entity
 	- Given as a minimum, a maximum or both a min and max
 
-###Optionality
+### Optionality
 - Also referred to as relationship participation
 - A relationship is optional if it does not have to exist for any given entity
 	- eg **person -> loaned book**
@@ -87,7 +87,7 @@ Title: Database Notes.
   applied
 	- Could be optional in one direction but mandatory in the other
 
-###Functional Dependence
+### Functional Dependence
 - An attribute, or set of attributes, depends on a separate attribute, or set 
   of attributes, if each value of the first is associated with exactly one in 
   the other.
@@ -96,25 +96,25 @@ Title: Database Notes.
 	- eg Day-number, month and year **determine** day-name
 	- eg Day-name **is functionally dependant on** day-number, month and year
 
-###Determinant
+### Determinant
 - The determining set of attributes
 	- eg the determinant day-number, month and year determines day-name
 
-###Business Rule
+### Business Rule
 - A short concise and unique description of a policy, procedure or principle 
   within a particular organisation
 
-###Keys
-####Superkey
+### Keys
+#### Superkey
 - Determines all other attributes in the table
 - Trivially, the set of all attributes must be a superkey in order to prevent 
   duplicate entries in a table
 
-####Candidate Key
+#### Candidate Key
 - A minimal superkey
 	- Cannot remove any attributes and still have a superkey
 
-####Primary Key
+#### Primary Key
 - Chosen candidate key to identify entities in a table
 	- The simpler the primary key, the better
 	- Not allowed to contain any null values since there could then be two 
@@ -122,14 +122,14 @@ Title: Database Notes.
 - Used to access entities of an entity type as quickly as possible
 	- Better to use short, alphanumeric, non-ambiguous keys
 
-####Foreign Key
+#### Foreign Key
 - A primary key from another table that is included in a table to represent the 
   relationship between those two tables
 	- Associative linking
 	- For a 1:1 mapping, the foreign key can be used to identify elements in 
 	  both directions as long as there are no null values in either side
 
-###Bridging Table
+### Bridging Table
 - Also called Linking table
 - Splits an M:N relationship into two relationships that are both 1:M
 	- eg **Person <-> lecture courses**
@@ -142,7 +142,7 @@ Title: Database Notes.
 - The primary key in the bridging table is the combination of the foreign keys 
   for each of the two separate 1:M tables
 
-###Relationship Strength
+### Relationship Strength
 - A relationship is strong when the second entity contains the primary key of 
   the first
 	- eg **A -> B** is *strong* if B's PK contains A's PK
@@ -167,7 +167,7 @@ Title: Database Notes.
 	- This is the same as saying that the reverse relationship be mandatory
 - Usually entity types are *strong*
 
-###Multi-Valued Attributes
+### Multi-Valued Attributes
 - A multi-valued attribute can have on or more values
 - Several possible methods for dealing with them
 	- Could represent the values as a string with each value concatenated with 
@@ -188,18 +188,18 @@ Title: Database Notes.
   entity and a lower-level *subtype* entity.
 - Primary key of a subtype is the same as the primary key of its supertype.
 
-###Sub- and Super-Types
+### Sub- and Super-Types
 - Super-type - contains attributes shared by all its sub-types
 - Sub-type - contains special attributes not shared by its sisters
 	- A super-type has a 1:1 relationship with each sub-type
 		- **Mandatory** in the **sub-to-super** direction
 		- **Optional** in the **super-to-sub** direction
 
-###Disjoint
+### Disjoint
 - Each entity in the super-type can appear in at most one of the subtypes
 	- **0** or **1**
 
-###Overlapping
+### Overlapping
 - A given entity type can appear in more than one sub-type
 	- **0** or **more**
 
@@ -208,25 +208,25 @@ Title: Database Notes.
   sub-types
 	- **1** or **more**
 
-##Types of Relationship
-####Unary
+## Types of Relationship
+#### Unary
 - Contains just a single entity
 	- eg **subject -> *requires* -> subject** 
 	- the subjects have to be different, but they are of the same entity type
 
-####Binary
+#### Binary
 - Contains two **types** of entity
 	- eg **teacher -> *teaches* -> subject**
 
-####Ternary
+#### Ternary
 - Contains three **types** of entity
 	- eg **teacher *from* course -> *teaches* -> subject**
 
-####Recursive
+#### Recursive
 - Two or more of the relationships contain more than 1 of the same entity types
 	- eg **person -> married to -> person**
 
-####Symmetry
+#### Symmetry
 - Symmetric
 	- Both entities in a two entity recursive relationship refer to each other
 		- eg **person -> married to -> person**
@@ -238,7 +238,7 @@ Title: Database Notes.
 - Only makes sense in the 1:1 and M:N cases
 
 ## Entity Relationship Models and Diagrams (ERM & ERD)
-###ERM
+### ERM
 - Just the concept of thinking about a database as consisting of: 
 	- Entities
 	- Attributes
@@ -246,8 +246,8 @@ Title: Database Notes.
 - Applying this approach in a particular case gives rise to ER models for that 
   situation
 
-###ERD's
-####Chen Model
+### ERD's
+#### Chen Model
 - Rectangles represent entity types
 	- Weak entity types are shown with a double rectangle
 - Diamonds represent relationships
@@ -269,7 +269,7 @@ Title: Database Notes.
 
 ![Chen Model example diagram][1]
 
-####Crows Foot Model
+#### Crows Foot Model
 - Rectangles represent entity types
 	- Information about the entities, and the primary and foreign keys are 
 	  shown below the name of the entity type
@@ -285,8 +285,8 @@ Title: Database Notes.
 
 ![Crows Foot Model diagram][2]
 
-##Sets
-###Membership Relationships
+## Sets
+### Membership Relationships
 - **a** is a member of **A**
 	- a &isin; A
 - **a** is not a member of **A**
@@ -296,7 +296,7 @@ Title: Database Notes.
 - **A** is not a subset of **B**
 	- A &nsub; B
 
-###Operations
+### Operations
 - *Union* of **A** and **B** (OR)
 	- A &cup; B
 	- Note: no repetitions created
@@ -308,7 +308,7 @@ Title: Database Notes.
 	- A \ B
 	- Note: set of elements that are in A but not B
 
-####Properties of Operations
+#### Properties of Operations
 - Union and intersection are *commutititve*;
 	- A &cup; B = B &cup; A
 	- A &cap; B = B &cap; A

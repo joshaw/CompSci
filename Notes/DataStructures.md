@@ -10,7 +10,6 @@ title: Data Structures Notes
 ### Array
 - Simplest data structure
 - Set size
-- a[i]
 - Very fast read
 - Very slow to add element mid array
 

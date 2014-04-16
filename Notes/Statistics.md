@@ -101,7 +101,7 @@ title: Evaluation Methods and Statistics
 	  data increases.
 - Variance
 
-### Variance (s<sup>2</sup>)
+### Variance (s²)
 - Sum of squares divided by the degrees of freedom to prevent additional data 
   increasing the value.
 - **Standard Deviation** is the square root of the variance.
@@ -191,6 +191,77 @@ title: Evaluation Methods and Statistics
 TODO
 EMS06
 
+## Statistical Tests
+
+### Correlation Test
+
+### T-Test
+- Most basic form of statistical test
+
+#### Standard T-Test
+- Between Subjects
+- Used when there are exactly 2 groupt to be tested
+	- eg. control group vs. expermimental group
+- Are two sets of data significantly different from one another?
+
+#### Paired T-Test (t test for dummies)
+- Within Subjects
+- Compares the actual difference between two means in relation to the variation 
+  in the data
+	- Expressed as the standard deviation of the difference between the mean.
+- Can only compare two groups at a time
+- Bad practice to use multiple times for a single experiment.
+- Used for "Before vs. After" experiments where the *same* individuals are 
+  measured before and after the application of some sort of treatmnent.
+- Also used for "Left vs. Right" experiments where two sides of an individual 
+  are given two different treatments.
+
+### ANOVA
+- Assumes
+	- Normally distributed data
+	- Equality of variance
+	- Interval or ratio data
+	- Independant data.
+
+#### One-Way ANOVA
+- Similar to a t-test
+- Used to compare the means from *three or more* groups
+
+#### Two-Way ANOVA
+- Compare means of *two or more* groups in response to *two different 
+  independant variables*.
+- Allows an experiment which where participants are exposed to a varying level 
+  of two different treatments.
+
+### Linear Regression
+- Comparing the means of groups along a continuum of *three or more* treatment 
+  levels.
+- Can also be used for three or more treatments set at regular intervals
+- Provides a graph with a line of best fit that passes as close as possible to 
+  all the data points.
+
+### Shapiro-Wilk
+- Is the data normally distributed?
+
+### Lavene's Test
+- TODO
+- Equality of Variance.
+
+### Mauchly's Test of Sphericity
+- Test the hypothesis that the variances of the differences are equal (H0)
+
+### Post Hoc Test
+
+### F-Ratio
+
+## Experiments
+
+### Stroop
+
+### Fitt's Law
+
+### Secondary Tast While Driving
+
 ## Scientific Process
 1. Generate a hypothesis
 1. Design experiment/study to test the hypothesis
@@ -237,6 +308,8 @@ EMS06
 - Stroop
 	- T-test
 - Twitter Posts - Anxiety 
+	- Regression
+- Social Capital - Facebook
 - Secondary test while driving
 	- Post hoc tests
 	- T-test
@@ -251,3 +324,8 @@ EMS06
 	- T-test
 - Little Albert
 	- Ethics
+
+# TODO
+ - Claim warrant qualifier evidence
+ - Within / Between Subjects
+ - Central limit theorem

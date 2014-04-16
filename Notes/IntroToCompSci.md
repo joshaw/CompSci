@@ -3,7 +3,7 @@ layout: default
 title: Introduction to Computer Science Notes.
 ---
 
-#Introduction to Computer Science
+# Introduction to Computer Science
 
 * * *
 * TOC
