@@ -363,4 +363,173 @@ title: Operating Systems and Networks
 	- Metropolitan Area Network (MAN)
 		- Wireless Wide Area Network (WWAN)
 
-### LAN
+|--
+| Method   | Distance    | Bandwidth | Latency (ms)   | Technology       |
+| :-----   | :-------    | :-------- | :------        | :---------       |
+| LAN      | 1-2 km      | 10-1000   | Low (1-10)     | Ethernet         |
+| WAN      | Worldwide   | 0.01-600  | High (100-500) | Satellite, cable |
+| MAN      | 2-50km      | 1-150     | Low (1-10)     | ATM, ethernet    |
+| WLAN     | 0.15-1.5 km | 2-11      | Medium (5-20)  | Routers          |
+| WWAN     | Worldwide   | 0.01-2    | High (100-500) |                  |
+| WPAN     | 0-0.1 km    | 1-5       | Low            | Bluetooth, GSM   |
+| Internet | Worldwide   | 0.6-600   | High (100-500) |                  |
+
+### Mode of Transmission
+- *Packet Transmission*
+	- Messages divided into packets containing binary data
+	- Packets queued in buffers berfore sent onto link
+	- QoS not guaranteed
+- *Data Streaming*
+	- Links guarantee QoS
+	- Used for multimedia traffic
+	- Higher bandwidth
+
+### Switching Schemes
+- Broadcasts
+	- Ethernet, wireless
+	- Send messages to *all* nodes
+	- Nodes listen for own messages
+		- Carrier sensing
+- Circuit switching
+	- Phone networks
+- Packet switching
+	- TCP/IP
+	- Store and forward
+	- Unpredictable delays
+- Frame/cell relay
+	- ATM
+	- Bandwith and latency guaranteed
+		- Virtual path
+	- Samll, fixed size packets
+		- Padded if necessary
+	- Avoids error checking at nodes
+		- Use reliable links
+
+### OSI Protocol Summary
+- Open Systems Interconnection Model
+
+|--
+| Layer | Description | Example |
+| :---- | :---------- | :------ |
+| Application | Protocols for specific applications | HTTP, FTP, SMTP |
+| Presentation | Protocols for independant data representation and encryption if required |CORBA, CDR |
+| Session | Protocols for failure detection and recovery | |
+| Transport | Message-level communication between ports attached to processes | TCP, UDP |
+| Network | Packate-level transmission on a given network. Requires routing in WANs and Internet| IP, ATM |
+| Data Link | Packet-level transmission between nodes connected by a physical link | Ethernet MAC, ATM cell transfer |
+| Physical | Transmit sequence of binary data using various mediums | Signalling, IDSN |
+
+### IP
+- Transmission mechanism used by TCP and UDP
+- Uses other protocols
+	- **ARP** (Address Resolution Protocol)
+		- Associates an IP address with the physical address
+		- Host makes an ARP packet broadcast to everybody, all ignore except
+		  the host that the IP address belongs to.
+	- **RARP** (Reverse Address Resolution Protocol)
+		- Works in the reverse of ARP
+	- **ICMP** (Internet Control Message Protocol)
+		- Mechanism to send (by host and routes) notifications about the
+		  datagram back to the sender.
+- Best effort delivery
+- Unreliable and connectionless protocol
+- No error checking
+- Suscepible to noise and dropped packets
+- Must be paired with another protocol to be reliable
+- Packets in two parts
+	- Header
+		1. Version - 4 bytes
+		1. Header length
+		1. Service type
+		1. Total length 
+		1. Time to live
+		1. Protocol
+		1. Header checksum
+		1. Source IP address
+		1. Desination IP address
+
+### IP Address
+- Identifies a computer
+- IPv4
+	- 32 bits binary number
+	- 4 parts (octet) each 0-255
+		- 0000 0000 → 1111 1111
+	- Used in `ip_src` and `ip_dest` in IP datagram
+- Split into two portions
+	- Network portion
+		- Device address
+	- Host ID portion
+		- Uniquely identifies the device on its network
+
+#### First Octet 
+- Gives the class
+- Cannot be 127
+	- Kept for troubleshooting and testing localhost
+		- `localhost`: 127.0.0.1
+
+|--
+| Class | Range | Highbits | # Networks | # Hosts |
+| :---- | :---- | :------- | :--------- | :------ |
+| A | 1-126 | 0 | 126 (2⁷-2) | 16,777,214 (2²⁴-2) |
+| B | 128-191 | 10 | 16,382 (2¹⁴-2) | 65,534 (2¹⁶-2) |
+| C | 192-223 | 110 | 2,097,150 (2²¹-2) | 254 (2⁸-2) |
+| D | 224-239 | 1110 | Multicast | |
+| E | 240-254 | 1111 | Research |
+
+#### Network Mask
+- Known as just Mask
+- Identifies the part of the address which is the network address
+	- Class A: 255.0.0.0
+	- Class B: 255.255.0.0
+	- Class C: 255.255.255.0
+- Also used by protocols to decide if a packet is for internal machine or not
+- Used for working out whether computers are on the same network or not.
+
+#### Private IP Address
+- If a packet with a private-reserved address reaches a router at the "edge" of
+  an organisation, it will not go out.
+	- Class A: 10.0.0.0 to 10.255.255.255
+	- Class B: 172.16.0.0 to 172.31.255.255
+	- Class C: 192.168.0.0 to 192.168.255.255
+- Originally for testing and training
+- Some companies assign these reserved addresses for their internal use
+	- One the firewall they use *Network Address Translation* (**NAT**) to
+	  extend the range of addresses in IPv4.
+	
+#### Subnet
+TODO
+lecture 13, slide 13
+
+### Routing
+- Necessary in non-broadcasting networks (Internet)
+- Each node stores a table of state
+	- Includes cost information of links to other nodes
+	- Determines route taken by packet
+- Periodically updates the table and sends to neighbours
+
+#### RIP Routing Algorithm
+- **Update**
+	- Every 30 seconds, or when the local table changes, send update on each 
+	  non-faulty outgoing link
+- **Propogation**
+	- When router X finds thay router Y has a shorter path to router Z, it will
+	  update its local table.
+	- Any faster path is quickly propogated to neighbouring routes through the
+	  *update* process.
+- 3 timers
+	- Periodic
+	- Expiration
+	- Garbage collection
+- Slow in convergence
+- Most of the time system reaches stability fast.
+
+#### Congestion Control
+- Used when load on network is high
+	- ~80% capacity
+- Strategies
+	- Packet dropping
+		- Reliability of delivery is reduced
+		- Some packets can afford to be dropped more than others (MPEG)
+	- Reduce rate of transmission
+	- Transmit congestion information to each node
+		- QoS guaranteed (ATM)
