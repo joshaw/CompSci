@@ -352,6 +352,28 @@ title: Operating Systems and Networks
 - Command 1 writes to this file
 - Command 2 reads from the file
 
+### Communication Accross Network
+
+#### Message Destination
+- Given as socket plus port number
+	- Sender uses any port
+	- Receiver uses agreed port
+
+#### Types of Send Failure
+- Benign
+	- Omission, stopping, timing, performance
+- Arbitrary (called Byzantine)
+	- Corrupt message, wrong method called, wrong result
+
+|--
+| Failure | Effects | Description |
+| :------ | :------ | :---------- |
+| Fail stop | Process | Process halts and remains halted. Other processes may detect this state. |
+| Crash | Process | Process halts and remains halted. Other processes may not be able to detect this state. |
+| Omission | Channel | A message inserted in an outgoing message buffer never arrives at the other end's incoming message buffer. |
+| Receive-Omission | Process | A message is put in a process's incoming message buffer, but that process does not receive it. |
+| Aribtrary (Byzantine) | Process or Channel | Process/channel exhibits arbitrary behaviour. It may send/transmit arbitrary messages at arbirary times, commit omissions or a process may stop or take an incorrect step. |
+
 ## Network Communication
 - Types of networks
 	- Personal Area Network (PAN)
