@@ -421,6 +421,7 @@ title: Operating Systems and Networks
 
 ### IP
 - Transmission mechanism used by TCP and UDP
+	- Main transport level protocols of IP
 - Uses other protocols
 	- **ARP** (Address Resolution Protocol)
 		- Associates an IP address with the physical address
@@ -465,7 +466,7 @@ title: Operating Systems and Networks
 - Gives the class
 - Cannot be 127
 	- Kept for troubleshooting and testing localhost
-		- `localhost`: 127.0.0.1
+		- `localhost`: `127.0.0.1`
 
 |--
 | Class | Range | Highbits | # Networks | # Hosts |
@@ -479,26 +480,83 @@ title: Operating Systems and Networks
 #### Network Mask
 - Known as just Mask
 - Identifies the part of the address which is the network address
-	- Class A: 255.0.0.0
-	- Class B: 255.255.0.0
-	- Class C: 255.255.255.0
+	- Class A: `255.0.0.0`
+	- Class B: `255.255.0.0`
+	- Class C: `255.255.255.0`
 - Also used by protocols to decide if a packet is for internal machine or not
 - Used for working out whether computers are on the same network or not.
 
 #### Private IP Address
 - If a packet with a private-reserved address reaches a router at the "edge" of
   an organisation, it will not go out.
-	- Class A: 10.0.0.0 to 10.255.255.255
-	- Class B: 172.16.0.0 to 172.31.255.255
-	- Class C: 192.168.0.0 to 192.168.255.255
+	- Class A: `10.0.0.0` to `10.255.255.255`
+	- Class B: `172.16.0.0` to `172.31.255.255`
+	- Class C: `192.168.0.0` to `192.168.255.255`
 - Originally for testing and training
 - Some companies assign these reserved addresses for their internal use
 	- One the firewall they use *Network Address Translation* (**NAT**) to
 	  extend the range of addresses in IPv4.
 	
 #### Subnet
-TODO
-lecture 13, slide 13
+- Process of dividing a large network into smaller interacting networks to 
+  increase efficiency and manageability.
+- IP addresses are hierachical
+	- Network ID
+	- Host ID
+	- Allows multiple layers
+- Other benefits
+	- Security
+		- Protect different parts of the network differently
+	- Organisation of jobs by departments
+	- Political
+
+#### Classless Inter Domain Address
+- Suppose a company with 100 machines wants to buy IP addresses. What class 
+  should they buy?
+	- 5 class C address
+		- But then must manage 5 separate address
+	- Single class B address
+		- Then 64000 addresses are not used and go to waste
+- Use Classless Inter-Domain Routing with Variable Length Subnet Mask
+	- CIDR with VLSM
+- Addresses have the form `xyz.xyz.xyz/N`
+	- `N` is the offset, in binary, of the network address
+- Ex
+	- How many address in the CIDR address `192.168.100.0/22`?
+		- `192` = `1100 0000`
+		- `168` = `1010 1000`
+		- `100` = `0110 0100`
+		- So the IP address is
+		  
+		  ~~~
+		  1100 0000.1010.0110 0100.0000 0000
+		                       ^   22nd digit
+		  ~~~
+
+		- So range is from `00 0000 0000` to `11 1111 1111`
+			- Total number of `10 0000 0000`₂ = 1024₁₀
+	- Solved the problem of 1000 machines with a single address
+	- Routing table (CIDR routers) modified to have the mask
+
+### Transport Layer Protocols
+- UDP
+	- *User Datagram Protocol*
+	- Basic, used for some IP functions
+	- Uses IP address plus port number
+	- No guarantee of delivery
+		- Optional checksum
+	- Messages up to 64KB
+	- Efficient and easy to implement
+	- "Send and Pray" - connectionless
+- TCP
+	- *Transport Connection Protocol*
+	- More sophisticated, used for most IP funtions
+	- Data stream abstraction, reliable delivery of all data
+	- Messages divided into segments
+	- Sliding window acknowledgement and retransmission
+	- Buffering, with timeout for interactive applications
+	- Checksum, if no match segment dropped
+	- Connection oriented
 
 ### Routing
 - Necessary in non-broadcasting networks (Internet)
