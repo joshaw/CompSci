@@ -533,3 +533,8 @@ lecture 13, slide 13
 	- Reduce rate of transmission
 	- Transmit congestion information to each node
 		- QoS guaranteed (ATM)
+
+<!--
+Created:  Tue 15 Apr 2014 10:04:50 am
+Modified: Thu 17 Apr 2014 01:43:42 pm
+-->

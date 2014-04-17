@@ -128,3 +128,8 @@ title: Data Structures Notes
 | Heap sort      | Selection | O(n log₂n) | O(n log₂n)   |
 | Quick sort     | D & C     | O(n²)      | O(n log₂n)   |
 | Merge sort     | D & C     | O(n log₂n) | O(n log₂n)   |
+
+<!--
+Created:  Wed 9 Apr 2014 10:04:50 am
+Modified: Thu 17 Apr 2014 01:54:11 pm
+-->
