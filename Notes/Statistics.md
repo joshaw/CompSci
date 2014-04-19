@@ -82,6 +82,16 @@ title: Evaluation Methods and Statistics
   account any grouping of data.
 	- eg normal distribution.
 
+#### Central Limit Theorem
+- Distribution of means that would be expected if the sample size was infinite 
+  and the mean was calculated for each sample.
+
+> As `N` increases, the shape of the sampling distribution approaches normal, 
+> whatever the shape of the parent population.
+
+- If the population is normal, the sampling distribution of the mean will be 
+  exactly normal regardless of the sample size.
+
 #### Degrees of Freedom
 - In general degrees of freedom is
 	- The number of data points minus the number of parameters that went into 
@@ -162,15 +172,15 @@ title: Evaluation Methods and Statistics
 	- Compare to most basic model (mean) using *Sum of Squares*.
 
 #### Total Sum of Squares (SST)
-- SST = `sum`( y<sub>i</sub> - `mean`(y) )<sup>2</sup>
+- SST = `sum`( y<sub>i</sub> - `mean`(y) )²
 - Total amount of difference present when the simplest model is applied.
 
 #### Residual Sum of Squares (SSR)
-- SSR = `sum`( y<sub>i</sub> - y<sub>model</sub> )<sup>2</sup>
+- SSR = `sum`( y<sub>i</sub> - y<sub>model</sub> )²
 - Total amount of differences present with best fit model.
 
 #### Model Sum of Squares (SSM)
-- SSM = `sum`( y<sub>model</sub> - `mean`(y) )<sup>2</sup>
+- SSM = `sum`( y<sub>model</sub> - `mean`(y) )²
 - Total amount of difference between the predicted y from the best fit and the 
   mean of y.
 - Alternatively
@@ -179,33 +189,37 @@ title: Evaluation Methods and Statistics
 ### Evaluating the Model
 - If SSM is large, the model has made big improvements of just using the mean.
 - If SSM is small then the model has made little improvement over the mean.
-- **R<sup>2</sup>** shows how much improvement has been made:
-	- R<sup>2</sup> = SSM / SST
+- **R²** shows how much improvement has been made:
+	- R² = SSM / SST
 	- How much variation explained by the model as a proportion of how much 
 	  there was in the first place.
-	- R<sup>2</sup> &times; 100 = percentage of variation explained by the 
-	  model.
+	- R² &times; 100 = percentage of variation explained by the model.
 - Can also evaluate the success of the model using F-ratio test.
-
-### F-Ratio
-TODO
-EMS06
 
 ## Statistical Tests
 
 ### Correlation Test
-
+- Reported as 
+	- r(`degrees of freedom`) = `coefficient`, p< `P-value`
+	- eg r(82)=-0.79, p<0.001
+	
 ### T-Test
 - Most basic form of statistical test
+- If the sample mean difference is larger than we expect
+	- We have collected two samples by chance that are atypical of the 
+	  population, **or**
+	- The two samples are from different populations.
 
 #### Standard T-Test
 - Between Subjects
+- Independant means t-test
 - Used when there are exactly 2 groupt to be tested
 	- eg. control group vs. expermimental group
 - Are two sets of data significantly different from one another?
 
-#### Paired T-Test (t test for dummies)
+#### Paired T-Test
 - Within Subjects
+- Dependant means t-test
 - Compares the actual difference between two means in relation to the variation 
   in the data
 	- Expressed as the standard deviation of the difference between the mean.
@@ -242,17 +256,37 @@ EMS06
 
 ### Shapiro-Wilk
 - Is the data normally distributed?
+- Compares sample distribution to normal distribution
+- If the sample is significantly different to the normal distribution, then 
+  test will be statistically significant.
+- Want it to be **non-significant**
+	- p > 0.05
 
-### Lavene's Test
-- TODO
+### Levene's Test
 - Equality of Variance.
+	- Variance in populations is rougly equal
+	- Homogeinity of Variance
 
 ### Mauchly's Test of Sphericity
 - Test the hypothesis that the variances of the differences are equal (H0)
+- Want it to be **non-significant**
+	- p > 0.05
+	- States that there is a significant difference between variance of 
+	  differences.
 
 ### Post Hoc Test
+- Used when we have no specific a priori predictions about the data.
+- Exploratory data analysis
+- Pairwise comparisons
+	- Like performing t-tests on all the pairs of means in the data
+- eg LSD (Lest Significat Differences)
+- eg Bonferroni
+- eg Tukey's Test
 
 ### F-Ratio
+- Variation **explained** by our model / Variation **unexplained** by our model
+- Mean square model / Mean square residual
+	- MS<sub>M</sub> / MS<sub>R</sub>
 
 ## Experiments
 
@@ -275,6 +309,15 @@ EMS06
 		  so.
 		- Discount the simple before adopting something more complex
 			- Occam's Razor.
+- Claim, Data, Qualification, Warrant
+	- Claim
+		- What is it that is being suggesting.
+	- Data
+		- What information is availible to back this up.
+	- Qualification
+		- What degree of certainty is there.
+	- Warrant
+		- Interprets the data and shows how it supports the claim.
 
 ### Ethics
 - Do not be complacent
@@ -326,11 +369,9 @@ EMS06
 	- Ethics
 
 # TODO
- - Claim warrant qualifier evidence
- - Within / Between Subjects
  - Central limit theorem
 
 <!--
 Created:  Wed 9 Apr 2014 10:04:50 am
-Modified: Thu 17 Apr 2014 04:28 pm
+Modified: Sat 19 Apr 2014 12:11 pm
 -->

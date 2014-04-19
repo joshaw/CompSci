@@ -374,6 +374,16 @@ title: Operating Systems and Networks
 | Receive-Omission | Process | A message is put in a process's incoming message buffer, but that process does not receive it. |
 | Aribtrary (Byzantine) | Process or Channel | Process/channel exhibits arbitrary behaviour. It may send/transmit arbitrary messages at arbirary times, commit omissions or a process may stop or take an incorrect step. |
 
+### Timing
+- Common cause of failure is because of timing
+- No global time is possible
+- Computer clocks:
+	- Have different drift rates
+	- Rely on GPS radio signals or *clock synchronisation* algorithms.
+- Event ordering
+	- Carry timestamps
+	- May arrive in wrong order due to transmission delays.
+
 ## Network Communication
 - Types of networks
 	- Personal Area Network (PAN)
@@ -614,7 +624,33 @@ title: Operating Systems and Networks
 	- Transmit congestion information to each node
 		- QoS guaranteed (ATM)
 
+### Types of Interactions
+- **Synchronous** interaction model
+	- Known upper and lower bounds on:
+		- Execution speeds
+		- Message transmission delays
+		- Clock drift rates
+	- More difficult to build, but conceptually simpler
+- **Asynchronous** interaction model
+	- Arbitrary process execution speeds, message transmission delays and clock 
+	  drift rates
+	- Some problems impossible to solve
+		- eg agreement
+	- If solution valid for asynchronous, then also valid for synchronous
+
+### Group Communication
+- **Multicast**
+	- Operation that sends a single message from one process to each of the 
+	  members of a group of processes
+	- Fault tolerance based on replicated servers
+	- Better performance through replicated data
+	- Propagation of event notifications
+- **IP Multicast**
+	- Multicast group is specified by a class D internet address
+	- Membership is dynamic
+		- To join, make a socket
+
 <!--
 Created  : Tue 15 Apr 2014 10:04 am
-Modified : Thu 17 Apr 2014 04:45 pm
+Modified : Sat 19 Apr 2014 11:07 am
 -->
