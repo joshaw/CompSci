@@ -54,7 +54,7 @@ title: Data Structures Notes
 	- How many objects must the computer hold which it will need to refer back 
 	  to at a later stage.
 
-### Avergae vs. Worst Case Complexity
+### Average vs. Worst Case Complexity
 - Some inputs to an algorithm might mean that it takes an extremely long time 
   to compute, longer than most others.
 - This longest case can be very important, or it can not matter that once in a 
@@ -118,18 +118,88 @@ title: Data Structures Notes
 	- Not efficient to store unbalanced tree in array since space must be left 
 	  for missing elements which could mean many empty elements.
 
+## Sorting Algorithms
+
+### Sorting Methods
+Enumeration
+: If we know that there are N items that are smaller than the one we are 
+currently considering, then its final position will be N+1.
+
+Exchange
+: It two items are out of order, exchange them and repeat until all items are 
+in order.
+
+Selection
+: Find the smallest item and place it in the first position, find smallest item 
+of the remaining items and place it in the second position. Continue until all 
+items are sorted.
+
+Insertion
+: One at a time, place the items into an initially empty data structure so that 
+at each stage, the structure remains sorted.
+
+Divide and conquer
+: Recursively split the items into smaller sub-sets until only single items 
+remain, which are trivial to sort. Put the sorted parts back together so that 
+at each level, the sorting is maintained.
+
 |--
 | Name           | Strategy  | Worst Case | Average Case |
 | :---           | :-------  | :--------: | :----------: |
 | Bubble sort    | Exchange  | O(n²)      | O(n²)        |
-| Select sort    | Selection | O(n²)      | O(n²)        |
 | Insertion sort | Insertion | O(n²)      | O(n²)        |
+| Select sort    | Selection | O(n²)      | O(n²)        |
 | Tree sort      | Insertion | O(n²)      | O(n log₂n)   |
 | Heap sort      | Selection | O(n log₂n) | O(n log₂n)   |
 | Quick sort     | D & C     | O(n²)      | O(n log₂n)   |
 | Merge sort     | D & C     | O(n log₂n) | O(n log₂n)   |
 
+### Bubble Sort
+1. Compare first pair of elements.
+1. If they are in the wrong order, swap them.
+1. Repeat with next pair.
+1. Stop when a full pass is made with no swaps.
+
+### Insertion Sort
+1. Read first element.
+1. Place in position 0.
+1. Read next element, place in correct position
+1. Continue until all elements have been positioned
+
+### Selection Sort
+1. Scan through all elements, select smallest element
+1. Place in position 0.
+1. Scan through remaining elements, select smallest.
+1. Place in position 1.
+1. Continue until all elements have been positioned.
+
+### Tree Sort
+1. Place first element into empty binary tree.
+1. Continue until all elements are in the tree.
+1. Read elements from the tree "in-order".
+
+### Heap Sort
+1. Place first element into heap tree.
+1. Continue until all elements have been added.
+1. If the heap tree is implemented as an array, then the array is sorted.
+1. Otherwise read from the tree into an array.
+
+### Quick Sort
+1. Choose an element to be the pivot.
+1. Place all elements smaller than the pivot to the left, larger to the right.
+	- The pivot is now sorted
+1. Repeat recursively for each of the two sub arrays on either side of the 
+   pivot.
+1. When single elements are encountered, they are sorted.
+
+### Merge Sort
+1. Recursively split the elements into smaller sub arrays until all elements 
+   exist as single elements.
+1. Recombine arrays maintaining sortedness.
+
+## Searching Algorithms
+
 <!--
 Created:  Wed 9 Apr 2014 10:04:50 am
-Modified: Thu 17 Apr 2014 04:28 pm
+Modified: Mon 21 Apr 2014 12:47 pm
 -->
