@@ -1,0 +1,102 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% PAGE DIMENSIONS
+\usepackage[top=0.6in, left=0.8in, right=0.8in, bottom=0.7in]{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margins=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+%\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{mathtools} % for math environments like align
+\usepackage{amssymb} % for symbols like \therefore
+
+%%% OPTIONAL PACKAGES
+%\usepackage{braket}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+%\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+
+%%% ToC (table of contents) APPEARANCE
+%\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+%\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+%\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+%\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+\author{Josh Wainwright \\ UID:1079596}
+
+\title{Data Stuctures: Assignment 2 }
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Heapsort}
+
+Heap sort is an algorithm that sorts a set of elements using the heap ADT.  A
+heap allows a set of elements to be arranged such that the element with the
+highest priority is available directly with complexity O(1).
+
+\begin{enumerate}
+	\item Add all elements to be sorted onto an initially empty heap
+	\item Remove each element ``in order''.
+	\item Since the heap presents the highest priority element, simply by
+		maintaining the validity of the heap, the next largest element will
+		always be the root node.
+	\item So to remove ``in order'', simply take off the root node and verify
+		that the heap is valid.
+\end{enumerate}
+
+Adding elements to the heap involves the steps:
+\begin{enumerate}
+	\item Place the new element in the last position available on the final
+		level of the tree structure. If the final row is full, start a new row
+		from the left.
+	\item Compare the new node with its parent. \label{stp:compare}
+	\item If the parent has a higher priority (is larger), the element is in
+		the correct position and the addition is complete.
+	\item If the parent has a lower priority (is smaller) replace the parent
+		with the newly added node. \label{stp:swap}
+	\item Repeat steps~\ref{stp:compare}--\ref{stp:swap}.
+\end{enumerate}
+
+\section{Dijkstra's Shortest Path Algorithm}
+
+Dijkstra's algorithm locates the shortest path from a starting node to any
+given destination node across a graph. It does this by finding the shortest
+path for every node in the graph.
+
+A priority collection can be used when calculating the distance to the
+neighbours of the elements that have already been considered. Since the
+shortest path is wanted, the paths with the shortest distance have the highest
+priority and so, when the algorithm has completed, the shortest path is found
+by removing the nodes from the collection by priority. This will give the path
+from the destination to the starting node with the shortest path. Thus, the
+reverse of this path is the shortest path from start to destination.
+
+\end{document}
