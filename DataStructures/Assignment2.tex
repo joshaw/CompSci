@@ -6,7 +6,7 @@
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
 
 %%% PAGE DIMENSIONS
-\usepackage[top=0.6in, left=0.8in, right=0.8in, bottom=0.7in]{geometry} % to change the page dimensions
+\usepackage{geometry} % to change the page dimensions
 \geometry{a4paper} % or letterpaper (US) or a5paper or....
 % \geometry{margins=2in} % for example, change the margins to 2 inches all round
 % \geometry{landscape} % set up the page for landscape
@@ -58,21 +58,23 @@
 
 \section{Heapsort}
 
-Heap sort is an algorithm that sorts a set of elements using the heap ADT.  A
-heap allows a set of elements to be arranged such that the element with the
-highest priority is available directly with complexity O(1).
+Heap sort is an algorithm that sorts a set of elements using a priority
+collection.  A priority collection allows a set of elements to be arranged such
+that the element with the highest priority is available directly with
+complexity O(1).
 
 \begin{enumerate}
-	\item Add all elements to be sorted onto an initially empty heap
+	\item Add all elements to be sorted onto an initially empty priority
+		collection.
 	\item Remove each element ``in order''.
-	\item Since the heap presents the highest priority element, simply by
-		maintaining the validity of the heap, the next largest element will
-		always be the root node.
+	\item Since the priority collection presents the highest priority element,
+		simply by maintaining the validity of the data structure, the next
+		largest element will always be the root node.
 	\item So to remove ``in order'', simply take off the root node and verify
-		that the heap is valid.
+		that the collection is valid.
 \end{enumerate}
 
-Adding elements to the heap involves the steps:
+Adding elements to the heap involves the steps below.
 \begin{enumerate}
 	\item Place the new element in the last position available on the final
 		level of the tree structure. If the final row is full, start a new row
@@ -84,6 +86,14 @@ Adding elements to the heap involves the steps:
 		with the newly added node. \label{stp:swap}
 	\item Repeat steps~\ref{stp:compare}--\ref{stp:swap}.
 \end{enumerate}
+
+The priority collection methods that would be required for the heapsort
+algorithm are simply;
+\begin{itemize}
+	\item \texttt{add(element,priority)}, for creating the structure, and
+	\item \texttt{high\_priority()}, which returns the highest priority element
+		for removing the elements in sorted order.
+\end{itemize}
 
 \section{Dijkstra's Shortest Path Algorithm}
 
@@ -98,5 +108,15 @@ priority and so, when the algorithm has completed, the shortest path is found
 by removing the nodes from the collection by priority. This will give the path
 from the destination to the starting node with the shortest path. Thus, the
 reverse of this path is the shortest path from start to destination.
+
+The methods required to implement Dijkstra's algorithm would be;
+\begin{itemize}
+	\item \texttt{add(element,priority)} for adding a new node to the currently
+		stored path,
+	\item \texttt{high\_priority()} for retreiving the shortest path still in
+		the collection and
+	\item \texttt{change\_priority(element, new\_priotirty)} which is used to
+		update the path length to a node when a shorter one is found.
+\end{itemize}
 
 \end{document}
