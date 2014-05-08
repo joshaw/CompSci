@@ -33,6 +33,13 @@ title: Evaluation Methods and Statistics
 - **Dependant** variables are what is measured in the experiment.
 	- They are *dependant* on the conditions of the experiment and are so 
 	  interesting enough to be measured.
+	- Two types of DV variation
+		1. Unsystematic
+			- Differences due to unknown (or unmeasured) factors
+			- eg change in room environment from condition 1 to 2, personality
+		1. Systematic
+			- Differences due to the change in IV
+			- Interesting in measuring.
 
 ### Randomisation
 - Without randomisation, bias is introduced to the sample.
@@ -60,7 +67,7 @@ title: Evaluation Methods and Statistics
   allow us to reject H1 because all we have is an absence of evidence.
 - H0 is fundamentally different. We can reject H0 as soon as we see a vulture 
   in the campus.
-- **H0 is falsifiable. It is the *null hypothesis* **.
+- **H0 is falsifiable.** It is the *null hypothesis*.
 
 ### Null Hypothesis
 - The significance of a test tells us if it reasonable to reject the null 
@@ -106,7 +113,7 @@ title: Evaluation Methods and Statistics
 	- But this gives zero when the differences cancel each other out
 - Sum of squares
 	- Sum of absolute differences.
-	- sum( (y- mean(y))^2 )
+	- sum( (y- mean(y))² )
 	- Increases as the variability increases (good) but also as the amount of 
 	  data increases.
 - Variance
@@ -119,6 +126,8 @@ title: Evaluation Methods and Statistics
 ### Correlation (r)
 - A measure of the relationship between variables
 - Pearson's r as a quantitative measure of correlation
+- Requires two continuous variables
+- Gives no information on causation
 - *Co-vary*
 	- If the scores for one variable change, the scores for the other variable 
 	  will chane in a predictable way.
@@ -147,8 +156,31 @@ title: Evaluation Methods and Statistics
 - is the value of r reliable?
 - can we reject the hypotheses that there is no correlation?
 
+## Errors
+- **Type 1 Error**
+	- False positive
+		- When we beleive there is a genuine effect but really there isn't.
+- **Type 2 Error**
+	- False negative
+		- When be beleive there is no effect, but really there is.
+		- Lot of variation between samples
+		- Too stringent controls for type 1 errors
+		- Low power statistics to find effects.
+- **Family-wise Error rate**
+	- Rate of errors when using multiple tests (a family of tests)
+	- Ex
+		- We have 3 tests in the family of tests
+		- Fisher's level of 0.05 as the level of significance
+		- Probability of false positive (type 1 error) in all these tests is 
+		  0.95×0.95×0.95 = 0.875
+		- So probability of type 1 error is 1-0.857 = 0.143
+	- This is far greater than the error rate for each test individually.
+	- Use a different test to remove the increased probability of type 1 errors 
+	  (ANOVA).
+		
 ## Regression
 - Significance of a predictor variable on an outcome variable
+- Requires two (or more) continuous variables
 - Allows the future values of the outcome to be predicted based on the known 
   current value of the predictor.
 - Predictor can be continuous or categorical.
@@ -199,22 +231,37 @@ title: Evaluation Methods and Statistics
 ## Statistical Tests
 
 ### Correlation Test
+- Two continuous variables
 - Reported as 
 	- r(`degrees of freedom`) = `coefficient`, p< `P-value`
 	- eg r(82)=-0.79, p<0.001
-	
+
+### Regression Test
+- Two (or more) continuous variables
+- Allows prediction of variable based on the value of others
+
+### Levene's Test
+- Tests for homogeneity of variances
+- Null hypothesis is that the variences are equal.
+- Want it to be big
+	- Says that there is no difference between the variances in the population.
+
 ### T-Test
 - Most basic form of statistical test
+- Causal inference
+- *Requires* 1 continuous variable and 1 catagorical variable with 2 levels
 - If the sample mean difference is larger than we expect
 	- We have collected two samples by chance that are atypical of the 
 	  population, **or**
 	- The two samples are from different populations.
+- Between participants: independant t-test
+- Within participants: dependant t-test
 
 #### Standard T-Test
 - Between Subjects
-- Independant means t-test
-- Used when there are exactly 2 groupt to be tested
-	- eg. control group vs. expermimental group
+- Independent means t-test
+- Used when there are exactly 2 groups to be tested
+	- eg control group vs experimental group
 - Are two sets of data significantly different from one another?
 
 #### Paired T-Test
@@ -226,26 +273,43 @@ title: Evaluation Methods and Statistics
 - Can only compare two groups at a time
 - Bad practice to use multiple times for a single experiment.
 - Used for "Before vs. After" experiments where the *same* individuals are 
-  measured before and after the application of some sort of treatmnent.
+  measured before and after the application of some sort of treatment.
 - Also used for "Left vs. Right" experiments where two sides of an individual 
   are given two different treatments.
 
 ### ANOVA
+- Use instead of multiple t-tests (remove family-wise errors)
 - Assumes
 	- Normally distributed data
 	- Equality of variance
 	- Interval or ratio data
-	- Independant data.
+	- Independent data.
+- Reported as
+	- `f(dof_m,dof_r) = f-ratio, p < p-value`
+	- `dof_m` = degrees of freedom of the levels
+		- K-1 (number of levels - 1)
+	- `dof_r` = degrees of freedom
+		- N-K (number of participants - number of levels)
 
 #### One-Way ANOVA
 - Similar to a t-test
 - Used to compare the means from *three or more* groups
+- *Requires* 1 continuous variable and 1 catagorical variable with 2 or more 
+  levels.
 
 #### Two-Way ANOVA
 - Compare means of *two or more* groups in response to *two different 
   independant variables*.
 - Allows an experiment which where participants are exposed to a varying level 
   of two different treatments.
+- *Requires* 1 continuous variable and 2 catagorical variables.
+  
+  |--
+  | Type    | ANOVA Used              |
+  | ------- | ----------
+  | Between | Two way Unrelated ANOVA |
+  | Within  | Two way Related ANOVA   |
+  | Mixed   | Two way Mixed ANOVA     |
 
 ### Linear Regression
 - Comparing the means of groups along a continuum of *three or more* treatment 
@@ -264,8 +328,8 @@ title: Evaluation Methods and Statistics
 
 ### Levene's Test
 - Equality of Variance.
-	- Variance in populations is rougly equal
-	- Homogeinity of Variance
+	- Variance in populations is roughly equal
+	- Homogeneity of Variance
 
 ### Mauchly's Test of Sphericity
 - Test the hypothesis that the variances of the differences are equal (H0)
@@ -279,8 +343,9 @@ title: Evaluation Methods and Statistics
 - Exploratory data analysis
 - Pairwise comparisons
 	- Like performing t-tests on all the pairs of means in the data
-- eg LSD (Lest Significat Differences)
+- eg LSD (Lest Significant Differences)
 - eg Bonferroni
+	- How would you correct for type 1 errors? Bonferroni
 - eg Tukey's Test
 
 ### F-Ratio
@@ -290,11 +355,39 @@ title: Evaluation Methods and Statistics
 
 ## Experiments
 
+### Types of Experiment
+- **Between Subjects**
+	- Two or more groups of participants
+	- Each participant takes part in one of the conditions.
+	- No-one does both conditions
+	- Reduces error rates from effects such as people learning how to perform 
+	  better from the first condition.
+	- Also used when the same participant cannot take place in both conditions
+		- eg "Effect of single gender schooling"
+	- Controlled with *sample matching*
+		- Match the sample of participants in the two groups so that there is 
+		  no bias towards one or the other group.
+- **Within Subjects**
+	- Single group of participants
+	- Each member of the group takes part in all of the conditions of the 
+	  experiment
+	- Used when taking part in one condition is likely to have little or no 
+	  effect on the results of others
+		- eg "Effect of secondary task on driving"
+	- Controlled with *counterbalancing*
+		- If there is a small chance, or small effect, from learning or bordem 
+		  etc. through the duration of the experiement, some of the 
+		  participants can perform the experiments in reverse order to reduce 
+		  the effect.
+			- Some perform Case1 then Case2, others Case2 then Case1.
+		- Practice effects
+		- Boredem effects
+
 ### Stroop
 
 ### Fitt's Law
 
-### Secondary Tast While Driving
+### Secondary Test While Driving
 
 ## Scientific Process
 1. Generate a hypothesis
@@ -357,7 +450,7 @@ title: Evaluation Methods and Statistics
 	- Post hoc tests
 	- T-test
 	- Shapiro-Wilk
-	- Lavene's Test
+	- Levene's Test
 	- F-ratio
 	- 1-way ANOVA
 	- 2-way ANOVA
@@ -368,10 +461,107 @@ title: Evaluation Methods and Statistics
 - Little Albert
 	- Ethics
 
-# TODO
- - Central limit theorem
+## Basic R Commands
+
+~~~
+> seq(1,5)
+> 1:10
+[1] 1 2 3 4 5
+
+> rep(1,5)
+[1] 1 1 1 1 1
+
+Assignment
+> a<-b
+
+Concatenation
+> c(a, b)
+> c(1:10,rep(1,4))
+
+Vector index
+> d
+[1] 1 2 3 4 5 6 7 8
+> d[3]
+3
+> d[2:4]
+[1] 2 3 4
+> d<6
+[1] TRUE TRUE TRUE TRUE TRUE FALSE FALSE FALSE
+> d[d<6]
+[1] 1 2 3 4 5
+
+Sort vectors
+> sort()
+
+Sample randomly
+> sample(1:46,6)
+
+Simulate samples from probability
+> rnorm(5, mean=3, sd=1)
+[1] 1.704127 3.636264 4.137285 4.825439 3.034183
+
+Round numbers
+> round()
+
+Common stats functions
+> mean(x)
+> length(x)
+> median(x)
+> sd(x)
+> var(x)
+> sum(x)
+> summary(x)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+  27.00   43.75   53.00   51.65   60.00   71.00
+
+Functions
+> my.plot <- function( n ) {
++   x <- rnorm( n, mean=10, sd=1 )
++   plot(hist(x), add=TRUE)
++ }
+> my.plot(10)
+> my.plot(50)
+> my.plot(100)
+> my.plot(1000)
+
+Read data
+> x <- scan("data.dat")
+
+Read tabular data
+> mytab<-read.table("mytable.txt",header=TRUE)
+> mytab
+   Name Shoe.size Height
+1  Fred         9    170
+2   Jim        10    180
+3  Bill         9    185
+4  Jane         7    175
+5  Jill         6    170
+6 Janet         8    180
+
+Write data
+> write(x, "ouput.dat")
+
+Access columns
+> mytab$Height
+> mytab[,3]
+[1] 170 180 185 175 170 180
+
+Access Rows
+> mytab[4,]
+4 Jane 7 175
+> mytab[5,3]
+[1] 170
+
+Conditions
+> mytab[mytab$Name=="Jane"]
+4 Jane 7 175
+
+Levene's Test
+> levene.test()
+
+~~~
 
 <!--
-Created:  Wed 9 Apr 2014 10:04:50 am
-Modified: Sat 19 Apr 2014 12:11 pm
+Created:  Wed 09 Apr 2014 10:04 am
+Modified: Thu 08 May 2014 04:45 pm
 -->
