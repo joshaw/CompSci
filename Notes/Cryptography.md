@@ -10,12 +10,10 @@ title: Cryptography Notes
 {:toc}
 * * *
 
-## Historical Ciphers
-
-### Transposition ciphers
+## Transposition ciphers
 - Permutes components of a message
 
-#### Rail Fence
+### Rail Fence
 - *Key*: Column size
 - *Encryption*:
 	1. Arrange message in columns of fixed size (the key).
@@ -28,7 +26,7 @@ title: Cryptography Notes
 	- For a message of size n, there are at most n possibilities for the key.
 	- Probability of at leat 1/n of winning, protocol insecure.
 
-#### Permutation
+### Permutation
 - *Key*: Permutation of length n of the alphabet
 - *Encryption*:
 	1. Split plaintext into blocks of length n.
@@ -41,26 +39,12 @@ title: Cryptography Notes
 	- But other tools exist
 		- eg Frequency analysis.
 
-### Substitution ciphers
+## Substitution ciphers
 - Replaces components of a message
 	- *Codes*: algorithms for substitution of entire words (works on meanings)
 	- *Ciphers*: algorithms substituting single letters or blocks
 
-#### Shift ciper
-
-#### Caesar cipher
-
-#### Using keys
-
-#### Mono-alphabetic substitution cipher
-
-#### Homophonic substitution ciphers
-
-#### Vigenere Cipher
-
-#### Rotor machines
-
-#### One time pad
+### One time pad
 - *Key*: Random bitstring as long as message.
 - *Encryption*:
 	- k1+m1, ..., kn+mn
@@ -69,13 +53,7 @@ title: Cryptography Notes
 - *Security*: Secure
 	- Attacker cannot learn any information by looking only at ciphertexts.
 
-<!-- ## Formalisation of Security of One Time Pad -->
-
-### Symmetric Ciphers
-
-#### Problems with Symmetric Ciphers
-
-#### The Players
+### The Players
 - **Alice**: Sender of an encrypted message
 - **Bob**: Intended receiver of encrypted message. Assumed to have the key.
 - **Eve**: Passive attacker intercepting messages and trying to identify 
@@ -83,12 +61,12 @@ title: Cryptography Notes
 - **Mallory**: Active attacher intercepting and modifying messages to identify 
   plaintexts and keys.
 
-#### Mathematical Notation
+### Mathematical Notation
 
-### Block Ciphers
+## Block Ciphers
 - Symmetric cipher operating on fixed length group of bits, called blocks.
 
-#### Feistel
+### Feistel
 - Class of ciphers
 	- eg Blowfish, DES, 3DES
 - Same encryption scheme applied iteratively for several rounds
@@ -102,7 +80,7 @@ title: Cryptography Notes
 - *Decryption*
 	- Works same as encryption, but with a reversed order of keys.
 
-#### DES
+### DES
 - Data Encryption Standard
 - Keysize too small for todays computers
 	- Breakable < 10 hours
@@ -112,7 +90,7 @@ title: Cryptography Notes
 - *Round key length*: 48 bits for each subkey K0, ..,K15
 	- Subkeys are derived from 56 bits key via special key schedule.
 
-##### Operations of DES
+#### Operations of DES
 - **Cyclic Shift**
 	- On bitstring blocks
 	- Denoted by `b <<< n`
@@ -135,7 +113,7 @@ title: Cryptography Notes
 		1. Four inner bits indicate column number
 		1. Output is corresponding entry in the table.
 
-##### DES Feistel Function
+#### DES Feistel Function
 - *Expansion Permutation*
 	- Expand 32 bit message half block to 48 block by doubling 16 bits and 
 	  permuting them.
@@ -149,9 +127,9 @@ title: Cryptography Notes
 	- Combine these eight 4 bit blocks to 32 bit block and apply another 
 	  permutation.
 
-#### Security of block ciphers
+### Security of block ciphers
 
-#### AES (Rijndael)
+### AES (Rijndael)
 - Advanced Encryption Standard
 - Successor to DES
 - *Block Sizes*: 128, 192, 256 bits
@@ -186,8 +164,65 @@ title: Cryptography Notes
 		  4×4 matrix.
 		- Simply add to state matrix.
 
-TODO Lecture 4
+### Block Ciphers Modes
 
+#### Electronic Cook Book Mode (ECB)
+- Apply encryption block by block
+- Use same method and key for each block encrypting separately
+- Means that the cipher is vulnerable
+	- Identical blocks produces identical ciphertexts
+		- Deterministic
+	- No protection against deletion or insertion of blocks
+
+#### Cipher Block Chaining Mode (CBC)
+- Adds random initialisation vector to start off encryption and then uses the 
+  previous result.
+- *Encryption*
+	- For first block, XOR plaintext with a random initialisation vector 
+	  (**IV**) and then encrypt this with the key.
+	- For following blocks, instead of the IV, us the ciphertext from the 
+	  previous block.
+- *Decryption*
+	- Decode the ciphertext in the usual way and then, for the first block, XOR 
+	  with the IV, otherwise, XOR with the ciphertext of the previous block.
+- Secure if correctly used
+- Means that encryption and decryption cannot be parallelised
+	- Required the results of the previous block to be obtained before the next 
+	  can be dealt with.
+
+#### Counter Mode (CTR
+- Choose nonce and increase counter for each block.
+- Avoids re-use of previous results by careful choice of random element for 
+  each block.
+- *Encryption*
+	- Choose nonce and concatenate counter, starting for the first block at 0.
+	- Encrypt this bitstring with the key
+	- XOR this with the plaintext to give the ciphertext.
+	- Increase the value of the counter for the next block.
+- *Decryption*
+	- Using the same nonce, concatenate with the counter, starting at 0.
+	- Decrypt using the key
+	- XOR with ciphertext with this to give the plaintext.
+	- Increase the value of the counter for the next block.
+- Secure if used properly
+- Encryption and decryption are parallelisable since only the number of the 
+  block is needed to set the counter.
+
+### Security for Block Cipher Modes
+- Cannot reuse definition for block cipher since modes will not swap positions 
+  of bits arbitrarily
+	- Instead need a slightly weaker notion.
+
+#### Cryptomeria Cipher
+- Used for DVD-videos
+- Successor to CSS encryption
+- Algorithm made public except for the S-boxes
+	- 10 round Feistel cipher
+	- 56 bit key size
+	- 64 bit block size
+- Brute force attacks have succeeded against it.
+
+<!--
 #### AACS Advanced Access Content System
  OVERVIEW
  SECURITY ISSUES
@@ -266,3 +301,5 @@ TODO Lecture 4
 ### Matrix arithmetic
 ### Discrete Logarithm and Subgroup
 ### Arithmetic modulo a composite
+
+-->
