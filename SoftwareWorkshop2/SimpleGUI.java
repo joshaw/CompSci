@@ -1,5 +1,5 @@
 /* Created : Mon 05 May 2014 04:43 PM
- * Modified: Mon 05 May 2014 06:37 PM
+ * Modified: Fri 09 May 2014 07:59 PM
  */
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,16 +9,16 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class ActionPanel extends JPanel {
+public class SimpleGUI extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    JButton down = new JButton("down");
-    JButton up = new JButton("up");
+    JButton down = new JButton("d");
+    JButton up = new JButton("u");
     int num = 0;
-    JTextField number = new JTextField("" + num);
+    JTextField number = new JTextField("" + num, 3);
 
-    public ActionPanel() {
+    public SimpleGUI() {
         add(down);
         add(number);
         add(up);
@@ -27,8 +27,8 @@ public class ActionPanel extends JPanel {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("ActionPanel2");
-        JPanel pane = new ActionPanel();
+        JFrame frame = new JFrame("SimpleGUI");
+        JPanel pane = new SimpleGUI();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(pane);
         frame.pack();
@@ -40,8 +40,10 @@ public class ActionPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == down) {
                 num--;
+                // model.dec();
             } else if (e.getSource() == up) {
                 num++;
+                // model.inc();
             }
             number.setText("" + num);
         }
