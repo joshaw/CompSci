@@ -15,6 +15,13 @@ Title: Software Workshop
 - Object oriented
 - Platform independent
 
+~~~
+String x = new String();
+
+Variable       Object
+type           type
+~~~
+
 ## Types of Numbers
 
 ### Integers Numbers
@@ -291,5 +298,5 @@ int[] array = new int[100];
 
 <!--
 Created:  Tue 8 Apr 2014 10:04:50 am
-Modified: Thu 17 Apr 2014 04:28 pm
+Modified: Fri 09 May 2014 07:21 PM
 -->
