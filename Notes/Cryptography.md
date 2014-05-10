@@ -190,7 +190,7 @@ title: Cryptography Notes
 	- Required the results of the previous block to be obtained before the next 
 	  can be dealt with.
 
-#### Counter Mode (CTR
+#### Counter Mode (CTR)
 - Choose nonce and increase counter for each block.
 - Avoids re-use of previous results by careful choice of random element for 
   each block.
@@ -212,6 +212,19 @@ title: Cryptography Notes
 - Cannot reuse definition for block cipher since modes will not swap positions 
   of bits arbitrarily
 	- Instead need a slightly weaker notion.
+- *Indistinguishability under chosen plaintext attack*
+	1. C generates a key k at random.
+	1. A performs computations. It may ask C for the encryption of any number of 
+   	   messages.
+	1. A submits two messages to C, m0 and m1.
+	1. C selects random bit `b = {0,1}`.
+	1. C returns encryption of mb to A.
+	1. A outputs `b'`.
+	1. If `b' = b`, then A has won.
+- If A can win the game with probability of greater than 1/2 then the 
+  encryption is insecure.
+- Foe AES, must change the key used after 2³² messages of length 2³² each to 
+  obtain advantage of 1/2³²
 
 #### Cryptomeria Cipher
 - Used for DVD-videos
@@ -222,21 +235,48 @@ title: Cryptography Notes
 	- 64 bit block size
 - Brute force attacks have succeeded against it.
 
+### Stream Ciphers
+- One time pad is secure but requires the key to be the same length as the 
+  message.
+- Can obtain an efficient cipher if we replace the key with a sequence which 
+  behaves as a sequence of random numbers.
+- Algorithm that produces pseudo-random strings are called **pseudo-random 
+  generators**.
+- Use *seed* (short random number) to start the generator and produce 
+  keystream.
+
+#### Source of Randomness
+- Need some source of randomness to seed the generator.
+	- eg Thermal noise of electric circuits, radioactive decay, atmospheric 
+	  noise, time between user's keystrokes etc.
+
+#### RC4
+- Two phases
+	1. Initalisation phase (key schedule)
+	1. Keystream generation phase.
+- Main data structure is and array, S, fo 256 bytes.
+
+#### Linear Feedback Shift Register (LFSR)
+- Building block for many stream ciphers
+- Can be implemented very efficiently
+- Have register of single bit cell shifted by one at every clock cycle together 
+  with feedback function.
+	- Feedback function could, for example, take the first and third cells, XOR 
+	  them together and then this is fed back into the input.
+- LFSR's are insecure in practice
+	- Connection polynomial can be computed fairly efficiently.
+	- Hence multiple LFSR's are combined in non-linear fasion.
+- Keystream for stream ciphers must **not** be reused.
+
+## Hash Functions
+
+TODO: Hash functions lecture 6
+
 <!--
 #### AACS Advanced Access Content System
  OVERVIEW
  SECURITY ISSUES
  LEGAL AND ETHICAL ISSUES
-
-#### Modes for Block ciphers
- ECB (ELECTRONIC CODE BOOK)
- CBC (CIPHER BLOCK CHAINING)
- CFB (CIPHER FEEDBACK MODE)
- OFB (OURPUT FEEDBACK MODE)
- CTR (COUNTER MODE)
- SECURITY FOR BLOCK CIPHER MODES
-
-#### Cryptomeria
 
 ### Stream Ciphers
 - Symmetric cipher encrypting plaintext continuously
