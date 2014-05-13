@@ -85,30 +85,7 @@ title: Data Structures Notes
   part
 	- Once that has been used, it can be overwritten.
 
-## Efficiency and Complexity
-
-### Time vs. Space Complexity
-- Often need to balance the space taken to implement algorithm with the speed 
-  that the algorithm provides.
-- More space often means less time.
-- Less time often means less space.
-- Space usually refers to memory
-	- How many objects must the computer hold which it will need to refer back 
-	  to at a later stage.
-
-### Average vs. Worst Case Complexity
-- Some inputs to an algorithm might mean that it takes an extremely long time 
-  to compute, longer than most others.
-- This longest case can be very important, or it can not matter that once in a 
-  while it takes longer.
-	- System critical applications
-	- If the worst case complexity of something in an autopilot is very bad, 
-	  then the whole aircraft would be at danger, even if it only occured every 
-	  10,000 times the algorithm is run.
-- Average case is the time that a normal input, or averaged over many different 
-  inputs, takes to complete.
-
-## Trees
+### Trees
 - Set of nodes with zero or more children.
 - Each node can have at most 1 parent.
 
@@ -188,7 +165,7 @@ title: Data Structures Notes
 	- All levels of the tree, except possibly the last, are fully filled, and
 	  if the last is not filled, the nodes of that level are filled from right
 	  to left.
-- Allows trees to be stored in arrays
+	- Allows trees to be stored in arrays
 		- Not efficient to store unbalanced tree in array since space must be
 		  left for missing elements which could mean many empty elements.
 - For a min-heap tree:
@@ -220,31 +197,6 @@ title: Data Structures Notes
 	1. Compare with both children.
 	1. Exchange with the largest priority child.
 	1. Repeat until the new root has found a valid place.
-
-## Sorting Algorithms
-
-### Sorting Methods
-Enumeration
-: If we know that there are N items that are smaller than the one we are 
-currently considering, then its final position will be N+1.
-
-Exchange
-: It two items are out of order, exchange them and repeat until all items are 
-in order.
-
-Selection
-: Find the smallest item and place it in the first position, find smallest item 
-of the remaining items and place it in the second position. Continue until all 
-items are sorted.
-
-Insertion
-: One at a time, place the items into an initially empty data structure so that 
-at each stage, the structure remains sorted.
-
-Divide and conquer
-: Recursively split the items into smaller sub-sets until only single items 
-remain, which are trivial to sort. Put the sorted parts back together so that 
-at each level, the sorting is maintained.
 
 ## Sorting Algorithms
 
@@ -334,7 +286,8 @@ at each level, the sorting is maintained.
 - Must be **ensured** at the *end* of the operation.
 - Must be **ensured** and so may be **assumed** whenever a new data structure
   is created.
+
 <!--
 Created:  Wed 09 Apr 2014 10:04:50 am
-Modified: Tue 22 Apr 2014 05:42 pm
+Modified: Fri 09 May 2014 07:23 PM
 -->
